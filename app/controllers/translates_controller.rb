@@ -18,7 +18,7 @@ class TranslatesController < ApplicationController
   def show
     @translate = Translate.find(params[:id])
     @text = params[:text]
-    if @text="haha"
+    if @text=="hello"
       @text="你好"
     end
   end
