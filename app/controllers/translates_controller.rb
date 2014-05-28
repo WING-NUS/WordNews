@@ -17,9 +17,12 @@ class TranslatesController < ApplicationController
   # GET /translates/1.json
   def show
     @translate = Translate.find(params[:id])
-    @text = params[:text]
-    if @text=="hello"
-      @text="你好"
+    @text=Hash.new
+    @text["English"] = params[:text]
+    if @text["English"]=="hello"
+      @text["Chinese"]="你好"
+    else
+      @text["Chinese"]=""
     end
   end
 
