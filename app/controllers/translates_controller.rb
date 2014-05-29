@@ -18,12 +18,12 @@ class TranslatesController < ApplicationController
   def show
     @translate = Translate.find(params[:id])
     @text=Hash.new
-    @text["English"] = params[:text]
-    if @text["English"]=="hello"
-      @text["Chinese"]="你好"
-    else
-      @text["Chinese"]=""
-    end
+    @text[:english] = params[:text]
+    @text[:chinese]=@text[:english].gsub  'morning', '早上好'
+  end
+
+  def translateText(english_sentence)
+    
   end
 
   # GET /translates/new

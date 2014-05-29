@@ -1,1 +1,8 @@
-<%= @text.to_json %>
+<html>
+	<head>
+		<meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	</head>
+<body>
+<%= JSON.generate(@text.as_json) %>
+</body>
+</html>
