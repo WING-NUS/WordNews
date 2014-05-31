@@ -3,3 +3,11 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', translates_path %>
+<html>
+	<head>
+		<meta  http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	</head>
+<body>
+<div id="result-json" ><%= JSON.generate(@text.as_json) %></div>
+</body>
+</html>
