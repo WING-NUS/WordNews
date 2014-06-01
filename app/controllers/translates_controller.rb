@@ -21,11 +21,6 @@ class TranslatesController < ApplicationController
     @text[:english] = params[:text]
     @text[:chinese]=@text[:english].gsub  'morning', '早上好'
   end
-
-  def translateText(english_sentence)
-    
-  end
-
   # GET /translates/new
   # GET /translates/new.json
   def new
