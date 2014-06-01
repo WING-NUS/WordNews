@@ -20,6 +20,7 @@ class TranslatesController < ApplicationController
     @text=Hash.new
     @text[:english] = params[:text]
     @text[:chinese]=@text[:english].gsub  'morning', '早上好'
+    render @text
   end
 
   def translateText(english_sentence)
