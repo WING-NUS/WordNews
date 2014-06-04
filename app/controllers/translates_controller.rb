@@ -6,11 +6,22 @@ class TranslatesController < ApplicationController
   # GET /translates.json
   def index
     @translates = Translate.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @translates }
     end
+  end
+
+  def buildDictionary
+    $englishToChinese={"morning" => "早上", "programming" => "编程", "blue" => "蓝色"}
+  end
+  
+  def translate(english_line)
+    buildDictionary
+    $englishToChinese.each do |key,value|
+      english_line.gsub! key, value
+    end
+    return english_line
   end
 
   # GET /translates/1
@@ -19,7 +30,8 @@ class TranslatesController < ApplicationController
     @translate = Translate.find(params[:id])
     @text=Hash.new
     @text[:english] = params[:text]
-    @text[:chinese]=@text[:english].gsub  'morning', '早上好'
+    @text[:chinese] = translate(@text[:english].clone) # so we keep @text[:english unchanged]
+    #@text[:english].gsub  'morning', '早上好'
   end
   # GET /translates/new
   # GET /translates/new.json
