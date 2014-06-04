@@ -13,7 +13,12 @@ class TranslatesController < ApplicationController
   end
 
   def buildDictionary
-    $englishToChinese={"morning" => "早上", "programming" => "编程", "blue" => "蓝色"}
+    $englishToChinese={}
+    File.open("public/level1.txt", "r").each_line do |line|
+      data=line.split(" ")
+      $englishToChinese[data[0]]=data[1]
+    end
+    #$englishToChinese={"morning" => "早上", "programming" => "编程", "blue" => "蓝色"}
   end
   
   def translate(english_line)
