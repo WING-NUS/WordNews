@@ -18,7 +18,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 group :development do
 	gem 'sqlite3', '1.3.5'
 end

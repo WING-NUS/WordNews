@@ -32,7 +32,7 @@ class TranslatesController < ApplicationController
   # GET /translates/1
   # GET /translates/1.json
   def show
-    @translate = Translate.find(params[:id])
+    #@translate = Translate.find(params[:id])
     @text=Hash.new
     @text[:english] = params[:text]
     @text[:chinese] = translate(@text[:english].clone) # so we keep @text[:english unchanged]
