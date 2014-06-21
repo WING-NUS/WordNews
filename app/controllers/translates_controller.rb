@@ -24,7 +24,7 @@ class TranslatesController < ApplicationController
   def translate(english_line)
     buildDictionary
     word_list = english_line.split(" ")
-    i=0
+    i=0 # this i will be served as an iterator
     puts word_list
     for word in word_list
       if $englishToChinese.has_key?(word)
@@ -32,11 +32,7 @@ class TranslatesController < ApplicationController
       end
       i+=1
     end
-    return word_list.join(" ")
-    #$englishToChinese.each do |key,value|
-    #  english_line.gsub! key, value
-    #end
-    #return english_line
+    return word_list.join(" ") # join the result and return as the translation result
   end
 
   # GET /translates/1
