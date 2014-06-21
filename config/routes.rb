@@ -1,5 +1,6 @@
 TranslateApp::Application.routes.draw do
   resources :translates
+  
   root to: 'translates#index'
   match '/show', to: 'translates#show', via: :post
 
