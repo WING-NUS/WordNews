@@ -28,11 +28,13 @@ class TranslatesController < ApplicationController
     puts word_list
     for word in word_list
       if $englishToChinese.has_key?(word)
-        word_list[i]= $englishToChinese[word]
+        #word_list[i] = $englishToChinese[word]
+        temp= "<div class='word' ><b>" + $englishToChinese[word] + "</b></div>"
+        word_list[i]=temp.html_safe
       end
       i+=1
     end
-    return word_list.join(" ") # join the result and return as the translation result
+    return word_list.join(" ")# join the result and return as the translation result
   end
 
   # GET /translates/1
