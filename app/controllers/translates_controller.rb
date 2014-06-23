@@ -33,7 +33,7 @@ class TranslatesController < ApplicationController
         word_list[i]=temp.html_safe
       end
       i+=1
-    ends
+    end
     return word_list.join(" ")# join the result and return as the translation result
   end
 
