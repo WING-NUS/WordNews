@@ -29,7 +29,7 @@ class TranslatesController < ApplicationController
     for word in word_list
       if $englishToChinese.has_key?(word)
         #word_list[i] = $englishToChinese[word]
-        temp= "<div class='word' ><b>" + $englishToChinese[word] + "</b></div>" # the className will server as css purpose
+        temp= "<div title='#{word}' class='word'><b>" + $englishToChinese[word] + "</b></div>" # the className will server as css purpose
         word_list[i]=temp.html_safe
       end
       i+=1
