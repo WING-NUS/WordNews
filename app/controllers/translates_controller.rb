@@ -29,8 +29,22 @@ class TranslatesController < ApplicationController
     for word in word_list
       if $englishToChinese.has_key?(word)
         #word_list[i] = $englishToChinese[word]
-        temp= "<div title='#{word}' class='word'><b>" + $englishToChinese[word] + "</b></div>" # the className will server as css purpose
-        word_list[i]=temp.html_safe
+        popoverContent = "";
+        popoverContent += "<button id=10222_btn1\" class=\"btn btn-info\">I got it.</button>"
+        popoverContent += "<span>    </span>"
+        popoverContent += "<button id=10222_btn2\" class=\"btn btn-warning\">Really??</button>"
+
+        joinString = "  <button "      
+        joinString += "data-placement='above' "
+        joinString += "title='"+ "Translated from: <span style=\"font-weight: bold;  font-size:150%;\">" + word + "</span>' "
+        joinString += "href='#' "
+        joinString += "data-content = '" + popoverContent + "'"
+        joinString += "id = '10222' >"
+        joinString += $englishToChinese[word]
+        joinString += "</button> "
+
+        #temp= "<div title='#{word}' class='word'><b>" + $englishToChinese[word] + "</b></div>" # the className will server as css purpose
+        word_list[i]=joinString.html_safe
       end
       i+=1
     end
