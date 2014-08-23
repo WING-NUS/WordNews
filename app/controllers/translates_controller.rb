@@ -21,26 +21,33 @@ class TranslatesController < ApplicationController
     #$englishToChinese={"morning" => "早上", "programming" => "编程", "blue" => "蓝色"}
   end
   
-  def translate(english_line)
-    buildDictionary
-    word_list = english_line.split(" ")
-    puts word_list
-    result = {}
-    for word in word_list
-      if $englishToChinese.has_key?(word)
-        result[word] = $englishToChinese[word]
-      end
-    end
-    return result.to_s
-  end
+  #def translate(english_line)
+   # buildDictionary
+    #word_list = english_line.split(" ")
+    #puts word_list
+    #result = {}
+    #for word in word_list
+     # if $englishToChinese.has_key?(word)
+      #  result[word] = $englishToChinese[word]
+      #end
+    #end
+    #return result.to_s
+  #end
 
   # GET /translates/1
   # GET /translates/1.json
   def show
     #@translate = Translate.find(params[:id])
+    buildDictionary
     @text=Hash.new
-    @text[:english] = params[:text]
-    @text[:chinese] = translate(@text[:english].clone) # so we keep @text[:english unchanged]
+    #@text[:english] = params[:text]
+    #@text[:chinese] = translate(@text[:english].clone) # so we keep @text[:english unchanged]
+    word_list=params[:text].split(" ")
+    for word in word_list
+      if $englishToChinese.has_key?(word)
+        @text[word]=$englishToChinese[word]
+      end
+    end
     #@text[:english].gsub 'morning', '早上好'
   end
   # GET /translates/new
