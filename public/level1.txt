@@ -11,6 +11,9 @@ invest 投资
 more 更加
 afternoon 下午
 two 两个
+from 从
+for 为了
+your 你的
 oil 石油
 resource 资源
 cooperation 合作
@@ -19,5 +22,6 @@ progress 进展
 difficult 困难的
 area 领域
 market 市场
+in 里
 cultural 文化
 and 和
