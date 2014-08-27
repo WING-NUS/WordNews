@@ -38,20 +38,60 @@ class TranslatesController < ApplicationController
   # GET /translates/1.json
   def show
     #@translate = Translate.find(params[:id])
-    buildDictionary
     @text=Hash.new
     #@text[:english] = params[:text]
     #@text[:chinese] = translate(@text[:english].clone) # so we keep @text[:english unchanged]
     word_list=params[:text].split(" ")
+
     for word in word_list
-      if $englishToChinese.has_key?(word)
-        @text[word]=$englishToChinese[word]
+      temp=Dictionary.where(:word_english => word).first
+      if temp.blank?
+        next
+      else
+        @text[word]= temp.word_chinese
       end
     end
     #@text[:english].gsub 'morning', '早上好'
   end
   # GET /translates/new
   # GET /translates/new.json
+
+  def remember 
+    @user_name = params[:name]
+    @word = params[:word]
+    @ifRemember = params[:is_remembered].to_i
+
+    @word_id = Dictionary.where(:word_english => @word).first.word_id
+    user = User.where(:user_name => @user_name).first
+    if user.blank? #no user
+      newUser = User.new
+      newUser.user_name = @user_name
+      user_id = Random.rand(1000000)
+      test_exist = User.where(:user_id => user_id).first
+      newUser.user_id = user_id
+      newUser.save
+    end
+
+    @user_id = User.where(:user_name => @user_name).first.user_id
+
+    puts params[:is_remembered]
+    puts params[:is_remembered].class
+    if @ifRemember > 0 #update understand table
+      understand = Understand.new
+      understand.user_id = @user_id
+      understand.word_id = @word_id
+      understand.strength = 4
+      understand.save
+    else #update not understand table
+      not_understand = NotUnderstand.new
+      not_understand.user_id = @user_id
+      not_understand.word_id = @word_id
+      not_understand.strength = 4
+      not_understand.save
+    end
+  end
+
+
   def new
     @translate = Translate.new
 
@@ -64,6 +104,21 @@ class TranslatesController < ApplicationController
   # GET /translates/1/edit
   def edit
     @translate = Translate.find(params[:id])
+  end
+
+  def calculate
+    @category = params[:category] #learnt or tolearn
+    @user_name = params[:user_name]
+    @number = Hash.new
+    user = User.where(:user_name => @user_name).first
+    if user.blank? #no user
+      @number['learnt']=0
+      @number['tolearn']=0
+    else
+      @user_id = user.user_id
+      @number['learnt']=Understand.count(:user_id => @user_id)
+      @number['tolearn']=NotUnderstand.count(:user_id => @user_id)
+    end
   end
 
   # POST /translates

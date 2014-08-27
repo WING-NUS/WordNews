@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  word_difficulty_id: 1
+  word_difficulty_string: MyString
+
+two:
+  word_difficulty_id: 1
+  word_difficulty_string: MyString

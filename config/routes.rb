@@ -1,8 +1,14 @@
 TranslateApp::Application.routes.draw do
+  resources :users
+
+  resources :dictionaries
+
   resources :translates
   
   root to: 'translates#index'
   match '/show', to: 'translates#show', via: :post
+  match '/remember', to: 'translates#remember', via: :get
+  match '/getNumber', to: 'translates#calculate', via: :get
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
