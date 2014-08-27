@@ -107,8 +107,7 @@ class TranslatesController < ApplicationController
   end
 
   def calculate
-    @category = params[:category] #learnt or tolearn
-    @user_name = params[:user_name]
+    @user_name = params[:name]
     @number = Hash.new
     user = User.where(:user_name => @user_name).first
     if user.blank? #no user
@@ -116,8 +115,10 @@ class TranslatesController < ApplicationController
       @number['tolearn']=0
     else
       @user_id = user.user_id
-      @number['learnt']=Understand.count(:user_id => @user_id)
-      @number['tolearn']=NotUnderstand.count(:user_id => @user_id)
+      @query = "user_id=" + @user_id.to_s
+      puts @query
+      @number['learnt']=Understand.count('user_id', :conditions => [@query])
+      @number['tolearn']=NotUnderstand.count('user_id', :conditions => [@query])
     end
   end
 
