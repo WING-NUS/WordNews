@@ -11,15 +11,6 @@ class TranslatesController < ApplicationController
       format.json { render json: @translates }
     end
   end
-
-  def buildDictionary
-    $englishToChinese={}
-    File.open("public/level1.txt", "r").each_line do |line|
-      data=line.split(" ")
-      $englishToChinese[data[0]]=data[1]
-    end
-    #$englishToChinese={"morning" => "早上", "programming" => "编程", "blue" => "蓝色"}
-  end
   
   #def translate(english_line)
    # buildDictionary
