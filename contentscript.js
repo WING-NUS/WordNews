@@ -9,7 +9,7 @@ var HttpClient = function() {
         }
         anHttpRequest.open( "GET", aUrl, true );            
         anHttpRequest.send( null );
-    }
+    }	
 }
 
 var userAccount;
@@ -93,6 +93,7 @@ function replaceWords(sourceWords, targetWords, i){
 
 		var joinString = "";
 		joinString += "  <span ";
+		joinString += "style='text-decoration:underline;' ";
 		joinString += "data-placement='above' ";
 		joinString += "title='"+ "Translated from: <span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
 		joinString += "href='#' ";
@@ -147,9 +148,9 @@ function replaceWords(sourceWords, targetWords, i){
     	paragraph.innerHTML = result;
 	}
 
-	$('button').popover({ html : true});
+	$('span').popover({ html : true});
 
-	$('button').click(function(){
+	$('span').click(function(){
   		var currentId = $(this).attr('id');
   		console.log(currentId);
   		if(currentId.indexOf('myID_') > -1 && (!currentId.indexOf('_btn') > -1)){
