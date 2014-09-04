@@ -17,8 +17,6 @@ class TranslatesController < ApplicationController
   def show
     #@translate = Translate.find(params[:id])
     @text=Hash.new
-    #@text[:english] = params[:text]
-    #@text[:chinese] = translate(@text[:english].clone) # so we keep @text[:english unchanged]
     word_list=params[:text].split(" ")
 
     for word in word_list
@@ -45,7 +43,6 @@ class TranslatesController < ApplicationController
       newUser = User.new
       newUser.user_name = @user_name
       user_id = Random.rand(1000000)
-      test_exist = User.where(:user_id => user_id).first
       newUser.user_id = user_id
       newUser.save
     end
