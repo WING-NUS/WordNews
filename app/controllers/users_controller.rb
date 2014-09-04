@@ -24,10 +24,14 @@ class UsersController < ApplicationController
 
   def displayHistory
     @user_name = params[:name]
-    puts @user_name
-    puts @user_name.class
-    @user = User.where(:user_name => @user_name).first
-    @user = User.find(1)
+    #@user = User.where(:user_name => @user_name).first
+    #@user = User.find(1)
+    @find_user_query = "user_name = " + @user_name
+    @user = User.find(:first, :conditions => [ @find_user_query ])
+    @find_to_learn_query = "user_id = " + @user.user_id.to_s + " and if_understand = 0"
+    @find_learnt_query = "user_id = " + @user.user_id.to_s + " and if_understand = 1"
+    @wordsToLearn = Understand.find(:all, :conditions => [@find_to_learn_query] )
+    @wordsLearnt = Understand.find(:all, :conditions => [@find_learnt_query] )
     respond_to do |format|
       format.html # displayHistory.html.erb
       format.json { render json: @user }
