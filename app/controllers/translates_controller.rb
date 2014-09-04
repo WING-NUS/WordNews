@@ -64,22 +64,12 @@ class TranslatesController < ApplicationController
     end
 
     @user_id = User.where(:user_name => @user_name).first.user_id
-
-    puts params[:is_remembered]
-    puts params[:is_remembered].class
-    if @ifRemember > 0 #update understand table
-      understand = Understand.new
-      understand.user_id = @user_id
-      understand.word_id = @word_id
-      understand.strength = 4
-      understand.save
-    else #update not understand table
-      not_understand = NotUnderstand.new
-      not_understand.user_id = @user_id
-      not_understand.word_id = @word_id
-      not_understand.strength = 4
-      not_understand.save
-    end
+    understand = Understand.new
+    understand.user_id = @user_id
+    understand.word_id = @word_id
+    understand.strength = 4
+    understand.if_understand = @ifRemember>0?1:0
+    understand.save
   end
 
 
@@ -106,10 +96,10 @@ class TranslatesController < ApplicationController
       @number['tolearn']=0
     else
       @user_id = user.user_id
-      @query = "user_id=" + @user_id.to_s
-      puts @query
-      @number['learnt']=Understand.count('user_id', :conditions => [@query])
-      @number['tolearn']=NotUnderstand.count('user_id', :conditions => [@query])
+      @querylearnt = "user_id=" + @user_id.to_s+ "and if_understand=1"
+      @querytolearn = "user_id=" + @user_id.to_s+ "and if_understand=0"
+      @number['learnt']=Understand.count('user_id', :conditions => [@querylearnt])
+      @number['tolearn']=Understand.count('user_id', :conditions => [@querytolearn])
     end
   end
 
