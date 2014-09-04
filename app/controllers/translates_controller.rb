@@ -11,19 +11,6 @@ class TranslatesController < ApplicationController
       format.json { render json: @translates }
     end
   end
-  
-  #def translate(english_line)
-   # buildDictionary
-    #word_list = english_line.split(" ")
-    #puts word_list
-    #result = {}
-    #for word in word_list
-     # if $englishToChinese.has_key?(word)
-      #  result[word] = $englishToChinese[word]
-      #end
-    #end
-    #return result.to_s
-  #end
 
   # GET /translates/1
   # GET /translates/1.json

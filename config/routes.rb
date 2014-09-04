@@ -7,7 +7,7 @@ TranslateApp::Application.routes.draw do
   match '/show', to: 'translates#show', via: :post
   match '/remember', to: 'translates#remember', via: :get
   match '/getNumber', to: 'translates#calculate', via: :get
-  match '/displayHistory', to: 'users#show', via: :get
+  match '/displayHistory', to: 'users#displayHistory', via: :get
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

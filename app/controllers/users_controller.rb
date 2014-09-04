@@ -13,11 +13,23 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user_name = params[:name]
 
-    @user = User.where(:user_name => @user_name).first
+    @user = User.find(params[:id])
+    #@user = User.where(:user_name => @user_name).first
     respond_to do |format|
       format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
+
+  def displayHistory
+    @user_name = params[:name]
+    puts @user_name
+    puts @user_name.class
+    @user = User.where(:user_name => @user_name).first
+    @user = User.find(1)
+    respond_to do |format|
+      format.html # displayHistory.html.erb
       format.json { render json: @user }
     end
   end
