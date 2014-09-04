@@ -40,7 +40,7 @@
 	}
 	var remembered = new HttpClient();
 	var answer;
-	remembered.get('http://localhost:3000/getNumber?name='+userAccount, function(answer) {
+	remembered.get('http://testnaijia.herokuapp.com/getNumber?name='+userAccount, function(answer) {
 			console.log("this is answer: "+answer);
 			var obj=JSON.parse(answer);
 			console.log(obj);
@@ -90,6 +90,10 @@
 			}
 			
 			$(this).find('.btn').toggleClass('btn-default');
+	});
+
+	$('.btn-block').click(function(){
+		window.open("http://testnaijia.herokuapp.com/displayHistory?name="+userAccount);
 	});
 
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {

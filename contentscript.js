@@ -110,18 +110,18 @@ function replaceWords(sourceWords, targetWords, i){
 			var id = $(this).attr('id');
 		    var word = id.split('_')[1];
 	    	var remembered = new HttpClient();
-			remembered.get('http://localhost:3000/remember?name='+userAccount+'&word='+word+'&is_remembered=1', function(answer) {
+			remembered.get('http://testnaijia.herokuapp.com/remember?name='+userAccount+'&word='+word+'&is_remembered=1', function(answer) {
 			    console.log("this is answer: "+answer);
 			});
-			$('button').popover('hide');
+			$('.fypSpecialClass').popover('hide');
 		});
 
 		$(document).on("click", "#"+id+"_btn2", function() {
 			var id = $(this).attr('id');
 		    var word = id.split('_')[1];
 	    	var remembered = new HttpClient();
-	    	$('button').popover('hide');
-			remembered.get('http://localhost:3000/remember?name='+userAccount+'&word='+word+'&is_remembered=0', function(answer) {
+	    	$('.fypSpecialClass').popover('hide');
+			remembered.get('http://testnaijia.herokuapp.com/remember?name='+userAccount+'&word='+word+'&is_remembered=0', function(answer) {
 			    console.log("this is answer: "+answer);
 			});
 			window.open("http://dict.youdao.com/search?q="+word+"&keyfrom=dict.index");
