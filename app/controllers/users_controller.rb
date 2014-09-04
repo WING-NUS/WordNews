@@ -30,8 +30,22 @@ class UsersController < ApplicationController
     @user = User.find(:first, :conditions => [ @find_user_query ])
     @find_to_learn_query = "user_id = " + @user.user_id.to_s + " and if_understand = 0"
     @find_learnt_query = "user_id = " + @user.user_id.to_s + " and if_understand = 1"
-    @wordsToLearn = Understand.find(:all, :conditions => [@find_to_learn_query] )
-    @wordsLearnt = Understand.find(:all, :conditions => [@find_learnt_query] )
+    @wordsToLearnIdList = Understand.find(:all, :select => "word_id",:conditions => [@find_to_learn_query] )
+    @wordsToLearn=[]
+    for id in @wordsToLearnIdList
+      @temp_query = "word_id = " + id.to_s
+      @temp = Dictionary.find(:first, :conditions => [ @temp_query ])
+      @wordsToLearn.push(@temp)
+    end
+    @wordsLearntIdList = Understand.find(:all, :select => "word_id",:conditions => [@find_learnt_query] )
+    @wordsLearnt = []
+    for id in @wordsLearntIdList
+      @temp_query = "word_id = " + id.to_s
+      @temp = Dictionary.find(:first, :conditions => [ @temp_query ])
+      @wordsToLearn.push(@temp)
+    end
+
+
     respond_to do |format|
       format.html # displayHistory.html.erb
       format.json { render json: @user }

@@ -10,5 +10,17 @@
   <%= @user.user_name %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p>Words to Learn! </p>
+
+<% for word in @wordsToLearn %>
+	<ul >
+		<%=  word %>
+	</ul>
+<% end %>
+
+<p>Words Learnt! </p>
+<% for word in @wordLearnt %>
+	<ul >
+		<%=  word %>
+	</ul>
+<% end %>
