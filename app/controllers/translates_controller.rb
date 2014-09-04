@@ -79,7 +79,6 @@ class TranslatesController < ApplicationController
     end
   end
 
-
   def new
     @translate = Translate.new
 
