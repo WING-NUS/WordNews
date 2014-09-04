@@ -11,7 +11,21 @@
 </p>
 
 <p>Words to Learn! </p>
-<ul >
-	<%=  @wordsToLearn %>
-</ul>
+<% for w in @wordsToLearn%>
+<li >
+	<%=  w.word_english%>
+	<%=  w.word_chinese%>
+	<%=  w.word_difficulty_id %>
+	<%=  w.word_category%>
+</li>
+<% end %>
 
+<p>Words Learnt </p>
+<% for w in @wordsLearnt %>
+<li >
+	<%=  w.word_english%>
+	<%=  w.word_chinese%>
+	<%=  w.word_difficulty_id %>
+	<%=  w.word_category%>
+</li>
+<% end %>

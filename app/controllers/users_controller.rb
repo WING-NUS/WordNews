@@ -26,23 +26,26 @@ class UsersController < ApplicationController
     @user_name = params[:name]
     #@user = User.where(:user_name => @user_name).first
     #@user = User.find(1)
-    @find_user_query = "user_name = " + @user_name
+    @find_user_query = "user_name = '" + @user_name+"'"
     @user = User.find(:first, :conditions => [ @find_user_query ])
+    puts @user.user_id.to_s
     @find_to_learn_query = "user_id = " + @user.user_id.to_s + " and if_understand = 0"
     @find_learnt_query = "user_id = " + @user.user_id.to_s + " and if_understand = 1"
     @wordsToLearnIdList = Understand.find(:all, :select => "word_id",:conditions => [@find_to_learn_query] )
+    puts "hahhhhhhhh"
+    puts @wordsToLearnIdList.first
     @wordsToLearn=[]
     for id in @wordsToLearnIdList
-      @temp_query = "word_id = " + id.to_s
+      @temp_query = "word_id = " + id.word_id.to_s
       @temp = Dictionary.find(:first, :conditions => [ @temp_query ])
       @wordsToLearn.push(@temp)
     end
     @wordsLearntIdList = Understand.find(:all, :select => "word_id",:conditions => [@find_learnt_query] )
     @wordsLearnt = []
     for id in @wordsLearntIdList
-      @temp_query = "word_id = " + id.to_s
+      @temp_query = "word_id = " + id.word_id.to_s 
       @temp = Dictionary.find(:first, :conditions => [ @temp_query ])
-      @wordsToLearn.push(@temp)
+      @wordsLearnt.push(@temp)
     end
 
 
