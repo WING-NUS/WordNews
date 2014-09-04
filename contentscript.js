@@ -93,7 +93,8 @@ function replaceWords(sourceWords, targetWords, i){
 
 		var joinString = "";
 		joinString += "  <span ";
-		joinString += "style='text-decoration:underline;' ";
+		joinString += "class = 'fypSpecialClass' ";
+		joinString += "style='text-decoration:underline; font-weight: bold; ' ";
 		joinString += "data-placement='above' ";
 		joinString += "title='"+ "Translated from: <span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
 		joinString += "href='#' ";
@@ -148,20 +149,29 @@ function replaceWords(sourceWords, targetWords, i){
     	paragraph.innerHTML = result;
 	}
 
-	$('span').popover({ html : true});
+	$('.fypSpecialClass').popover({ html : true, placement : 'bottom' });
 
-	$('span').click(function(){
+/*	$('span').click(function(){
   		var currentId = $(this).attr('id');
   		console.log(currentId);
   		if(currentId.indexOf('myID_') > -1 && (!currentId.indexOf('_btn') > -1)){
 			$(this).popover({
 				trigger : 'focus',
 				html : true,
+				placement : bottom,
 			    content: function() {
 			      return $('#popover_content_wrapper').html();
 			    }
 			});
   		}
+	});*/
+
+	$('.fypSpecialClass').mouseover(function(){
+		$(this).css("color","#FF9900");
+		$(this).css("cursor","pointer");
+	});
+	$('.fypSpecialClass').mouseout(function(){
+		$(this).css("color","black");
 	});
 }
 
