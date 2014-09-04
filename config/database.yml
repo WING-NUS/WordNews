@@ -8,6 +8,8 @@ development:
   database: translate_db_development
   pool: 5
   timeout: 5000
+  username: zhaoyue
+  password: fypzhaoyue
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
