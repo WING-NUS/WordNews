@@ -24,6 +24,9 @@ class UsersController < ApplicationController
 
   def displayHistory
     @user_name = params[:name]
+    @log = Transaction.new
+    @log.user_name = @user_name
+    @log.save
     #@user = User.where(:user_name => @user_name).first
     #@user = User.find(1)
     @find_user_query = "user_name = '" + @user_name+"'"

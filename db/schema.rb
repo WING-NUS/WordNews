@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140905042036) do
+ActiveRecord::Schema.define(:version => 20140905044217) do
 
   create_table "dictionaries", :force => true do |t|
     t.string   "word_english"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20140905042036) do
   end
 
   create_table "transactions", :force => true do |t|
-    t.integer  "transcation_code"
+    t.integer  "transaction_code"
     t.string   "user_name"
     t.integer  "word_english"
     t.integer  "if_remembered"

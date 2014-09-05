@@ -18,6 +18,8 @@ class TranslatesController < ApplicationController
     #@translate = Translate.find(params[:id])
     @text=Hash.new
     word_list=params[:text].split(" ")
+    #@user_name = params[:name]
+    #@url = params[:url]
 
     for word in word_list
       temp=Dictionary.where(:word_english => word).first
@@ -25,6 +27,12 @@ class TranslatesController < ApplicationController
         next
       else
         @text[word]= temp.word_chinese
+        @log = Transaction.new
+        @log.transaction_code = 103
+        #@log.user_name = @user_name
+        @log.word_english = word
+        #@log.url = @url
+        @log.save
       end
     end
     #@text[:english].gsub 'morning', '早上好'
@@ -36,6 +44,14 @@ class TranslatesController < ApplicationController
     @user_name = params[:name]
     @word = params[:word]
     @ifRemember = params[:is_remembered].to_i
+    #@url = params[:url]
+    @log = Transaction.new
+    @log.transaction_code = 101
+    @log.user_name = @user_name
+    @log.if_remembered = @ifRemember
+    @log.word_english = @word
+    #@log.url = @url
+    @log.save
 
     @word_id = Dictionary.where(:word_english => @word).first.word_id
     user = User.where(:user_name => @user_name).first
@@ -81,6 +97,12 @@ class TranslatesController < ApplicationController
     @user_name = params[:name]
     @number = Hash.new
     user = User.where(:user_name => @user_name).first
+
+    @log = Transaction.new
+    @log.transaction_code = 201
+    @log.user_name = @user_name
+    #@log.url = @url
+    @log.save
     if user.blank? #no user
       @number['learnt']=0
       @number['tolearn']=0
