@@ -206,7 +206,8 @@ window.addEventListener("load", function(){
 			stringToServer = stringToServer.innerHTML;
 
 		    var url='http://testnaijia.herokuapp.com/show';
-		    var params = "text="+stringToServer;
+		    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount;
+		    console.log(params);
 		    talkToHeroku(url, params, i);
 		}
 	}
