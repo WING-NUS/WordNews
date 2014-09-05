@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  transcation_code: 1
+  user_name: MyString
+  word_english: 1
+  if_remembered: 1
+  url: MyString
+
+two:
+  transcation_code: 1
+  user_name: MyString
+  word_english: 1
+  if_remembered: 1
+  url: MyString
