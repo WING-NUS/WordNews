@@ -22,7 +22,8 @@ class TranslatesController < ApplicationController
     #@url = params[:url]
 
     for word in word_list
-      temp=Dictionary.where(:word_english => word.singularize).first
+      original_word = word.downcase.singularize
+      temp=Dictionary.where(:word_english => original_word ).first
       if temp.blank?
         next
       else
