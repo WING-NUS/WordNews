@@ -1,5 +1,8 @@
 'use script';
 
+//var url_front = "http://testnaijia.herokuapp.com/";
+var url_front = "http://localhost:3000/";
+
 var HttpClient = function() {
     this.get = function(aUrl, aCallback) {
         anHttpRequest = new XMLHttpRequest();
@@ -110,7 +113,7 @@ function replaceWords(sourceWords, targetWords, i){
 			var id = $(this).attr('id');
 		    var word = id.split('_')[1];
 	    	var remembered = new HttpClient();
-			remembered.get('http://testnaijia.herokuapp.com/remember?name='+userAccount+'&word='+word+'&is_remembered=1', function(answer) {
+			remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=1', function(answer) {
 			    console.log("this is answer: "+answer);
 			});
 			$('.fypSpecialClass').popover('hide');
@@ -121,7 +124,7 @@ function replaceWords(sourceWords, targetWords, i){
 		    var word = id.split('_')[1];
 	    	var remembered = new HttpClient();
 	    	$('.fypSpecialClass').popover('hide');
-			remembered.get('http://testnaijia.herokuapp.com/remember?name='+userAccount+'&word='+word+'&is_remembered=0', function(answer) {
+			remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=0', function(answer) {
 			    console.log("this is answer: "+answer);
 			});
 			window.open("http://dict.youdao.com/search?q="+word+"&keyfrom=dict.index");
@@ -205,7 +208,7 @@ window.addEventListener("load", function(){
 			var stringToServer = paragraphs[i];
 			stringToServer = stringToServer.innerHTML;
 
-		    var url='http://testnaijia.herokuapp.com/show';
+		    var url = url_front+'show';
 		    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount;
 		    console.log(params);
 		    talkToHeroku(url, params, i);

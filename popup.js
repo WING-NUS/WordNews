@@ -10,6 +10,9 @@
 		}
 	}
 
+	//var url_front = "http://testnaijia.herokuapp.com/";
+	var url_front = "http://localhost:3000/";
+
 
 	function onWindowLoad() {
 
@@ -40,7 +43,7 @@
 	}
 	var remembered = new HttpClient();
 	var answer;
-	remembered.get('http://testnaijia.herokuapp.com/getNumber?name='+userAccount, function(answer) {
+	remembered.get(url_front+'/getNumber?name='+userAccount, function(answer) {
 			console.log("this is answer: "+answer);
 			var obj=JSON.parse(answer);
 			console.log(obj);
@@ -93,7 +96,7 @@
 	});
 
 	$('.btn-block').click(function(){
-		window.open("http://testnaijia.herokuapp.com/displayHistory?name="+userAccount);
+		window.open(url_front+"displayHistory?name="+userAccount);
 	});
 
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
