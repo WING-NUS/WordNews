@@ -10,8 +10,8 @@
 		}
 	}
 
-	//var url_front = "http://testnaijia.herokuapp.com/";
-	var url_front = "http://localhost:3000/";
+	var url_front = "http://testnaijia.herokuapp.com/";
+	//var url_front = "http://localhost:3000/";
 
 
 	function onWindowLoad() {

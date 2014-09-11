@@ -1,7 +1,7 @@
 'use script';
 
-//var url_front = "http://testnaijia.herokuapp.com/";
-var url_front = "http://localhost:3000/";
+var url_front = "http://testnaijia.herokuapp.com/";
+//var url_front = "http://localhost:3000/";
 
 var HttpClient = function() {
     this.get = function(aUrl, aCallback) {
@@ -209,8 +209,8 @@ window.addEventListener("load", function(){
 			stringToServer = stringToServer.innerHTML;
 
 		    var url = url_front+'show';
-		    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount;
-		    console.log(params);
+		    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount + "&category=1@3";
+		    //console.log(params);
 		    talkToHeroku(url, params, i);
 		}
 	}
