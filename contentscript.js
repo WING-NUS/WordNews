@@ -51,15 +51,32 @@ function talkToHeroku(url, params, index){
             if(obj.chinese!==undefined){
                 //console.log(obj.chinese);
             }
-            var data = JSON.parse(response);
             var sourceWords = [];
             var targetWords = [];
-            for (var x in data) {
+            var is_test = [];
+            var other_english1 = [];
+            var other_english2 = [];
+            var other_english3 = [];
+            for (var x in obj) {
 				sourceWords.push(x);
-				targetWords.push(data[x]);
-				console.log(x+" "+data[x]);
+				targetWords.push(obj[x].chinese);
+				is_test.push(obj[x].is_test);
+				if(obj[x].is_test == 1)
+				{
+					other_english1.push(obj[x]["other_english"]["0"]);
+					other_english2.push(obj[x]["other_english"]["1"]);
+					other_english3.push(obj[x]["other_english"]["2"]);
+					console.log("other english is : "+obj[x]["other_english"]["2"]);
+				}
+				else
+				{
+					other_english1.push(" ");
+					other_english2.push(" ");
+					other_english3.push(" ");
+				}
+				console.log(x+" "+obj[x]+" "+obj[x].is_test);
 			}
-			replaceWords(sourceWords, targetWords, index);
+			replaceWords(sourceWords, targetWords, is_test, other_english1, other_english2 , other_english3, index);
             //document.getElementById('article').innerHTML  = obj["chinese"];
         }
         else {// Show what went wrong
@@ -70,7 +87,7 @@ function talkToHeroku(url, params, index){
 }
 
 
-function replaceWords(sourceWords, targetWords, i){
+function replaceWords(sourceWords, targetWords, is_test, other_english1, other_english2 , other_english3, i){
 
 	var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
@@ -90,25 +107,79 @@ function replaceWords(sourceWords, targetWords, i){
 		console.log(id);
 
 		var popoverContent = "";
-    	popoverContent += "<button id=\""+ id + "_btn1\" class=\"btn btn-info\">Got it</button>";
-    	popoverContent += "<span>    </span>"
-    	popoverContent += "<button id=\""+ id + "_btn2\" class=\"btn btn-warning\">Show me</button>";
-
 		var joinString = "";
-		joinString += "  <span ";
-		joinString += "class = 'fypSpecialClass' ";
-		joinString += "style='text-decoration:underline; font-weight: bold; ' ";
-		joinString += "data-placement='above' ";
-		joinString += "title='"+ "Translated from: <span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
-		joinString += "href='#' ";
-		joinString += "data-content = '" + popoverContent + "'";
-		joinString += "";
-		joinString += "";
-		joinString += "id = '" + id + "' >";
-		joinString += targetWord;
-		joinString += "</span>  ";
-		//console.log(joinString);
+		if(is_test[j] == 0)
+		{
+	    	popoverContent += "<button id=\""+ id + "_btn1\" class=\"btn btn-info\">Got it</button>";
+	    	popoverContent += "<span>    </span>"
+	    	popoverContent += "<button id=\""+ id + "_btn2\" class=\"btn btn-warning\">Show me</button>";
+    	
+    		joinString += "  <span ";
+			joinString += "class = 'fypSpecialClass' ";
+			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
+			joinString += "data-placement='above' ";
+			joinString += "title='"+ "Translated from: <span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
+			joinString += "href='#' ";
+			joinString += "data-content = '" + popoverContent + "'";
+			joinString += "";
+			joinString += "";
+			joinString += "id = '" + id + "' >";
+			joinString += targetWord;
+			joinString += "</span>  ";
+    	}
+    	else
+    	{
+    		popoverContent += "<div class = \"row\">";
 
+    		popoverContent += "<div class = \"col-xs-6\">"
+    		popoverContent += "<lable class = \"radio-inline\">";
+    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\">";
+    		popoverContent += other_english1[j];
+    		popoverContent += "</lable>";
+    		popoverContent += "</div>"
+
+    		popoverContent += "<div class = \"col-xs-6\">"
+    		popoverContent += "<lable class = \"radio-inline\">";
+    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option1\">";
+    		popoverContent += other_english2[j];
+    		popoverContent += "</lable>";
+    		popoverContent += "</div>"
+
+    		popoverContent += "</div>";
+    		popoverContent += "<div class = \"row\">";
+
+			popoverContent += "<div class = \"col-xs-6\">"
+    		popoverContent += "<lable class = \"radio-inline\">";
+    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option1\">";
+    		popoverContent += other_english3[j];
+    		popoverContent += "</lable>";
+    		popoverContent += "</div>"
+
+    		popoverContent += "<div class = \"col-xs-6\">"
+    		popoverContent += "<lable class = \"radio-inline\">";
+    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadioCorrect\" value=\"option1\">";
+    		popoverContent += sourceWord;
+    		popoverContent += "</lable>";
+    		popoverContent += "</div>"
+
+    		popoverContent += "</div>";
+
+	    	popoverContent += "<button style = \"margin-top:10px;\" id=\""+ id + "_btn3\" class=\"btn btn-success\">Submit</button>";
+			
+			joinString += "  <span ";
+			joinString += "class = 'fypSpecialClass' ";
+			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
+			joinString += "data-placement='above' ";
+			joinString += "title='Which of the following is the corresponding English word?' ";
+			joinString += "href='#' ";
+			joinString += "data-content = '" + popoverContent + "'";
+			joinString += "";
+			joinString += "";
+			joinString += "id = '" + id + "' >";
+			joinString += targetWord;
+			joinString += "</span>  ";
+    	}
+		
 		$(document).on("click", "#"+id+"_btn1", function() {
 			var id = $(this).attr('id');
 		    var word = id.split('_')[1];
@@ -128,6 +199,25 @@ function replaceWords(sourceWords, targetWords, i){
 			    console.log("this is answer: "+answer);
 			});
 			window.open("http://dict.youdao.com/search?q="+word+"&keyfrom=dict.index");
+		});
+
+		$(document).on("click", "#"+id+"_btn3", function() {
+			var id = $(this).attr('id');
+		    var word = id.split('_')[1];
+	    	var remembered = new HttpClient();
+	    	if(document.getElementById("inlineRadioCorrect").checked == true)
+	    	{
+				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=1', function(answer) {
+				    console.log("select the correct answer");
+				});
+			}
+			else
+			{
+				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=0', function(answer) {
+				    console.log("select the wrong answer");
+				});
+			}
+			$('.fypSpecialClass').popover('hide');
 		});
 
 		var parts = text.split(" " + sourceWord + " ");
@@ -209,7 +299,7 @@ window.addEventListener("load", function(){
 			stringToServer = stringToServer.innerHTML;
 
 		    var url = url_front+'show';
-		    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount + "&category=1@3";
+		    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount+"&category=1@3";
 		    //console.log(params);
 		    talkToHeroku(url, params, i);
 		}
