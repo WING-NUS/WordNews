@@ -42,8 +42,8 @@ class TranslatesController < ApplicationController
         ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
         @text[word]['chinese']=temp.word_chinese
         if ifExist.blank? #just translate the word
-  #        @text[word]['is_test']=0
-   #     else testing mah
+          @text[word]['is_test']=0
+        else #testing mah
           @text[word]['is_test']=1
           @text[word]['other_english']=Hash.new
           choices = Dictionary.where(:word_category => category_list).where("word_english != ?", original_word).random(3)
@@ -87,7 +87,6 @@ class TranslatesController < ApplicationController
       newUser.user_id = user_id
       newUser.save
     end
-
 
     @user_id = User.where(:user_name => @user_name).first.user_id
     testEntry = Understand.where(:word_id => @word_id).first
