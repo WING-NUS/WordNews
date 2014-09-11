@@ -15,46 +15,81 @@
 
 
 	function onWindowLoad() {
+	var userAccount = "";
+	var isWorking = "";
+	var categoryParameter = "";
+    chrome.storage.sync.get(['userAccount', 'isWorking', 'categoryParameter'], function(result){
+    	userAccount = result.userAccount;
+    	isWorking = result.isWorking;
+    	categoryParameter = result.categoryParameter;
+    	console.log("user isworking: "+ result.isWorking);
+    	console.log("user acc: "+ result.userAccount);
+    	console.log("user category: "+ result.categoryParameter);
 
-	var userAccount = localStorage.getItem("userAccount");
-	var isWorking = localStorage.getItem("isWorking");
-	if (userAccount == undefined){
-		var d = new Date();
-		userAccount = "id"+d.getTime()+"_1";
-		localStorage.setItem("userAccount",userAccount);
-	}
-	console.log("userAccount "+userAccount);
+		if (userAccount == undefined){
+			var d = new Date();
+			userAccount = "id"+d.getTime()+"_1";
+			chrome.storage.sync.set({'userAccount': userAccount}, function() {});
+		}
+		console.log("userAccount "+userAccount);
 
-	if(isWorking == undefined)
-	{
-		isWorking = 0;
-		localStorage.setItem("isWorking",isWorking);
-	}
-	console.log("isWorking "+isWorking);
-	if(isWorking == 0)
-	{
-		document.getElementById("turnOn").className = "btn btn-default";
-		document.getElementById("turnOff").className = "btn btn-primary active";
-	}
-	else
-	{
-		document.getElementById("turnOn").className = "btn btn-primary active";
-		document.getElementById("turnOff").className = "btn btn-default";
-	}
-	var remembered = new HttpClient();
-	var answer;
-	remembered.get(url_front+'/getNumber?name='+userAccount, function(answer) {
-			console.log("this is answer: "+answer);
-			var obj=JSON.parse(answer);
-			console.log(obj);
-			if(obj.learnt!==undefined)
-			{
-				document.getElementById("learnt").innerHTML = obj["learnt"];
-			}
-			if(obj.tolearn!==undefined)
-			{
-				document.getElementById("toLearn").innerHTML = obj["tolearn"];
-			}
+		if(isWorking == undefined)
+		{
+			isWorking = 0;
+			chrome.storage.sync.set({'isWorking': isWorking});
+		}
+		console.log("isWorking "+isWorking);
+		if(isWorking == 0)
+		{
+			document.getElementById("turnOn").className = "btn btn-default";
+			document.getElementById("turnOff").className = "btn btn-primary active";
+		}
+		else
+		{
+			document.getElementById("turnOn").className = "btn btn-primary active";
+			document.getElementById("turnOff").className = "btn btn-default";
+		}
+		if(categoryParameter.indexOf('@1@') !== -1)
+		{
+			document.getElementById("inlineCheckbox1").checked = true;
+		}
+		if(categoryParameter.indexOf('@3@') !== -1)
+		{
+			document.getElementById("inlineCheckbox3").checked = true;
+		}
+		var remembered = new HttpClient();
+		var answer;
+		remembered.get(url_front+'/getNumber?name='+userAccount, function(answer) {
+				console.log("this is answer: "+answer);
+				var obj=JSON.parse(answer);
+				console.log(obj);
+				if(obj.learnt!==undefined)
+				{
+					document.getElementById("learnt").innerHTML = obj["learnt"];
+				}
+				if(obj.tolearn!==undefined)
+				{
+					document.getElementById("toLearn").innerHTML = obj["tolearn"];
+				}
+		});
+    });
+
+	$("input").change(function() {
+		console.log("1111111");
+		categoryParameter = "";
+		if(document.getElementById("inlineCheckbox1").checked == true)
+		{
+			categoryParameter+= "@"+document.getElementById("inlineCheckbox1").value+"@";
+		}
+		if(document.getElementById("inlineCheckbox3").checked == true)
+		{
+			categoryParameter+= "@"+document.getElementById("inlineCheckbox3").value+"@";
+		}
+		chrome.storage.sync.set({'categoryParameter': categoryParameter});
+		chrome.storage.sync.get('categoryParameter', function(result){
+	    	userAccount = result.categoryParameter;
+	    	console.log("user categoryParameter: "+ result.categoryParameter);
+	    });
 	});
 
 	$('.btn-toggle').click(function() {
@@ -63,19 +98,19 @@
 			if(isWorking==1)
 			{
 				isWorking = 0;
-				localStorage.setItem("isWorking",0);
-
+				chrome.storage.sync.set({'isWorking': isWorking});
+				chrome.storage.sync.get(['userAccount', 'isWorking'], function(result){
+			    	userAccount = result.userAccount;
+			    	isWorking = result.isWorking;
+			    	console.log("user isworking: "+ result.isWorking);
+			    });
 			}
 			else
 			{
 				isWorking = 1;
-				localStorage.setItem("isWorking",1);
+				chrome.storage.sync.set({'isWorking': isWorking});
 			}
 			console.log("isWorking2 "+isWorking);
-
-			chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-				chrome.tabs.sendMessage(tabs[0].id, { action: "toggleTranslate" , working: isWorking});
-			});
 
 			$(this).find('.btn').toggleClass('active');	
 			
@@ -98,10 +133,6 @@
 	$('.btn-block').click(function(){
 		window.open(url_front+"displayHistory?name="+userAccount);
 	});
-
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, { action: "changeUserID" , account: userAccount});
-  });
 }
 
 	window.onload = onWindowLoad;

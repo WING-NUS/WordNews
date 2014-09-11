@@ -17,6 +17,7 @@ var HttpClient = function() {
 
 var userAccount;
 var isWorking;
+var categoryParameter;
 
 function occurrences(string, substring) {
 	var n = 0;
@@ -244,21 +245,6 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 
 	$('.fypSpecialClass').popover({ html : true, placement : 'bottom' });
 
-/*	$('span').click(function(){
-  		var currentId = $(this).attr('id');
-  		console.log(currentId);
-  		if(currentId.indexOf('myID_') > -1 && (!currentId.indexOf('_btn') > -1)){
-			$(this).popover({
-				trigger : 'focus',
-				html : true,
-				placement : bottom,
-			    content: function() {
-			      return $('#popover_content_wrapper').html();
-			    }
-			});
-  		}
-	});*/
-
 	$('.fypSpecialClass').mouseover(function(){
 		$(this).css("color","#FF9900");
 		$(this).css("cursor","pointer");
@@ -271,51 +257,42 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 
 window.addEventListener("load", function(){
 
-	userAccount = localStorage.getItem("userAccount");
-	isWorking = localStorage.getItem("isWorking");
-	if (userAccount == undefined){
-		var d = new Date();
-		userAccount = "id"+d.getTime()+"_1";
-		localStorage.setItem("userAccount",userAccount);
-	}
-	console.log(userAccount);
-	if(isWorking == undefined)
-	{
-		isWorking = 0;
-		localStorage.setItem("isWorking",isWorking);
-	}
-	console.log("isWorking "+isWorking);
+    chrome.storage.sync.get(['userAccount', 'isWorking', 'categoryParameter'], function(result){
+    	userAccount = result.userAccount;
+    	isWorking = result.isWorking;
+    	categoryParameter = result.categoryParameter;
+    	console.log("user isworking: "+ result.isWorking);
+    	console.log("user acc: "+ result.userAccount);
+    	console.log("user category: "+ result.categoryParameter);
 
-	if(isWorking == 1)
-	{
-		var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
-
-		for (var i = 0; i < paragraphs.length; i++) {
-
-			var sourceWords = [];
-			var targetWords = [];
-
-			var stringToServer = paragraphs[i];
-			stringToServer = stringToServer.innerHTML;
-
-		    var url = url_front+'show';
-		    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount+"&category=1@3";
-		    //console.log(params);
-		    talkToHeroku(url, params, i);
+		if (userAccount == undefined){
+			var d = new Date();
+			userAccount = "id"+d.getTime()+"_1";
+			chrome.storage.sync.set({'userAccount': userAccount});
 		}
-	}
+		
+		if(isWorking == undefined)
+		{
+			isWorking = 0;
+			chrome.storage.sync.set({'isWorking': isWorking});
+		}
+		if(isWorking == 1)
+		{
+			var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
-});
+			for (var i = 0; i < paragraphs.length; i++) {
 
+				var sourceWords = [];
+				var targetWords = [];
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+				var stringToServer = paragraphs[i];
+				stringToServer = stringToServer.innerHTML;
 
-    if (request.action == "toggleTranslate")
-    {
-		localStorage.setItem("isWorking",request.working);
-    }
-    if (request.action == "changeUserID")
-    {
-    	localStorage.setItem("userAccount",request.account);
-    }
+			    var url = url_front+'show';
+			    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount+"&category="+categoryParameter;
+			    console.log(params);
+			    talkToHeroku(url, params, i);
+			}
+		}
+	});
 });
