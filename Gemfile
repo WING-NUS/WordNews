@@ -16,7 +16,8 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
+# randome database support in database
+gem 'randumb'
 gem 'jquery-rails'
 
 #group :development do
