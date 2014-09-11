@@ -18,26 +18,40 @@ class TranslatesController < ApplicationController
     #@translate = Translate.find(params[:id])
     @text=Hash.new
     word_list=params[:text].split(" ")
-    #@user_name = params[:name]
-    #@url = params[:url]
-
+    @user_name = params[:name]
+    @url = params[:url]
+    category_list = params[:category].split("@")
     for word in word_list
+      #this is to add downcase and singularize support
       original_word = word.downcase.singularize
-      temp=Dictionary.where(:word_english => original_word ).first
+      temp=Dictionary.where(:word_english => original_word, :word_category => category_list ).first
       if temp.blank?
         next
       else
-        @text[word]= temp.word_chinese
+        @text[word]= Hash.new
+        ifExist = Understand.where(:word_id => temp.word_id).first
+        @text[word][chinese]=temp.word_chinese
+        if ifExist.blank? #just translate the word
+          @text[word][is_test]=0
+        else
+          @text[word][is_test]=1
+          @text[word][other_english]=Hash.new
+          choices = Dictionary.where(:word_category => category_list).where("word_english != ?", word).limit(3)
+          choices.each_with_index { |val, idx|   
+            @text[word][other_english][idx]=val.word_english
+          }
+        end
         @log = Transaction.new
         @log.transaction_code = 103
-        #@log.user_name = @user_name
+        @log.user_name = @user_name
         @log.word_english = word
-        #@log.url = @url
+        @log.url = @url
         @log.save
       end
-    end
-    #@text[:english].gsub 'morning', '早上好'
+    end # end of for word in word_list
   end
+
+
   # GET /translates/new
   # GET /translates/new.json
 
