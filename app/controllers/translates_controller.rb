@@ -19,6 +19,14 @@ class TranslatesController < ApplicationController
     @text=Hash.new
     word_list=params[:text].split(" ")
     @user_name = params[:name]
+    user = User.where(:user_name => @user_name).first
+    if user.blank? #no user
+      newUser = User.new
+      newUser.user_name = @user_name
+      user_id = Random.rand(1000000)
+      newUser.user_id = user_id
+      newUser.save
+    end
     @url = params[:url]
     category_list = params[:category].split("@")
     for word in word_list
