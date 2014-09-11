@@ -46,7 +46,7 @@ class TranslatesController < ApplicationController
    #     else testing mah
           @text[word]['is_test']=1
           @text[word]['other_english']=Hash.new
-          choices = Dictionary.where(:word_category => category_list).where("word_english != ?", word).limit(3)
+          choices = Dictionary.where(:word_category => category_list).where("word_english != ?", original_word).limit(3)
           choices.each_with_index { |val, idx|   
             @text[word]['other_english'][idx.to_s]=val.word_english
           }
