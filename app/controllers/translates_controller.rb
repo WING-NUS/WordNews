@@ -40,15 +40,15 @@ class TranslatesController < ApplicationController
         @user_id = User.where(:user_name => @user_name).first.user_id
         # see if the user understands this word before
         ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
-        @text[word][chinese]=temp.word_chinese
+        @text[word]['chinese']=temp.word_chinese
         if ifExist.blank? #just translate the word
-          @text[word][is_test]=0
+          @text[word]['is_test']=0
         else
-          @text[word][is_test]=1
-          @text[word][other_english]=Hash.new
+          @text[word]['is_test']=1
+          @text[word]['other_english']=Hash.new
           choices = Dictionary.where(:word_category => category_list).where("word_english != ?", word).limit(3)
           choices.each_with_index { |val, idx|   
-            @text[word][other_english][idx]=val.word_english
+            @text[word]['other_english'][idx.to_s]=val.word_english
           }
         end
         @log = Transaction.new
