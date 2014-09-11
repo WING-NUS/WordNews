@@ -67,7 +67,7 @@ class TranslatesController < ApplicationController
 
   def remember 
     @user_name = params[:name]
-    @word = params[:word]
+    @word = params[:word].downcase.singularize
     @ifRemember = params[:is_remembered].to_i
     #@url = params[:url]
     @log = Transaction.new
