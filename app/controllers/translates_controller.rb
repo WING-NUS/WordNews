@@ -29,7 +29,9 @@ class TranslatesController < ApplicationController
         next
       else
         @text[word]= Hash.new
-        ifExist = Understand.where(:word_id => temp.word_id).first
+        @user_id = User.where(:user_name => @user_name).first.user_id
+        # see if the user understands this word before
+        ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
         @text[word][chinese]=temp.word_chinese
         if ifExist.blank? #just translate the word
           @text[word][is_test]=0
