@@ -20,6 +20,9 @@ end
 gem 'randumb'
 gem 'jquery-rails'
 
+
+# beautify rails console database table view
+gem 'hirb', '~> 0.7.2'
 #group :development do
 #	gem 'sqlite3', '1.3.5'
 #end
