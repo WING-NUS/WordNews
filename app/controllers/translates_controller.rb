@@ -98,7 +98,7 @@ class TranslatesController < ApplicationController
       understand.user_id = @user_id
       understand.word_id = @word_id
       understand.strength = 4
-      understand.if_understand = @ifRemember>0?1:0
+      understand.if_understand = @ifRemember
       understand.save
     end
   end
