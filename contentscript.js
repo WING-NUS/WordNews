@@ -130,6 +130,7 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
     	}
     	else
     	{
+
     		popoverContent += "<div class = \"row\">";
 
     		popoverContent += "<div class = \"col-xs-6\">"
@@ -167,6 +168,9 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 
 	    	popoverContent += "<button style = \"margin-top:10px;\" id=\""+ id + "_btn3\" class=\"btn btn-success\">Submit</button>";
 			
+	    	popoverContent += "<div id=\"alertSuccess\" class=\"alert alert-success\" role=\"alert\" style=\"display:none;margin-left:15px;\">Well done!</div>";
+	    	popoverContent += "<div id=\"alertDanger\" class=\"alert alert-danger\" role=\"alert\" style=\"display:none;margin-left:15px;\">Wrong answer~~</div>";
+
 			joinString += "  <span ";
 			joinString += "class = 'fypSpecialClass' ";
 			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
@@ -211,14 +215,22 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=1', function(answer) {
 				    console.log("select the correct answer");
 				});
+				document.getElementById("alertSuccess").style.display="inline";
 			}
 			else
 			{
 				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=0', function(answer) {
 				    console.log("select the wrong answer");
 				});
+				document.getElementById("alertDanger").style.display="inline";
 			}
-			$('.fypSpecialClass').popover('hide');
+			document.getElementById("inlineRadio1").disabled = true;
+			document.getElementById("inlineRadio2").disabled = true;
+			document.getElementById("inlineRadio3").disabled = true;
+			document.getElementById("inlineRadioCorrect").disabled = true;
+			document.getElementById(id).disabled = true;
+			setTimeout(function() {$('.fypSpecialClass').popover('hide')},1000);
+			//$('.fypSpecialClass').popover('hide');
 		});
 
 		var parts = text.split(" " + sourceWord + " ");
