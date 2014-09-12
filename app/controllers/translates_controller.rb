@@ -89,7 +89,7 @@ class TranslatesController < ApplicationController
     end
 
     @user_id = User.where(:user_name => @user_name).first.user_id
-    testEntry = Understand.where(:word_id => @word_id).first
+    testEntry = Understand.where(:word_id => @word_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
       testEntry.if_understand = @ifRemember
       testEntry.save
