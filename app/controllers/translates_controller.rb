@@ -41,7 +41,7 @@ class TranslatesController < ApplicationController
         # see if the user understands this word before
         ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
         @text[word]['chinese']=temp.word_chinese
-        if ifExist.blank? #just translate the word
+        if ifExist.if_understand == 0  #just translate the word
           @text[word]['is_test']=0
         else #testing mah
           @text[word]['is_test']=1
@@ -69,13 +69,13 @@ class TranslatesController < ApplicationController
     @user_name = params[:name]
     @word = params[:word].downcase.singularize
     @ifRemember = params[:is_remembered].to_i
-    #@url = params[:url]
+    @url = params[:url]
     @log = Transaction.new
     @log.transaction_code = 101
     @log.user_name = @user_name
     @log.if_remembered = @ifRemember
     @log.word_english = @word
-    #@log.url = @url
+    @log.url = @url
     @log.save
 
     @word_id = Dictionary.where(:word_english => @word).first.word_id
@@ -92,12 +92,14 @@ class TranslatesController < ApplicationController
     testEntry = Understand.where(:word_id => @word_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
       testEntry.if_understand = @ifRemember
+      testEntry.url = @url
       testEntry.save
     else # this is a new word the user has some operations on
       understand = Understand.new
       understand.user_id = @user_id
       understand.word_id = @word_id
       understand.strength = 4
+      understand.url = @url
       understand.if_understand = @ifRemember
       understand.save
     end
@@ -132,8 +134,8 @@ class TranslatesController < ApplicationController
       @number['tolearn']=0
     else
       @user_id = user.user_id
-      @querylearnt = "user_id=" + @user_id.to_s+ "and if_understand=1"
-      @querytolearn = "user_id=" + @user_id.to_s+ "and if_understand=0"
+      @querylearnt = "user_id=" + @user_id.to_s+ " and if_understand=1"
+      @querytolearn = "user_id=" + @user_id.to_s+ " and if_understand=0"
       @number['learnt']=Understand.count('user_id', :conditions => [@querylearnt])
       @number['tolearn']=Understand.count('user_id', :conditions => [@querytolearn])
     end
