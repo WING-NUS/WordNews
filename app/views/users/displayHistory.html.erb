@@ -1,30 +1,31 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <b>User:</b>
-  <%= @user.user_id %>
-</p>
+<div class="tabbable">
+<ul class="nav nav-tabs" role="tablist">
+  <li><a href="#tolearn" class="active">Words to Learn</a></li>
+  <li><a href="#learnt">Words Learnt</a></li>
+</ul>
 
-<p>
-  <b>User name:</b>
-  <%= @user.user_name %>
-</p>
+<div class="tab-content">
+	<div id="tolearn" class="tab-pane active">
+		<% for w in @wordsToLearn%>
+		<li >
+			<%=  w.word_english%>
+			<%=  w.word_chinese%>
+			<%=  w.word_difficulty_id %>
+			<%=  w.word_category%>
+		</li>
+		<% end %>
+	</div>
 
-<p>Words to Learn! </p>
-<% for w in @wordsToLearn%>
-<li >
-	<%=  w.word_english%>
-	<%=  w.word_chinese%>
-	<%=  w.word_difficulty_id %>
-	<%=  w.word_category%>
-</li>
-<% end %>
-
-<p>Words Learnt </p>
-<% for w in @wordsLearnt %>
-<li >
-	<%=  w.word_english%>
-	<%=  w.word_chinese%>
-	<%=  w.word_difficulty_id %>
-	<%=  w.word_category%>
-</li>
-<% end %>
+	<div id="learnt" class="tab-pane">
+		<p>Words Learnt </p>
+		<% for w in @wordsLearnt %>
+		<li >
+			<%=  w.word_english%>
+			<%=  w.word_chinese%>
+			<%=  w.word_difficulty_id %>
+			<%=  w.word_category%>
+		</li>
+		<% end %>
+	</div>
+</div>
+</div>

@@ -108,11 +108,6 @@ class TranslatesController < ApplicationController
       understand.if_understand = @ifRemember
       understand.save
     end
-
-    respond_to do |format|
-      format.html { render :layout => false }# new.html.erb
-      format.json { render json: @translate }
-    end
   end
 
   def new
