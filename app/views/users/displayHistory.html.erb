@@ -18,7 +18,7 @@
 <% end %>
 
 <div class="tabbable">
-	<ul class="nav nav-tabs">
+	<ul it="tabs" class="nav nav-tabs" data-tabs="tabs">
 	  <li class="active"><a href="#tolearn" data-toggle="tab">Words to Learn</a></li>
 	  <li><a href="#learnt" data-toggle="tab">Words Learnt</a></li>
 	</ul>
@@ -32,6 +32,7 @@
 				<%=  w.word_category%>
 			</li>
 			<% end %>
+			<p>In to learn</p>
 		</div>
 		<div id="learnt" class="tab-pane">
 			<% for w in @wordsLearnt %>
@@ -41,7 +42,24 @@
 				<%=  w.word_difficulty_id %>
 				<%=  w.word_category%>
 			</li>
+			<p>in learnt</p>
 			<% end %>
 		</div>
 	</div>
 </div>
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
+    <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <p>I'm in Section 1.</p>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <p>Howdy, I'm in Section 2.</p>
+    </div>
+  </div>
+</div>  
+
