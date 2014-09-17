@@ -15,6 +15,11 @@ var HttpClient = function() {
     }	
 }
 
+function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
+
 var userAccount;
 var isWorking;
 var categoryParameter;
@@ -111,15 +116,17 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 		var joinString = "";
 		if(is_test[j] == 0)
 		{
+			popoverContent += "<div sytle=\"text-align:center;\">";
 	    	popoverContent += "<button id=\""+ id + "_btn1\" class=\"btn btn-info\">Got it</button>";
-	    	popoverContent += "<span>    </span>"
-	    	popoverContent += "<button id=\""+ id + "_btn2\" class=\"btn btn-warning\">Show me</button>";
-    	
+	    	//popoverContent += "<span>    </span>"
+	    	popoverContent += "<button style=\"margin-left:10px\" id=\""+ id + "_btn2\" class=\"btn btn-warning\">Show me</button>";
+    		popoverContent += "</div>";
+
     		joinString += "  <span ";
 			joinString += "class = 'fypSpecialClass' ";
 			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
 			joinString += "data-placement='above' ";
-			joinString += "title='"+ "Translated from: <span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
+			joinString += "title='"+ "<span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
 			joinString += "href='#' ";
 			joinString += "data-content = '" + popoverContent + "'";
 			joinString += "";
@@ -133,43 +140,60 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 
     		popoverContent += "<div class = \"row\">";
 
-    		popoverContent += "<div class = \"col-xs-6\">"
-    		popoverContent += "<lable class = \"radio-inline\">";
-    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\">";
-    		popoverContent += other_english1[j];
-    		popoverContent += "</lable>";
-    		popoverContent += "</div>"
-
-    		popoverContent += "<div class = \"col-xs-6\">"
-    		popoverContent += "<lable class = \"radio-inline\">";
-    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option1\">";
-    		popoverContent += other_english2[j];
-    		popoverContent += "</lable>";
-    		popoverContent += "</div>"
+			var myArrayShuffle = [1,2,3,4];
+			myArrayShuffle = shuffle(myArrayShuffle);
+			for(var k=0;k<myArrayShuffle.length;k++)
+			{
+				switch(myArrayShuffle[k])
+				{
+					case 1:
+					    popoverContent += "<div class = \"col-xs-6\">"
+			    		popoverContent += "<lable class = \"radio-inline\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\">";
+			    		popoverContent += other_english1[j];
+			    		popoverContent += "</lable>";
+			    		popoverContent += "</div>"
+						break;
+					case 2:
+					    popoverContent += "<div class = \"col-xs-6\">"
+			    		popoverContent += "<lable class = \"radio-inline\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option1\">";
+			    		popoverContent += other_english2[j];
+			    		popoverContent += "</lable>";
+			    		popoverContent += "</div>"
+						break;
+					case 3:
+						popoverContent += "<div class = \"col-xs-6\">"
+			    		popoverContent += "<lable class = \"radio-inline\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option1\">";
+			    		popoverContent += other_english3[j];
+			    		popoverContent += "</lable>";
+			    		popoverContent += "</div>"
+						break;
+					case 4:
+					    popoverContent += "<div class = \"col-xs-6\">"
+			    		popoverContent += "<lable class = \"radio-inline\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadioCorrect\" value=\"option1\">";
+			    		popoverContent += sourceWord;
+			    		popoverContent += "</lable>";
+			    		popoverContent += "</div>"
+						break;
+					default:
+						break;
+				}
+				if(k==1)
+				{
+    				popoverContent += "</div>";
+		    		popoverContent += "<div class = \"row\">";
+				}
+			}
 
     		popoverContent += "</div>";
-    		popoverContent += "<div class = \"row\">";
 
-			popoverContent += "<div class = \"col-xs-6\">"
-    		popoverContent += "<lable class = \"radio-inline\">";
-    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option1\">";
-    		popoverContent += other_english3[j];
-    		popoverContent += "</lable>";
-    		popoverContent += "</div>"
-
-    		popoverContent += "<div class = \"col-xs-6\">"
-    		popoverContent += "<lable class = \"radio-inline\">";
-    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadioCorrect\" value=\"option1\">";
-    		popoverContent += sourceWord;
-    		popoverContent += "</lable>";
-    		popoverContent += "</div>"
-
-    		popoverContent += "</div>";
-
-	    	popoverContent += "<button style = \"margin-top:10px;\" id=\""+ id + "_btn3\" class=\"btn btn-success\">Submit</button>";
+	    	//popoverContent += "<button style = \"margin-top:10px;\" id=\""+ id + "_btn3\" class=\"btn btn-success\">Submit</button>";
 			
-	    	popoverContent += "<div id=\"alertSuccess\" class=\"alert alert-success\" role=\"alert\" style=\"display:none;margin-left:15px;\">Well done!</div>";
-	    	popoverContent += "<div id=\"alertDanger\" class=\"alert alert-danger\" role=\"alert\" style=\"display:none;margin-left:15px;\">Wrong answer~~</div>";
+	    	popoverContent += "<div id=\"alertSuccess\" class=\"alert alert-success\" role=\"alert\" style=\"display:none;margin-top:20px;\">Well done! You got the correct answer!</div>";
+	    	popoverContent += "<div id=\"alertDanger\" class=\"alert alert-danger\" role=\"alert\" style=\"display:none;margin-top:20px;\">Oh snap! The answer should be \""+sourceWord+"\"!</div>";
 
 			joinString += "  <span ";
 			joinString += "class = 'fypSpecialClass' ";
@@ -206,33 +230,37 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 			window.open("http://dict.youdao.com/search?q="+word+"&keyfrom=dict.index");
 		});
 
-		$(document).on("click", "#"+id+"_btn3", function() {
+		//$(document).on("click", "#"+id+"_btn3", function() {
+		$(document).on("click", "input[name*='inlineRadioOptions']", function() {
+		//$('input:radio').change(function() {
+			//alert("radio changed");
 			var id = $(this).attr('id');
 		    var word = id.split('_')[1];
 	    	var remembered = new HttpClient();
+			document.getElementById("inlineRadio1").disabled = true;
+			document.getElementById("inlineRadio2").disabled = true;
+			document.getElementById("inlineRadio3").disabled = true;
+			document.getElementById("inlineRadioCorrect").disabled = true;
 	    	if(document.getElementById("inlineRadioCorrect").checked == true)
 	    	{
 				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=1', function(answer) {
 				    console.log("select the correct answer");
 				});
-				document.getElementById("alertSuccess").style.display="inline";
+				document.getElementById("alertSuccess").style.display="inline-flex";
+				setTimeout(function() {$('.fypSpecialClass').popover('hide')},1000);
 			}
 			else
 			{
 				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=0', function(answer) {
 				    console.log("select the wrong answer");
 				});
-				document.getElementById("alertDanger").style.display="inline";
+				document.getElementById("alertDanger").style.display="inline-flex";
+				setTimeout(function() {$('.fypSpecialClass').popover('hide')},2500);
 			}
-			document.getElementById("inlineRadio1").disabled = true;
-			document.getElementById("inlineRadio2").disabled = true;
-			document.getElementById("inlineRadio3").disabled = true;
-			document.getElementById("inlineRadioCorrect").disabled = true;
-			document.getElementById(id).disabled = true;
-			setTimeout(function() {$('.fypSpecialClass').popover('hide')},1000);
+
+			
 			//$('.fypSpecialClass').popover('hide');
 		});
-
 		var parts = text.split(" " + sourceWord + " ");
 		var t = 1;
 
