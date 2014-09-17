@@ -41,7 +41,7 @@ class TranslatesController < ApplicationController
         # see if the user understands this word before
         ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
         @text[word]['chinese']=temp.word_chinese
-        if ifExist.if_understand == 0  #just translate the word
+        if ifExist.blank? or ifExist.if_understand == 0  #just translate the word
           @text[word]['is_test']=0
         else #testing mah
           @text[word]['is_test']=1
@@ -59,6 +59,11 @@ class TranslatesController < ApplicationController
         @log.save
       end
     end # end of for word in word_list
+
+    respond_to do |format|
+      format.html { render :layout => false }# new.html.erb
+      format.json { render json: @translate }
+    end
   end
 
 
@@ -103,6 +108,11 @@ class TranslatesController < ApplicationController
       understand.if_understand = @ifRemember
       understand.save
     end
+
+    respond_to do |format|
+      format.html { render :layout => false }# new.html.erb
+      format.json { render json: @translate }
+    end
   end
 
   def new
@@ -138,6 +148,11 @@ class TranslatesController < ApplicationController
       @querytolearn = "user_id=" + @user_id.to_s+ " and if_understand=0"
       @number['learnt']=Understand.count('user_id', :conditions => [@querylearnt])
       @number['tolearn']=Understand.count('user_id', :conditions => [@querytolearn])
+    end
+
+    respond_to do |format|
+      format.html { render :layout => false }# new.html.erb
+      format.json { render json: @translate }
     end
   end
 
