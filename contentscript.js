@@ -149,7 +149,7 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 					case 1:
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\"option1\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\""+other_english1[j]+"\">";
 			    		popoverContent += other_english1[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -157,7 +157,7 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 					case 2:
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio2\" value=\"option1\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio2\" value=\""+other_english2[j]+"\">";
 			    		popoverContent += other_english2[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -165,7 +165,7 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 					case 3:
 						popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio3\" value=\"option1\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio3\" value=\""+other_english3[j]+"\">";
 			    		popoverContent += other_english3[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -173,7 +173,7 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 					case 4:
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadioCorrect\" value=\"option1\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadioCorrect\" value=\""+sourceWord+"\">";
 			    		popoverContent += sourceWord;
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -235,7 +235,8 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 		//$('input:radio').change(function() {
 			//alert("radio changed");
 			var id = $(this).attr('id');
-		    var word = id.split('_')[1];
+		    var word = $(this).attr('value');
+			console.log("word = "+word+" id = "+id);
 	    	var remembered = new HttpClient();
 			document.getElementById("inlineRadio1").disabled = true;
 			document.getElementById("inlineRadio2").disabled = true;
