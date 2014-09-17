@@ -83,10 +83,7 @@ class TranslatesController < ApplicationController
     @log.url = @url
     @log.save
 
-    @word= Dictionary.where(:word_english => @word).first
-    if not @word.blank?
-      @word_id =@word.word_id
-    end
+    @word_id= Dictionary.where(:word_english => @word).first.word_id
     user = User.where(:user_name => @user_name).first
     if user.blank? #no user
       newUser = User.new
