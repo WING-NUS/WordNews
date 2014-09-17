@@ -283,7 +283,31 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
     	paragraph.innerHTML = result;
 	}
 
-	$('.fypSpecialClass').popover({ html : true, placement : 'bottom' });
+
+
+	var originalLeave = $.fn.popover.Constructor.prototype.leave;
+	$.fn.popover.Constructor.prototype.leave = function(obj){
+		var self = obj instanceof this.constructor ?
+		obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
+		var container, timeout;
+
+		originalLeave.call(this, obj);
+
+		if(obj.currentTarget) {
+			container = $(obj.currentTarget).siblings('.popover')
+			timeout = self.timeout;
+			container.one('mouseenter', function(){
+				//We entered the actual popover – call off the dogs
+				clearTimeout(timeout);
+				//Let's monitor popover content instead
+				container.one('mouseleave', function(){
+					$.fn.popover.Constructor.prototype.leave.call(self, self);
+				});
+			})
+		}
+	};
+
+	$('.fypSpecialClass').popover({ html : true, placement : 'bottom', trigger: 'click hover', delay: {show: 50, hide: 400}});
 
 	$('.fypSpecialClass').mouseover(function(){
 		$(this).css("color","#FF9900");
@@ -292,6 +316,30 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 	$('.fypSpecialClass').mouseout(function(){
 		$(this).css("color","black");
 	});
+/*	var tooltipTimeout;
+
+	$(".fypSpecialClass").hover(function()
+	{
+		var id = $(this).attr('id');
+		tooltipTimeout = setTimeout(showTooltip(id), 5000);
+	},hideTooltip(id));
+
+	function showTooltip(id)
+	{
+		$('#'+id).popover('show');
+	}
+
+	function hideTooltip(id)
+	{
+		clearTimeout(tooltipTimeout);
+		$('#'+id).popover('hide');
+	}*/
+
+/*	$(document).on("click", "p", function() {
+		if($(this).attr('class')!="fypSpecialClass")
+			$('.fypSpecialClass').popover('hide');
+	});*/
+
 }
 
 

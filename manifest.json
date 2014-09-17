@@ -17,7 +17,6 @@
     {
       "matches":[
         "http://*.cnn.com/*",
-        "https://*/*",
         "http://*.chinadaily.com.cn/*"
       ],
       "css": [
