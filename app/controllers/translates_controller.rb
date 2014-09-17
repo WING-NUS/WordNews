@@ -83,7 +83,10 @@ class TranslatesController < ApplicationController
     @log.url = @url
     @log.save
 
-    @word_id = Dictionary.where(:word_english => @word).first.word_id
+    @word= Dictionary.where(:word_english => @word).first
+    if not @word.blank?
+      @word_id =@word.word_id
+    end
     user = User.where(:user_name => @user_name).first
     if user.blank? #no user
       newUser = User.new
@@ -107,6 +110,10 @@ class TranslatesController < ApplicationController
       understand.url = @url
       understand.if_understand = @ifRemember
       understand.save
+    end
+    respond_to do |format|
+      format.html { render :layout => false }# new.html.erb
+      format.json { render json: @translate }
     end
   end
 
