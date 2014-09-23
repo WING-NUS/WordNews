@@ -3,43 +3,11 @@
 var url_front = "http://testnaijia.herokuapp.com/";
 //var url_front = "http://localhost:3000/";
 
-var HttpClient = function() {
-    this.get = function(aUrl, aCallback) {
-        anHttpRequest = new XMLHttpRequest();
-        anHttpRequest.onreadystatechange = function() { 
-            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-                aCallback(anHttpRequest.responseText);
-        }
-        anHttpRequest.open( "GET", aUrl, true );            
-        anHttpRequest.send( null );
-    }	
-}
-
-function shuffle(o){ //v1.0
-    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-};
 
 var userAccount;
 var isWorking;
 var categoryParameter;
-
-function occurrences(string, substring) {
-	var n = 0;
-	var pos = 0;
-	var l = substring.length;
-
-	while (true) {
-		pos = string.indexOf(substring, pos);
-		if (pos > -1) {
-			n++;
-			pos += l;
-		} else {
-			break;
-		}
-	}
-	return (n);
-}
+var pageDictionary = {};
 
 
 function talkToHeroku(url, params, index){
@@ -60,6 +28,8 @@ function talkToHeroku(url, params, index){
             var sourceWords = [];
             var targetWords = [];
             var is_test = [];
+            var pronunciation = [];
+            var example_sentence = [];
             var other_english1 = [];
             var other_english2 = [];
             var other_english3 = [];
@@ -67,22 +37,33 @@ function talkToHeroku(url, params, index){
 				sourceWords.push(x);
 				targetWords.push(obj[x].chinese);
 				is_test.push(obj[x].is_test);
-				if(obj[x].is_test == 1)
-				{
+				pageDictionary[x] = obj[x].chinese;
+				if(obj[x].pronunciation !== undefined){
+					pronunciation.push(obj[x].pronunciation);
+				}
+				else{
+					pronunciation.push("/pronunciation/");
+				}
+				if(obj[x].example_sentence !== undefined){
+					example_sentence.push(obj[x].example);
+				}
+				else{
+					example_sentence.push("/Here is example_sentence./");
+				}
+				if(obj[x].is_test == 1){
 					other_english1.push(obj[x]["other_english"]["0"]);
 					other_english2.push(obj[x]["other_english"]["1"]);
 					other_english3.push(obj[x]["other_english"]["2"]);
 					console.log("other english is : "+obj[x]["other_english"]["2"]);
 				}
-				else
-				{
+				else{
 					other_english1.push(" ");
 					other_english2.push(" ");
 					other_english3.push(" ");
 				}
 				console.log(x+" "+obj[x]+" "+obj[x].is_test);
 			}
-			replaceWords(sourceWords, targetWords, is_test, other_english1, other_english2 , other_english3, index);
+			replaceWords(sourceWords, targetWords, is_test, pronunciation, example_sentence, other_english1, other_english2 , other_english3, index);
             //document.getElementById('article').innerHTML  = obj["chinese"];
         }
         else {// Show what went wrong
@@ -93,7 +74,7 @@ function talkToHeroku(url, params, index){
 }
 
 
-function replaceWords(sourceWords, targetWords, is_test, other_english1, other_english2 , other_english3, i){
+function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_sentence, other_english1, other_english2 , other_english3, i){
 
 	var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
@@ -104,10 +85,6 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 
     	var paragraph = paragraphs[i];
     	var text = paragraph.innerHTML;
-    	if(i==0){
-    		console.log(paragraph.innerHTML);
-    		console.log(paragraph.innerText);
-    	}
 
 		var id = "myID_"+sourceWord+"_"+i.toString();
 		console.log(id);
@@ -117,6 +94,8 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 		if(is_test[j] == 0)
 		{
 			popoverContent += "<div sytle=\"text-align:center;\">";
+			popoverContent += "<div>Pronunciation: <div style=\"margin-left:10px\">"+pronunciation[j]+"</div></div>";
+			popoverContent += "<div>Example_sentence: <div style=\"margin-left:10px\">"+example_sentence[j]+"</div></div>";
 	    	popoverContent += "<button id=\""+ id + "_btn1\" class=\"btn btn-info\">Got it</button>";
 	    	//popoverContent += "<span>    </span>"
 	    	popoverContent += "<button style=\"margin-left:10px\" id=\""+ id + "_btn2\" class=\"btn btn-warning\">Show me</button>";
@@ -259,8 +238,6 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 				setTimeout(function() {$('.fypSpecialClass').popover('hide')},2500);
 			}
 
-			
-			//$('.fypSpecialClass').popover('hide');
 		});
 		var parts = text.split(" " + sourceWord + " ");
 		var t = 1;
@@ -282,6 +259,21 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
     	var result = parts.join(joinString);
 
     	paragraph.innerHTML = result;
+
+    	if(i == paragraphs.length-1){
+
+    		var oneMoreParagraph = "<p></p><p></p>";
+			oneMoreParagraph+="<p style='font-weight: bold;'>Words translated in this page:</p>";
+			//console.log("size of the dictionary is: "+ Object.keys(pageDictionary).length);
+			var key;
+			for(key in pageDictionary){
+				oneMoreParagraph+="<p>"+key+" : "+pageDictionary[key]+"</p>";
+			}
+
+			oneMoreParagraph+="<p style='font-weight: bold;'>Here are some links that you might be interested:</p>";
+			oneMoreParagraph+="<p><a target='_blank' href='http://edition.cnn.com/2014/09/09/politics/ted-cruz-immigration-shutdown/index.html?hpt=po_c2'>http://edition.cnn.com/2014/09/09/politics/ted-cruz-immigration-shutdown/index.html?hpt=po_c2</a></p>";
+			$(oneMoreParagraph).insertAfter(".cnn_storypgraph"+(i+2));
+		}
 	}
 
 
@@ -317,29 +309,6 @@ function replaceWords(sourceWords, targetWords, is_test, other_english1, other_e
 	$('.fypSpecialClass').mouseout(function(){
 		$(this).css("color","black");
 	});
-/*	var tooltipTimeout;
-
-	$(".fypSpecialClass").hover(function()
-	{
-		var id = $(this).attr('id');
-		tooltipTimeout = setTimeout(showTooltip(id), 5000);
-	},hideTooltip(id));
-
-	function showTooltip(id)
-	{
-		$('#'+id).popover('show');
-	}
-
-	function hideTooltip(id)
-	{
-		clearTimeout(tooltipTimeout);
-		$('#'+id).popover('hide');
-	}*/
-
-/*	$(document).on("click", "p", function() {
-		if($(this).attr('class')!="fypSpecialClass")
-			$('.fypSpecialClass').popover('hide');
-	});*/
 
 }
 
@@ -379,9 +348,45 @@ window.addEventListener("load", function(){
 
 			    var url = url_front+'show';
 			    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount+"&category="+categoryParameter;
-			    console.log(params);
+			    //console.log(params);
 			    talkToHeroku(url, params, i);
 			}
+
 		}
 	});
 });
+
+
+var HttpClient = function() {
+    this.get = function(aUrl, aCallback) {
+        anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function() { 
+            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                aCallback(anHttpRequest.responseText);
+        }
+        anHttpRequest.open( "GET", aUrl, true );            
+        anHttpRequest.send( null );
+    }	
+}
+
+function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
+
+function occurrences(string, substring) {
+	var n = 0;
+	var pos = 0;
+	var l = substring.length;
+
+	while (true) {
+		pos = string.indexOf(substring, pos);
+		if (pos > -1) {
+			n++;
+			pos += l;
+		} else {
+			break;
+		}
+	}
+	return (n);
+}
