@@ -48,7 +48,7 @@ function talkToHeroku(url, params, index){
 					example_sentence.push(obj[x].example);
 				}
 				else{
-					example_sentence.push("/Here is example_sentence./");
+					example_sentence.push("/Here is aaaaaaaaaa aaaaaaaa aaaaaaaaaa aaaaaa a aaaaa aaaaaaaaaaaaa aaaaaaaa aaaaaaaa aaaaaaaaa aaa a a aaaaaaa aaa aaa aaaaaa aaaa aaa aaaa aaa aaaaa aaa aa a aa aa example_sentence./");
 				}
 				if(obj[x].is_test == 1){
 					other_english1.push(obj[x]["other_english"]["0"]);
@@ -128,7 +128,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 					case 1:
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\""+other_english1[j]+"\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\""+sourceWord+"\">";
 			    		popoverContent += other_english1[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -136,7 +136,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 					case 2:
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio2\" value=\""+other_english2[j]+"\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio2\" value=\""+sourceWord+"\">";
 			    		popoverContent += other_english2[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -144,7 +144,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 					case 3:
 						popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio3\" value=\""+other_english3[j]+"\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio3\" value=\""+sourceWord+"\">";
 			    		popoverContent += other_english3[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -348,7 +348,7 @@ window.addEventListener("load", function(){
 
 			    var url = url_front+'show';
 			    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount+"&category="+categoryParameter;
-			    //console.log(params);
+			    console.log(params);
 			    talkToHeroku(url, params, i);
 			}
 
