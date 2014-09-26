@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140926131642) do
+ActiveRecord::Schema.define(:version => 20140926133721) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -74,8 +74,10 @@ ActiveRecord::Schema.define(:version => 20140926131642) do
   create_table "users", :force => true do |t|
     t.integer  "user_id"
     t.string   "user_name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "if_translate"
+    t.string   "translate_categories"
   end
 
 end
