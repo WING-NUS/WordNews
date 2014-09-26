@@ -5,7 +5,7 @@ class DictionariesController < ApplicationController
     @dictionaries = Dictionary.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :layout => false }# index.html.erb
       format.json { render json: @dictionaries }
     end
   end
@@ -16,7 +16,7 @@ class DictionariesController < ApplicationController
     @dictionary = Dictionary.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :layout => false }# show.html.erb
       format.json { render json: @dictionary }
     end
   end
@@ -27,7 +27,7 @@ class DictionariesController < ApplicationController
     @dictionary = Dictionary.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render :layout => false }# new.html.erb
       format.json { render json: @dictionary }
     end
   end
