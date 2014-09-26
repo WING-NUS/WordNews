@@ -20,15 +20,8 @@ class TranslatesController < ApplicationController
     word_list=params[:text].split(" ")
     @user_name = params[:name]
     user = User.where(:user_name => @user_name).first
-    if user.blank? #no user
-      newUser = User.new
-      newUser.user_name = @user_name
-      user_id = Random.rand(1000000)
-      newUser.user_id = user_id
-      newUser.save
-    end
     @url = params[:url]
-    category_list = params[:category].split("@")
+    category_list = user.translate_categories.split(",")
     for word in word_list
       #this is to add downcase and singularize support
       original_word = word.downcase.singularize
@@ -41,6 +34,7 @@ class TranslatesController < ApplicationController
         # see if the user understands this word before
         ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
         @text[word]['chinese']=temp.word_chinese
+        @text[word]['pronunciation']=temp.pronunciation
         if ifExist.blank? or ifExist.if_understand == 0  #just translate the word
           @text[word]['is_test']=0
         else #testing mah
@@ -85,14 +79,6 @@ class TranslatesController < ApplicationController
 
     @word_id= Dictionary.where(:word_english => @word).first.word_id
     user = User.where(:user_name => @user_name).first
-    if user.blank? #no user
-      newUser = User.new
-      newUser.user_name = @user_name
-      user_id = Random.rand(1000000)
-      newUser.user_id = user_id
-      newUser.save
-    end
-
     @user_id = User.where(:user_name => @user_name).first.user_id
     testEntry = Understand.where(:word_id => @word_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field

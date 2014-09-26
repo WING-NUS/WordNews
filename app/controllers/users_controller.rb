@@ -22,6 +22,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def getIfTranslate
+    @user_name = params[:name]
+    @log = Transaction.new
+    @log.user_name = @user_name
+    @log.save
+    @find_user_query = "user_name = '" + @user_name+"'"
+    @user = User.find(:first, :conditions => [ @find_user_query ])
+    if user.blank? #no user
+      newUser = User.new
+      newUser.user_name = @user_name
+      user_id = Random.rand(1000000)
+      newUser.user_id = user_id
+      newUser.if_translate = 1
+      newUser.translate_categories = "1,2,3,4" # the default will be translate all
+      newUser.save
+    end
+    @ifTranslate = @user.if_translate
+    @result['ifTranslate'] = @ifTranslate
+
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
+  end
+
   def displayHistory
     @user_name = params[:name]
     @log = Transaction.new
@@ -50,7 +74,6 @@ class UsersController < ApplicationController
       @temp = Dictionary.find(:first, :conditions => [ @temp_query ])
       @wordsLearnt.push(@temp)
     end
-
 
     respond_to do |format|
       format.html # displayHistory.html.erb
