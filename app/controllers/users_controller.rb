@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-
     @user = User.find(params[:id])
     #@user = User.where(:user_name => @user_name).first
     respond_to do |format|
@@ -74,6 +73,22 @@ class UsersController < ApplicationController
       @temp = Dictionary.find(:first, :conditions => [ @temp_query ])
       @wordsLearnt.push(@temp)
     end
+
+    respond_to do |format|
+      format.html # displayHistory.html.erb
+      format.json { render json: @user }
+    end
+  end
+
+  def settings
+    @user_name = params[:name]
+    @log = Transaction.new
+    @log.user_name = @user_name
+    @log.save
+    #@user = User.where(:user_name => @user_name).first
+    #@user = User.find(1)
+    @find_user_query = "user_name = '" + @user_name+"'"
+    @user = User.find(:first, :conditions => [ @find_user_query ])
 
     respond_to do |format|
       format.html # displayHistory.html.erb

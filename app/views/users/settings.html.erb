@@ -1,0 +1,27 @@
+<ul >
+	<li>User Name: <%=  @user.user_name %></li>
+	<li>Translate: 
+		<% if @user.if_translate == 1%> 
+			On
+		<% else %>
+			Off
+		<% end %> </li>
+	<li>Translate Categories: <%=  @user.translate_categories %></li>
+</ul>
+
+
+<div class="row">
+	<div class="span6 offset3">
+	<%= form_for(@user) do |f| %>
+		<%= f.radio_button :if_translate, '1' %> 
+  		<%= f.label :if_translate, 'On',:style => "display:inline" %>
+  		<%= f.radio_button :if_translate, '0' %>
+  		<%= f.label :if_translate, 'Off',:style => "display:inline" %>
+
+		<%= f.label :translate_categories %>
+		<%= f.text_field :translate_categories %>
+		<%= f.submit "Save changes",class: "btn btn-large btn-primary" %>
+	<% end %>
+	</div>
+</div>
+

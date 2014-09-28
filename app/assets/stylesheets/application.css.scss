@@ -150,14 +150,18 @@ aside{
 }
 
 /* forms */
-input, textarea, select, .uneditable-input{
+input,textarea, select, .uneditable-input{
 	border: 1px solid #bbb;
 	width: 100%;
 	padding: 10px;
 	height: auto;
 	margin-bottom: 15px;
+	display:inline;
 	@include box_sizing
 }
+
+.radio_buttons { display:inline; }
+
 
 
 
