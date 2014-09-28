@@ -118,7 +118,15 @@ class TranslatesController < ApplicationController
     @user_name = params[:name]
     @number = Hash.new
     user = User.where(:user_name => @user_name).first
-
+    if user.blank? #no user
+      newUser = User.new
+      newUser.user_name = @user_name
+      user_id = Random.rand(1000000)
+      newUser.user_id = user_id
+      newUser.if_translate = 1
+      newUser.translate_categories = "1,2,3,4" # the default will be translate all
+      newUser.save
+    end
     @log = Transaction.new
     @log.transaction_code = 201
     @log.user_name = @user_name
