@@ -30,6 +30,7 @@ class TranslatesController < ApplicationController
         next
       else
         @text[word]= Hash.new
+        original_word_chinese = temp.word_chinese
         @user_id = User.where(:user_name => @user_name).first.user_id
         # see if the user understands this word before
         ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
@@ -37,12 +38,19 @@ class TranslatesController < ApplicationController
         @text[word]['pronunciation']=temp.pronunciation
         if ifExist.blank? or ifExist.if_understand == 0  #just translate the word
           @text[word]['is_test']=0
-        else #testing mah
+        elsif ifExist.if_understand > 3 and ifExist.if_understand < 7 #testing mah
           @text[word]['is_test']=1
-          @text[word]['other_english']=Hash.new
+          @text[word]['choices']=Hash.new
           choices = Dictionary.where(:word_category => category_list).where("word_english != ?", original_word).random(3)
           choices.each_with_index { |val, idx|   
-            @text[word]['other_english'][idx.to_s]=val.word_english
+            @text[word]['choices'][idx.to_s]=val.word_english
+          }
+        elsif ifExist.if_understand > 6 and ifExist.if_understand < 10
+          @text[word]['is_test']=2
+          @text[word]['choices']=Hash.new
+          choices = Dictionary.where(:word_category => category_list).where("word_chinese != ?", original_word_chinese).random(3)
+          choices.each_with_index { |val, idx|   
+            @text[word]['choices'][idx.to_s]=val.word_english
           }
         end
         @log = Transaction.new
@@ -82,9 +90,13 @@ class TranslatesController < ApplicationController
     @user_id = User.where(:user_name => @user_name).first.user_id
     testEntry = Understand.where(:word_id => @word_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
-      testEntry.if_understand = @ifRemember
+      if @ifRemember == 0
+        testEntry.if_understand = @ifRemember
+      else 
+        testEntry.if_understand = testEntry.if_understand+1
       testEntry.url = @url
       testEntry.save
+      end
     else # this is a new word the user has some operations on
       understand = Understand.new
       understand.user_id = @user_id
@@ -137,7 +149,7 @@ class TranslatesController < ApplicationController
       @number['tolearn']=0
     else
       @user_id = user.user_id
-      @querylearnt = "user_id=" + @user_id.to_s+ " and if_understand=1"
+      @querylearnt = "user_id=" + @user_id.to_s+ " and if_understand>0"
       @querytolearn = "user_id=" + @user_id.to_s+ " and if_understand=0"
       @number['learnt']=Understand.count('user_id', :conditions => [@querylearnt])
       @number['tolearn']=Understand.count('user_id', :conditions => [@querytolearn])
