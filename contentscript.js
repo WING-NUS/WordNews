@@ -30,9 +30,9 @@ function talkToHeroku(url, params, index){
             var is_test = [];
             var pronunciation = [];
             var example_sentence = [];
-            var other_english1 = [];
-            var other_english2 = [];
-            var other_english3 = [];
+            var choices1 = [];
+            var choices2 = [];
+            var choices3 = [];
             for (var x in obj) {
 				sourceWords.push(x);
 				targetWords.push(obj[x].chinese);
@@ -51,19 +51,19 @@ function talkToHeroku(url, params, index){
 					example_sentence.push("/Here is aaaaaaaaaa aaaaaaaa aaaaaaaaaa aaaaaa a aaaaa aaaaaaaaaaaaa aaaaaaaa aaaaaaaa aaaaaaaaa aaa a a aaaaaaa aaa aaa aaaaaa aaaa aaa aaaa aaa aaaaa aaa aa a aa aa example_sentence./");
 				}
 				if(obj[x].is_test == 1){
-					other_english1.push(obj[x]["other_english"]["0"]);
-					other_english2.push(obj[x]["other_english"]["1"]);
-					other_english3.push(obj[x]["other_english"]["2"]);
-					console.log("other english is : "+obj[x]["other_english"]["2"]);
+					choices1.push(obj[x]["choices"]["0"]);
+					choices2.push(obj[x]["choices"]["1"]);
+					choices3.push(obj[x]["choices"]["2"]);
+					console.log("other english is : "+obj[x]["choices"]["2"]);
 				}
 				else{
-					other_english1.push(" ");
-					other_english2.push(" ");
-					other_english3.push(" ");
+					choices1.push(" ");
+					choices2.push(" ");
+					choices3.push(" ");
 				}
 				console.log(x+" "+obj[x]+" "+obj[x].is_test);
 			}
-			replaceWords(sourceWords, targetWords, is_test, pronunciation, example_sentence, other_english1, other_english2 , other_english3, index);
+			replaceWords(sourceWords, targetWords, is_test, pronunciation, example_sentence, choices1, choices2 , choices3, index);
             //document.getElementById('article').innerHTML  = obj["chinese"];
         }
         else {// Show what went wrong
@@ -74,7 +74,7 @@ function talkToHeroku(url, params, index){
 }
 
 
-function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_sentence, other_english1, other_english2 , other_english3, i){
+function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_sentence, choices1, choices2 , choices3, i){
 
 	var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
@@ -116,6 +116,12 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
     	}
     	else
     	{
+    		if(is_test[j] == 2)
+    		{
+    			var tempWord = targetWord;
+    			targetWord = sourceWord;
+    			sourceWord = tempWord;
+    		}
 
     		popoverContent += "<div class = \"row\">";
 
@@ -129,7 +135,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
 			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\""+sourceWord+"\">";
-			    		popoverContent += other_english1[j];
+			    		popoverContent += choices1[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
 						break;
@@ -137,7 +143,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
 			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio2\" value=\""+sourceWord+"\">";
-			    		popoverContent += other_english2[j];
+			    		popoverContent += choices2[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
 						break;
@@ -145,7 +151,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 						popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
 			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio3\" value=\""+sourceWord+"\">";
-			    		popoverContent += other_english3[j];
+			    		popoverContent += choices3[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
 						break;
@@ -270,8 +276,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 				oneMoreParagraph+="<p>"+key+" : "+pageDictionary[key]+"</p>";
 			}
 
-			oneMoreParagraph+="<p style='font-weight: bold;'>Here are some links that you might be interested:</p>";
-			oneMoreParagraph+="<p><a target='_blank' href='http://edition.cnn.com/2014/09/09/politics/ted-cruz-immigration-shutdown/index.html?hpt=po_c2'>http://edition.cnn.com/2014/09/09/politics/ted-cruz-immigration-shutdown/index.html?hpt=po_c2</a></p>";
+			oneMoreParagraph+="<p calss='cnn_storypgraph"+(i+3)+"' style='font-weight: bold;'>Here are some links that you might be interested:</p>";
 			$(oneMoreParagraph).insertAfter(".cnn_storypgraph"+(i+2));
 		}
 	}
@@ -334,25 +339,48 @@ window.addEventListener("load", function(){
 			isWorking = 0;
 			chrome.storage.sync.set({'isWorking': isWorking});
 		}
-		if(isWorking == 1)
-		{
-			var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
+		var remembered = new HttpClient();
+		//http://testnaijia.herokuapp.com/getIfTranslate?name='+userAccoun
+		remembered.get(url_front+'getIfTranslate?name='+userAccount, function(answer) {
 
-			for (var i = 0; i < paragraphs.length; i++) {
+            var obj=JSON.parse(answer);
+            console.log(obj);
 
-				var sourceWords = [];
-				var targetWords = [];
+            if(obj.if_translate!==undefined){
+            	if(obj.if_translate==1)
+            		isWorking = 1;
+            	else
+           			isWorking = 0;
+            }
 
-				var stringToServer = paragraphs[i];
-				stringToServer = stringToServer.innerHTML;
+            if(isWorking == 1)
+            {
+				var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
-			    var url = url_front+'show';
-			    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount+"&category="+categoryParameter;
-			    console.log(params);
-			    talkToHeroku(url, params, i);
+				for (var i = 0; i < paragraphs.length; i++) {
+
+					var sourceWords = [];
+					var targetWords = [];
+
+					var stringToServer = paragraphs[i];
+					stringToServer = stringToServer.innerHTML;
+
+				    var url = url_front+'show';
+				    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount+"&category="+categoryParameter;
+				    console.log(params);
+				    talkToHeroku(url, params, i);
+				}
+
+			    //http://testnaijia.herokuapp.com/getSuggestURL?name='+userAccount'
+			    remembered.get(url_front+'getSuggestURL?name='+userAccount, function(answer) {
+
+					var obj=JSON.parse(answer);
+					console.log(obj);
+					suggestedURL+="<p><a target='_blank' href='"+obj.url+"'>"+obj.url+"</a></p>";
+					$(suggestedURL).insertAfter(".cnn_storypgraph"+(i+3));
+				});
 			}
-
-		}
+		});
 	});
 });
 

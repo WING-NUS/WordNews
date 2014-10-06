@@ -133,6 +133,10 @@
 	$('.btn-block').click(function(){
 		window.open(url_front+"displayHistory?name="+userAccount);
 	});
+	//http://testnaijia.herokuapp.com/settings?name='+userAccount'
+	$('#setting').click(function(){
+		window.open(url_front+"settings?name="+userAccount);
+	});
 }
 
 	window.onload = onWindowLoad;
