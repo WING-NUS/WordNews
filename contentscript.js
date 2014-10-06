@@ -347,7 +347,7 @@ window.addEventListener("load", function(){
             console.log(obj);
 
             if(obj.if_translate!==undefined){
-            	if(obj.if_translate==1)
+            	if(obj.if_translate=='1')
             		isWorking = 1;
             	else
            			isWorking = 0;
@@ -376,7 +376,7 @@ window.addEventListener("load", function(){
 
 					var obj=JSON.parse(answer);
 					console.log(obj);
-					suggestedURL+="<p><a target='_blank' href='"+obj.url+"'>"+obj.url+"</a></p>";
+					var suggestedURL = "<p><a target='_blank' href='"+obj.url+"'>"+obj.url+"</a></p>";
 					$(suggestedURL).insertAfter(".cnn_storypgraph"+(i+3));
 				});
 			}
