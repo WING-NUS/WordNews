@@ -43,6 +43,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def getSuggestURL
+    @result = Hash.new
+    @result['url'] = "http://zhaoyue.com/cn"
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
+  end
+
   def displayHistory
     @user_name = params[:name]
     @log = Transaction.new

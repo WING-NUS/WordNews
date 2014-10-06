@@ -114,7 +114,6 @@ class TranslatesController < ApplicationController
 
   def new
     @translate = Translate.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @translate }
