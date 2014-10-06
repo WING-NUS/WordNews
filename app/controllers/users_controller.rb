@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     @user = User.find(:first, :conditions => [ @find_user_query ])
     puts @user.user_id.to_s
     @find_to_learn_query = "user_id = " + @user.user_id.to_s + " and if_understand = 0"
-    @find_learnt_query = "user_id = " + @user.user_id.to_s + " and if_understand = 1"
+    @find_learnt_query = "user_id = " + @user.user_id.to_s + " and if_understand > 0"
     @wordsToLearnIdList = Understand.find(:all, :select => "word_id",:conditions => [@find_to_learn_query] )
     puts "hahhhhhhhh"
     puts @wordsToLearnIdList.first

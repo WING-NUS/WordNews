@@ -149,7 +149,7 @@ class TranslatesController < ApplicationController
       @number['tolearn']=0
     else
       @user_id = user.user_id
-      @querylearnt = "user_id=" + @user_id.to_s+ " and if_understand>0"
+      @querylearnt = "user_id=" + @user_id.to_s+ " and if_understand >0"
       @querytolearn = "user_id=" + @user_id.to_s+ " and if_understand=0"
       @number['learnt']=Understand.count('user_id', :conditions => [@querylearnt])
       @number['tolearn']=Understand.count('user_id', :conditions => [@querytolearn])
