@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @log.save
     @find_user_query = "user_name = '" + @user_name+"'"
     @user = User.find(:first, :conditions => [ @find_user_query ])
-    if user.blank? #no user
+    if @user.blank? #no user
       newUser = User.new
       newUser.user_name = @user_name
       user_id = Random.rand(1000000)
@@ -38,6 +38,7 @@ class UsersController < ApplicationController
       newUser.save
     end
     @ifTranslate = @user.if_translate
+    @result = Hash.new
     @result['ifTranslate'] = @ifTranslate
 
     respond_to do |format|
