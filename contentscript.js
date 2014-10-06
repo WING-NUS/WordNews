@@ -184,7 +184,10 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 			joinString += "class = 'fypSpecialClass' ";
 			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
 			joinString += "data-placement='above' ";
-			joinString += "title='Which of the following is the corresponding English word?' ";
+    		if(is_test[j] == 1)
+				joinString += "title='Which of the following is the corresponding English word?' ";
+			else
+				joinString += "title='Which of the following is the corresponding Chinese word?' ";
 			joinString += "href='#' ";
 			joinString += "data-content = '" + popoverContent + "'";
 			joinString += "";
@@ -371,15 +374,16 @@ window.addEventListener("load", function(){
 				    talkToHeroku(url, params, i);
 				}
 
-			    //http://testnaijia.herokuapp.com/getSuggestURL?name='+userAccount'
-			    remembered.get(url_front+'getSuggestURL?name='+userAccount, function(answer) {
 
-					var obj=JSON.parse(answer);
-					console.log(obj);
-					var suggestedURL = "<p><a target='_blank' href='"+obj.url+"'>"+obj.url+"</a></p>";
-					$(suggestedURL).insertAfter(".cnn_storypgraph"+(i+3));
-				});
 			}
+		    //http://testnaijia.herokuapp.com/getSuggestURL?name='+userAccount'
+		    remembered.get(url_front+'getSuggestURL?name='+userAccount, function(answer) {
+
+				var obj=JSON.parse(answer);
+				console.log(obj);
+				var suggestedURL = "<p><a target='_blank' href='"+obj.url+"'>"+obj.url+"</a></p>";
+				$(suggestedURL).insertAfter(".cnn_storypgraph"+(i+3));
+			});
 		});
 	});
 });
