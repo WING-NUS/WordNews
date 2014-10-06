@@ -279,8 +279,18 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 				oneMoreParagraph+="<p>"+key+" : "+pageDictionary[key]+"</p>";
 			}
 
-			oneMoreParagraph+="<p calss='cnn_storypgraph"+(i+3)+"' style='font-weight: bold;'>Here are some links that you might be interested:</p>";
-			$(oneMoreParagraph).insertAfter(".cnn_storypgraph"+(i+2));
+			oneMoreParagraph+="<p style='font-weight: bold;'>Here are some links that you might be interested:</p>";
+
+			//http://testnaijia.herokuapp.com/getSuggestURL?name='+userAccount'
+			var remembered = new HttpClient();
+		    remembered.get(url_front+'getSuggestURL?name='+userAccount, function(answer) {
+
+				var obj=JSON.parse(answer);
+				console.log(obj);
+
+				oneMoreParagraph += "<p><a target='_blank' href='"+obj.url+"'>"+obj.url+"</a></p>";
+				$(oneMoreParagraph).insertAfter(".cnn_storypgraph"+(i+2));
+			});
 		}
 	}
 
@@ -308,7 +318,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 		}
 	};
 
-	$('.fypSpecialClass').popover({ html : true, placement : 'bottom', trigger: 'click hover', delay: {show: 150, hide: 400}});
+	$('.fypSpecialClass').popover({ html : true, placement : 'bottom', trigger: 'click hover', delay: {show: 300, hide: 300}});
 
 	$('.fypSpecialClass').mouseover(function(){
 		$(this).css("color","#FF9900");
@@ -370,16 +380,8 @@ window.addEventListener("load", function(){
 				    talkToHeroku(url, params, i);
 				}
 
-
 			}
-		    //http://testnaijia.herokuapp.com/getSuggestURL?name='+userAccount'
-		    remembered.get(url_front+'getSuggestURL?name='+userAccount, function(answer) {
 
-				var obj=JSON.parse(answer);
-				console.log(obj);
-				var suggestedURL = "<p><a target='_blank' href='"+obj.url+"'>"+obj.url+"</a></p>";
-				$(suggestedURL).insertAfter(".cnn_storypgraph"+(i+3));
-			});
 		});
 	});
 });
