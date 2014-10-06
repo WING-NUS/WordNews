@@ -23,9 +23,6 @@ class UsersController < ApplicationController
 
   def getIfTranslate
     @user_name = params[:name]
-    @log = Transaction.new
-    @log.user_name = @user_name
-    @log.save
     @find_user_query = "user_name = '" + @user_name+"'"
     @user = User.find(:first, :conditions => [ @find_user_query ])
     if @user.blank? #no user
@@ -87,7 +84,7 @@ class UsersController < ApplicationController
     @user = User.find(:first, :conditions => [ @find_user_query ])
 
     respond_to do |format|
-      format.html { render :layout => false }# displayHistory.html.erb
+      format.html #{ render :layout => false }# displayHistory.html.erb
       format.json { render json: @user }
     end
   end
