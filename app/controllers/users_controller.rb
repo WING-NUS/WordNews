@@ -87,7 +87,7 @@ class UsersController < ApplicationController
     @user = User.find(:first, :conditions => [ @find_user_query ])
 
     respond_to do |format|
-      format.html # displayHistory.html.erb
+      format.html { render :layout => false }# displayHistory.html.erb
       format.json { render json: @user }
     end
   end
