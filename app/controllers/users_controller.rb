@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     end
     @ifTranslate = @user.if_translate
     @result = Hash.new
-    @result['ifTranslate'] = @ifTranslate
+    @result['if_translate'] = @ifTranslate
 
     respond_to do |format|
       format.html { render :layout => false }

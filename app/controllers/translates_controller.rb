@@ -36,7 +36,7 @@ class TranslatesController < ApplicationController
         ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
         @text[word]['chinese']=temp.word_chinese
         @text[word]['pronunciation']=temp.pronunciation
-        if ifExist.blank? or ifExist.if_understand == 0  #just translate the word
+        if ifExist.blank? or ifExist.if_understand <= 3  #just translate the word
           @text[word]['is_test']=0
         elsif ifExist.if_understand > 3 and ifExist.if_understand < 7 #testing mah
           @text[word]['is_test']=1
