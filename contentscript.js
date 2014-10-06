@@ -201,7 +201,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 			var id = $(this).attr('id');
 		    var word = id.split('_')[1];
 	    	var remembered = new HttpClient();
-			remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=1', function(answer) {
+			remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=1'+"&url="+document.URL, function(answer) {
 			    console.log("this is answer: "+answer);
 			});
 			$('.fypSpecialClass').popover('hide');
@@ -212,7 +212,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 		    var word = id.split('_')[1];
 	    	var remembered = new HttpClient();
 	    	$('.fypSpecialClass').popover('hide');
-			remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=0', function(answer) {
+			remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=0'+"&url="+document.URL, function(answer) {
 			    console.log("this is answer: "+answer);
 			});
 			window.open("http://dict.youdao.com/search?q="+word+"&keyfrom=dict.index");
@@ -232,7 +232,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 			document.getElementById("inlineRadioCorrect").disabled = true;
 	    	if(document.getElementById("inlineRadioCorrect").checked == true)
 	    	{
-				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=1', function(answer) {
+				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=1'+"&url="+document.URL, function(answer) {
 				    console.log("select the correct answer");
 				});
 				document.getElementById("alertSuccess").style.display="inline-flex";
@@ -240,7 +240,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 			}
 			else
 			{
-				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=0', function(answer) {
+				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=0'+"&url="+document.URL, function(answer) {
 				    console.log("select the wrong answer");
 				});
 				document.getElementById("alertDanger").style.display="inline-flex";
@@ -365,7 +365,7 @@ window.addEventListener("load", function(){
 					stringToServer = stringToServer.innerHTML;
 
 				    var url = url_front+'show';
-				    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount+"&category="+categoryParameter;
+				    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount;
 				    console.log(params);
 				    talkToHeroku(url, params, i);
 				}
