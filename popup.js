@@ -18,13 +18,9 @@
 	var userAccount = "";
 	var isWorking = "";
 	var categoryParameter = "";
-    chrome.storage.sync.get(['userAccount', 'isWorking', 'categoryParameter'], function(result){
+    chrome.storage.sync.get(['userAccount'], function(result){
     	userAccount = result.userAccount;
-    	isWorking = result.isWorking;
-    	categoryParameter = result.categoryParameter;
-    	console.log("user isworking: "+ result.isWorking);
     	console.log("user acc: "+ result.userAccount);
-    	console.log("user category: "+ result.categoryParameter);
 
 		if (userAccount == undefined){
 			var d = new Date();
@@ -33,7 +29,7 @@
 		}
 		console.log("userAccount "+userAccount);
 
-		if(isWorking == undefined)
+/*		if(isWorking == undefined)
 		{
 			isWorking = 0;
 			chrome.storage.sync.set({'isWorking': isWorking});
@@ -56,7 +52,7 @@
 		if(categoryParameter.indexOf('@3@') !== -1)
 		{
 			document.getElementById("inlineCheckbox3").checked = true;
-		}
+		}*/
 		var remembered = new HttpClient();
 		var answer;
 		remembered.get(url_front+'/getNumber?name='+userAccount, function(answer) {

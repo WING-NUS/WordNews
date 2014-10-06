@@ -308,7 +308,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 		}
 	};
 
-	$('.fypSpecialClass').popover({ html : true, placement : 'bottom', trigger: 'click hover', delay: {show: 50, hide: 400}});
+	$('.fypSpecialClass').popover({ html : true, placement : 'bottom', trigger: 'click hover', delay: {show: 150, hide: 400}});
 
 	$('.fypSpecialClass').mouseover(function(){
 		$(this).css("color","#FF9900");
@@ -323,13 +323,9 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 
 window.addEventListener("load", function(){
 
-    chrome.storage.sync.get(['userAccount', 'isWorking', 'categoryParameter'], function(result){
+    chrome.storage.sync.get(['userAccount'], function(result){
     	userAccount = result.userAccount;
-    	isWorking = result.isWorking;
-    	categoryParameter = result.categoryParameter;
-    	console.log("user isworking: "+ result.isWorking);
     	console.log("user acc: "+ result.userAccount);
-    	console.log("user category: "+ result.categoryParameter);
 
 		if (userAccount == undefined){
 			var d = new Date();
