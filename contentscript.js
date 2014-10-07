@@ -48,7 +48,7 @@ function talkToHeroku(url, params, index){
 					example_sentence.push(obj[x].example);
 				}
 				else{
-					example_sentence.push("/Here is aaaaaaaaaa aaaaaaaa aaaaaaaaaa aaaaaa a aaaaa aaaaaaaaaaaaa aaaaaaaa aaaaaaaa aaaaaaaaa aaa a a aaaaaaa aaa aaa aaaaaa aaaa aaa aaaa aaa aaaaa aaa aa a aa aa example_sentence./");
+					example_sentence.push("/Here are example sentences./");
 				}
 				if(obj[x].is_test == 1){
 					choices1.push(obj[x]["choices"]["0"]);
