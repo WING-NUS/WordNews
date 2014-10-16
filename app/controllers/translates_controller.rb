@@ -4,6 +4,8 @@
 class TranslatesController < ApplicationController
   # GET /translates
   # GET /translates.json
+  include Bing
+  
   def index
     @translates = Translate.all
     respond_to do |format|
@@ -18,6 +20,8 @@ class TranslatesController < ApplicationController
     #@translate = Translate.find(params[:id])
     @text=Hash.new
     word_list=params[:text].split(" ")
+    chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
+    puts chinese_sentence
     @user_name = params[:name]
     user = User.where(:user_name => @user_name).first
     @url = params[:url]

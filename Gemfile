@@ -20,8 +20,7 @@ end
 # randome database support in database
 gem 'randumb'
 gem 'jquery-rails'
-
-
+gem "bing_translator", "~> 4.4.0"
 # beautify rails console database table view
 gem 'hirb', '~> 0.7.2'
 #group :development do
