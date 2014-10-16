@@ -21,7 +21,7 @@ class TranslatesController < ApplicationController
     @text=Hash.new
     word_list=params[:text].split(" ")
     chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
-    puts chinese_sentence
+    #puts chinese_sentence
     @user_name = params[:name]
     user = User.where(:user_name => @user_name).first
     @url = params[:url]
@@ -29,7 +29,24 @@ class TranslatesController < ApplicationController
     for word in word_list
       #this is to add downcase and singularize support
       original_word = word.downcase.singularize
-      temp=Dictionary.where(:word_english => original_word, :word_category => category_list ).first
+      meanings = Dictionary.where(:word_english => original_word, :word_category => category_list )
+      number_of_meanings = meanings.length
+      temp = Dictionary.new
+      if number_of_meanings == 0
+        next
+      elsif number_of_meanings == 1
+        temp = meanings[0]
+      else
+        number_of_meanings.times do |index|
+          puts "Inside the looooooooooooooooooooop"
+          puts chinese_sentence
+          puts meanings[index].word_chinese
+          if chinese_sentence.to_s.include? meanings[index].word_chinese 
+            temp = meanings[index]
+          end
+        end
+      end
+
       if temp.blank?
         next
       else
@@ -56,6 +73,8 @@ class TranslatesController < ApplicationController
           choices.each_with_index { |val, idx|   
             @text[word]['choices'][idx.to_s]=val.word_english
           }
+        else
+          next
         end
         @log = Transaction.new
         @log.transaction_code = 103
