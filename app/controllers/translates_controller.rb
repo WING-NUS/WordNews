@@ -47,42 +47,42 @@ class TranslatesController < ApplicationController
         end
       end
 
-      if temp.blank?
-        next
-      else
-        @text[word]= Hash.new
-        original_word_chinese = temp.word_chinese
-        @user_id = User.where(:user_name => @user_name).first.user_id
-        # see if the user understands this word before
-        ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
-        @text[word]['chinese']=temp.word_chinese
-        @text[word]['pronunciation']=temp.pronunciation
-        if ifExist.blank? or ifExist.if_understand <= 3  #just translate the word
-          @text[word]['is_test']=0
-        elsif ifExist.if_understand > 3 and ifExist.if_understand < 7 #testing mah
-          @text[word]['is_test']=1
-          @text[word]['choices']=Hash.new
-          choices = Dictionary.where(:word_category => category_list).where("word_english != ?", original_word).random(3)
-          choices.each_with_index { |val, idx|   
-            @text[word]['choices'][idx.to_s]=val.word_english
-          }
-        elsif ifExist.if_understand > 6 and ifExist.if_understand < 10
-          @text[word]['is_test']=2
-          @text[word]['choices']=Hash.new
-          choices = Dictionary.where(:word_category => category_list).where("word_chinese != ?", original_word_chinese).random(3)
-          choices.each_with_index { |val, idx|   
-            @text[word]['choices'][idx.to_s]=val.word_english
-          }
-        else
-          next
-        end
-        @log = Transaction.new
-        @log.transaction_code = 103
-        @log.user_name = @user_name
-        @log.word_english = word
-        @log.url = @url
-        @log.save
+      if temp.word_chinese.nil?
+        temp = meanings[0]
       end
+
+      @text[word]= Hash.new
+      original_word_chinese = temp.word_chinese
+      @user_id = User.where(:user_name => @user_name).first.user_id
+      # see if the user understands this word before
+      ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
+      @text[word]['chinese']=temp.word_chinese
+      @text[word]['pronunciation']=temp.pronunciation
+      if ifExist.blank? or ifExist.if_understand <= 3  #just translate the word
+        @text[word]['is_test']=0
+      elsif ifExist.if_understand > 3 and ifExist.if_understand < 7 #testing mah
+        @text[word]['is_test']=1
+        @text[word]['choices']=Hash.new
+        choices = Dictionary.where(:word_category => category_list).where("word_english != ?", original_word).random(3)
+        choices.each_with_index { |val, idx|   
+          @text[word]['choices'][idx.to_s]=val.word_english
+        }
+      elsif ifExist.if_understand > 6 and ifExist.if_understand < 10
+        @text[word]['is_test']=2
+        @text[word]['choices']=Hash.new
+        choices = Dictionary.where(:word_category => category_list).where("word_chinese != ?", original_word_chinese).random(3)
+        choices.each_with_index { |val, idx|   
+          @text[word]['choices'][idx.to_s]=val.word_english
+        }
+      else
+        next
+      end
+      @log = Transaction.new
+      @log.transaction_code = 103
+      @log.user_name = @user_name
+      @log.word_english = word
+      @log.url = @url
+      @log.save
     end # end of for word in word_list
 
     respond_to do |format|
