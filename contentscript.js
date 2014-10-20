@@ -94,7 +94,18 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 		if(is_test[j] == 0)
 		{
 			popoverContent += "<div sytle=\"text-align:center;\">";
-			popoverContent += "<div>Pronunciation: <div style=\"margin-left:10px\">"+pronunciation[j]+"</div></div>";
+			popoverContent += "<div>Pronunciation: <div style=\"margin-left:10px\">";
+			var splitedPinyin = pronunciation[j].split(" ");
+			for(i = 0; i< splitedPinyin.length ; i++)
+			{
+				popoverContent += splitedPinyin[i];
+				popoverContent += "<button type=\"button\" class=\"audioButton\" id=\""+splitedPinyin[i]+"\">play</button>"
+        		popoverContent += "<audio id=\"myAudio\">"
+				popoverContent += "<source src=\"http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/"+splitedPinyin[i]+".mp3\" type=\"audio/mp4\">";
+				popoverContent += "</audio>";
+				//popoverContent
+			}
+			popoverContent += "</div></div>";
 			popoverContent += "<div>Example_sentence: <div style=\"margin-left:10px\">"+example_sentence[j]+"</div></div>";
 	    	popoverContent += "<button id=\""+ id + "_btn1\" class=\"btn btn-info\">Got it</button>";
 	    	//popoverContent += "<span>    </span>"
@@ -197,6 +208,16 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 			joinString += "</span>  ";
     	}
 		
+		$(document).on("click", ".audioButton", function() {
+			var id = $(this).attr('id');
+			var myAudio = document.getElementById("myAudio");
+			if (myAudio.paused) {
+				myAudio.play();
+			} else {
+				myAudio.pause();
+			}
+  		});
+
 		$(document).on("click", "#"+id+"_btn1", function() {
 			var id = $(this).attr('id');
 		    var word = id.split('_')[1];
