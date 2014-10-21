@@ -87,21 +87,24 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
     	var text = paragraph.innerHTML;
 
 		var id = "myID_"+sourceWord+"_"+i.toString();
+		//var id2 = "myID2_"+pronunciation[j];
 		console.log(id);
 
 		var popoverContent = "";
 		var joinString = "";
+		pronunciation[j] = pronunciation[j].replace("5","");
 		if(is_test[j] == 0)
 		{
 			popoverContent += "<div sytle=\"text-align:center;\">";
 			popoverContent += "<div>Pronunciation: <div style=\"margin-left:10px\">";
 			var splitedPinyin = pronunciation[j].split(" ");
+			var chineseCharactors = targetWord.split("");
 			for(i = 0; i< splitedPinyin.length ; i++)
 			{
-				popoverContent += splitedPinyin[i];
-				popoverContent += "<button type=\"button\" class=\"audioButton\" id=\""+splitedPinyin[i]+"\">play</button>"
-        		popoverContent += "<audio id=\"myAudio\">"
-				popoverContent += "<source src=\"http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/"+splitedPinyin[i]+".mp3\" type=\"audio/mp4\">";
+				popoverContent += chineseCharactors[i]+splitedPinyin[i];
+				popoverContent += "<img src=\"http://emergingmoney.com/wp-content/uploads/2011/11/audio.gif\" style=\"width:15px;height:15px\" class=\"audioButton\" id=\""+splitedPinyin[i]+"\"> "
+        		popoverContent += "<audio id=\"myAudio_"+splitedPinyin[i]+"\">"
+				popoverContent += "<source src=\"http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/"+splitedPinyin[i]+".mp3\" type=\"audio/mp3\">";
 				popoverContent += "</audio>";
 				//popoverContent
 			}
@@ -210,7 +213,8 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 		
 		$(document).on("click", ".audioButton", function() {
 			var id = $(this).attr('id');
-			var myAudio = document.getElementById("myAudio");
+			console.log("clicked id is "+id);
+			var myAudio = document.getElementById("myAudio_"+id);
 			if (myAudio.paused) {
 				myAudio.play();
 			} else {
