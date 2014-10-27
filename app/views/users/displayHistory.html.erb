@@ -6,16 +6,16 @@
 <p class="bg-warning">Words to Learn</p>
 <% for w in @wordsToLearn %>
 		<li >
-			<%=  w.word_english %>
-			<%=  w.word_chinese %>
-			<%=  w.word_category %>
+			<%=  EnglishWords.find(w.english_word_id).english_meaning %>
+			<%=  ChineseWords.find(w.chinese_word_id).chinese_meaning %>
+			<%=  WordCategory.find(w.word_category_id).category_name %>
 		</li>
 <% end %>
 <p class="bg-info">Words Learnt</p>
 <% for w in @wordsLearnt %>
 		<li >
-			<%=  w.word_english %>
-			<%=  w.word_chinese %>
-			<%=  w.word_category %>
+			<%=  EnglishWords.find(w.english_word_id).english_meaning %>
+			<%=  ChineseWords.find(w.chinese_word_id).chinese_meaning %>
+			<%=  WordCategory.find(w.word_category_id).category_name %>
 		</li>
 <% end %>

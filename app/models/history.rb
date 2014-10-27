@@ -1,4 +1,3 @@
 class History < ActiveRecord::Base
-  attr_accessible :user_id, :english_word_id, :frequency, :url
- 
+  attr_accessible :user_id, :meaning_id, :frequency, :url
 end

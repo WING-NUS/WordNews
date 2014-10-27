@@ -11,31 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141026161550) do
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
+ActiveRecord::Schema.define(:version => 20141027050657) do
 
   create_table "chinese_words", :force => true do |t|
     t.string   "chinese_meaning"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-  end
-
-  create_table "dictionaries", :force => true do |t|
-    t.string   "word_english"
-    t.string   "word_chinese"
-    t.string   "word_category"
-    t.integer  "word_difficulty_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "word_id"
     t.string   "pronunciation"
-    t.string   "property"
   end
 
   create_table "english_words", :force => true do |t|
@@ -60,48 +42,20 @@ ActiveRecord::Schema.define(:version => 20141026161550) do
 
   create_table "histories", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "english_word_id"
+    t.integer  "meaning_id"
     t.integer  "frequency"
     t.string   "url"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "meanings", :force => true do |t|
     t.integer  "chinese_word_id"
     t.integer  "english_word_id"
     t.string   "word_property"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  create_table "sentences", :force => true do |t|
-    t.text     "english_sentence"
-    t.text     "chinese_sentence"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.integer  "sentence_id"
-    t.string   "word_english"
-  end
-
-  create_table "transactions", :force => true do |t|
-    t.integer  "transaction_code"
-    t.string   "user_name"
-    t.integer  "word_english"
-    t.integer  "if_remembered"
-    t.string   "url"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  create_table "understands", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "word_id"
-    t.integer  "strength"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "if_understand"
-    t.string   "url"
+    t.integer  "word_category_id"
   end
 
   create_table "users", :force => true do |t|
@@ -110,6 +64,12 @@ ActiveRecord::Schema.define(:version => 20141026161550) do
     t.string   "translate_categories"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+  end
+
+  create_table "word_categories", :force => true do |t|
+    t.string   "category_name"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

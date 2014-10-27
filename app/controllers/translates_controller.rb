@@ -20,7 +20,8 @@ class TranslatesController < ApplicationController
     #@translate = Translate.find(params[:id])
     @text=Hash.new
     word_list=params[:text].split(" ")
-    chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
+    #chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
+    chinese_sentence = "我到了"
     #puts chinese_sentence
     @user_name = params[:name]
     user = User.where(:user_name => @user_name).first
@@ -29,60 +30,64 @@ class TranslatesController < ApplicationController
     for word in word_list
       #this is to add downcase and singularize support
       original_word = word.downcase.singularize
-      meanings = Dictionary.where(:word_english => original_word, :word_category => category_list )
+      english_word_entry = EnglishWords.where(:english_meaning => original_word)
+      if english_word_entry.length == 0
+        next
+      else
+        @original_word_id = english_word_entry.first.id
+      end
+
+      meanings = Meaning.where(:english_word_id => @original_word_id, :word_category_id => category_list )
       number_of_meanings = meanings.length
-      temp = Dictionary.new
+      puts number_of_meanings
+      temp = Meaning.new
       if number_of_meanings == 0
         next
-      elsif number_of_meanings == 1
+      elsif number_of_meanings == 1 #has one meaning
         temp = meanings[0]
       else
         number_of_meanings.times do |index|
           puts "Inside the looooooooooooooooooooop"
           puts chinese_sentence
           puts meanings[index].word_chinese
-          if chinese_sentence.to_s.include? meanings[index].word_chinese 
+          if chinese_sentence.to_s.include? ChineseWords.find(meanings[index].chinese_word_id).chinese_meaning
             temp = meanings[index]
           end
         end
       end
 
-      if temp.word_chinese.nil?
+      if temp.chinese_word_id.nil?
         temp = meanings[0]
       end
 
       @text[word]= Hash.new
-      original_word_chinese = temp.word_chinese
-      @user_id = User.where(:user_name => @user_name).first.user_id
+      @original_word_chinese_id = temp.chinese_word_id
+      @user_id = User.where(:user_name => @user_name).first.id
       # see if the user understands this word before
-      ifExist = Understand.where(:user_id => @user_id, :word_id => temp.word_id).first
-      @text[word]['chinese']=temp.word_chinese
-      @text[word]['pronunciation']=temp.pronunciation
-      if ifExist.blank? or ifExist.if_understand <= 3  #just translate the word
+      @text[word]['chinese']= ChineseWords.find(temp.chinese_word_id).chinese_meaning
+      @text[word]['pronunciation']= ChineseWords.find(temp.chinese_word_id).pronunciation
+      
+      testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
+      if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
         @text[word]['is_test']=0
-      elsif ifExist.if_understand > 3 and ifExist.if_understand < 7 #testing mah
+      elsif testEntry.frequency > 3 and testEntry.frequency < 7 #testing mah
         @text[word]['is_test']=1
         @text[word]['choices']=Hash.new
-        choices = Dictionary.where(:word_category => category_list).where("word_english != ?", original_word).random(3)
+        choices = Meaning.where(:word_category_id => category_list).where("english_word_id != ?", @original_word_id).random(3)
         choices.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s]=val.word_english
+          @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_word_id)
         }
-      elsif ifExist.if_understand > 6 and ifExist.if_understand < 10
+      elsif testEntry.frequency > 6 and testEntry.frequency < 10
         @text[word]['is_test']=2
         @text[word]['choices']=Hash.new
-        choices = Dictionary.where(:word_category => category_list).where("word_chinese != ?", original_word_chinese).random(3)
+        choices = Meaning.where(:word_category_id => category_list).where("chinese_word_id != ?", @original_word_chinese_id).random(3)
         choices.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s]=val.word_english
+          @text[word]['choices'][idx.to_s]=ChineseWords.find(val.chinese_word_id)
         }
       else
         next
       end
-      @log = Transaction.new
-      @log.transaction_code = 103
-      @log.user_name = @user_name
-      @log.word_english = word
-      @log.url = @url
-      @log.save
+
     end # end of for word in word_list
 
     respond_to do |format|
@@ -97,36 +102,27 @@ class TranslatesController < ApplicationController
 
   def remember 
     @user_name = params[:name]
-    @word = params[:word].downcase.singularize
+    # to be done when naijia api is updated
+    @word_english = params[:word].downcase.singularize#params[:word_english].downcase.singularize
+    @word_chinese = "到"#params[:word_chinese]
     @ifRemember = params[:is_remembered].to_i
     @url = params[:url]
-    @log = Transaction.new
-    @log.transaction_code = 101
-    @log.user_name = @user_name
-    @log.if_remembered = @ifRemember
-    @log.word_english = @word
-    @log.url = @url
-    @log.save
 
-    @word_id= Dictionary.where(:word_english => @word).first.word_id
-    user = User.where(:user_name => @user_name).first
-    @user_id = User.where(:user_name => @user_name).first.user_id
-    testEntry = Understand.where(:word_id => @word_id, :user_id => @user_id).first
+    @english_word_id = EnglishWords.where(:english_meaning => @word_english).first.id
+    @chinese_word_id = ChineseWords.where(:chinese_meaning => @word_chinese).first.id
+    @meaning_id= Meaning.where(:english_word_id => @english_word_id, :chinese_word_id => @chinese_word_id ).first.id
+    @user_id = User.where(:user_name => @user_name).first.id
+    testEntry = History.where(:meaning_id => @meaning_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
-      if @ifRemember == 0
-        testEntry.if_understand = @ifRemember
-      else 
-        testEntry.if_understand = testEntry.if_understand+1
+      testEntry.frequency= @ifRemember==0? 0 : testEntry.frequency+1 
       testEntry.url = @url
       testEntry.save
-      end
     else # this is a new word the user has some operations on
-      understand = Understand.new
+      understand = History.new
       understand.user_id = @user_id
-      understand.word_id = @word_id
-      understand.strength = 4
+      understand.meaning_id = @meaning_id
       understand.url = @url
-      understand.if_understand = @ifRemember
+      understand.frequency = @ifRemember
       understand.save
     end
     respond_to do |format|
@@ -155,26 +151,20 @@ class TranslatesController < ApplicationController
     if user.blank? #no user
       newUser = User.new
       newUser.user_name = @user_name
-      user_id = Random.rand(1000000)
-      newUser.user_id = user_id
       newUser.if_translate = 1
       newUser.translate_categories = "1,2,3,4" # the default will be translate all
       newUser.save
     end
-    @log = Transaction.new
-    @log.transaction_code = 201
-    @log.user_name = @user_name
-    #@log.url = @url
-    @log.save
+
     if user.blank? #no user
       @number['learnt']=0
       @number['tolearn']=0
     else
-      @user_id = user.user_id
-      @querylearnt = "user_id=" + @user_id.to_s+ " and if_understand >0"
-      @querytolearn = "user_id=" + @user_id.to_s+ " and if_understand=0"
-      @number['learnt']=Understand.count('user_id', :conditions => [@querylearnt])
-      @number['tolearn']=Understand.count('user_id', :conditions => [@querytolearn])
+      @user_id = user.id
+      @querylearnt = "user_id=" + @user_id.to_s+ " and frequency > 0"
+      @querytolearn = "user_id=" + @user_id.to_s+ " and frequency = 0"
+      @number['learnt']=History.count('user_id', :conditions => [@querylearnt])
+      @number['tolearn']=History.count('user_id', :conditions => [@querytolearn])
     end
 
     respond_to do |format|

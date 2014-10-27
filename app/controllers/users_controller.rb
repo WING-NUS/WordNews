@@ -24,20 +24,18 @@ class UsersController < ApplicationController
   def getIfTranslate
     @user_name = params[:name]
     @find_user_query = "user_name = '" + @user_name+"'"
-    @user = User.find(:first, :conditions => [ @find_user_query ])
+    @user = User.where(:user_name => @user_name).first
     if @user.blank? #no user
       newUser = User.new
       newUser.user_name = @user_name
-      user_id = Random.rand(1000000)
-      newUser.user_id = user_id
       newUser.if_translate = 1
       newUser.translate_categories = "1,2,3,4" # the default will be translate all
       newUser.save
     end
+    @user = User.where(:user_name => @user_name).first
     @ifTranslate = @user.if_translate
     @result = Hash.new
     @result['if_translate'] = @ifTranslate
-
     respond_to do |format|
       format.html { render :layout => false }
     end
@@ -53,31 +51,27 @@ class UsersController < ApplicationController
 
   def displayHistory
     @user_name = params[:name]
-    @log = Transaction.new
-    @log.user_name = @user_name
-    @log.save
-    #@user = User.where(:user_name => @user_name).first
-    #@user = User.find(1)
-    @find_user_query = "user_name = '" + @user_name+"'"
-    @user = User.find(:first, :conditions => [ @find_user_query ])
-    puts @user.user_id.to_s
-    @find_to_learn_query = "user_id = " + @user.user_id.to_s + " and if_understand = 0"
-    @find_learnt_query = "user_id = " + @user.user_id.to_s + " and if_understand > 0"
-    @wordsToLearnIdList = Understand.find(:all, :select => "word_id",:conditions => [@find_to_learn_query] )
+    @user = User.where(:user_name => @user_name).first
+    @find_to_learn_query = "user_id = " + @user.id.to_s + " and frequency = 0"
+    @find_learnt_query = "user_id = " + @user.id.to_s + " and frequency > 0"
+    @MeaningToLearnIdList = History.find(:all, :select => "meaning_id",:conditions => [@find_to_learn_query] )
     puts "hahhhhhhhh"
-    puts @wordsToLearnIdList.first
     @wordsToLearn=[]
-    for id in @wordsToLearnIdList
-      @temp_query = "word_id = " + id.word_id.to_s
-      @temp = Dictionary.find(:first, :conditions => [ @temp_query ])
-      @wordsToLearn.push(@temp)
+    puts @MeaningToLearnIdList.length
+    if @MeaningToLearnIdList.length !=0
+      for id in @MeaningToLearnIdList
+        @temp = Meaning.find(id.meaning_id)
+        @wordsToLearn.push(@temp)
+      end
     end
-    @wordsLearntIdList = Understand.find(:all, :select => "word_id",:conditions => [@find_learnt_query] )
+
+    @MeaningLearntIdList = History.find(:all, :select => "meaning_id",:conditions => [@find_learnt_query] )
     @wordsLearnt = []
-    for id in @wordsLearntIdList
-      @temp_query = "word_id = " + id.word_id.to_s 
-      @temp = Dictionary.find(:first, :conditions => [ @temp_query ])
-      @wordsLearnt.push(@temp)
+    if @MeaningLearntIdList.length !=0 
+      for id in @MeaningLearntIdList
+        @temp = Meaning.find(id.meaning_id)
+        @wordsLearnt.push(@temp)
+      end
     end
 
     respond_to do |format|
