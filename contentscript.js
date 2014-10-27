@@ -21,22 +21,20 @@ function talkToHeroku(url, params, index){
             var response = xhr.responseText.replace(/&quot;/g,'"');
             var obj=JSON.parse(response);
             console.log(obj);
-            //document.getElementByTagName("title").innerHTML = obj["chinese"]
-            if(obj.chinese!==undefined){
-                //console.log(obj.chinese);
-            }
+            
             var sourceWords = [];
             var targetWords = [];
-            var is_test = [];
+            var isTest = [];
             var pronunciation = [];
-            var example_sentence = [];
+            var englishSentence = [[]];
+            var chineseSentence = [[]];
             var choices1 = [];
             var choices2 = [];
             var choices3 = [];
             for (var x in obj) {
 				sourceWords.push(x);
 				targetWords.push(obj[x].chinese);
-				is_test.push(obj[x].is_test);
+				isTest.push(obj[x].isTest);
 				pageDictionary[x] = obj[x].chinese;
 				if(obj[x].pronunciation !== undefined){
 					pronunciation.push(obj[x].pronunciation);
@@ -44,13 +42,27 @@ function talkToHeroku(url, params, index){
 				else{
 					pronunciation.push("/pronunciation/");
 				}
-				if(obj[x].example_sentence !== undefined){
-					example_sentence.push(obj[x].example);
+				if(obj[x].englishSentence !== undefined){
+					var tempEnglishSentence = [];
+					for(var key in obj[x].englishSentence){
+						tempEnglishSentence.push(obj[x].englishSentence[key]);
+					}
+					englishSentence.push(tempEnglishSentence);
 				}
 				else{
-					example_sentence.push("/Here are example sentences./");
+					//englishSentence.push("/Here are example sentences./");
 				}
-				if(obj[x].is_test == 1){
+				if(obj[x].chineseSentence !== undefined){
+					var tempChineseSentence = [];
+					for(var key in obj[x].chineseSentence){
+						tempChineseSentence.push(obj[x].chineseSentence[key]);
+					}
+					chineseSentence.push(tempChineseSentence);
+				}
+				else{
+					//chineseSentence.push("/Here are example sentences./");
+				}
+				if(obj[x].isTest == 1){
 					choices1.push(obj[x]["choices"]["0"]);
 					choices2.push(obj[x]["choices"]["1"]);
 					choices3.push(obj[x]["choices"]["2"]);
@@ -61,9 +73,9 @@ function talkToHeroku(url, params, index){
 					choices2.push(" ");
 					choices3.push(" ");
 				}
-				console.log(x+" "+obj[x]+" "+obj[x].is_test);
+				console.log(x+" "+obj[x]+" "+obj[x].isTest);
 			}
-			replaceWords(sourceWords, targetWords, is_test, pronunciation, example_sentence, choices1, choices2 , choices3, index);
+			replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSentence, choices1, choices2 , choices3, index);
             //document.getElementById('article').innerHTML  = obj["chinese"];
         }
         else {// Show what went wrong
@@ -74,7 +86,7 @@ function talkToHeroku(url, params, index){
 }
 
 
-function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_sentence, choices1, choices2 , choices3, i){
+function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSentence, choices1, choices2 , choices3, i){
 
 	var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
@@ -86,32 +98,34 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
     	var paragraph = paragraphs[i];
     	var text = paragraph.innerHTML;
 
-		var id = "myID_"+sourceWord+"_"+i.toString();
-		//var id2 = "myID2_"+pronunciation[j];
+		var id = "myID_"+sourceWord+"_"+targetWord+"_"+i.toString();
 		console.log(id);
 
 		var popoverContent = "";
 		var joinString = "";
 		pronunciation[j] = pronunciation[j].replace("5","");
-		if(is_test[j] == 0)
-		{
+		if(isTest[j] == 0){
+
 			popoverContent += "<div sytle=\"text-align:center;\">";
 			popoverContent += "<div>Pronunciation: <div style=\"margin-left:10px\">";
+
 			var splitedPinyin = pronunciation[j].split(" ");
 			var chineseCharactors = targetWord.split("");
-			for(i = 0; i< splitedPinyin.length ; i++)
-			{
+
+			for(i = 0; i < splitedPinyin.length; i++){
 				popoverContent += chineseCharactors[i]+splitedPinyin[i];
 				popoverContent += "<img src=\"http://emergingmoney.com/wp-content/uploads/2011/11/audio.gif\" style=\"width:15px;height:15px\" class=\"audioButton\" id=\""+splitedPinyin[i]+"\"> "
         		popoverContent += "<audio id=\"myAudio_"+splitedPinyin[i]+"\">"
 				popoverContent += "<source src=\"http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/"+splitedPinyin[i]+".mp3\" type=\"audio/mp3\">";
 				popoverContent += "</audio>";
-				//popoverContent
 			}
+
 			popoverContent += "</div></div>";
-			popoverContent += "<div>Example_sentence: <div style=\"margin-left:10px\">"+example_sentence[j]+"</div></div>";
+
+			for(i = 0; i < englishSentence[j].length; i++)
+				popoverContent += "<div>englishSentence: <div style=\"margin-left:10px\">"+englishSentence[j][i]+"\n"+chineseSentence[j][i]+"</div></div>";
+	    	
 	    	popoverContent += "<button id=\""+ id + "_btn1\" class=\"btn btn-info\">Got it</button>";
-	    	//popoverContent += "<span>    </span>"
 	    	popoverContent += "<button style=\"margin-left:10px\" id=\""+ id + "_btn2\" class=\"btn btn-warning\">Show me</button>";
     		popoverContent += "</div>";
 
@@ -122,15 +136,13 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 			joinString += "title='"+ "<span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
 			joinString += "href='#' ";
 			joinString += "data-content = '" + popoverContent + "'";
-			joinString += "";
-			joinString += "";
 			joinString += "id = '" + id + "' >";
 			joinString += targetWord;
 			joinString += "</span>  ";
     	}
     	else
     	{
-    		if(is_test[j] == 2)
+    		if(isTest[j] == 2)
     		{
     			var tempWord = targetWord;
     			targetWord = sourceWord;
@@ -148,7 +160,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 					case 1:
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\""+sourceWord+"\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\""+sourceWord+"_"+targetWord+"\">";
 			    		popoverContent += choices1[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -198,14 +210,12 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 			joinString += "class = 'fypSpecialClass' ";
 			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
 			joinString += "data-placement='above' ";
-    		if(is_test[j] == 1)
+    		if(isTest[j] == 1)
 				joinString += "title='Which of the following is the corresponding English word?' ";
 			else
 				joinString += "title='Which of the following is the corresponding Chinese word?' ";
 			joinString += "href='#' ";
 			joinString += "data-content = '" + popoverContent + "'";
-			joinString += "";
-			joinString += "";
 			joinString += "id = '" + id + "' >";
 			joinString += targetWord;
 			joinString += "</span>  ";
@@ -224,9 +234,10 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 
 		$(document).on("click", "#"+id+"_btn1", function() {
 			var id = $(this).attr('id');
-		    var word = id.split('_')[1];
+		    var englishWord = id.split('_')[1];
+		    var chineseWord = id.split('_')[2];
 	    	var remembered = new HttpClient();
-			remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=1'+"&url="+document.URL, function(answer) {
+			remembered.get(url_front+'remember?name='+userAccount+'&wordEnglish='+englishWord+'&wordChinese'+chineseWord+'&isRemembered=1'+"&url="+document.URL, function(answer) {
 			    console.log("this is answer: "+answer);
 			});
 			$('.fypSpecialClass').popover('hide');
@@ -234,13 +245,14 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 
 		$(document).on("click", "#"+id+"_btn2", function() {
 			var id = $(this).attr('id');
-		    var word = id.split('_')[1];
+		    var englishWord = id.split('_')[1];
+		    var chineseWord = id.split('_')[2];
 	    	var remembered = new HttpClient();
 	    	$('.fypSpecialClass').popover('hide');
-			remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=0'+"&url="+document.URL, function(answer) {
+			remembered.get(url_front+'remember?name='+userAccount+'&wordEnglish='+englishWord+'&wordChinese'+chineseWord+'&isRemembered=0'+"&url="+document.URL, function(answer) {
 			    console.log("this is answer: "+answer);
 			});
-			window.open("http://dict.youdao.com/search?q="+word+"&keyfrom=dict.index");
+			window.open("http://dict.youdao.com/search?q="+englishWord+"&keyfrom=dict.index");
 		});
 
 		//$(document).on("click", "#"+id+"_btn3", function() {
@@ -248,7 +260,8 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 		//$('input:radio').change(function() {
 			//alert("radio changed");
 			var id = $(this).attr('id');
-		    var word = $(this).attr('value');
+		    var englishWord = $(this).attr('value').split("_")[0];
+		    var chineseWord = $(this).attr('value').split("_")[1];
 			console.log("word = "+word+" id = "+id);
 	    	var remembered = new HttpClient();
 			document.getElementById("inlineRadio1").disabled = true;
@@ -257,7 +270,7 @@ function replaceWords(sourceWords, targetWords, is_test, pronunciation, example_
 			document.getElementById("inlineRadioCorrect").disabled = true;
 	    	if(document.getElementById("inlineRadioCorrect").checked == true)
 	    	{
-				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=1'+"&url="+document.URL, function(answer) {
+				remembered.get(url_front+'remember?name='+userAccount+'&wordEnglish='+wordEnglish+'&wordChinese'+wordChinese+'&is_remembered=1'+"&url="+document.URL, function(answer) {
 				    console.log("select the correct answer");
 				});
 				document.getElementById("alertSuccess").style.display="inline-flex";

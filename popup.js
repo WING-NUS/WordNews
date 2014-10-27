@@ -63,9 +63,9 @@
 				{
 					document.getElementById("learnt").innerHTML = obj["learnt"];
 				}
-				if(obj.tolearn!==undefined)
+				if(obj.toLearn!==undefined)
 				{
-					document.getElementById("toLearn").innerHTML = obj["tolearn"];
+					document.getElementById("toLearn").innerHTML = obj["toLearn"];
 				}
 		});
     });
