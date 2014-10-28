@@ -74,7 +74,7 @@ function talkToHeroku(url, params, index){
 				}
 				console.log(x+" "+obj[x]+" "+obj[x].isTest);
 			}
-			replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSentence, choices1, choices2 , choices3, index);
+			replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSentence, chineseSentence, choices1, choices2 , choices3, index);
             //document.getElementById('article').innerHTML  = obj["chinese"];
         }
         else {// Show what went wrong
@@ -85,7 +85,7 @@ function talkToHeroku(url, params, index){
 }
 
 
-function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSentence, choices1, choices2 , choices3, i){
+function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSentence, chineseSentence, choices1, choices2 , choices3, i){
 
 	var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
