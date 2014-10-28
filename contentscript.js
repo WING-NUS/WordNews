@@ -60,7 +60,6 @@ function talkToHeroku(url, params, index){
 					chineseSentence.push(tempChineseSentence);
 				}
 				else{
-					//chineseSentence.push("/Here are example sentences./");
 				}
 				if(obj[x].isTest == 1){
 					choices1.push(obj[x]["choices"]["0"]);
