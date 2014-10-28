@@ -69,16 +69,23 @@ class TranslatesController < ApplicationController
       
       testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
-        @text[word]['is_test']=0
+        @text[word]['isTest']=0
+        @text[word]['chineseSentence']=Hash.new
+        @text[word]['englishSentence']=Hash.new
+        sentence_list = EnglishWordsExampleSentence.where(:english_word_id => temp.english_word_id)
+        sentence_list.each_with_index{ |val, idx|
+          @text[word]['chineseSentence'][idx.to_s]=ExampleSentence.find(val.example_sentence_id).chinese_sentence
+          @text[word]['englishSentence'][idx.to_s]=ExampleSentence.find(val.example_sentence_id).english_sentence
+        }
       elsif testEntry.frequency > 3 and testEntry.frequency < 7 #testing mah
-        @text[word]['is_test']=1
+        @text[word]['isTest']=1
         @text[word]['choices']=Hash.new
         choices = Meaning.where(:word_category_id => category_list).where("english_word_id != ?", @original_word_id).random(3)
         choices.each_with_index { |val, idx|   
           @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_word_id)
         }
       elsif testEntry.frequency > 6 and testEntry.frequency < 10
-        @text[word]['is_test']=2
+        @text[word]['isTest']=2
         @text[word]['choices']=Hash.new
         choices = Meaning.where(:word_category_id => category_list).where("chinese_word_id != ?", @original_word_chinese_id).random(3)
         choices.each_with_index { |val, idx|   
@@ -103,9 +110,9 @@ class TranslatesController < ApplicationController
   def remember 
     @user_name = params[:name]
     # to be done when naijia api is updated
-    @word_english = params[:word].downcase.singularize#params[:word_english].downcase.singularize
-    @word_chinese = "到"#params[:word_chinese]
-    @ifRemember = params[:is_remembered].to_i
+    @word_english = params[:wordEnglish].downcase.singularize
+    @word_chinese = params[:wordChinese]
+    @ifRemember = params[:isRemembered].to_i
     @url = params[:url]
 
     @english_word_id = EnglishWords.where(:english_meaning => @word_english).first.id
