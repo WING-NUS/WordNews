@@ -110,14 +110,14 @@ class TranslatesController < ApplicationController
   def remember 
     @user_name = params[:name]
     # to be done when naijia api is updated
-    @word_english = params[:wordEnglish].downcase.singularize
-    @word_chinese = params[:wordChinese]
+    #@word_english = params[:wordEnglish].downcase.singularize
+    #@word_chinese = params[:wordChinese]
     @ifRemember = params[:isRemembered].to_i
     @url = params[:url]
-
-    @english_word_id = EnglishWords.where(:english_meaning => @word_english).first.id
-    @chinese_word_id = ChineseWords.where(:chinese_meaning => @word_chinese).first.id
-    @meaning_id= Meaning.where(:english_word_id => @english_word_id, :chinese_word_id => @chinese_word_id ).first.id
+    @meaning_id = params[:wordID]
+    #@english_word_id = EnglishWords.where(:english_meaning => @word_english).first.id
+    #@chinese_word_id = ChineseWords.where(:chinese_meaning => @word_chinese).first.id
+    #@meaning_id= Meaning.where(:english_word_id => @english_word_id, :chinese_word_id => @chinese_word_id ).first.id
     @user_id = User.where(:user_name => @user_name).first.id
     testEntry = History.where(:meaning_id => @meaning_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
