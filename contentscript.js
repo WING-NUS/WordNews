@@ -8,7 +8,7 @@ var userAccount;
 var isWorking;
 var categoryParameter;
 var pageDictionary = {};
-
+var vocabularyListDisplayed;
 
 function talkToHeroku(url, params, index){
     var xhr = new XMLHttpRequest();
@@ -20,7 +20,7 @@ function talkToHeroku(url, params, index){
             console.log("here?");
             var response = xhr.responseText.replace(/&quot;/g,'"');
             var obj=JSON.parse(response);
-            console.log(obj);
+            //console.log(obj);
             
             var sourceWords = [];
             var targetWords = [];
@@ -31,17 +31,20 @@ function talkToHeroku(url, params, index){
             var choices1 = [];
             var choices2 = [];
             var choices3 = [];
+            var wordID = [];
             for (var x in obj) {
 				sourceWords.push(x);
 				targetWords.push(obj[x].chinese);
 				isTest.push(obj[x].isTest);
 				pageDictionary[x] = obj[x].chinese;
+
 				if(obj[x].pronunciation !== undefined){
 					pronunciation.push(obj[x].pronunciation);
 				}
 				else{
 					pronunciation.push("/pronunciation/");
 				}
+
 				if(obj[x].englishSentence !== undefined){
 					var tempEnglishSentence = [];
 					for(var key in obj[x].englishSentence){
@@ -50,8 +53,8 @@ function talkToHeroku(url, params, index){
 					englishSentence.push(tempEnglishSentence);
 				}
 				else{
-					//englishSentence.push("/Here are example sentences./");
 				}
+
 				if(obj[x].chineseSentence !== undefined){
 					var tempChineseSentence = [];
 					for(var key in obj[x].chineseSentence){
@@ -61,20 +64,27 @@ function talkToHeroku(url, params, index){
 				}
 				else{
 				}
+
+				if(obj[x].wordID !== undefined){
+					wordID.push(obj[x]["wordID"]);
+				}
+				else{
+				}
+
 				if(obj[x].isTest == 1){
 					choices1.push(obj[x]["choices"]["0"]);
 					choices2.push(obj[x]["choices"]["1"]);
 					choices3.push(obj[x]["choices"]["2"]);
-					console.log("other english is : "+obj[x]["choices"]["2"]);
+					//console.log("other english is : "+obj[x]["choices"]["2"]);
 				}
 				else{
 					choices1.push(" ");
 					choices2.push(" ");
 					choices3.push(" ");
 				}
-				console.log(x+" "+obj[x]+" "+obj[x].isTest);
+				//console.log(x+" "+obj[x]+" "+obj[x].isTest);
 			}
-			replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSentence, chineseSentence, choices1, choices2 , choices3, index);
+			replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, englishSentence, chineseSentence, choices1, choices2 , choices3, index);
             //document.getElementById('article').innerHTML  = obj["chinese"];
         }
         else {// Show what went wrong
@@ -85,7 +95,7 @@ function talkToHeroku(url, params, index){
 }
 
 
-function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSentence, chineseSentence, choices1, choices2 , choices3, i){
+function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, englishSentence, chineseSentence, choices1, choices2 , choices3, i){
 
 	var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
@@ -97,8 +107,10 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSe
     	var paragraph = paragraphs[i];
     	var text = paragraph.innerHTML;
 
-		var id = "myID_"+sourceWord+"_"+targetWord+"_"+i.toString();
-		console.log(id);
+		//var id = "myID_"+sourceWord+"_"+targetWord+"_"+i.toString();
+		var id = "myID_"+sourceWord+"_"+wordID[j]+"_"+i.toString();
+
+		//console.log(id);
 
 		var popoverContent = "";
 		var joinString = "";
@@ -109,23 +121,27 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSe
 			popoverContent += "<div>Pronunciation: <div style=\"margin-left:10px\">";
 
 			var splitedPinyin = pronunciation[j].split(" ");
-			var chineseCharactors = targetWord.split("");
+			var chineseCharactors = targetWord.replace("(","").replace(")","").split("");
 
-			for(i = 0; i < splitedPinyin.length; i++){
-				popoverContent += chineseCharactors[i]+splitedPinyin[i];
-				popoverContent += "<img src=\"http://emergingmoney.com/wp-content/uploads/2011/11/audio.gif\" style=\"width:15px;height:15px\" class=\"audioButton\" id=\""+splitedPinyin[i]+"\"> "
-        		popoverContent += "<audio id=\"myAudio_"+splitedPinyin[i]+"\">"
-				popoverContent += "<source src=\"http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/"+splitedPinyin[i]+".mp3\" type=\"audio/mp3\">";
+			for(var k = 0; k < splitedPinyin.length; k++){
+				popoverContent += chineseCharactors[k]+splitedPinyin[k];
+				popoverContent += "<img src=\"http://emergingmoney.com/wp-content/uploads/2011/11/audio.gif\" style=\"width:15px;height:15px\" class=\"audioButton\" id=\""+splitedPinyin[k]+"\"> "
+        		popoverContent += "<audio id=\"myAudio_"+splitedPinyin[k]+"\">"
+				popoverContent += "<source src=\"http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/"+splitedPinyin[k]+".mp3\" type=\"audio/mp3\">";
 				popoverContent += "</audio>";
 			}
 
 			popoverContent += "</div></div>";
 
-			for(i = 0; i < englishSentence[j].length; i++)
-				popoverContent += "<div>englishSentence: <div style=\"margin-left:10px\">"+englishSentence[j][i]+"\n"+chineseSentence[j][i]+"</div></div>";
-	    	
-	    	popoverContent += "<button id=\""+ id + "_btn1\" class=\"btn btn-info\">Got it</button>";
-	    	popoverContent += "<button style=\"margin-left:10px\" id=\""+ id + "_btn2\" class=\"btn btn-warning\">Show me</button>";
+/*			for(var k = 0; k < englishSentence[j].length; k++)
+				popoverContent += "<div>englishSentence: <div style=\"margin-left:10px\">"+englishSentence[j][k]+"\n"+chineseSentence[j][k]+"</div></div>";
+	    	*/
+			//popoverContent += "<div>englishSentence: <div style=\"margin-left:10px\">This is exmaple sentence.</div></div>";
+			popoverContent += "<a id=\""+ id + "_btn3\">Click_to_get_example_sentences:</a>";
+	    	popoverContent += "<div id=\"exampleSentences\" style=\"display:none;margin-bottom:10px;\"></div>"
+
+	    	popoverContent += "<div ><button id=\""+ id + "_btn1\" class=\"btn btn-info\">Got it</button>";
+	    	popoverContent += "<button style=\"margin-left:10px\" id=\""+ id + "_btn2\" class=\"btn btn-warning\">Show me</button></div>";
     		popoverContent += "</div>";
 
     		joinString += "  <span ";
@@ -234,24 +250,54 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSe
 		$(document).on("click", "#"+id+"_btn1", function() {
 			var id = $(this).attr('id');
 		    var englishWord = id.split('_')[1];
-		    var chineseWord = id.split('_')[2];
+		    var tempWordID = id.split('_')[2];
 	    	var remembered = new HttpClient();
-			remembered.get(url_front+'remember?name='+userAccount+'&wordEnglish='+englishWord+'&wordChinese'+chineseWord+'&isRemembered=1'+"&url="+document.URL, function(answer) {
+			remembered.get(url_front+'remember?name='+userAccount+'&worID='+tempWordID+'&isRemembered=1'+"&url="+document.URL, function(answer) {
 			    console.log("this is answer: "+answer);
 			});
 			$('.fypSpecialClass').popover('hide');
 		});
 
+
 		$(document).on("click", "#"+id+"_btn2", function() {
 			var id = $(this).attr('id');
 		    var englishWord = id.split('_')[1];
-		    var chineseWord = id.split('_')[2];
+		    var tempWordID = id.split('_')[2];
 	    	var remembered = new HttpClient();
 	    	$('.fypSpecialClass').popover('hide');
-			remembered.get(url_front+'remember?name='+userAccount+'&wordEnglish='+englishWord+'&wordChinese'+chineseWord+'&isRemembered=0'+"&url="+document.URL, function(answer) {
+			remembered.get(url_front+'remember?name='+userAccount+'&worID='+tempWordID+'&isRemembered=0'+"&url="+document.URL, function(answer) {
 			    console.log("this is answer: "+answer);
 			});
 			window.open("http://dict.youdao.com/search?q="+englishWord+"&keyfrom=dict.index");
+		});
+
+		$(document).on("click","#"+id+"_btn3",function(){
+			var id = $(this).attr('id');
+		    var englishWord = id.split('_')[1];
+		    var tempWordID = id.split('_')[2];
+			var remembered = new HttpClient();
+		    remembered.get(url_front+'getExampleSentences?name='+userAccount+'&wordID='+tempWordID, function(answer) {
+				var obj=JSON.parse(answer);
+				console.log(obj);
+				var exampleSentences = "";
+
+				if(obj.englishSentence !== undefined && obj.chineseSentence !== undefined){
+					var tempEnglishSentence = [];
+					for(var key in obj.englishSentence){
+						exampleSentences += obj.englishSentence[key] + "\n";
+						exampleSentences += obj.chineseSentence[key] + "\n";
+						console.log("from server: "+exampleSentences);
+					}
+				}
+				else{
+					console.log("englishSentence or chineseSentence is not defined!!!");
+				}
+
+				document.getElementById('exampleSentences').innerHTML = exampleSentences;
+				document.getElementById("exampleSentences").style.display="inline-flex";
+
+			});
+			//document.getElementById('exampleSentences').innerHTML = "This is a book. 是一本...";
 		});
 
 		//$(document).on("click", "#"+id+"_btn3", function() {
@@ -305,9 +351,10 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSe
     	var result = parts.join(joinString);
 
     	paragraph.innerHTML = result;
-
-    	if(i == paragraphs.length-1){
-
+    	console.log("paragraph.length is: "+paragraphs.length+" and i is:"+i);
+    	if(i == paragraphs.length-1 && vocabularyListDisplayed == 0){
+    		vocabularyListDisplayed = 1;
+    		console.log("wowowowowowowowowowowow");
     		var oneMoreParagraph = "<p></p><p></p>";
 			oneMoreParagraph+="<p style='font-weight: bold;'>Words translated in this page:</p>";
 			//console.log("size of the dictionary is: "+ Object.keys(pageDictionary).length);
@@ -315,8 +362,8 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSe
 			for(key in pageDictionary){
 				oneMoreParagraph+="<p>"+key+" : "+pageDictionary[key]+"</p>";
 			}
-
-			oneMoreParagraph+="<p style='font-weight: bold;'>Here are some links that you might be interested:</p>";
+			$(oneMoreParagraph).insertAfter(".cnn_storypgraph"+(i+2));
+/*			oneMoreParagraph+="<p style='font-weight: bold;'>Here are some links that you might be interested:</p>";
 
 			//http://testnaijia.herokuapp.com/getSuggestURL?name='+userAccount'
 			var remembered = new HttpClient();
@@ -326,8 +373,8 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSe
 				console.log(obj);
 
 				oneMoreParagraph += "<p><a target='_blank' href='"+obj.url+"'>"+obj.url+"</a></p>";
-				$(oneMoreParagraph).insertAfter(".cnn_storypgraph"+(i+2));
-			});
+				
+			});*/
 		}
 	}
 
@@ -369,7 +416,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, englishSe
 
 
 window.addEventListener("load", function(){
-
+	vocabularyListDisplayed = 0;
     chrome.storage.sync.get(['userAccount'], function(result){
     	userAccount = result.userAccount;
     	console.log("user acc: "+ result.userAccount);
@@ -390,7 +437,7 @@ window.addEventListener("load", function(){
 		remembered.get(url_front+'getIfTranslate?name='+userAccount, function(answer) {
 
             var obj=JSON.parse(answer);
-            console.log(obj);
+            //console.log(obj);
 
             if(obj.if_translate!==undefined){
             	if(obj.if_translate=='1')
@@ -404,7 +451,7 @@ window.addEventListener("load", function(){
 				var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
 				for (var i = 0; i < paragraphs.length; i++) {
-
+					//console.log("length of the paragraphs is : "+paragraphs.length);
 					var sourceWords = [];
 					var targetWords = [];
 
@@ -413,10 +460,9 @@ window.addEventListener("load", function(){
 
 				    var url = url_front+'show';
 				    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount;
-				    console.log(params);
+				    //console.log(params);
 				    talkToHeroku(url, params, i);
 				}
-
 			}
 
 		});
