@@ -251,8 +251,9 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 			var id = $(this).attr('id');
 		    var englishWord = id.split('_')[1];
 		    var tempWordID = id.split('_')[2];
+		    console.log(tempWordID);
 	    	var remembered = new HttpClient();
-			remembered.get(url_front+'remember?name='+userAccount+'&worID='+tempWordID+'&isRemembered=1'+"&url="+document.URL, function(answer) {
+			remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=1'+"&url="+document.URL, function(answer) {
 			    console.log("this is answer: "+answer);
 			});
 			$('.fypSpecialClass').popover('hide');
@@ -263,9 +264,10 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 			var id = $(this).attr('id');
 		    var englishWord = id.split('_')[1];
 		    var tempWordID = id.split('_')[2];
+		    //console.log(tempWordID);
 	    	var remembered = new HttpClient();
 	    	$('.fypSpecialClass').popover('hide');
-			remembered.get(url_front+'remember?name='+userAccount+'&worID='+tempWordID+'&isRemembered=0'+"&url="+document.URL, function(answer) {
+			remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=0'+"&url="+document.URL, function(answer) {
 			    console.log("this is answer: "+answer);
 			});
 			window.open("http://dict.youdao.com/search?q="+englishWord+"&keyfrom=dict.index");
@@ -275,6 +277,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 			var id = $(this).attr('id');
 		    var englishWord = id.split('_')[1];
 		    var tempWordID = id.split('_')[2];
+		    //console.log(tempWordID);
 			var remembered = new HttpClient();
 		    remembered.get(url_front+'getExampleSentences?name='+userAccount+'&wordID='+tempWordID, function(answer) {
 				var obj=JSON.parse(answer);
