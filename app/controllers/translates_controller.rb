@@ -63,7 +63,7 @@ class TranslatesController < ApplicationController
       @original_word_chinese_id = temp.chinese_word_id
       @user_id = User.where(:user_name => @user_name).first.id
       # see if the user understands this word before
-      @text[word]['wordID'] = temp.meaning_id
+      @text[word]['wordID'] = temp.id
       @text[word]['chinese']= ChineseWords.find(temp.chinese_word_id).chinese_meaning
       @text[word]['pronunciation']= ChineseWords.find(temp.chinese_word_id).pronunciation
       
