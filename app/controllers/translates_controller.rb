@@ -141,7 +141,11 @@ class TranslatesController < ApplicationController
     @user_id = User.where(:user_name => @user_name).first.id
     testEntry = History.where(:meaning_id => @meaning_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
-      testEntry.frequency= @ifRemember==0? 0 : testEntry.frequency+1 
+      if @ifRemember ==0
+        testEntry.frequency = 0
+      else
+        testEntry.frequency= testEntry.frequency+1 
+      end
       testEntry.url = @url
       testEntry.save
     else # this is a new word the user has some operations on
