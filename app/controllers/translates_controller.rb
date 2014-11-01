@@ -104,6 +104,26 @@ class TranslatesController < ApplicationController
   end
 
 
+  def getExampleSentences
+    @meaning_id = params[:wordID]
+
+
+    # to be changed later
+    @english_word_id = Meaning.find(@meaning_id).english_word_id
+    sentence_list = EnglishWordsExampleSentence.where(:english_word_id => english_word_id)
+    @text = Hash.new
+    @text['chineseSentence']=Hash.new
+    @text['englishSentence']=Hash.new
+    sentence_list.each_with_index{ |val, idx|
+      @text['chineseSentence'][idx.to_s]=ExampleSentence.find(val.example_sentence_id).chinese_sentence
+      @text['englishSentence'][idx.to_s]=ExampleSentence.find(val.example_sentence_id).english_sentence
+    }
+
+    respond_to do |format|
+      format.html { render :layout => false }# new.html.erb
+      format.json { render json: @translate }
+    end
+  end
   # GET /translates/new
   # GET /translates/new.json
 

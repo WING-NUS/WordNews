@@ -11,6 +11,7 @@ TranslateApp::Application.routes.draw do
   match '/settings', to: 'users#settings', via: :get
   match '/getIfTranslate', to: 'users#getIfTranslate', via: :get
   match '/getSuggestURL', to: 'users#getSuggestURL', via: :get
+  match '/getExampleSentences', to: 'translates#getExampleSentences', via: :get
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
