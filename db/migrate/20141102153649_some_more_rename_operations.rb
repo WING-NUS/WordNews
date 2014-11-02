@@ -5,5 +5,6 @@ class SomeMoreRenameOperations < ActiveRecord::Migration
   end
 
   def down
+  	
   end
 end

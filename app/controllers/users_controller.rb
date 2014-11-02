@@ -52,24 +52,24 @@ class UsersController < ApplicationController
   def displayHistory
     @user_name = params[:name]
     @user = User.where(:user_name => @user_name).first
-    @find_to_learn_query = "user_id = " + @user.id.to_s + " and frequency = 0"
-    @find_learnt_query = "user_id = " + @user.id.to_s + " and frequency > 0"
-    @MeaningToLearnIdList = History.find(:all, :select => "meaning_id",:conditions => [@find_to_learn_query] )
+    @find_to_learn_query = "users_id = " + @user.id.to_s + " and frequency = 0"
+    @find_learnt_query = "users_id = " + @user.id.to_s + " and frequency > 0"
+    @MeaningToLearnIdList = History.find(:all, :select => "meanings_id",:conditions => [@find_to_learn_query] )
     puts "hahhhhhhhh"
     @wordsToLearn=[]
     puts @MeaningToLearnIdList.length
     if @MeaningToLearnIdList.length !=0
       for id in @MeaningToLearnIdList
-        @temp = Meaning.find(id.meaning_id)
+        @temp = Meaning.find(id.meanings_id)
         @wordsToLearn.push(@temp)
       end
     end
 
-    @MeaningLearntIdList = History.find(:all, :select => "meaning_id",:conditions => [@find_learnt_query] )
+    @MeaningLearntIdList = History.find(:all, :select => "meanings_id",:conditions => [@find_learnt_query] )
     @wordsLearnt = []
     if @MeaningLearntIdList.length !=0 
       for id in @MeaningLearntIdList
-        @temp = Meaning.find(id.meaning_id)
+        @temp = Meaning.find(id.meanings_id)
         @wordsLearnt.push(@temp)
       end
     end

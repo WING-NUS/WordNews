@@ -36,7 +36,7 @@ class TranslatesController < ApplicationController
         @original_word_id = english_word_entry.first.id
       end
 
-      meanings = Meaning.where(:english_word_id => @original_word_id, :word_category_id => category_list )
+      meanings = Meaning.where(:english_words_id => @original_word_id, :word_category_id => category_list )
       number_of_meanings = meanings.length
       puts number_of_meanings
       temp = Meaning.new
@@ -71,16 +71,16 @@ class TranslatesController < ApplicationController
       elsif testEntry.frequency > 3 and testEntry.frequency < 7 #testing mah
         @text[word]['isTest']=1
         @text[word]['choices']=Hash.new
-        choices = Meaning.where(:word_category_id => category_list).where("english_word_id != ?", @original_word_id).random(3)
+        choices = Meaning.where(:word_category_id => category_list).where("english_words_id != ?", @original_word_id).random(3)
         choices.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_word_id).english_meaning
+          @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_words_id).english_meaning
         }
       elsif testEntry.frequency > 6 
         @text[word]['isTest']=2
         @text[word]['choices']=Hash.new
-        choices = Meaning.where(:word_category_id => category_list).where("chinese_word_id != ?", @original_word_chinese_id).random(3)
+        choices = Meaning.where(:word_category_id => category_list).where("chinese_words_id != ?", @original_word_chinese_id).random(3)
         choices.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s]=ChineseWords.find(val.chinese_word_id).chinese_meaning
+          @text[word]['choices'][idx.to_s]=ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
       else
         next
@@ -98,16 +98,15 @@ class TranslatesController < ApplicationController
   def getExampleSentences
     @meaning_id = params[:wordID]
 
-
     # to be changed later
-    @english_word_id = Meaning.find(@meaning_id).english_word_id
-    sentence_list = EnglishWordsExampleSentence.where(:english_word_id => @english_word_id)
+    @english_word_id = Meaning.find(@meaning_id).meanings_id
+    sentence_list = MeaningsExampleSentence.where(:meanings_id => @english_word_id)
     @text = Hash.new
     @text['chineseSentence']=Hash.new
     @text['englishSentence']=Hash.new
     sentence_list.each_with_index{ |val, idx|
-      @text['chineseSentence'][idx.to_s]=ExampleSentence.find(val.example_sentence_id).chinese_sentence
-      @text['englishSentence'][idx.to_s]=ExampleSentence.find(val.example_sentence_id).english_sentence
+      @text['chineseSentence'][idx.to_s]=ExampleSentence.find(val.example_sentences_id).chinese_sentence
+      @text['englishSentence'][idx.to_s]=ExampleSentence.find(val.example_sentences_id).english_sentence
     }
 
     respond_to do |format|
@@ -130,7 +129,7 @@ class TranslatesController < ApplicationController
     #@chinese_word_id = ChineseWords.where(:chinese_meaning => @word_chinese).first.id
     #@meaning_id= Meaning.where(:english_word_id => @english_word_id, :chinese_word_id => @chinese_word_id ).first.id
     @user_id = User.where(:user_name => @user_name).first.id
-    testEntry = History.where(:meaning_id => @meaning_id, :user_id => @user_id).first
+    testEntry = History.where(:meanings_id => @meaning_id, :users_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
       if @ifRemember == 0
         testEntry.frequency = 0
@@ -141,8 +140,8 @@ class TranslatesController < ApplicationController
       testEntry.save
     else # this is a new word the user has some operations on
       understand = History.new
-      understand.user_id = @user_id
-      understand.meaning_id = @meaning_id
+      understand.users_id = @user_id
+      understand.meanings_id = @meaning_id
       understand.url = @url
       understand.frequency = @ifRemember
       understand.save
@@ -183,10 +182,10 @@ class TranslatesController < ApplicationController
       @number['tolearn']=0
     else
       @user_id = user.id
-      @querylearnt = "user_id=" + @user_id.to_s+ " and frequency > 0"
-      @querytolearn = "user_id=" + @user_id.to_s+ " and frequency = 0"
-      @number['learnt']=History.count('user_id', :conditions => [@querylearnt])
-      @number['tolearn']=History.count('user_id', :conditions => [@querytolearn])
+      @querylearnt = "users_id=" + @user_id.to_s+ " and frequency > 0"
+      @querytolearn = "users_id=" + @user_id.to_s+ " and frequency = 0"
+      @number['learnt']=History.count('users_id', :conditions => [@querylearnt])
+      @number['tolearn']=History.count('users_id', :conditions => [@querytolearn])
     end
 
     respond_to do |format|
