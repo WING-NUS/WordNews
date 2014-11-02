@@ -87,14 +87,14 @@ class TranslatesController < ApplicationController
         puts category_list
         puts "Finish test lah"
         choices.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_word_id)
+          @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_word_id).english_meaning
         }
       elsif testEntry.frequency > 6 and testEntry.frequency < 10
         @text[word]['isTest']=2
         @text[word]['choices']=Hash.new
         choices = Meaning.where(:word_category_id => category_list).where("chinese_word_id != ?", @original_word_chinese_id).random(3)
         choices.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s]=ChineseWords.find(val.chinese_word_id)
+          @text[word]['choices'][idx.to_s]=ChineseWords.find(val.chinese_word_id).chinese_meaning
         }
       else
         next
