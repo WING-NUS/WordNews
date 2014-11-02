@@ -81,7 +81,11 @@ class TranslatesController < ApplicationController
         @text[word]['isTest']=1
         @text[word]['choices']=Hash.new
         choices = Meaning.where(:word_category_id => category_list).where("english_word_id != ?", @original_word_id).random(3)
+        puts "Test here lah"
         puts choices
+        puts @original_word_id
+        puts category_list
+        puts "Finish test lah"
         choices.each_with_index { |val, idx|   
           @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_word_id)
         }
