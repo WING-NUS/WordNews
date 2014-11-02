@@ -89,7 +89,7 @@ class TranslatesController < ApplicationController
         choices.each_with_index { |val, idx|   
           @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_word_id).english_meaning
         }
-      elsif testEntry.frequency > 6 and testEntry.frequency < 10
+      elsif testEntry.frequency > 6 
         @text[word]['isTest']=2
         @text[word]['choices']=Hash.new
         choices = Meaning.where(:word_category_id => category_list).where("chinese_word_id != ?", @original_word_chinese_id).random(3)
@@ -146,7 +146,7 @@ class TranslatesController < ApplicationController
     @user_id = User.where(:user_name => @user_name).first.id
     testEntry = History.where(:meaning_id => @meaning_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
-      if @ifRemember ==0
+      if @ifRemember == 0
         testEntry.frequency = 0
       else
         testEntry.frequency= testEntry.frequency+1 
