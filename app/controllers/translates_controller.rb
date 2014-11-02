@@ -46,8 +46,6 @@ class TranslatesController < ApplicationController
         temp = meanings[0]
       else
         number_of_meanings.times do |index|
-          puts "Inside the looooooooooooooooooooop"
-          puts chinese_sentence
           if chinese_sentence.to_s.include? ChineseWords.find(meanings[index].chinese_word_id).chinese_meaning
             temp = meanings[index]
           end
@@ -70,22 +68,10 @@ class TranslatesController < ApplicationController
       testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
         @text[word]['isTest']=0
-        @text[word]['chineseSentence']=Hash.new
-        @text[word]['englishSentence']=Hash.new
-        sentence_list = EnglishWordsExampleSentence.where(:english_word_id => temp.english_word_id)
-        sentence_list.each_with_index{ |val, idx|
-          @text[word]['chineseSentence'][idx.to_s]=ExampleSentence.find(val.example_sentence_id).chinese_sentence
-          @text[word]['englishSentence'][idx.to_s]=ExampleSentence.find(val.example_sentence_id).english_sentence
-        }
       elsif testEntry.frequency > 3 and testEntry.frequency < 7 #testing mah
         @text[word]['isTest']=1
         @text[word]['choices']=Hash.new
         choices = Meaning.where(:word_category_id => category_list).where("english_word_id != ?", @original_word_id).random(3)
-        puts "Test here lah"
-        puts choices
-        puts @original_word_id
-        puts category_list
-        puts "Finish test lah"
         choices.each_with_index { |val, idx|   
           @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_word_id).english_meaning
         }
