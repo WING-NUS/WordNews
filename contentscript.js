@@ -14,13 +14,13 @@ function talkToHeroku(url, params, index){
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    console.log("here");
+    //console.log("here");
     xhr.onreadystatechange = function() {//Call a function when the state changes.
         if(xhr.readyState == 4 && xhr.status == 200) {
-            console.log("here?");
+            //console.log("here?");
             var response = xhr.responseText.replace(/&quot;/g,'"');
             var obj=JSON.parse(response);
-            //console.log(obj);
+            console.log(obj);
             
             var sourceWords = [];
             var targetWords = [];
@@ -44,7 +44,6 @@ function talkToHeroku(url, params, index){
 				else{
 					pronunciation.push("/pronunciation/");
 				}
-
 				if(obj[x].englishSentence !== undefined){
 					var tempEnglishSentence = [];
 					for(var key in obj[x].englishSentence){
@@ -71,7 +70,7 @@ function talkToHeroku(url, params, index){
 				else{
 				}
 
-				if(obj[x].isTest == 1){
+				if(obj[x].isTest == 1 || obj[x].isTest == 2){
 					choices1.push(obj[x]["choices"]["0"]);
 					choices2.push(obj[x]["choices"]["1"]);
 					choices3.push(obj[x]["choices"]["2"]);
@@ -157,12 +156,6 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
     	}
     	else
     	{
-    		if(isTest[j] == 2)
-    		{
-    			var tempWord = targetWord;
-    			targetWord = sourceWord;
-    			sourceWord = tempWord;
-    		}
 
     		popoverContent += "<div class = \"row\">";
 
@@ -175,7 +168,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 					case 1:
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\""+sourceWord+"_"+targetWord+"\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio1\" value=\""+wordID[j]+"\">";
 			    		popoverContent += choices1[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -183,7 +176,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 					case 2:
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio2\" value=\""+sourceWord+"\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio2\" value=\""+wordID[j]+"\">";
 			    		popoverContent += choices2[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -191,7 +184,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 					case 3:
 						popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio3\" value=\""+sourceWord+"\">";
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadio3\" value=\""+wordID[j]+"\">";
 			    		popoverContent += choices3[j];
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
@@ -199,8 +192,11 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 					case 4:
 					    popoverContent += "<div class = \"col-xs-6\">"
 			    		popoverContent += "<lable class = \"radio-inline\">";
-			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadioCorrect\" value=\""+sourceWord+"\">";
-			    		popoverContent += sourceWord;
+			    		popoverContent += "<input type=\"radio\" name =\"inlineRadioOptions\" id=\"inlineRadioCorrect\" value=\""+wordID[j]+"\">";
+			    		if(isTest[j] == 1)
+			    			popoverContent += sourceWord;
+			    		else if(isTest[j] == 2)
+			    			popoverContent += targetWord;
 			    		popoverContent += "</lable>";
 			    		popoverContent += "</div>"
 						break;
@@ -232,7 +228,10 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 			joinString += "href='#' ";
 			joinString += "data-content = '" + popoverContent + "'";
 			joinString += "id = '" + id + "' >";
-			joinString += targetWord;
+			if(isTest[j] != 2)
+				joinString += targetWord;
+			else
+				joinString += sourceWord;
 			joinString += "</span>  ";
     	}
 		
@@ -308,9 +307,8 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 		//$('input:radio').change(function() {
 			//alert("radio changed");
 			var id = $(this).attr('id');
-		    var englishWord = $(this).attr('value').split("_")[0];
-		    var chineseWord = $(this).attr('value').split("_")[1];
-			console.log("word = "+word+" id = "+id);
+		    var tempWordID = $(this).attr('value').split("_")[0];
+			//console.log("word = "+word+" id = "+id);
 	    	var remembered = new HttpClient();
 			document.getElementById("inlineRadio1").disabled = true;
 			document.getElementById("inlineRadio2").disabled = true;
@@ -318,7 +316,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 			document.getElementById("inlineRadioCorrect").disabled = true;
 	    	if(document.getElementById("inlineRadioCorrect").checked == true)
 	    	{
-				remembered.get(url_front+'remember?name='+userAccount+'&wordEnglish='+wordEnglish+'&wordChinese'+wordChinese+'&is_remembered=1'+"&url="+document.URL, function(answer) {
+				remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=1'+"&url="+document.URL, function(answer) {
 				    console.log("select the correct answer");
 				});
 				document.getElementById("alertSuccess").style.display="inline-flex";
@@ -326,7 +324,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 			}
 			else
 			{
-				remembered.get(url_front+'remember?name='+userAccount+'&word='+word+'&is_remembered=0'+"&url="+document.URL, function(answer) {
+				remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=0'+"&url="+document.URL, function(answer) {
 				    console.log("select the wrong answer");
 				});
 				document.getElementById("alertDanger").style.display="inline-flex";
