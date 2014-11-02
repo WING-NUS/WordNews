@@ -81,6 +81,7 @@ class TranslatesController < ApplicationController
         @text[word]['isTest']=1
         @text[word]['choices']=Hash.new
         choices = Meaning.where(:word_category_id => category_list).where("english_word_id != ?", @original_word_id).random(3)
+        puts choices
         choices.each_with_index { |val, idx|   
           @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_word_id)
         }
@@ -98,7 +99,7 @@ class TranslatesController < ApplicationController
     end # end of for word in word_list
 
     respond_to do |format|
-      format.html { render :layout => false }# new.html.erb
+      format.html { render :layout => false } # new.html.erb
       format.json { render json: @translate }
     end
   end
