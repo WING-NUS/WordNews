@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141027050657) do
+ActiveRecord::Schema.define(:version => 20141102152940) do
 
   create_table "chinese_words", :force => true do |t|
     t.string   "chinese_meaning"
@@ -26,13 +26,6 @@ ActiveRecord::Schema.define(:version => 20141027050657) do
     t.datetime "updated_at",      :null => false
   end
 
-  create_table "english_words_example_sentences", :force => true do |t|
-    t.integer  "english_word_id"
-    t.integer  "example_sentence_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-  end
-
   create_table "example_sentences", :force => true do |t|
     t.string   "english_sentence"
     t.string   "chinese_sentence"
@@ -41,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20141027050657) do
   end
 
   create_table "histories", :force => true do |t|
-    t.integer  "user_id"
+    t.integer  "users_id"
     t.integer  "meaning_id"
     t.integer  "frequency"
     t.string   "url"
@@ -50,12 +43,19 @@ ActiveRecord::Schema.define(:version => 20141027050657) do
   end
 
   create_table "meanings", :force => true do |t|
-    t.integer  "chinese_word_id"
-    t.integer  "english_word_id"
+    t.integer  "chinese_words_id"
+    t.integer  "english_words_id"
     t.string   "word_property"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "word_category_id"
+  end
+
+  create_table "meanings_example_sentences", :force => true do |t|
+    t.integer  "english_word_id"
+    t.integer  "example_sentence_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "users", :force => true do |t|
