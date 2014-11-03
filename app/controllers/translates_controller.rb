@@ -116,9 +116,6 @@ class TranslatesController < ApplicationController
 
   def remember 
     @user_name = params[:name]
-    # to be done when naijia api is updated
-    #@word_english = params[:wordEnglish].downcase.singularize
-    #@word_chinese = params[:wordChinese]
     @ifRemember = params[:isRemembered].to_i
     @url = params[:url]
     @meaning_id = params[:wordID]
