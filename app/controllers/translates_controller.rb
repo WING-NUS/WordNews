@@ -52,18 +52,18 @@ class TranslatesController < ApplicationController
         end
       end
 
-      if temp.chinese_word_id.nil?
+      if temp.chinese_words_id.nil?
         temp = meanings[0]
       end
 
 
       @text[word]= Hash.new
-      @original_word_chinese_id = temp.chinese_word_id
+      @original_word_chinese_id = temp.chinese_words_id
       @user_id = User.where(:user_name => @user_name).first.id
       # see if the user understands this word before
       @text[word]['wordID'] = temp.id #pass meaning Id to extension
-      @text[word]['chinese']= ChineseWords.find(temp.chinese_word_id).chinese_meaning
-      @text[word]['pronunciation']= ChineseWords.find(temp.chinese_word_id).pronunciation
+      @text[word]['chinese']= ChineseWords.find(temp.chinese_words_id).chinese_meaning
+      @text[word]['pronunciation']= ChineseWords.find(temp.chinese_words_id).pronunciation
       
       testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
