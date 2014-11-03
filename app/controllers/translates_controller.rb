@@ -133,6 +133,7 @@ class TranslatesController < ApplicationController
       testEntry.url = @url
       testEntry.save
     else # this is a new word the user has some operations on
+      puts "inside here"
       understand = History.new
       understand.user_id = @user_id
       understand.meaning_id = @meaning_id
