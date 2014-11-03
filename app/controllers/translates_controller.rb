@@ -65,7 +65,7 @@ class TranslatesController < ApplicationController
       @text[word]['chinese']= ChineseWords.find(temp.chinese_words_id).chinese_meaning
       @text[word]['pronunciation']= ChineseWords.find(temp.chinese_words_id).pronunciation
       
-      testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
+      testEntry = History.where(:users_id => @user_id, :meaning_id => temp.id).first
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
         @text[word]['isTest']=0
       elsif testEntry.frequency > 3 and testEntry.frequency < 7 #testing mah
