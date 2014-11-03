@@ -61,7 +61,7 @@ class TranslatesController < ApplicationController
       @original_word_chinese_id = temp.chinese_word_id
       @user_id = User.where(:user_name => @user_name).first.id
       # see if the user understands this word before
-      @text[word]['wordID'] = temp.id
+      @text[word]['wordID'] = temp.id #pass meaning Id to extension
       @text[word]['chinese']= ChineseWords.find(temp.chinese_word_id).chinese_meaning
       @text[word]['pronunciation']= ChineseWords.find(temp.chinese_word_id).pronunciation
       
@@ -97,10 +97,7 @@ class TranslatesController < ApplicationController
 
   def getExampleSentences
     @meaning_id = params[:wordID]
-
-    # to be changed later
-    @english_word_id = Meaning.find(@meaning_id).meanings_id
-    sentence_list = MeaningsExampleSentence.where(:meanings_id => @english_word_id)
+    sentence_list = MeaningsExampleSentence.where(:meaning_id => @meaning_id)
     @text = Hash.new
     @text['chineseSentence']=Hash.new
     @text['englishSentence']=Hash.new
@@ -125,11 +122,8 @@ class TranslatesController < ApplicationController
     @ifRemember = params[:isRemembered].to_i
     @url = params[:url]
     @meaning_id = params[:wordID]
-    #@english_word_id = EnglishWords.where(:english_meaning => @word_english).first.id
-    #@chinese_word_id = ChineseWords.where(:chinese_meaning => @word_chinese).first.id
-    #@meaning_id= Meaning.where(:english_word_id => @english_word_id, :chinese_word_id => @chinese_word_id ).first.id
     @user_id = User.where(:user_name => @user_name).first.id
-    testEntry = History.where(:meanings_id => @meaning_id, :users_id => @user_id).first
+    testEntry = History.where(:meaning_id => @meaning_id, :users_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
       if @ifRemember == 0
         testEntry.frequency = 0
@@ -141,7 +135,7 @@ class TranslatesController < ApplicationController
     else # this is a new word the user has some operations on
       understand = History.new
       understand.users_id = @user_id
-      understand.meanings_id = @meaning_id
+      understand.meaning_id = @meaning_id
       understand.url = @url
       understand.frequency = @ifRemember
       understand.save
