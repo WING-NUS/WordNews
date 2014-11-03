@@ -65,7 +65,7 @@ class TranslatesController < ApplicationController
       @text[word]['chinese']= ChineseWords.find(temp.chinese_words_id).chinese_meaning
       @text[word]['pronunciation']= ChineseWords.find(temp.chinese_words_id).pronunciation
       
-      testEntry = History.where(:users_id => @user_id, :meaning_id => temp.id).first
+      testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
         @text[word]['isTest']=0
       elsif testEntry.frequency > 3 and testEntry.frequency < 7 #testing mah
@@ -123,7 +123,7 @@ class TranslatesController < ApplicationController
     @url = params[:url]
     @meaning_id = params[:wordID]
     @user_id = User.where(:user_name => @user_name).first.id
-    testEntry = History.where(:meaning_id => @meaning_id, :users_id => @user_id).first
+    testEntry = History.where(:meaning_id => @meaning_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
       if @ifRemember == 0
         testEntry.frequency = 0
@@ -134,7 +134,7 @@ class TranslatesController < ApplicationController
       testEntry.save
     else # this is a new word the user has some operations on
       understand = History.new
-      understand.users_id = @user_id
+      understand.user_id = @user_id
       understand.meaning_id = @meaning_id
       understand.url = @url
       understand.frequency = @ifRemember
@@ -176,10 +176,10 @@ class TranslatesController < ApplicationController
       @number['tolearn']=0
     else
       @user_id = user.id
-      @querylearnt = "users_id=" + @user_id.to_s+ " and frequency > 0"
-      @querytolearn = "users_id=" + @user_id.to_s+ " and frequency = 0"
-      @number['learnt']=History.count('users_id', :conditions => [@querylearnt])
-      @number['tolearn']=History.count('users_id', :conditions => [@querytolearn])
+      @querylearnt = "user_id=" + @user_id.to_s+ " and frequency > 0"
+      @querytolearn = "user_id=" + @user_id.to_s+ " and frequency = 0"
+      @number['learnt']=History.count('user_id', :conditions => [@querylearnt])
+      @number['tolearn']=History.count('user_id', :conditions => [@querytolearn])
     end
 
     respond_to do |format|

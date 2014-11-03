@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141102171704) do
+ActiveRecord::Schema.define(:version => 20141103073224) do
 
   create_table "chinese_words", :force => true do |t|
     t.string   "chinese_meaning"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20141102171704) do
   end
 
   create_table "histories", :force => true do |t|
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.integer  "meaning_id"
     t.integer  "frequency"
     t.string   "url"

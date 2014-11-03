@@ -52,8 +52,8 @@ class UsersController < ApplicationController
   def displayHistory
     @user_name = params[:name]
     @user = User.where(:user_name => @user_name).first
-    @find_to_learn_query = "users_id = " + @user.id.to_s + " and frequency = 0"
-    @find_learnt_query = "users_id = " + @user.id.to_s + " and frequency > 0"
+    @find_to_learn_query = "user_id = " + @user.id.to_s + " and frequency = 0"
+    @find_learnt_query = "user_id = " + @user.id.to_s + " and frequency > 0"
     @MeaningToLearnIdList = History.find(:all, :select => "meaning_id",:conditions => [@find_to_learn_query] )
     puts "hahhhhhhhh"
     @wordsToLearn=[]
