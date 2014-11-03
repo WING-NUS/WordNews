@@ -46,7 +46,7 @@ class TranslatesController < ApplicationController
         temp = meanings[0]
       else
         number_of_meanings.times do |index|
-          if chinese_sentence.to_s.include? ChineseWords.find(meanings[index].chinese_word_id).chinese_meaning
+          if chinese_sentence.to_s.include? ChineseWords.find(meanings[index].chinese_words_id).chinese_meaning
             temp = meanings[index]
           end
         end
