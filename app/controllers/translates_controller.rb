@@ -171,13 +171,13 @@ class TranslatesController < ApplicationController
 
     if user.blank? #no user
       @number['learnt']=0
-      @number['tolearn']=0
+      @number['toLearn']=0
     else
       @user_id = user.id
       @querylearnt = "user_id=" + @user_id.to_s+ " and frequency > 0"
       @querytolearn = "user_id=" + @user_id.to_s+ " and frequency = 0"
       @number['learnt']=History.count('user_id', :conditions => [@querylearnt])
-      @number['tolearn']=History.count('user_id', :conditions => [@querytolearn])
+      @number['toLearn']=History.count('user_id', :conditions => [@querytolearn])
     end
 
     respond_to do |format|
