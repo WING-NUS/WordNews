@@ -26,8 +26,6 @@ function talkToHeroku(url, params, index){
             var targetWords = [];
             var isTest = [];
             var pronunciation = [];
-            var englishSentence = [[]];
-            var chineseSentence = [[]];
             var choices1 = [];
             var choices2 = [];
             var choices3 = [];
@@ -44,7 +42,7 @@ function talkToHeroku(url, params, index){
 				else{
 					pronunciation.push("/pronunciation/");
 				}
-				if(obj[x].englishSentence !== undefined){
+/*				if(obj[x].englishSentence !== undefined){
 					var tempEnglishSentence = [];
 					for(var key in obj[x].englishSentence){
 						tempEnglishSentence.push(obj[x].englishSentence[key]);
@@ -62,7 +60,7 @@ function talkToHeroku(url, params, index){
 					chineseSentence.push(tempChineseSentence);
 				}
 				else{
-				}
+				}*/
 
 				if(obj[x].wordID !== undefined){
 					wordID.push(obj[x]["wordID"]);
@@ -83,7 +81,7 @@ function talkToHeroku(url, params, index){
 				}
 				//console.log(x+" "+obj[x]+" "+obj[x].isTest);
 			}
-			replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, englishSentence, chineseSentence, choices1, choices2 , choices3, index);
+			replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, choices1, choices2 , choices3, index);
             //document.getElementById('article').innerHTML  = obj["chinese"];
         }
         else {// Show what went wrong
@@ -94,7 +92,7 @@ function talkToHeroku(url, params, index){
 }
 
 
-function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, englishSentence, chineseSentence, choices1, choices2 , choices3, i){
+function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, choices1, choices2 , choices3, i){
 
 	var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
@@ -235,16 +233,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, e
 			joinString += "</span>  ";
     	}
 		
-		$(document).on("click", ".audioButton", function() {
-			var id = $(this).attr('id');
-			console.log("clicked id is "+id);
-			var myAudio = document.getElementById("myAudio_"+id);
-			if (myAudio.paused) {
-				myAudio.play();
-			} else {
-				myAudio.pause();
-			}
-  		});
+
 
 		$(document).on("click", "#"+id+"_btn1", function() {
 			var id = $(this).attr('id');
@@ -464,6 +453,19 @@ window.addEventListener("load", function(){
 				    //console.log(params);
 				    talkToHeroku(url, params, i);
 				}
+				
+				$(document).on("click", ".audioButton", function() {
+					var id = $(this).attr('id');
+					console.log("clicked id is "+id);
+					var myAudio = document.getElementById("myAudio_"+id);
+					if (myAudio.paused) {
+						//console.log("find this element and it is paused");
+						myAudio.play();
+					} else {
+						myAudio.pause();
+					}
+		  		});
+
 			}
 
 		});
