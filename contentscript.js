@@ -213,8 +213,10 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 	    	//popoverContent += "<button style = \"margin-top:10px;\" id=\""+ id + "_btn3\" class=\"btn btn-success\">Submit</button>";
 			
 	    	popoverContent += "<div id=\"alertSuccess\" class=\"alert alert-success\" role=\"alert\" style=\"display:none;margin-top:20px;\">Well done! You got the correct answer!</div>";
-	    	popoverContent += "<div id=\"alertDanger\" class=\"alert alert-danger\" role=\"alert\" style=\"display:none;margin-top:20px;\">Oh snap! The answer should be \""+sourceWord+"\"!</div>";
-
+	    	if(isTest[j] == 2)
+	    		popoverContent += "<div id=\"alertDanger\" class=\"alert alert-danger\" role=\"alert\" style=\"display:none;margin-top:20px;\">Oh snap! The answer should be \""+targetWord+"\"!</div>";
+	    	else
+	    		popoverContent += "<div id=\"alertDanger\" class=\"alert alert-danger\" role=\"alert\" style=\"display:none;margin-top:20px;\">Oh snap! The answer should be \""+sourceWord+"\"!</div>";
 			joinString += "  <span ";
 			joinString += "class = 'fypSpecialClass' ";
 			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
