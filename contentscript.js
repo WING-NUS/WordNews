@@ -15,9 +15,11 @@ function talkToHeroku(url, params, index){
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //console.log("here");
+    
     xhr.onreadystatechange = function() {//Call a function when the state changes.
         if(xhr.readyState == 4 && xhr.status == 200) {
             //console.log("here?");
+
             var response = xhr.responseText.replace(/&quot;/g,'"');
             var obj=JSON.parse(response);
             console.log(obj);
@@ -30,7 +32,13 @@ function talkToHeroku(url, params, index){
             var choices2 = [];
             var choices3 = [];
             var wordID = [];
+            var skip = 0;
             for (var x in obj) {
+            	if(skip%5!=0){
+            		skip++;
+            		continue;
+				}
+				skip++;
 				sourceWords.push(x);
 				targetWords.push(obj[x].chinese);
 				isTest.push(obj[x].isTest);
@@ -134,7 +142,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 				popoverContent += "<div>englishSentence: <div style=\"margin-left:10px\">"+englishSentence[j][k]+"\n"+chineseSentence[j][k]+"</div></div>";
 	    	*/
 			//popoverContent += "<div>englishSentence: <div style=\"margin-left:10px\">This is exmaple sentence.</div></div>";
-			popoverContent += "<a id=\""+ id + "_btn3\">Click_to_get_example_sentences:</a>";
+			popoverContent += "<a id=\""+ id + "_btn3\" >Click_to_get_example_sentences:</a>";
 	    	popoverContent += "<div id=\"exampleSentences\" style=\"display:none;margin-bottom:10px;\"></div>"
 
 	    	popoverContent += "<div ><button id=\""+ id + "_btn1\" class=\"btn btn-info\">Got it</button>";
@@ -234,8 +242,6 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 				joinString += sourceWord;
 			joinString += "</span>  ";
     	}
-		
-
 
 		$(document).on("click", "#"+id+"_btn1", function() {
 			var id = $(this).attr('id');
@@ -277,8 +283,8 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 				if(obj.englishSentence !== undefined && obj.chineseSentence !== undefined){
 					var tempEnglishSentence = [];
 					for(var key in obj.englishSentence){
-						exampleSentences += obj.englishSentence[key] + "\n";
-						exampleSentences += obj.chineseSentence[key] + "\n";
+						exampleSentences += "<div>"+obj.englishSentence[key]+"</div>";
+						exampleSentences += "<div>"+obj.chineseSentence[key]+"</div>";
 						console.log("from server: "+exampleSentences);
 					}
 				}
@@ -286,8 +292,12 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 					console.log("englishSentence or chineseSentence is not defined!!!");
 				}
 
+				if(exampleSentences == ""){
+					exampleSentences += "<div>Sorry. No example sentence available for this word.</div>";
+					exampleSentences += "<div>You can click \"show me\" for more info.</div>";
+				}
 				document.getElementById('exampleSentences').innerHTML = exampleSentences;
-				document.getElementById("exampleSentences").style.display="inline-flex";
+				document.getElementById("exampleSentences").style.display="table";
 
 			});
 			//document.getElementById('exampleSentences').innerHTML = "This is a book. 是一本...";
@@ -403,7 +413,6 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 	$('.fypSpecialClass').mouseout(function(){
 		$(this).css("color","black");
 	});
-
 }
 
 
