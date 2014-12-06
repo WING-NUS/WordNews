@@ -13,12 +13,14 @@
 	var url_front = "http://testnaijia.herokuapp.com/";
 	//var url_front = "http://localhost:3000/";
 
-
-	function onWindowLoad() {
 	var userAccount = "";
 	var isWorking = "";
 	var categoryParameter = "";
-    chrome.storage.sync.get(['userAccount'], function(result){
+	var wordDisplay = "";
+	var wordsReplaced = "";
+
+	function onWindowLoad() {
+    chrome.storage.sync.get(null, function(result){
     	userAccount = result.userAccount;
     	console.log("user acc: "+ result.userAccount);
 
@@ -29,23 +31,51 @@
 		}
 		console.log("userAccount "+userAccount);
 
-/*		if(isWorking == undefined)
-		{
+		isWorking = result.isWorking;
+		if(isWorking == undefined){
 			isWorking = 0;
 			chrome.storage.sync.set({'isWorking': isWorking});
 		}
 		console.log("isWorking "+isWorking);
-		if(isWorking == 0)
-		{
+		if(isWorking == 0){
 			document.getElementById("turnOn").className = "btn btn-default";
 			document.getElementById("turnOff").className = "btn btn-primary active";
 		}
-		else
-		{
+		else{
 			document.getElementById("turnOn").className = "btn btn-primary active";
 			document.getElementById("turnOff").className = "btn btn-default";
 		}
-		if(categoryParameter.indexOf('@1@') !== -1)
+
+		wordDisplay = result.wordDisplay;
+		if(wordDisplay == undefined){
+			wordDisplay = 0;
+			chrome.storage.sync.set({'wordDisplay': wordDisplay});
+		}
+		console.log("wordDisplay "+wordDisplay);
+		if(wordDisplay == 0){
+			document.getElementById("displayEnglish").className = "btn btn-default";
+			document.getElementById("displayChinese").className = "btn btn-primary active";
+		}
+		else{
+			document.getElementById("displayEnglish").className = "btn btn-primary active";
+			document.getElementById("displayChinese").className = "btn btn-default";
+		}
+
+		wordsReplaced = result.wordsReplaced;
+		console.log("wordsReplaced "+wordsReplaced);
+		if(wordsReplaced == undefined){
+			wordsReplaced = 0;
+			chrome.storage.sync.set({'wordsReplaced': wordsReplaced});
+		}
+		else{
+			//document.getElementById("wordsReplaced").value = wordsReplaced;
+			$("#wordsReplaced").slider({
+				precision: 2,
+				value: wordsReplaced // Slider will instantiate showing 8.12 due to specified precision
+			});
+		}
+
+/*		if(categoryParameter.indexOf('@1@') !== -1)
 		{
 			document.getElementById("inlineCheckbox1").checked = true;
 		}
@@ -53,6 +83,8 @@
 		{
 			document.getElementById("inlineCheckbox3").checked = true;
 		}*/
+
+
 		var remembered = new HttpClient();
 		var answer;
 		remembered.get(url_front+'/getNumber?name='+userAccount, function(answer) {
@@ -70,7 +102,13 @@
 		});
     });
 
-	$("input").change(function() {
+	// With JQuery
+	//$("#wordsReplaced").slider();
+	$("#wordsReplaced").on("slide", function(slideEvt) {
+		chrome.storage.sync.set({'wordsReplaced': slideEvt.value});
+	});
+
+/*	$("input").change(function() {
 		console.log("1111111");
 		categoryParameter = "";
 		if(document.getElementById("inlineCheckbox1").checked == true)
@@ -86,27 +124,49 @@
 	    	userAccount = result.categoryParameter;
 	    	console.log("user categoryParameter: "+ result.categoryParameter);
 	    });
-	});
+	});*/
 
 	$('.btn-toggle').click(function() {
-			//$(this).find('.btn').toggleClass('active');	
+			//$(this).find('.btn').toggleClass('active');
 			console.log("isWorking1 "+isWorking);
-			if(isWorking==1)
+			console.log($(this).attr('id'));
+			if($(this).attr('id') == "onoff")
 			{
-				isWorking = 0;
-				chrome.storage.sync.set({'isWorking': isWorking});
-				chrome.storage.sync.get(['userAccount', 'isWorking'], function(result){
-			    	userAccount = result.userAccount;
+				if(isWorking==1)
+				{
+					isWorking = 0;
+					chrome.storage.sync.set({'isWorking': isWorking});
+				}
+				else
+				{
+					isWorking = 1;
+					chrome.storage.sync.set({'isWorking': isWorking});
+				}
+
+				chrome.storage.sync.get(null, function(result){
 			    	isWorking = result.isWorking;
 			    	console.log("user isworking: "+ result.isWorking);
 			    });
 			}
-			else
+
+			if($(this).attr('id') == "englishchinese")
 			{
-				isWorking = 1;
-				chrome.storage.sync.set({'isWorking': isWorking});
+				if(wordDisplay==1)
+				{
+					wordDisplay = 0;
+					chrome.storage.sync.set({'wordDisplay': wordDisplay});
+				}
+				else
+				{
+					wordDisplay = 1;
+					chrome.storage.sync.set({'wordDisplay': wordDisplay});
+				}
+
+				chrome.storage.sync.get(null, function(result){
+			    	wordDisplay = result.wordDisplay;
+			    	console.log("user isworking: "+ result.wordDisplay);
+			    });
 			}
-			console.log("isWorking2 "+isWorking);
 
 			$(this).find('.btn').toggleClass('active');	
 			

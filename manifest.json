@@ -22,11 +22,13 @@
       "css": [
         "bootstrap/css/bootstrap.min.css",
         "bootstrap/css/bootstrap-theme.min.css",
+        "slider/css/slider.css",
         "main.css"
       ],
       "js":[
         "jquery-2.1.1.min.js",
         "bootstrap/js/bootstrap.min.js",
+        "slider/js/bootstrap-slider.js",
         "contentscript.js"
       ],
       "html":["bing.html"],
@@ -38,7 +40,8 @@
   "web_accessible_resources":[
     "background.html",
     "angular/*",
-    "bootstrap/*"
+    "bootstrap/*",
+    "slider/*"
   ],
   "permissions": [
     "tabs","<all_urls>","identity","storage"

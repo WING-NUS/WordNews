@@ -4,9 +4,11 @@ var url_front = "http://testnaijia.herokuapp.com/";
 //var url_front = "http://localhost:3000/";
 
 
-var userAccount;
-var isWorking;
-var categoryParameter;
+var userAccount = "";
+var isWorking = "";
+var categoryParameter = "";
+var wordDisplay = "";
+var wordsReplaced = "";
 var pageDictionary = {};
 var vocabularyListDisplayed;
 
@@ -32,13 +34,13 @@ function talkToHeroku(url, params, index){
             var choices2 = [];
             var choices3 = [];
             var wordID = [];
-            var skip = 0;
+            var count = 0;
             for (var x in obj) {
-            	if(skip%5!=0){
-            		skip++;
+            	if(count >= wordsReplaced){
+            		count++;
             		continue;
 				}
-				skip++;
+				count++;
 				sourceWords.push(x);
 				targetWords.push(obj[x].chinese);
 				isTest.push(obj[x].isTest);
@@ -50,25 +52,6 @@ function talkToHeroku(url, params, index){
 				else{
 					pronunciation.push("/pronunciation/");
 				}
-/*				if(obj[x].englishSentence !== undefined){
-					var tempEnglishSentence = [];
-					for(var key in obj[x].englishSentence){
-						tempEnglishSentence.push(obj[x].englishSentence[key]);
-					}
-					englishSentence.push(tempEnglishSentence);
-				}
-				else{
-				}
-
-				if(obj[x].chineseSentence !== undefined){
-					var tempChineseSentence = [];
-					for(var key in obj[x].chineseSentence){
-						tempChineseSentence.push(obj[x].chineseSentence[key]);
-					}
-					chineseSentence.push(tempChineseSentence);
-				}
-				else{
-				}*/
 
 				if(obj[x].wordID !== undefined){
 					wordID.push(obj[x]["wordID"]);
@@ -153,11 +136,17 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			joinString += "class = 'fypSpecialClass' ";
 			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
 			joinString += "data-placement='above' ";
-			joinString += "title='"+ "<span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
+			if(wordDisplay == 1)
+				joinString += "title='"+ "<span style=\"font-weight: bold;  font-size:150%;\">" + targetWord + "</span>' ";
+			else
+				joinString += "title='"+ "<span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
 			joinString += "href='#' ";
 			joinString += "data-content = '" + popoverContent + "'";
 			joinString += "id = '" + id + "' >";
-			joinString += targetWord;
+			if(wordDisplay == 1)
+				joinString += sourceWord;
+			else
+				joinString += targetWord;
 			joinString += "</span>  ";
     	}
     	else
@@ -418,9 +407,20 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 
 window.addEventListener("load", function(){
 	vocabularyListDisplayed = 0;
-    chrome.storage.sync.get(['userAccount'], function(result){
+    chrome.storage.sync.get(null, function(result){
+
+    	var allKeys = Object.keys(result);
+    	console.log(allKeys);
+
     	userAccount = result.userAccount;
+    	isWorking = result.isWorking;
+    	wordDisplay = result.wordDisplay;
+    	wordsReplaced = result.wordsReplaced;
+
     	console.log("user acc: "+ result.userAccount);
+    	console.log("user isWorking: "+ result.isWorking);
+    	console.log("user wordDisplay: "+ result.wordDisplay);
+    	console.log("user wordsReplaced: "+ result.wordsReplaced);
 
 		if (userAccount == undefined){
 			var d = new Date();
@@ -433,53 +433,63 @@ window.addEventListener("load", function(){
 			isWorking = 0;
 			chrome.storage.sync.set({'isWorking': isWorking});
 		}
+
+		if(wordDisplay == undefined){
+			wordDisplay = 0;
+			chrome.storage.sync.set({'wordDisplay': wordDisplay});
+		}
+
+		if(wordsReplaced == undefined){
+			wordsReplaced = 0;
+			chrome.storage.sync.set({'wordsReplaced': wordsReplaced});
+		}
+
 		var remembered = new HttpClient();
 		//http://testnaijia.herokuapp.com/getIfTranslate?name='+userAccoun
-		remembered.get(url_front+'getIfTranslate?name='+userAccount, function(answer) {
+/*		remembered.get(url_front+'getIfTranslate?name='+userAccount, function(answer) {
 
             var obj=JSON.parse(answer);
-            //console.log(obj);
 
             if(obj.if_translate!==undefined){
             	if(obj.if_translate=='1')
             		isWorking = 1;
             	else
            			isWorking = 0;
-            }
+            }*/
 
-            if(isWorking == 1)
-            {
-				var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
+        if(isWorking == 1)
+        {
+			var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
 
-				for (var i = 0; i < paragraphs.length; i++) {
-					//console.log("length of the paragraphs is : "+paragraphs.length);
-					var sourceWords = [];
-					var targetWords = [];
+			for (var i = 0; i < paragraphs.length; i++) {
+				//console.log("length of the paragraphs is : "+paragraphs.length);
+				var sourceWords = [];
+				var targetWords = [];
 
-					var stringToServer = paragraphs[i];
-					stringToServer = stringToServer.innerHTML;
+				var stringToServer = paragraphs[i];
+				stringToServer = stringToServer.innerHTML;
 
-				    var url = url_front+'show';
-				    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount;
-				    //console.log(params);
-				    talkToHeroku(url, params, i);
-				}
-				
-				$(document).on("click", ".audioButton", function() {
-					var id = $(this).attr('id');
-					console.log("clicked id is "+id);
-					var myAudio = document.getElementById("myAudio_"+id);
-					if (myAudio.paused) {
-						//console.log("find this element and it is paused");
-						myAudio.play();
-					} else {
-						myAudio.pause();
-					}
-		  		});
-
+			    var url = url_front+'show';
+			    var params = "text="+stringToServer+"&url="+document.URL+"&name="+userAccount;
+			    //console.log(params);
+			    talkToHeroku(url, params, i);
 			}
+			
+			$(document).on("click", ".audioButton", function() {
+				var id = $(this).attr('id');
+				console.log("clicked id is "+id);
+				var myAudio = document.getElementById("myAudio_"+id);
+				if (myAudio.paused) {
+					//console.log("find this element and it is paused");
+					myAudio.play();
+				} else {
+					myAudio.pause();
+				}
+	  		});
 
-		});
+		}
+
+		//});
 	});
 });
 

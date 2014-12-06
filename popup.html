@@ -9,7 +9,7 @@
   <script src="jquery-2.1.1.min.js"></script>
   <!-- Bootstrap -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-
+  <link rel="stylesheet" href="slider/css/slider.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -25,32 +25,23 @@
   <script src="jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="slider/js/bootstrap-slider.js"></script>
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
   <div style="min-width:350px;min-height:300px;">
 
 
-
-
-
   <div class="container-fluid">
-    <div class="row">
+<!--     <div class="row">
       <div class="col-xs-7">
         <h2>Mike Anamendolla</h2>
         <p><strong>About: </strong> Web Designer / UI. </p>
         <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
-      </div>       
-        <!--  <p><strong>Skills: </strong>
-            <span class="label label-info tags">html5</span> 
-            <span class="label label-info tags">css3</span>
-            <span class="label label-info tags">jquery</span>
-            <span class="label label-info tags">bootstrap3</span>
-        </p> -->
-
+      </div>
       <div class="col-xs-4" style = "margin-top:60px;">
         <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="" class="center-block img-circle img-responsive">
-      </div><!--/col-->
-    </div>
+      </div>
+    </div> -->
     <div class = "row">
       <div class="col-xs-6">
         <h2  id="learnt"><strong>0</strong></h2>                    
@@ -64,7 +55,43 @@
       </div><!--/col-->
     </div> 
   </div>
+
   <hr>
+
+  <div class = "row"  style = "margin:10px;">
+    <div class = "col-xs-4">
+      <h4>Words/P: </h4>
+    </div>
+    <div class = "col-xs-7" style = "margin:5px;">
+      <input id="wordsReplaced" class="slider" data-slider-max="10" data-slider-min="0" data-slider-step="1" type="text">
+    </div>
+
+  </div>
+
+  <div class = "row"  style = "margin:10px;">
+    <div class = "col-xs-4">
+      <h4>Translate: </h4>
+    </div>
+    <div class = "col-xs-7" style = "margin:5px;">
+      <div id="onoff" class="btn-group btn-toggle"> 
+        <button id="turnOn" class="btn btn-default">ON</button>
+        <button id="turnOff" class="btn btn-primary active">OFF</button>
+      </div>
+    </div>
+  </div>
+
+  <div class = "row"  style = "margin:10px;">
+    <div class = "col-xs-4">
+      <h4>Words Displayed: </h4>
+    </div>
+    <div class = "col-xs-7" style = "margin:5px;">
+      <div id="englishchinese" class="btn-group btn-toggle">
+        <button id="displayEnglish" class="btn btn-default">English</button>
+        <button id="displayChinese" class="btn btn-primary active">Chinese</button>
+      </div>
+    </div>
+  </div>
+
   <div class = "row" style = "margin:10px;">
     <div class = "col-xs-5" style = "margin:5px;">
       <button style = "margin-left:20px;" class="btn btn-primary btn-lg" id="setting">Setting</button>
@@ -73,18 +100,8 @@
       <button style = "margin-left:20px;" class="btn btn-primary btn-lg" id="documentation">Tutorial</button>
     </div>
   </div>
+
 <!--   <div class = "row"  style = "margin:10px;">
-    <div class = "col-xs-4">
-    <h4>Translate: </h4>
-    </div>
-    <div class = "col-xs-7" style = "margin:5px;">
-      <div class="btn-group btn-toggle"> 
-        <button id="turnOn" class="btn btn-default">ON</button>
-        <button id="turnOff" class="btn btn-primary active">OFF</button>
-      </div>
-    </div>
-  </div>
-  <div class = "row"  style = "margin:10px;">
     <div class = "col-xs-4">
     <h4>Category: </h4>
     </div>
