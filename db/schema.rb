@@ -13,17 +13,50 @@
 
 ActiveRecord::Schema.define(:version => 20141103073224) do
 
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "chinese_words", :force => true do |t|
-    t.string   "chinese_meaning"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "chinese_words"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "dictionaries", :force => true do |t|
+    t.string   "word_english"
+    t.string   "word_chinese"
+    t.string   "word_category"
+    t.integer  "word_difficulty_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "word_id"
     t.string   "pronunciation"
+    t.string   "property"
+  end
+
+  create_table "dictionary_words", :force => true do |t|
+    t.integer  "chinese_words_id"
+    t.integer  "english_words_id"
+    t.string   "word_property"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "difficulties", :force => true do |t|
+    t.integer  "word_difficulty_id"
+    t.string   "word_difficulty_string"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   create_table "english_words", :force => true do |t|
-    t.string   "english_meaning"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "english_words"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "example_sentences", :force => true do |t|
@@ -56,6 +89,40 @@ ActiveRecord::Schema.define(:version => 20141103073224) do
     t.integer  "example_sentences_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+  end
+
+  create_table "sentences", :force => true do |t|
+    t.text     "english_sentence"
+    t.text     "chinese_sentence"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "sentence_id"
+    t.string   "word_english"
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer  "transaction_code"
+    t.string   "user_name"
+    t.integer  "word_english"
+    t.integer  "if_remembered"
+    t.string   "url"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "translates", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "understands", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "word_id"
+    t.integer  "strength"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "if_understand"
+    t.string   "url"
   end
 
   create_table "users", :force => true do |t|
