@@ -85,7 +85,7 @@ function talkToHeroku(url, params, index){
 
 function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, choices1, choices2 , choices3, i){
 
-	var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
+	var paragraphs = document.getElementsByClassName('zn-body__paragraph');
 
 	for(var j = 0;j < sourceWords.length; j++){
 
@@ -459,7 +459,7 @@ window.addEventListener("load", function(){
 
         if(isWorking == 1)
         {
-			var paragraphs = document.getElementsByClassName('cnn_storypgraphtxt');
+			var paragraphs = document.getElementsByClassName('zn-body__paragraph');
 
 			for (var i = 0; i < paragraphs.length; i++) {
 				//console.log("length of the paragraphs is : "+paragraphs.length);
