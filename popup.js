@@ -18,6 +18,7 @@
 	var categoryParameter = "";
 	var wordDisplay = "";
 	var wordsReplaced = "";
+	var websiteSetting = "";
 
 	function onWindowLoad() {
     chrome.storage.sync.get(null, function(result){
@@ -75,6 +76,21 @@
 			});
 		}
 
+		websiteSetting = result.websiteSetting;
+		console.log("websiteSetting "+websiteSetting);
+		if(websiteSetting == undefined){
+			websiteSetting = "";
+			chrome.storage.sync.set({'websiteSetting': websiteSetting});
+		}
+		if(websiteSetting.indexOf('cnn.com') !== -1)
+			document.getElementById("inlineCheckbox1").checked = true;
+		if(websiteSetting.indexOf('chinadaily.com.cn') !== -1)
+			document.getElementById("inlineCheckbox2").checked = true;
+		if(websiteSetting.indexOf('bbc.com') !== -1)
+			document.getElementById("inlineCheckbox3").checked = true;
+		if(websiteSetting.indexOf('all') !== -1)
+			document.getElementById("inlineCheckbox4").checked = true;
+
 /*		if(categoryParameter.indexOf('@1@') !== -1)
 		{
 			document.getElementById("inlineCheckbox1").checked = true;
@@ -125,6 +141,41 @@
 	    	console.log("user categoryParameter: "+ result.categoryParameter);
 	    });
 	});*/
+
+	$("input").change(function() {
+		console.log("1111111");
+		websiteSetting = "";
+		if(document.getElementById("inlineCheckbox1").checked == true)
+		{
+			if(websiteSetting !== "")
+				websiteSetting += '_';
+			websiteSetting+= document.getElementById("inlineCheckbox1").value;
+		}
+		if(document.getElementById("inlineCheckbox2").checked == true)
+		{
+			if(websiteSetting !== "")
+				websiteSetting += '_';
+			websiteSetting+= document.getElementById("inlineCheckbox2").value;
+		}
+		if(document.getElementById("inlineCheckbox3").checked == true)
+		{
+			if(websiteSetting !== "")
+				websiteSetting += '_';
+			websiteSetting+= document.getElementById("inlineCheckbox3").value;
+		}
+		if(document.getElementById("inlineCheckbox4").checked == true)
+		{
+			if(websiteSetting !== "")
+				websiteSetting += '_';
+			websiteSetting+= document.getElementById("inlineCheckbox4").value;
+		}
+
+		chrome.storage.sync.set({'websiteSetting': websiteSetting});
+		chrome.storage.sync.get('websiteSetting', function(result){
+	    	userAccount = result.websiteSetting;
+	    	console.log("user websiteSetting: "+ result.websiteSetting);
+	    });
+	});
 
 	$('.btn-toggle').click(function() {
 			//$(this).find('.btn').toggleClass('active');

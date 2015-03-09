@@ -17,13 +17,19 @@
     {
       "matches":[
         "http://*.cnn.com/*",
-        "http://*.chinadaily.com.cn/*"
+        "http://*.chinadaily.com.cn/*",
+        "http://*.bbc.com/*",
+        "http://*/*",
+        "https://*/*"
       ],
       "css": [
         "bootstrap/css/bootstrap.min.css",
         "bootstrap/css/bootstrap-theme.min.css",
         "slider/css/slider.css",
-        "main.css"
+        "main.css",
+        "gt_popup_css_compiled.css",
+        "gt_options_css_compiled.css",
+        "gt_bubble_gss.css"
       ],
       "js":[
         "jquery-2.1.1.min.js",
@@ -41,9 +47,10 @@
     "background.html",
     "angular/*",
     "bootstrap/*",
-    "slider/*"
+    "slider/*",
+    "icons/*"
   ],
   "permissions": [
-    "tabs","<all_urls>","identity","storage"
+    "tabs","<all_urls>","identity","storage","http://*/*"
   ]
 }

@@ -11,6 +11,9 @@ var wordDisplay = "";
 var wordsReplaced = "";
 var pageDictionary = {};
 var vocabularyListDisplayed;
+var displayID = "";
+var appendContentDictionary = {};
+var websiteSetting = "";
 
 function talkToHeroku(url, params, index){
     var xhr = new XMLHttpRequest();
@@ -85,7 +88,9 @@ function talkToHeroku(url, params, index){
 
 function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, choices1, choices2 , choices3, i){
 
-	var paragraphs = document.getElementsByClassName('zn-body__paragraph');
+	//var paragraphs = document.getElementsByClassName('zn-body__paragraph');
+	var paragraphs = document.getElementsByTagName('p');
+
 
 	for(var j = 0;j < sourceWords.length; j++){
 
@@ -133,6 +138,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
     		popoverContent += "</div>";
 
     		joinString += "  <span ";
+    		//joinString += "id = '"+id+"'";
 			joinString += "class = 'fypSpecialClass' ";
 			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
 			joinString += "data-placement='above' ";
@@ -148,6 +154,39 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			else
 				joinString += targetWord;
 			joinString += "</span>  ";
+
+			// second version
+
+
+			var append = '<div id=\"'+ id + '_popup\" class="jfk-bubble gtx-bubble" style="visibility: visible;  opacity: 1;">';
+			append += '<div class="jfk-bubble-content-id"><div id="gtx-host" style="min-width: 200px; max-width: 400px;">';
+			append += '<div id="bubble-content" style="min-width: 200px; max-width: 400px;" class="gtx-content">';
+			append += '<div class="content" style="border: 0px; margin: 0">';
+			append += '<div id="translation" style="min-width: 200px; max-width: 400px; display: inline;">';
+			append += '<div class="gtx-language">ENGLISH</div>';
+			append += '<div class="gtx-source-audio jfk-button jfk-button-flat gtx-audio-button" role="button" tabindex="0" style="-webkit-user-select: none;">';
+			append += '<div class="jfk-button-img"></div></div>';
+			append += '<div class="gtx-body">'+sourceWord+'</div><br>';
+			append += '<div class="gtx-language">CHINESE (SIMPLIFIED)</div>';
+			append += '<div class="gtx-target-audio jfk-button jfk-button-flat gtx-audio-button" role="button" tabindex="0" style="-webkit-user-select: none;">';
+			append += '<div class="jfk-button-img"></div></div>';
+			append += '<div class="gtx-body">'+targetWord+'</div></br>';
+			append += '<a id="off" class="gtx-a" target="_blank" href="chrome-extension://aapbdbdomjkkjkaonfhkkikfgjllcleb/options.html">EXTENSION OPTIONS</a>';
+			append += '<a id="more" class="gtx-a" target="_blank" href="https://translate.google.com/?source=gtx_m#en/zh-CN/says" style="color: #A2A2A2; float: right; padding-top: 16px;">MORE »</a>';
+			append += '</div></div></div></div></div>';
+			//append += '<div class="jfk-bubble-closebtn-id jfk-bubble-closebtn" aria-label="Close" role="button" tabindex="0"></div>';
+			append += '<div class="jfk-bubble-arrow-id jfk-bubble-arrow jfk-bubble-arrowup" style="left: 117px;">';
+			append += '<div class="jfk-bubble-arrowimplbefore"></div>';
+			append += '<div class="jfk-bubble-arrowimplafter"></div></div></div>';
+			append += '';
+			append += '';
+			append += '';
+			append += '';
+
+			appendContentDictionary[id+"_popup"] = append;
+			//document.body.innerHTML += append;
+
+			//
     	}
     	else
     	{
@@ -244,6 +283,12 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			$('.fypSpecialClass').popover('hide');
 		});
 
+
+
+
+
+
+		//this is the end of the test
 
 		$(document).on("click", "#"+id+"_btn2", function() {
 			var id = $(this).attr('id');
@@ -393,7 +438,49 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 		}
 	};
 
-	$('.fypSpecialClass').popover({ html : true, placement : 'bottom', trigger: 'click hover', delay: {show: 300, hide: 300}});
+
+	//this is test on 2015/3/6
+	var cumulativeOffset = function(element) {
+	    var top = 0, left = 0;
+	    do {
+	        top += element.offsetTop  || 0;
+	        left += element.offsetLeft || 0;
+	        element = element.offsetParent;
+	    } while(element);
+
+	    return {
+	        top: top,
+	        left: left
+	    };
+	};
+
+	$('html').unbind().click(function() {
+		var myElem = document.getElementById(displayID);
+		if(myElem!=null)
+			document.body.removeChild(myElem);
+		displayID = '';
+	});
+
+	$(".fypSpecialClass").unbind().click(function(event) {
+		event.stopPropagation();
+
+		var id = $(this).attr('id');
+
+		var element = document.getElementById(id);
+		var rect = cumulativeOffset(element);
+		console.log(event.pageX+' '+event.pageY+' '+rect.left+' '+rect.top);
+		var myElem = document.getElementById(displayID);
+		if(myElem!=null)
+			document.body.removeChild(myElem);
+		displayID = id+"_popup";
+		//document.body.innerHTML += appendContentDictionary[id+"_popup"];
+		$("body").append(appendContentDictionary[id+"_popup"]);
+		document.getElementById(id+"_popup").style.left = (rect.left-100)+'px';
+		document.getElementById(id+"_popup").style.top = (rect.top+30)+'px';
+		//left: '+(rect.left-100)+'px; top: '+(rect.top+30)+'px;
+	});
+
+	//$('.fypSpecialClass').popover({ html : true, placement : 'bottom', trigger: 'click hover', delay: {show: 300, hide: 300}});
 
 	$('.fypSpecialClass').mouseover(function(){
 		$(this).css("color","#FF9900");
@@ -403,6 +490,8 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 		$(this).css("color","black");
 	});
 }
+
+
 
 
 window.addEventListener("load", function(){
@@ -416,11 +505,13 @@ window.addEventListener("load", function(){
     	isWorking = result.isWorking;
     	wordDisplay = result.wordDisplay;
     	wordsReplaced = result.wordsReplaced;
+    	websiteSetting = result.websiteSetting;
 
     	console.log("user acc: "+ result.userAccount);
     	console.log("user isWorking: "+ result.isWorking);
     	console.log("user wordDisplay: "+ result.wordDisplay);
     	console.log("user wordsReplaced: "+ result.wordsReplaced);
+    	console.log("user websiteSetting: "+ result.websiteSetting);
 
 		if (userAccount == undefined){
 			var d = new Date();
@@ -444,6 +535,11 @@ window.addEventListener("load", function(){
 			chrome.storage.sync.set({'wordsReplaced': wordsReplaced});
 		}
 
+		if(websiteSetting == undefined){
+			websiteSetting = "";
+			chrome.storage.sync.set({'websiteSetting': websiteSetting});
+		}
+
 		var remembered = new HttpClient();
 		//http://testnaijia.herokuapp.com/getIfTranslate?name='+userAccoun
 /*		remembered.get(url_front+'getIfTranslate?name='+userAccount, function(answer) {
@@ -457,9 +553,21 @@ window.addEventListener("load", function(){
            			isWorking = 0;
             }*/
 
-        if(isWorking == 1)
+        var websiteCheck = 0;
+		var splitedWebsite = websiteSetting.split("_");
+
+		for(var k = 0; k < splitedWebsite.length; k++){
+			if(document.URL.indexOf(splitedWebsite[k]) !== -1 && websiteSetting !== "")
+				websiteCheck = 1;
+		}
+
+		if(websiteSetting.indexOf('all')!==-1)
+			websiteCheck = 1;
+		console.log("isWorking "+isWorking + " websiteCheck "+websiteCheck);
+        if(isWorking == 1 && websiteCheck == 1)
         {
-			var paragraphs = document.getElementsByClassName('zn-body__paragraph');
+			//var paragraphs = document.getElementsByClassName('zn-body__paragraph');	
+			var paragraphs = document.getElementsByTagName('p');
 
 			for (var i = 0; i < paragraphs.length; i++) {
 				//console.log("length of the paragraphs is : "+paragraphs.length);
