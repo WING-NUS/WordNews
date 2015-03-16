@@ -1,0 +1,17 @@
+ The goal of the Tech 30 is to give CNNMoney readers a daily look at how shares of the most influential technology companies are faring. 
+ The editors and writers of CNNMoney's technology team picked the 30 companies. To qualify, the stocks had to have shares publicly traded in the United States that are easy for the average investor to buy. (Sorry, Samsung!) 
+ The Tech 30 is a mix of the industry's giants, such as Amazon (AMZN), Apple (AAPL), Cisco (CSCO), Facebook (FB), Google (GOOG) and Microsoft (MSFT). 
+ But we also included Chinese tech titans Baidu (BIDU) and Sina (SINA), European heavyweights SAP (SAP) and ARM Holdings (ARMH) and leaders in more specialized industries such as video game companies Activision Blizzard (ATVI) and Electronic Arts (EA), security firm Symantec (SYMC) and online travel king Priceline (PCLN). 
+ Check out the entire CNNMoney Tech 30 portfolio 
+ The pure-tech focus differs from other tech stock barometers. The Nasdaq, for example, is often cited as a "tech index" but only 42% of the composite is made up of tech companies. The S&P 500 Information Technology index includes several stocks that aren't typically considered at the cutting edge of tech, such as MasterCard (MA), money transfer service Western Union (WU) and consulting firm Accenture (ACN). 
+ To track the performance of the Tech 30 index, we "invested" $1,000 in play money in each of the 30 stocks on January 2, 2014. So the baseline for the index is $30,000. 
+ The CNNMoney Tech 30 portfolio page displays values for both the index as a whole and the specific stocks. The graphic at the top of the page measures the stocks' performance relative to one another from the beginning of the year. The bubbles for the better-performing stocks will appear larger. 
+ We don't plan to make regular changes to the Tech 30. But if a current Tech 30 company is acquired or goes private, we'll replace it by "investing" in a different stock. 
+ We may also choose to add shares of newly public companies when appropriate. Twitter (TWTR), for example, was not on our original list when we first started thinking about creating the index last summer. But we knew we had to add Twitter to the Tech 30 once it filed for its initial public offering. 
+ We'll include the Tech 30's performance in our daily market writes as well as in stories from our investing and technology writers about these 30 companies. 
+ Check out the CNNMoney Tech 30 here.  
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer.
+Morningstar: © 2015 Morningstar, Inc. All Rights Reserved.
+Factset: FactSet Research Systems Inc. 2015. All rights reserved.
+Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved.
+Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.

@@ -1,0 +1,21 @@
+We use cookies to improve your experience on this website. By continuing to browse our site you agree to our use of cookies. Tell me more | Cookie preferences
+International Edition
+By Lisa Cohen, CNN
+
+Updated 1920 GMT (0320 HKT) January 14, 2015
+
+Tomorrow Transformed explores innovative approaches and opportunities available in business and society through technology.
+ (CNN)Being stuck in traffic is one of the most infuriating experiences for a driver, but researchers at Carnegie Mellon University may have found a solution. They claim they can reduce the commute times of urban workers by 40% by replacing physical traffic lights with virtual traffic lights. 
+"With this technology, traffic lights will be created on demand when [two cars] are trying to cross this intersection, and they will be turned down as soon as we don't need it," explains Ozan Tonguz, a professor at Carnegie Mellon University, who helped develop the technology. 
+Virtual traffic lights appear on the driver's dashboard and explain with green and red arrows which direction they can safely travel in, just like with normal traffic lights. But they disappear once the junction has been crossed. 
+The developers say virtual traffic lights will cut carbon emissions, reduce accidents and cut those annoying commute times.
+This may seem futuristic but virtual traffic lights use connected vehicle technology which federal regulators will soon make mandatory for cars as part of the U.S. government's vehicle-to-vehicle communication program. 
+"Our solution leverages this capability," says Tonguz. "Since cars can talk to each other, we can manage the traffic control at intersections without infrastructure-based traffic lights."
+"It's almost like we are giving additional life to people," says Tonguz. "Life that is wasted on the road."
+Find out more about virtual traffic systems in the video above. 
+Read more from Tomorrow Transformed:
+Future cities may harvest energy from human footsteps
+Space-based solar power: the energy of the future?
+Cosmic elevator could reach space on a cable made of diamonds
+
+International Edition

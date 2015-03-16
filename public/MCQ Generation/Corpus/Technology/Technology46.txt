@@ -1,0 +1,23 @@
+(CNN) -- More than half a century after Sputnik, space travel remains shockingly wasteful. Every rocket we launch at the cost of hundreds of millions of dollars can only be used once and completes its mission by falling to Earth in pieces. This disposable design has scarcely advanced since the 1960s.
+British engineer Alan Bond has been developing a new concept for over 30 years, and is now on the verge of achieving it. His Skylon "spaceplane" design is intended to withstand multiple uses and requires minimal repairs and turnaround time, so it can function as a rapid response unit for space missions, and go far beyond the existing horizons.
+"The intention is to replace existing rockets," Bond says. "The technology we are working on would enable more frequent and reliable missions by large factors."
+Central to the design is a HOTOL (Horizontal Take Off and Landing) system similar to a regular plane -- albeit from a much longer runway -- so that the craft returns intact. Beyond this, Bond's team at Reaction Engines Ltd. has invented multiple new technologies, most crucially an ingenious concept engine, the SABRE (Synergistic Air-Breathing Rocket Engine).
+While existing rockets carry several heavy fuel tanks that are worked through and jettisoned over the course of the journey, SABRE powers the craft from a single chamber carrying liquid oxygen and liquid hydrogen. It minimizes the load by taking in oxygen from the atmosphere during the ascent, which is cooled and and combined with hydrogen to make fuel. Once the craft reaches an altitude of 28 kilometers the engine converts to using the stored liquid oxygen.
+Read: Have a taste of the world's first stem cell burger
+"We have passed the major obstacles, and what we have now are normal engineering problems," says Bond. "It's about designing and testing, but there's no question that with the physics efficiencies the engine depends on -- we're there."
+The European Space Agency (ESA) agrees, having approved the mechanisms of the engine in a series of tests. "The idea has been around since the 1950s but this is the first time anyone has managed to achieve a working system," said ESA head of propulsion Mark Ford.
+Progress has been steady, with day-to-day work on readying SABRE for test flights that Bond says could take place as early as 2018.
+The ESA has also praised the economic model, claiming the Skylon could meet its launch cost target of €70 million ($94 million), in addition to the efficiency savings of being able to repeatedly reuse the same craft.
+Bond sees Skylon's primary initial use being in cargo -- "essentially a truck to haul kit cheaply into space on a very regular basis." This would dramatically reduce the logistical headaches involved in routine tasks such as repairs to the International Space Station, or transporting satellites.
+But once the concept is proven as easier and more efficient, it can be applied to far more ambitious targets. Bond sees human colonization of other planets as inevitable and necessary, and feels his system can be applied to deep space exploration and the study of exoplanets, as well as enabling rapid construction on them that would precede habitation.
+Read: Wireless electricity? It's here
+Experts believe a paradigm shift is necessary to revitalize the field of space exploration.
+"There would need to be an increased rate of flights to lower the cost of an initially more expensive launch system," says David Baker of the British Interplanetary Society. "But if there were 100 a year the cost would fall through the floor ... It's the very thing that's needed not only to service the existing industry but also to open broader applications."
+The market exists to support such a rate of flights, says Baker, detailing a huge backlog of potential clients from universities to enthusiasts ready with experimental missions and payloads should cost and logistics become more manageable. Even intercontinental flights could make use of hypersonic-enabled engines.
+Baker also points to Elon Musk's reusable "Falcon spacecraft" to show the growing feasibility and popularity of multi-use designs. The concept must reach popular acceptance, but could be "absorbed into the commercial world in the next decade or two," he says.
+The Skylon could be in operation far sooner than that, with tentative plans to reach the International Space Station by 2022. Beyond this, the horizon goals of exploring the universe from mining resources to finding life to the colonization of planets will follow.
+Read more from Make, Create, Innovate:
+This 'Star Trek'-style molecular sensor reads your food
+Spider lessons: How to mend your body with silk
+The artificial leaf that could power the world
+

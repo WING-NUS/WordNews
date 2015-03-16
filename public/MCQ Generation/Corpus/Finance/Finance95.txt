@@ -1,0 +1,16 @@
+ But that doesn't mean the mass spying should keep happening, it added. 
+ The long-awaited report was released Thursday by the National Academy of Sciences. It came from the committee that President Obama put together after ex-NSA contractor Edward Snowden revealed the extent of U.S. government spying on the American public's phone records, email logs and more. 
+ In response to the report, a lawyer with the American Civil Liberties Union noted that the committee doesn't condone current mass surveillance practices. Quite the opposite, Neema Singh Guliani said. 
+ "The report does not even attempt to provide one concrete example of a case where bulk collection was essential to a national security investigation," she said in a blog post. 
+ This committee was made up of academics and technology professionals from Google (GOOG), Microsoft (MSFT, Tech30), Oracle (ORCL, Tech30) and elsewhere. 
+ Its job was to figure out whether the government could ditch the current strategy of collecting lots of information on nearly everyone and manually sort through it and instead, use computer software to narrow down the spying. 
+ However, the committee concluded, for the government to know everything, it has to collect everything. 
+ The committee suggested putting automatic controls that limit who can access the data collected by government spies. That addresses one of the main criticisms voiced by Snowden: that lots of intelligence agents and private contractors get creepy access into our personal lives, from webcams to private chats with friends and family. 
+ Such computer software would also make it easier for the government to catch when spies behave badly -- and make that information public. 
+ Related: U.S. planes spy on American phones 
+ Related: How the NSA can 'turn on' your phone remotely  
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer.
+Morningstar: © 2015 Morningstar, Inc. All Rights Reserved.
+Factset: FactSet Research Systems Inc. 2015. All rights reserved.
+Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved.
+Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.

@@ -1,0 +1,18 @@
+We use cookies to improve your experience on this website. By continuing to browse our site you agree to our use of cookies. Tell me more | Cookie preferences
+International Edition
+By Jen Christensen, CNN
+
+Updated 1548 GMT (2348 HKT) December 11, 2014
+
+ (CNN)Imagine being able to predict when the flu might strike your town, a bit like how meteorologists predict when a storm is heading your way. Think about what companies or hospitals or even you could do to prepare.
+That's exactly what infectious disease experts at Columbia University's Mailman School of Public Health are doing.  They've figured out a way to forecast the flu. Their model is a huge advance, as most current models mapping the flu look backward instead of forward. The team won a contest sponsored by the Centers for Disease Control and Prevention called "Predict the Influenza Season Challenge."
+To win, the team created a mathematical formula used for weather forecasting and applied it to flu data. Using real-time data they created a website that shows an interactive map of the United States that displays the severity of flu cases in cities across the country. It also lists incidence numbers and gives a prediction number for each city in the coming weeks. They also have a forecast graphic that will tell you when the flu will be at its peak for a particular city. It varies across the country. For instance, in New York City, it predicts the height of the flu will be the week of January 10.  Atlanta's will be around December 27. Chicago's will be the week of December 20.
+Flu shot less effective because of current virus
+"This provides people a window into the future and what pathogens might be coming down the pike," said professor Jeffrey Shaman, who developed the tool with a team of infectious-disease experts. "It may help parents decide when to schedule their children's play dates or it may also help remind people to think about getting vaccinated for influenza" if they know that their city is going to be hit particularly hard during one week. 
+This tool couldn't come at a better time. The CDC predicts this season could be worse than others, with the virus having mutated and the flu vaccine no longer being the best match for the most common strain. 
+While the vaccine still provides some protection, there are other steps organizations could take to reduce the number of contacts during the predicted height of infection -- such as staggering work shifts or letting people work from home. Schools could make decisions about staying open. 
+Hospitals could use the information to predict how much staff they need to handle a potential influx of cases or how many drugs they need to keep on hand. 
+And of course, we could all use it as a reminder to get a flu shot before it is too late. 
+Shaman and his team hope that someday the model may be part the local weather broadcast, just like the pollen count.
+Matthew Stucker contributed to this report.
+International Edition

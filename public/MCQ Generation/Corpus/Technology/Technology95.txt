@@ -1,0 +1,32 @@
+We use cookies to improve your experience on this website. By continuing to browse our site you agree to our use of cookies. Tell me more | Cookie preferences
+International Edition
+Heather Kelly, CNN
+
+Updated 0125 GMT (0825 HKT) October 13, 2014
+Tomorrow Transformed explores innovative approaches and opportunities available in business and society through technology.
+ (CNN)Mary Lou doesn't know that she's being tracked.
+The 77-year-old is in the middle stages of Alzheimer's and though she lives on her own, her family keeps close tabs on her. If she leaves her Washington D.C. home between 9 p.m. and 6 a.m., a silent sensor on her front door texts her daughter an alert. 
+There is a sensor on each of Mary Lou's two key chains that detects when she goes outside her condo's grounds. A motion sensor in the kitchen helps monitor her eating habits, and another in the bedroom notes when she wakes up in the morning and catches any sleeping issues. There is even a flood sensor in the laundry room.
+All the sensors are made by SmartThings and relay the information back to a small wireless hub. Her two daughters, who act as her caretakers, can monitor it all on a smartphone app and set up special notifications. 
+"It's kept her to the point where we haven't even had to have in-home care yet. Our goal is to keep her in her home for as long as possible," said her daughter Cathy Johnson.
+Caregivers like Johnson are increasingly turning to smart-home technology and wearable devices to monitor family members with Alzheimer's and dementia, helping them live independently longer. One of the first things Alzheimer's patients lose is the ability to learn new things. It makes getting their bearings and adjusting to a new residence especially difficult. But living alone can pose its own dangers, such as leaving a stove on, wandering off or forgetting to take medication. 
+"Often, decisions about care are made when safety becomes an issue" said said Beth Kallmyer, vice president of constituent services for the Alzheimer's Association. Tools like these sensors "can allow people to feel more comfortable" and ease the transition. 
+Finding the right system
+SmartThings is a DIY home automation system that connects sensors and smart devices with a wireless hub. In addition to sensors like those in Mary Lou's home, the system can loop in smart thermostats, smart plugs, door locks and surveillance cameras. 
+SmartThings is highly customizable and works easily with third-party sensors, which makes it appealing to people like Cathy Johnson. It also doesn't require a monthly fee, unlike many other systems. (Samsung recently purchased the company for $200 million.) 
+The elder care tech industry is still young, but Laurie Orlov, an industry analyst, predicts it could be a $20 billion business by 2020. This means that both startups and big-name brands are getting in on the action. 
+Lowe's, Home Depot, Best Buy, AT&T and Staples all have their own connected home systems and sell starter kits that you can expand by purchasing sensors à la carte.  
+Systems Lively and BeClose offer senior-specific accessories such as bed, toilet and pillbox sensors. GrandCare offers connected blood pressure, weight and glucose monitoring devices. 
+Wearable devices can also track health and behaviors, and built-in accelerometers can pick up on physical changes or tell when a wearer has fallen. Tempo is a wristband for seniors that picks up on lapses in routine or changes in gait that might indicate mental or physical deterioration. The device is due out this winter.
+"Pet doors, water heaters, you name it we've either got it connected right now or we're in the process of connecting it," said Kevin Meagher, the vice president and general manager of Lowe's smart-home system, IRIS.
+Watching without invading privacy
+With any device that collects data, privacy can become an issue.  
+"We want to respect people's autonomy, respect their desire for how they want their care to go. One of the reasons we think people should get diagnosed early is so they can be a part of the conversation," said Kallmyer.
+Phil D'Eramo chose to tell his parents about the Lively system he set up in their senior housing. He uses sensors to make sure they take their pills and tracks how many times his father goes to the bathroom at night, information that gets passed on to his doctor. His father, who has Alzheimer's, said it makes him feel more comfortable to know his son is monitoring him. 
+It helps that Lively includes a social element that appeals to seniors. Caregivers can upload photos, texts and notes to the Lively app from their phones, and once a month Lively will print out and mail the messages and photos to the seniors in a bright orange envelope.
+"I compare it to the analog version of Facebook for seniors," said D'Eramo. "It helps them be connected to the digital social world."
+The future of memory care
+Connected home and wearable technology isn't enough to replace professional care or personal attention from family members. However, it can extend the amount of time a person is able to live independently, and the technology is constantly improving. 
+"We're just touching the surface of the technology," said D'Eramo. "I think in the future, the Lively base unit could interact with the person, almost like an electronic caregiver." 
+
+International Edition

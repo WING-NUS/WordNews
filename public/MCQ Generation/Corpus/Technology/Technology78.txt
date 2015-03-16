@@ -1,0 +1,21 @@
+We use cookies to improve your experience on this website. By continuing to browse our site you agree to our use of cookies. Tell me more | Cookie preferences
+International Edition
+By Heather Kelly, CNN
+
+Updated 2017 GMT (0417 HKT) January 5, 2015
+ (CNN)When you want something from Apple's Siri, you have to ask. But a coming wave of smart-assistant features won't sit around waiting for you. 
+Instead they'll be proactive, using your history, location and other data to offer up information and execute tasks automatically, before you even ask.
+"In many instances, the machine kind of already knows what you're going to do because we're creatures of habit. If I walk into Starbucks and always order the same thing, I shouldn't have to say it," said Raj Singh, CEO of Tempo AI, an anticipatory app that plugs into your calendar. It was developed at SRI International, the same place where Siri started.
+Early predictive tools like Google Now have mostly been stand-alone products. Google already has a wealth of data about individual users, including their search history, location information, emails and calendars. In mobile apps, Google Now uses that data to display information, like commute traffic and sports scores, that it knows you'll be interested in. 
+
+Because these types of smart-assistant tools are difficult to create and require vast amounts of data to work, the next wave of anticipatory features will likely show up as add-ons to tools you already use. 
+Some companies have already started adding anticipatory features to their products. The new Tesla will start up for you in the morning before you enter the garage, using information from your calendar and past departure times to figure out when you usually leave. The Nest smart thermostat uses your heating and cooling history to keep your home at an optimal temperature without wasting energy. 
+"This is really just the beginning. We find it very much introduces a new layer of serendipity ... it reduces a lot of workload that you may experience in your day to things that just occur in the background," said Singh.
+As more products go online, from kitchen appliances to wearable trackers, the potential for anticipatory computing cracks wide open. A fridge could automatically order fresh milk once you get low. If your fitness band notices your heart racing even while you're sitting, it could offer recommendations to calm you down. Smartwatches can tell from your location that you'll be late to an appointment and automatically text the other person with an update. 
+There are still plenty of issues to be worked out before these tools can take off. Engineers must figure out how to best send alerts or suggestions that don't seem like spam. 
+On top of that, much of our personal information is fragmented: Facebook knows what you like, Amazon knows what you buy and when, and Google knows where you've been. 
+Tech companies have amassed valuable information on customers, but many aren't willing to share with one another. And some people are uncomfortable with the idea of giving apps and services access to their personal data unless there is a big payoff in quality of life. 
+Still, even with these privacy issues and technical hurtles, the predictive-computing trend is already underway. 
+"You're going to see it permeate into everything," Singh said. 
+
+International Edition

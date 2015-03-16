@@ -1,0 +1,26 @@
+ The Swiss central bank shocked global financial markets this week by ending its peg on the franc. The move caused the Swiss currency to skyrocket, sparking big losses for investors who were betting against such a move. 
+ Some of those investors were clients at FXCM (FXCM), a leading foreign-exchange broker in the U.S. Late Thursday the New York-based firm said the "unprecedented volatility" wiped out its equity. 
+ In fact, FXCM said it has a negative equity balance of $225 million. That's money that customers owe to the company. 
+ FXCM also warned it may have breached some regulatory capital requirements. 
+ The turmoil forced FXCM to turn to Leucadia National (LUK), the owner of investment bank Jefferies, for an emergency $300 million loan. FXCM said the financing agreement, announced late Friday, allows the firm to continue normal operations. 
+ FXCM's regulator, the Commodity Futures Trading Commission, did not respond to a request for comment. 
+ Related: Swiss companies and currency brokers bleed 
+ Wall Street was understandably spooked by the developments, sparking an 85% plunge for FXCM's shares in premarket trading on Friday. The shares did not open on Friday morning pending the news that was release just before the market closed. 
+ 
+ The FXCM situation raises questions about the assets clients have at the troubled broker. Since FXCM is a currency broker, most of those assets are futures, options and swaps contracts -- none of which are protected by insurance if a broker collapses. 
+ That stands in contrast with other securities like equities that are protected from a broker collapse by a federal insurance fund, the Securities Investor Protection Corporation. 
+ "It's irresponsible on the part of lawmakers and regulators that no insurance fund exists for futures customers. If a firm goes down, it's very difficult to get money back for customers," said Bart Chilton, a former CFTC commissioner who is now a senior policy advisor at DLA Piper. 
+ However, the Dodd-Frank reform law did implement capital and margin requirements. 
+ FXCM is not the only currency broker slammed by the dramatic Swiss move. 
+ Interactive Brokers (IBKR), an electronic broker that deals with stocks along with currencies, said several customers suffered losses in excess of their deposits with the firm. Interactive said such debits amount to about $120 million, or 2.5% of the company's net worth. 
+ Global Brokers, a New Zealand firm, also said its capital had been wiped out. The U.K.'s Alpari said it's unable to cover client losses and is now insolvent. 
+ Were you hurt by the Swiss move? Share your story! 
+ The decision by the Swiss National Bank to scrap a three-year cap on the value of the franc against the euro caused the Swiss currency to soar as much as 30% at one point. 
+ "You had a big surprise move by a central bank and it blew people out of the water," said Michael Block, chief market strategist at Rhino Trading. 
+ Many traders were using the Swiss franc as a "lazy hedge," Block said, but the trade ultimately "blew up in their faces." 
+ CNNMoney's Mark Thompson and Ivana Kottasova contributed to this report.  
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer.
+Morningstar: © 2015 Morningstar, Inc. All Rights Reserved.
+Factset: FactSet Research Systems Inc. 2015. All rights reserved.
+Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved.
+Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.

@@ -1,0 +1,23 @@
+We use cookies to improve your experience on this website. By continuing to browse our site you agree to our use of cookies. Tell me more | Cookie preferences
+International Edition
+Heather Kelly, CNN
+
+Updated 0603 GMT (1403 HKT) December 31, 2014
+ (CNN)After losing a particularly intense game of tennis, you drop your racket and storm off the court. Instead of fuming and reaching for a water bottle, you grab your smartphone to see what went wrong.
+There's a new crop of tools to calculate the speed of a pitch, the strength of a putt, the arch of a basketball toss and the quality of a serve. They aren't for professional ballplayers or touring golfers. These pro-level gadgets are coming for casual sports, from pickup games to Little League.
+The technology that makes it possible is a combination of small, increasingly affordable sensors such as accelerometers and gyroscopes. Smartphones are packed with them, and they've helped create the booming fitness tracker industry. 
+They've already changed running and biking, with apps such as Strava and wearables such as Fitbit. Now they're being placed inside existing sports equipment -- tennis rackets, running shoes, basketballs and golf clubs. 
+Babolat has been making tennis rackets for 20 years. In 2013, it released its first connected racket, the $399 Play Pure Drive. Hidden inside the hollow handle of a completely normal looking racket is a trio of sensors that track movements and vibrations. The racket can detect exactly where a ball hits the strings, how much spin the player gives it and how hard it was hit.
+Those stats are fed to a colorful smartphone app that displays the information as easy to digest diagrams. The app can also track the length of a game and count the total number of shots, hits and misses.
+Similar tools and companion mobile apps are coming out for almost every popular sport.
+The 94Fifty basketball looks and feels like a standard-issue ball. Inside, sensors measure the arc of each shot, backspin and the speed and intensity of a player's dribble. Adidas makes the miCoach Smart Ball, a soccer ball that collects information on each kick. Many of these products are meant for individual practice sessions, not for team games.
+Not all sensors need to be built into pricey custom equipment. Zepp makes $150 attachments that fit onto the bottom of baseball bats and golf clubs to create a 3-D visual of each swing in the mobile app.
+Even smartphone cameras are getting in on the action. Pro athletes have relied on cameras as a training tool for years. Now casual players can do some of the same tricks with the phones, including slow-motion replay.
+Velocity by Athla is an app that can turn an iPhone into a speed radar detector. Created by Mike Gillam, a former ER doctor, the $7 app calculates the speed of a ball flying through the air using just the camera. Currently, it's designed to work for baseball, tennis, soccer and cricket.
+One challenge these companies face is turning the raw data into actionable, easy-to-understand information. On its own, knowing the speed of a free throw isn't going to help you make it in the basket. The various apps try to give suggestions on techniques. But they also show how you measure up with other players, even ones halfway around the world.
+Performance isn't just measured in scores versus a single opponent or against past practice sessions, but against everyone who uploads their stats to these apps. The apps double as small social networks of other players, turning real-life matches into long-distance competitions. Sure, you won that pickup game of one-on-one, but perhaps your dribble strength was in the bottom 15% for your age group. 
+With these sensors showing up in sports equipment and phones turning into pocket coaches, every aspect of performance could eventually be tracked, counted and measured. For nonpros and kids, will all that quantifying suck the fun out of playing sports? 
+Jean-Marc Zimmerman, CIO of Babolat, said he thinks it's a natural part of playing any game.
+"Today, anybody who's practicing a sport is usually interested in making progress. We're in a competitive world; everyone is interested in getting better," Zimmerman said. "We think it will be more fun to play tennis with the technology than it was before."
+
+International Edition
