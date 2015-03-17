@@ -137,23 +137,24 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 	    	popoverContent += "<button style=\"margin-left:10px\" id=\""+ id + "_btn2\" class=\"btn btn-warning\">Show me</button></div>";
     		popoverContent += "</div>";
 
-    		joinString += "  <span ";
+    		joinString += '  <span ';
     		//joinString += "id = '"+id+"'";
-			joinString += "class = 'fypSpecialClass' ";
-			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
-			joinString += "data-placement='above' ";
-			if(wordDisplay == 1)
+			joinString += 'class = "fypSpecialClass" ';
+			joinString += 'style="text-decoration:underline; font-weight: bold; "';
+			joinString += 'data-placement="above" ';
+/*			if(wordDisplay == 1)
 				joinString += "title='"+ "<span style=\"font-weight: bold;  font-size:150%;\">" + targetWord + "</span>' ";
 			else
 				joinString += "title='"+ "<span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
-			joinString += "href='#' ";
-			joinString += "data-content = '" + popoverContent + "'";
-			joinString += "id = '" + id + "' >";
+			*/
+			//joinString += "href='#' ";
+			//joinString += "data-content = '" + popoverContent + "'";
+			joinString += 'id = "' + id + '" >';
 			if(wordDisplay == 1)
 				joinString += sourceWord;
 			else
 				joinString += targetWord;
-			joinString += "</span>  ";
+			joinString += '</span>  ';
 
 			// second version
 
@@ -168,11 +169,31 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			append += '<div class="jfk-button-img"></div></div>';
 			append += '<div class="gtx-body">'+sourceWord+'</div><br>';
 			append += '<div class="gtx-language">CHINESE (SIMPLIFIED)</div>';
-			append += '<div class="gtx-target-audio jfk-button jfk-button-flat gtx-audio-button" role="button" tabindex="0" style="-webkit-user-select: none;">';
-			append += '<div class="jfk-button-img"></div></div>';
-			append += '<div class="gtx-body">'+targetWord+'</div></br>';
+			//append += '<div class="gtx-target-audio jfk-button jfk-button-flat gtx-audio-button" role="button" tabindex="0" style="-webkit-user-select: none;">';
+			
+			//append += '<div class="jfk-button jfk-button-flat gtx-audio-button" role="button" tabindex="0" style="-webkit-user-select: none; display: inline;">';
+			append += '<p style = "margin: 0px;">';
+			for(var k = 0; k < splitedPinyin.length; k++){
+				append += '<img style="height:21px;width:21px;display:inline-block;opacity:0.55;vertical-align:middle;background-size:91%;-webkit-user-select: none;-webkit-font-smoothing: antialiased;" class="audioButton"  id="'+splitedPinyin[k]+'" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAACjSURBVDjLY2AYYmA1QwADI3FKy8HkfyA8zqBOjPL/YLqO4SWQ9YXBmbDy/1C2EMMGsBZNQsr/w/lMDCuAvKOElP+HeloQSPIxPAPynVAV/seAENHtYLoKyJpDnIb/DOZA2gBI3yRWQx6Q5gZ7nFYaQE4yJN5JW8B0PaanYaADRcMaBh5wsD7HDFZMLURGHEIL0UkDpoWExAfRQlLyJiMDDSAAALgghxq3YsGLAAAAAElFTkSuQmCC" >'
+				append += chineseCharactors[k];
+
+
+/*				append += '<div class="jfk-button-img">';
+				append += '<audio id="myAudio_'+splitedPinyin[k]+'" style = "display: none;">'
+				append += '<source src="http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/'+splitedPinyin[k]+'.mp3" type="audio/mp3">';
+				append += '</audio>';
+				append += '</div>';
+				append += '<div class="gtx-body">'+chineseCharactors[k]+'</div></br>';*/
+			}
+			for(var k = 0; k < splitedPinyin.length; k++){
+				append += '<audio id="myAudio_'+splitedPinyin[k]+'" style = "display: none;">'
+				append += '<source src="http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/'+splitedPinyin[k]+'.mp3" type="audio/mp3">';
+				append += '</audio>';
+			}
+			append += '</p>';
+			//append += '</div>';
 			append += '<a id="off" class="gtx-a" target="_blank" href="chrome-extension://aapbdbdomjkkjkaonfhkkikfgjllcleb/options.html">EXTENSION OPTIONS</a>';
-			append += '<a id="more" class="gtx-a" target="_blank" href="https://translate.google.com/?source=gtx_m#en/zh-CN/says" style="color: #A2A2A2; float: right; padding-top: 16px;">MORE »</a>';
+			append += '<a id="more" class="gtx-a" target="_blank" href="http://dict.youdao.com/search?q='+sourceWord+'&keyfrom=dict.index" style="color: #A2A2A2; float: right; padding-top: 16px;">MORE »</a>';
 			append += '</div></div></div></div></div>';
 			//append += '<div class="jfk-bubble-closebtn-id jfk-bubble-closebtn" aria-label="Close" role="button" tabindex="0"></div>';
 			append += '<div class="jfk-bubble-arrow-id jfk-bubble-arrow jfk-bubble-arrowup" style="left: 117px;">';
@@ -282,10 +303,6 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			});
 			$('.fypSpecialClass').popover('hide');
 		});
-
-
-
-
 
 
 		//this is the end of the test
@@ -454,15 +471,24 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 	    };
 	};
 
-	$('html').unbind().click(function() {
+/*	$('html').click(function() {
 		var myElem = document.getElementById(displayID);
 		if(myElem!=null)
 			document.body.removeChild(myElem);
 		displayID = '';
+	});*/
+	$(document).mouseup(function (e)
+	{
+	    var container = $(".jfk-bubble")
+
+	    if (!container.is(e.target) && container.has(e.target).length === 0) // if the target of the click isn't the container... // ... nor a descendant of the container
+	    {
+	        container.hide();
+	    }
 	});
 
 	$(".fypSpecialClass").unbind().click(function(event) {
-		event.stopPropagation();
+		//event.stopPropagation();
 
 		var id = $(this).attr('id');
 
