@@ -60,7 +60,6 @@ exposed
 build
 Finance
 prices
-GDP
 licensed
 accounts
 economist
