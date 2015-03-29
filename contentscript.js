@@ -110,53 +110,22 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 		pronunciation[j] = pronunciation[j].replace("5","");
 		if(isTest[j] == 0){
 
-			popoverContent += "<div sytle=\"text-align:center;\">";
-			popoverContent += "<div>Pronunciation: <div style=\"margin-left:10px\">";
-
 			var splitedPinyin = pronunciation[j].split(" ");
 			var chineseCharactors = targetWord.replace("(","").replace(")","").split("");
 
-			for(var k = 0; k < splitedPinyin.length; k++){
-				popoverContent += chineseCharactors[k]+splitedPinyin[k];
-				popoverContent += "<img src=\"http://emergingmoney.com/wp-content/uploads/2011/11/audio.gif\" style=\"width:15px;height:15px\" class=\"audioButton\" id=\""+splitedPinyin[k]+"\"> "
-        		popoverContent += "<audio id=\"myAudio_"+splitedPinyin[k]+"\">"
-				popoverContent += "<source src=\"http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/"+splitedPinyin[k]+".mp3\" type=\"audio/mp3\">";
-				popoverContent += "</audio>";
-			}
-
-			popoverContent += "</div></div>";
-
-/*			for(var k = 0; k < englishSentence[j].length; k++)
-				popoverContent += "<div>englishSentence: <div style=\"margin-left:10px\">"+englishSentence[j][k]+"\n"+chineseSentence[j][k]+"</div></div>";
-	    	*/
-			//popoverContent += "<div>englishSentence: <div style=\"margin-left:10px\">This is exmaple sentence.</div></div>";
-			popoverContent += "<a id=\""+ id + "_btn3\" >Click_to_get_example_sentences:</a>";
-	    	popoverContent += "<div id=\"exampleSentences\" style=\"display:none;margin-bottom:10px;\"></div>"
-
-	    	popoverContent += "<div ><button id=\""+ id + "_btn1\" class=\"btn btn-info\">Got it</button>";
-	    	popoverContent += "<button style=\"margin-left:10px\" id=\""+ id + "_btn2\" class=\"btn btn-warning\">Show me</button></div>";
-    		popoverContent += "</div>";
 
     		joinString += '  <span ';
     		joinString += "id = '"+id+"'";
 			joinString += 'class = "fypSpecialClass" ';
 			joinString += 'style="text-decoration:underline; font-weight: bold; "';
 			joinString += 'data-placement="above" ';
-/*			if(wordDisplay == 1)
-				joinString += "title='"+ "<span style=\"font-weight: bold;  font-size:150%;\">" + targetWord + "</span>' ";
-			else
-				joinString += "title='"+ "<span style=\"font-weight: bold;  font-size:150%;\">" + sourceWord + "</span>' ";
-			*/
-			//joinString += "href='#' ";
-			//joinString += "data-content = '" + popoverContent + "'";
+
 			joinString += 'id = "' + id + '" >';
 			if(wordDisplay == 1)
 				joinString += sourceWord;
 			else
 				joinString += targetWord;
 			joinString += '</span>  ';
-
-			// second version
 
 
 			var append = '<div id=\"'+ id + '_popup\" class="jfk-bubble gtx-bubble" style="visibility: visible;  opacity: 1;">';
@@ -176,14 +145,6 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			for(var k = 0; k < splitedPinyin.length; k++){
 				append += '<img style="height:21px;width:21px;display:inline-block;opacity:0.55;vertical-align:middle;background-size:91%;-webkit-user-select: none;-webkit-font-smoothing: antialiased;" class="audioButton"  id="'+splitedPinyin[k]+'" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAACjSURBVDjLY2AYYmA1QwADI3FKy8HkfyA8zqBOjPL/YLqO4SWQ9YXBmbDy/1C2EMMGsBZNQsr/w/lMDCuAvKOElP+HeloQSPIxPAPynVAV/seAENHtYLoKyJpDnIb/DOZA2gBI3yRWQx6Q5gZ7nFYaQE4yJN5JW8B0PaanYaADRcMaBh5wsD7HDFZMLURGHEIL0UkDpoWExAfRQlLyJiMDDSAAALgghxq3YsGLAAAAAElFTkSuQmCC" >'
 				append += chineseCharactors[k];
-
-
-/*				append += '<div class="jfk-button-img">';
-				append += '<audio id="myAudio_'+splitedPinyin[k]+'" style = "display: none;">'
-				append += '<source src="http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/'+splitedPinyin[k]+'.mp3" type="audio/mp3">';
-				append += '</audio>';
-				append += '</div>';
-				append += '<div class="gtx-body">'+chineseCharactors[k]+'</div></br>';*/
 			}
 			for(var k = 0; k < splitedPinyin.length; k++){
 				append += '<audio id="myAudio_'+splitedPinyin[k]+'" style = "display: none;">'
@@ -193,7 +154,8 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			append += '</p>';
 			//append += '</div>';
 			//append += '<a id="off" class="gtx-a" target="_blank" href="chrome-extension://aapbdbdomjkkjkaonfhkkikfgjllcleb/options.html">EXTENSION OPTIONS</a>';
-			append += '<a id="myID_more"  onclick="return myFYPOnclickFunction();" target="_blank" href="http://dict.youdao.com/search?q='+sourceWord+'&keyfrom=dict.index"  style="color: #A2A2A2; float: right; padding-top: 16px;">MORE »</a>';
+			//  onclick="return myFYPOnclickFunction();"
+			append += '<a id="myID_more" target="_blank" href="http://dict.youdao.com/search?q='+sourceWord+'&keyfrom=dict.index"  style="color: #A2A2A2; float: right; padding-top: 16px;">MORE »</a>';
 			append += '</div></div></div></div></div>';
 			//append += '<div class="jfk-bubble-closebtn-id jfk-bubble-closebtn" aria-label="Close" role="button" tabindex="0"></div>';
 			append += '<div class="jfk-bubble-arrow-id jfk-bubble-arrow jfk-bubble-arrowup" style="left: 117px;">';
@@ -205,9 +167,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			append += '';
 
 			appendContentDictionary[id+"_popup"] = append;
-			//document.body.innerHTML += append;
 
-			//
     	}
     	else
     	{
@@ -267,7 +227,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 
     		popoverContent += "</div>";
 
-	    	//popoverContent += "<button style = \"margin-top:10px;\" id=\""+ id + "_btn3\" class=\"btn btn-success\">Submit</button>";
+			//popoverContent += "<button style = \"margin-top:10px;\" id=\""+ id + "_btn3\" class=\"btn btn-success\">Submit</button>";
 			
 	    	popoverContent += "<div id=\"alertSuccess\" class=\"alert alert-success\" role=\"alert\" style=\"display:none;margin-top:20px;\">Well done! You got the correct answer!</div>";
 	    	if(isTest[j] == 2)
@@ -290,6 +250,64 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			else
 				joinString += sourceWord;
 			joinString += "</span>  ";
+
+
+
+			var append = '<div id=\"'+ id + '_popup\" class="jfk-bubble gtx-bubble" style="visibility: visible;  opacity: 1; padding-bottom: 40px; ">';
+			append += '<div class="jfk-bubble-content-id"><div id="gtx-host" style="min-width: 200px; max-width: 400px;">';
+			append += '<div id="bubble-content" style="min-width: 200px; max-width: 400px;" class="gtx-content">';
+			append += '<div class="content" style="border: 0px; margin: 0; padding-bottom: 0px;">';
+			append += '<div id="translation" style="min-width: 200px; max-width: 400px; display: inline;">';
+			append += '<div style="font-size: 150%;" class="gtx-language">FROM</div>';
+			//append += '<div class="gtx-source-audio jfk-button jfk-button-flat gtx-audio-button" role="button" tabindex="0" style="-webkit-user-select: none;">';
+			//append += '<div class="jfk-button-img"></div></div>';
+			//append += '<div class="gtx-body" style="padding-left:21px;">'+sourceWord+'</div><br>';
+
+			for(var k=0;k<myArrayShuffle.length;k++)
+			{
+				if(k==0||k==2)
+					append += '<div style="width: 100%;">';
+				switch(myArrayShuffle[k])
+				{
+					case 1:
+					append += '<div id="'+wordID[j]+'_w" align="center" class="fyp_choice_class" onMouseOver="this.style.color=\'#FF9900\'" onMouseOut="this.style.color=\'#626262\'" style="font-weight: bold; cursor:pointer; color: #626262; width: 50%; float: left; padding-top: 16px;">'+choices1[j]+'</div>';
+					break;
+					case 2:
+					append += '<div id="'+wordID[j]+'_w" align="center" class="fyp_choice_class" onMouseOver="this.style.color=\'#FF9900\'" onMouseOut="this.style.color=\'#626262\'" style="font-weight: bold; cursor:pointer; color: #626262; width: 50%; float: left; padding-top: 16px;">'+choices2[j]+'</div>';
+					break;
+					case 3:
+					append += '<div id="'+wordID[j]+'_w" align="center" class="fyp_choice_class" onMouseOver="this.style.color=\'#FF9900\'" onMouseOut="this.style.color=\'#626262\'" style="font-weight: bold; cursor:pointer; color: #626262; width: 50%; float: left; padding-top: 16px;">'+choices3[j]+'</div>';
+					break;
+					case 4:
+					if(isTest[j]==1)
+						append += '<div id="'+wordID[j]+'_c" align="center" class="fyp_choice_class" onMouseOver="this.style.color=\'#FF9900\'" onMouseOut="this.style.color=\'#626262\'" style="font-weight: bold; cursor:pointer; color: #626262; float: left; width: 50%; padding-top: 16px;">'+sourceWord+'</div>';
+					else if(isTest[j]==2)
+						append += '<div id="'+wordID[j]+'_c" align="center" class="fyp_choice_class" onMouseOver="this.style.color=\'#FF9900\'" onMouseOut="this.style.color=\'#626262\'" style="font-weight: bold; cursor:pointer; color: #626262; float: left; width: 50%; padding-top: 16px;">'+targetWord+'</div>';
+					break;
+					default:
+					break;
+				}
+				if(k==1 || k==3)
+    				append += "</div>";
+			}
+
+
+			//append += '<div class="gtx-language">CHINESE (SIMPLIFIED)</div>';
+			//append += '<a id="myID_more" target="_blank" href="http://dict.youdao.com/search?q='+sourceWord+'&keyfrom=dict.index"  style="color: #A2A2A2; float: right; padding-top: 16px;">MORE »</a>';
+			append += '</div></div></div></div></div>';
+			//append += '<div class="jfk-bubble-closebtn-id jfk-bubble-closebtn" aria-label="Close" role="button" tabindex="0"></div>';
+			append += '<div class="jfk-bubble-arrow-id jfk-bubble-arrow jfk-bubble-arrowup" style="left: 117px;">';
+			append += '<div class="jfk-bubble-arrowimplbefore"></div>';
+			append += '<div class="jfk-bubble-arrowimplafter"></div></div></div>';
+			append += '';
+			append += '';
+			append += '';
+			append += '';
+
+			appendContentDictionary[id+"_popup"] = append;
+
+
+
     	}
 
 /*		$(document).on("click", "#"+id+"_btn1", function() {
@@ -342,7 +360,6 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 				else{
 					console.log("englishSentence or chineseSentence is not defined!!!");
 				}
-
 				if(exampleSentences == ""){
 					exampleSentences += "<div>Sorry. No example sentence available for this word.</div>";
 					exampleSentences += "<div>You can click \"show me\" for more info.</div>";
@@ -419,31 +436,6 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 		}
 	}
 
-
-
-/*	var originalLeave = $.fn.popover.Constructor.prototype.leave;
-	$.fn.popover.Constructor.prototype.leave = function(obj){
-		var self = obj instanceof this.constructor ?
-		obj : $(obj.currentTarget)[this.type](this.getDelegateOptions()).data('bs.' + this.type)
-		var container, timeout;
-
-		originalLeave.call(this, obj);
-
-		if(obj.currentTarget) {
-			container = $(obj.currentTarget).siblings('.popover')
-			timeout = self.timeout;
-			container.one('mouseenter', function(){
-				//We entered the actual popover – call off the dogs
-				clearTimeout(timeout);
-				//Let's monitor popover content instead
-				container.one('mouseleave', function(){
-					$.fn.popover.Constructor.prototype.leave.call(self, self);
-				});
-			})
-		}
-	};*/
-
-
 	//this is test on 2015/3/6
 	var cumulativeOffset = function(element) {
 	    var top = 0, left = 0;
@@ -495,15 +487,17 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 	{
 		e = e || window.event;
   		var id = (e.target || e.srcElement).id;
+  		var thisClass = (e.target || e.srcElement).className;
 	    var container = $(".jfk-bubble")
 	    //console.log(container[0]);
 		console.log("000   "+container[0]);
+		console.log("class is "+thisClass);		
 	    if(container[0] !== undefined)
 	    {	    	
 	    	console.log("111   "+container[0]);
 	    	if ( !container.is(e.target) && container.has(e.target).length === 0) // if the target of the click isn't the container... // ... nor a descendant of the container
 		    {
-		    	//console.log("222   "+container[0]);
+		    	console.log("222   "+container[0]);
 		    	var id = container.attr('id');
 
 		    	console.log(id);
@@ -530,31 +524,44 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 				    console.log("this is answer: "+answer);
 				});
 	    	}
+	    	if(thisClass == 'audioButton')
+	    	{
+				console.log("clicked id is "+id);
+				var myAudio = document.getElementById("myAudio_"+id);
+				if (myAudio.paused) {
+					//console.log("find this element and it is paused");
+					myAudio.play();
+				} else {
+					myAudio.pause();
+				}
+	    	}
+	    	if(thisClass == 'fyp_choice_class')
+	    	{
+	    		console.log("clicked id isis "+id);
+	    		var tempWordID = id.split("_")[0];
+	    		var isCorrect = id.split("_")[1];
+	    		var remembered = new HttpClient();
+	    		if(isCorrect == 'c')
+	    		{
+					remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=1'+"&url="+document.URL, function(answer) {
+					    console.log("select the correct answer");
+					});
+					$('.jfk-bubble').css("background-color", "#cafffb");					
+					$('.content').css("background-color", "#cafffb");
+	    		}
+	    		else
+	    		{
+	    			remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=0'+"&url="+document.URL, function(answer) {
+					    console.log("select the wrong answer");
+					});
+					$('.jfk-bubble').css("background-color", "#f6688e");
+					$('.content').css("background-color", "#f6688e");
+	    		}
+
+	    	}
 	    }
 	});
 
-	function myFYPOnclickFunction(){
-		
-		var container = $(".jfk-bubble")
-		console.log("000   "+container[0]);
-	    if(container[0] !== undefined)
-	    {
-	    	console.log("111   "+container[0]);
-			var id = container.attr('id');
-
-			console.log(id);
-			var englishWord = id.split('_')[1];
-			var tempWordID = id.split('_')[2];
-			var remembered = new HttpClient();
-			remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=0'+"&url="+document.URL, function(answer) {
-			    console.log("this is answer: "+answer);
-			});
-
-			document.body.removeChild(container[0]);
-	    }
-
-	    return true;
-	}
 
 /*	$(".gtx-a").click(function(event){
 		var container = $(".jfk-bubble")
@@ -704,7 +711,7 @@ window.addEventListener("load", function(){
 			    talkToHeroku(url, params, i);
 			}
 			
-			$(document).on("click", ".audioButton", function() {
+/*			$(document).on("click", ".audioButton", function() {
 				var id = $(this).attr('id');
 				console.log("clicked id is "+id);
 				var myAudio = document.getElementById("myAudio_"+id);
@@ -714,9 +721,7 @@ window.addEventListener("load", function(){
 				} else {
 					myAudio.pause();
 				}
-	  		});
-
-
+	  		});*/
 
 		}
 
