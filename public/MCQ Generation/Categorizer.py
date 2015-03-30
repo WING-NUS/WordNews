@@ -67,10 +67,11 @@ class Categorizer(object):
 			for word in dictionary_data[category]:
 				if word not in weight_sum:
 					weight_sum[word] = 0
-				else weight_sum[word] += dictionary_data[category][word]
+				else:
+					weight_sum[word] += dictionary_data[category][word]
 		average_weight = {}
 		for word in weight_sum:
-			average_weight[word] = weight_sum * 1.0 / 7
+			average_weight[word] = weight_sum[word] * 1.0 / 7
 
 		# getting the words whose weight is above the average weight, by using 5 it should be around 10
 		satisfied_words = {}
@@ -79,9 +80,11 @@ class Categorizer(object):
 			for word in dictionary_data[target_category]:
 				try: 
 					if dictionary_data[target_category][word] > average_weight[word]+ 5:
-						satisfied_words.append(word)
+						satisfied_words[target_category].append(word)
 				except:
 					continue
+
+		# to be add. eliminate those non-words
 
 		# store the result into a local dictionary
 		print dictionary_data

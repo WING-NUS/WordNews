@@ -10,6 +10,7 @@ max_word = target_word
 max_count = 0
 for synset in wn.synsets(target_word):
 	for i in synset.lemmas():
+		print i.name()
 		#print i.name() + " " + str(i.count())
 		if i.count() > max_count and i.name() != target_word:
 			max_word = i.name()

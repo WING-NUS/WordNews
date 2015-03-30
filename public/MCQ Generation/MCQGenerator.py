@@ -85,7 +85,9 @@ class MCQGenerator(object):
 		shuffle(self.strong_dict[category])
 
 		for dict_word in self.strong_dict[category]:
-			if self.get_target_tag(dict_word, dict_word) == tag and dict_word != word:
+			similarity_score = self.get_similarity(dict_word, word, tag)
+			print "Lin Distance is ", similarity_score
+			if self.get_target_tag(dict_word, dict_word) == tag and dict_word != word and  similarity_score> 0:
 				distractors_list.append(dict_word)
 			if len(distractors_list) >=3:
 				break
@@ -94,6 +96,14 @@ class MCQGenerator(object):
 		print distractors_list
 		distractors_list.append(word)
 		return distractors_list
+
+	def get_similarity(self, word1, word2, tag):
+		#word1 = self.stemmer.stem(word1, tag)
+		#word2 = self.stemmer.stem(word2, tag)
+		calculator = WordDistance()
+		distance = calculator.get_lin_distance(word1, word2)
+		return distance
+
 
 
 
