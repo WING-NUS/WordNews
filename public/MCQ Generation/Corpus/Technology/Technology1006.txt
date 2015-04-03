@@ -1,0 +1,44 @@
+International Edition
+By Peter Shadbolt, for CNN
+
+Updated 0139 GMT (0939 HKT) March 26, 2015
+ (CNN)In medicine, finding a substance that attacks cancerous tumors without destroying the healthy tissue around it has long been the Holy Grail. 
+From targeted remedies such as monoclonal antibodies to surgery, cancer has still managed to elude a treatment that discretely and separately attacks it alone.
+Nanotechnologies, however - the manipulation of matter at a molecular and even atomic scale to penetrate living cells -- are holding out the promise of opening a new front against deadly conditions from cancer to Ebola.
+According to Dr Thomas Webster, the chair of chemical engineering at Northeastern University in Boston, research into medical nanotechnology is gaining pace and the medical establishment is starting to sit up and pay attention.
+At the core of the technology is the ability to attach drugs, and in some cases metals and minerals, to nanoparticles that would then bind themselves to life threatening cancer cells or viruses.
+Star technology
+In one study, Dr Webster's team is developing methods to attach gold nanoparticles to cancer cells.
+Infrared light would then heat up the nanoparticles, killing the cancer cells with heat but leaving the healthy cells alive to do their job.
+"This technology has been studied for the better part of a decade, but we're looking at ways of making it better," Dr Webster told CNN. "One that we've created in the lab we've called 'nanostars.'
+"A star shape has a lot more surface area, so they can kill cancer cells faster than a nanosphere because they heat up faster.
+"Even if it's carrying a drug, a star has a lot more surface area on which to attach it -- it's got a different morphology."
+Strength from selenium
+Nevertheless, problems of toxicity, and in particular how organs like the kidneys and liver expels these nanoparticles after they've been used, is the subject of medical investigation. 
+Dr Webster said that research into nanoparticle selenium -- an essential trace mineral in the human diet -- as a nano-scaled tool in the fight against cancer was the latest avenue of study.
+"Selenium is a natural part of our diet, but we've made nanoparticles of selenium that we're seeing -- in the same way as we've seen with gold and infrared -- having the ability to kill cancer cells and kill bacteria and at the same time not have any toxicity problems you might see with anti-bacterials like silver."
+While it has yet to be used in human trials, animal tests have shown promising results. Finding natural agents that can be easily absorbed by the body was the next step for nanoparticle therapies.
+Nanomedicine can help patients today not 10 years down the road
+Dr Thomas Webster
+"A lot of researchers in biomaterials and cancer treatment are getting very excited by this healthy approach. It's almost like the approach in Eastern medicine, where we're looking for natural nanomaterials, not synthetic ones, like gold and silver," Dr Webster said.
+Ultimately, he said, nanotechnologies are likely to be used in conjunction with already available therapies, such as antibiotics, to better target medicines.
+Nano future
+While nanoparticle technology still has many years of research ahead of it, nanostructured surfaces are already becoming part of the medical firmament. 
+"These are being approved by the Food and Drug Administration and we're seeing better bone growth, better tissue growth and we're seeing the ability to decrease infection using these materials."
+These developments, he said, were helping patients in the here and now.
+"What we're using with this is the same materials that we are implanting today -- so titantium for hip implants, polyvinyl chloride for catheters, silicone for breast implants. 
+"We're doing a lot of work with putting nanofeatures on materials that could stop cancers from coming back."
+One successful area, he said, had been the implanting of nanofeatures on catheters; a common vehicle of infection where catheters are often reused.
+"We're taking what's currently being used, we take it off the shelf, we then figure out a way to put nanofeatures on there and we see significant improvements. 
+"It's a wonderful way to give an immediate solution to nanomedicine; so that the public, scientists and clinicians can see how nanomedicine can help patients today, not 10 years down the road."
+Sensing a breakthrough
+One area where nanotechnology is shaping up as a medical game changer is in the area of medical sensors. Dr Webster said research into getting early warning of problems with implants was a rich field for nanotechnology experts. He plans to present his research as a member of the  American Anatomists Association at the Experimental Biology Conference 2015 on March 28-31.
+While he said development stopped short of the plot of the speculative fiction novel "Prey" by Michael Crichton, where nano-robots roamed through patients autonomously hunting down medical problems, he said that nanomaterials on implants that could control biological events was not far away.
+"We are just on the edge of a whole big effort in terms of developing sensors out of nanomaterials that can do that," he said.
+"The smaller the material the more you will not adversely affect the events you're trying to measure. I think this is where this technology shows real promise -- there will be sensors on vascular stents, pacemakers, hip implants."
+Read more from Make, Create, Innovate:
+Digital nose on a chip can sniff out cancer
+Meet the world's first 1,000 mph car
+Out of juice? Try a cardboard battery
+
+International Edition

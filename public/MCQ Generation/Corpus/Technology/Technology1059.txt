@@ -1,0 +1,23 @@
+International Edition
+By Joseph Flahert, WIRED
+
+Updated 1409 GMT (2209 HKT) February 6, 2015
+The Art of Movement is a monthly show that highlights the most significant innovations in science and technology that are helping shape our modern world.
+ (CNN)Disney has long been a hotbed of robotic innovation, from the audio-animatronic Abraham Lincolns in its theme parks to the vision of drones in Wall-E. The Mouse's latest electromechanical project, called the BeachBot, brings robots out of the theme parks and theaters and onto shores and sandboxes.
+At just under two feet long and 15 inches wide and tall, the BeachBot can autonomously fill a 30-square-foot area of sand with images from the "Lion King" or "Finding Nemo" in under 10 minutes. Seven servo motors allow the bot to deploy the prongs of its rake in different configurations, creating varied brush strokes that range from two to 15 inches wide. Bulbous balloon wheels make it possible for the 'bot to traverse all types of sand while leaving no tracks that would mar the drawings.
+Read: 12 most ancient and magnificent trees from around the world
+The BeachBot does have some limitations. Reflective poles must be placed on the beach by humans to define the canvas the robot draws on. Fine motor controls don't mix well with sand and salty surf, so in addition to building rubberized seals into the design to protect the sensitive internal workings from the elements, extra care is required in maintenance.
+The project grew out of the lab of Paul Beardsley, a principal research scientist at Disney Research Zurich. Beardsley specializes in making robots with theatrical qualities, like his swarming Pixelbot drones that can arrange themselves into displays of characters on any flat surface.
+"Disney has had a fundamental role in the development of two forms of entertainment -- full-length animated movies and theme parks," says Beardsley. "No-one can predict exactly what might arise as new forms of entertainment in the future. But it's certain that society is just at the start of a robot revolution, and my work is in developing new types of entertainment robots."
+Read: What cities would look like if lit only by the stars
+There's been no announcement of when this beachcombing robot will make its public debut, but rest assured that once it does the sandy sections of Disney's theme parks, its Aulani resort in Hawaii, and the ports of call for their cruise lines will be blanketed with sandy sketches.
+And for fans who prefer "Frozen" to "Finding Nemo," a winter edition is in progress. "We are working on different modules for the BeachBot to take it off beaches and into other situations," says Beardsley. "Snowy fields are a possibility, pretty good for Switzerland at least."
+Read more from WIRED:
+21 awesomely well-designed products we're dying to own
+6 biggest security threats we'll face in 2015
+15 incredible photos that'll remind you to be awed by planet Earth
+See the world's greatest stolen artworks in this virtual-reality museum
+
+Subscribe to WIRED magazine for less than $1 an issue and get a FREE GIFT! Click here!
+Copyright 2015 Wired.com.
+International Edition

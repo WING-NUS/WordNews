@@ -1,0 +1,27 @@
+ Microsoft (MSFT, Tech30) still hasn't given an exact date, but the company announced that Windows 10 would launch sometime this summer. That's a little more specific than "later this year," which had been Microsoft's mantra up until Wednesday. 
+ Windows 10 will be a free upgrade for current Windows 7 and 8.1 users, as well as Windows Phone 8.1 customers. Microsoft hasn't yet announced pricing for people using Windows Vista or earlier versions, but, frankly, you're probably better off just buying a new PC if you aren't even running Windows 7 at this point. 
+ Since Windows 10 will be available on PCs and phones, Microsoft partnered with two Chinese smartphone companies to make Windows 10 handsets. Lenovo said it will start selling Windows 10 phones on China Mobile (CHL) by mid-year, and fast-growing Xiaomi said some Mi 4 smartphone users will be able to test Windows 10 on their devices. 
+ Windows 10 will be Microsoft's first major update to its operating system in three years. Microsoft understands that Windows 8 wasn't well-received by customers, and most of its updates to Windows 10 reflect that. 
+ The new Windows offers a familiar experience to Windows 7 users who never made the jump to Windows 8, while still bringing some innovations to the PC that tablet and smartphone users have become accustomed to. 
+ Here's a quick recap for the uninitiated. 
+ Windows 10 brings back the Start Menu, which organizes all of the tiles that were abundant in Windows 8. Windows 10 boots straight to the desktop, and it stays there. Internet Explorer is taking a backseat to a new and improved Web browser. Microsoft's Siri-like Cortana voice assistant will live in the task bar. You can run multiple desktops. A new notification and "action" center gives you a quick glance at your PC's status. And you can even unlock Windows 10 with facial recognition software. 
+ And if you upgrade to Windows 10, you'll get free Windows upgrades for the life of your PC or phone. 
+ You'll just have to wait until the summer. 
+ Related: Microsoft wants to put Windows 10 inside robots, ATMs and toasters 
+ Related: Upgrading from Windows 7 or 8? You'll love Windows 10  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+

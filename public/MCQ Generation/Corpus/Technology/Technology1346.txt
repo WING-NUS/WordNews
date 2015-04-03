@@ -1,0 +1,26 @@
+ It broke its first record on its first day, when it became the fastest project to raise $1 million -- in 49 minutes. A week later, it became the most-funded campaign in Kickstarter's history after receiving more than $13.3 million in pledges, besting Coolest Cooler, the previous record holder. 
+ Now, in total, Pebble has raised $20,336,930 from 78,463 people. Pebble's initial goal -- to raise $500,000 -- was too easy of a hurdle. Each watch was sold for $159 to early backers, and $179 for just about everyone else. Once retailers start selling the watch, the price will go up to $199. 
+ "We cannot thank the Pebble community enough for their monumental support," Eric Migicovsky, Pebble CEO, said in a statement. "We continue to listen to and be inspired by the backers who believed in us and supported our vision from day one." 
+ The Pebble Time is Pebble's second generation smartwatch, and this is Pebble's second Kickstarter campaign. 
+ Three years ago, Pebble raised more than $10 million from 69,000 people on the crowdfunding site for its first product, the original Pebble Watch. The company's goal at the time was also an easy target -- $100,000. 
+ Pebble Time is 20% thinner than its predecessor, and features a new color e-paper screen. The Pebble Watch only came with a black and white screen. A one-week battery life has also been another selling point for the Pebble Time. 
+ Kickstarter says that Pebble is one of thousands of companies and creators who have turned to crowdfunding on its site for more than one project. 
+ "Pebble's double success really shows the power of Kickstarter as a way to build community around creative work," John Dimatos, Kickstarter's lead for tech and design projects, said in an email statement. "The Pebble team wanted to come back to the people who supported them at the start, and that community really responded." 
+ Pebble says it will start shipping the Pebble Time watch to its backers in May. 
+ Related: New Pebble smartwatch raises $1 million on Kickstarter in record time  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+

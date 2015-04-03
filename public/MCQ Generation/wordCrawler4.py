@@ -5,9 +5,9 @@ from nltk.corpus import stopwords
 import os.path
 
 current_category = ""
-line_counter = 0
+line_counter = 3000
 category_list = ["Technology", "Entertainment", "Finance", "Travel", "Health", "World", "Sports"]
-with open("input_url2.txt") as f:
+with open("input_url6.txt") as f:
 	for line in f:
 		if line.replace("\n", "") in category_list:
 			print "Processing in category: " + line.replace("\n", "")
@@ -15,13 +15,14 @@ with open("input_url2.txt") as f:
 			continue
 		else:
 			url = ""
-			if "http" not in line:
-				if current_category == "Finance":
-					url = "http://money.cnn.com"+ line
-				else:
-					url = "http://www.cnn.com" + line
-			else: 
-				url = line
+			#if "http" not in line:
+			#	if current_category == "Finance":
+			#		url = "http://money.cnn.com"+ line
+			#		continue
+			#	else:
+			#		url = "http://www.cnn.com" + line
+			#else: 
+			url = line
 			line_counter += 1
 			print "Processing line #"+str(line_counter) + " in " + current_category
 			try:

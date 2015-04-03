@@ -1,0 +1,28 @@
+ They are using cameras to monitor the water quality from high above, looking for aberrations like a bright teal bloom of cyanobacteria, which can produce dangerous noxious toxins. When the swarm detects something, a single drone -- 30 inches wide and four pounds -- will break formation, dip down to the water's surface and scoop up a sample. 
+ The project, called Waterfly, was created by a team of MIT researchers who believe swarms of drones -- flying and working together like insects -- are the future. 
+ "Some drones look at the big picture, others perform in-depth sampling, and the swarming system becomes much more efficient than if it were composed of one or more individual drones," said professor Carlo Ratti, who worked on the project with MIT's Senseable City Lab and the University of Toronto's Dynamic Systems Lab. 
+ Waterfly is one of 19 semifinalists competing in a "Drones for Good" competition this week. Part of the United Arab Emirates' third annual Government Summit, the winner will go home with $1 million to continue working on their project. 
+ Related: Drone startups swoop up millions  
+ The contest is an attempt to change negative public perception of the technology. Drones are most prominently armed and used in combat. And their use by governments, companies and amateurs raises a host of thorny privacy and civil liberties issues. 
+ "The aim of the Drones for Good competition is to find positive ways to use drones to improve the lives of people around the world," said Saif Al Aleeli, the project manager for Drones for Good who works for the UAE government. "Using this remarkable technology for civilian purposes fits with [the event's] broader goal of driving global development through new innovations." 
+ More than 800 teams from around the world submitted do-gooder drone concepts to the competition. The semifinalists include unmanned flying vehicles that move human organs for transplants, assist with urban planning in slums and plant seeds for crops. One entry is designed to to monitor parklands to spot poachers and fire risks. Emergency response is a commonly touted positive use case, and one of the semifinalists would deliver goods like medicine, food and temporary shelters to those who are stranded. 
+ Related: Alibaba is using drones to deliver tea 
+ This weekend, all 19 teams will do a live demonstration of their prototype drone projects in front of a panel of expert judges and some members of the public. The winner will be announced on Feb. 7. 
+ The MIT team is packing up five of its custom-made drones to take to Dubai for the demo. The modified carbon fiber airframes help them navigate extreme environments and make water landings without sinking. They've also created special software for communicating with the drones and having them coordinate with one another in real time. 
+ "I think that drones that will operate collaboratively will be the norm -- not the exception -- in the future," said Ratti.  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+

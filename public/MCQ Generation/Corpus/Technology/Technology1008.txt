@@ -1,0 +1,29 @@
+ Ford (F) says that the newest edition of its S-Max car has "a new technology that scans traffic signs and adjusts the throttle to help drivers stay within legal speed limits and avoid fines." 
+ The new system, called the intelligent speed limiter, was unveiled by Ford of Europe in Germany on Tuesday. But Ford's European division said the technology will be available worldwide. 
+ The S-Max can read signs with its traffic sign recognition system and adjusts for speed accordingly. And it doesn't need to pull down the brake to slow down the car. 
+ "The system does not apply the brakes but smoothly controls engine torque by electronically adjusting the amount of fuel delivered," the company said in a press release. 
+ 
+ Related: Google's driverless car starts rolling through London 
+ But the fun isn't completely over for speedsters. 
+ "Drivers can temporarily override the system by pressing firmly on the accelerator," said Ford. 
+ The technology seems to be a step in the direction of the driverless car, also known as an autonomous car. While these cars have yet to hit the market, Audi unveiled one last year that reached 140 miles per hour with no driver at the wheel. 
+ Google (GOOGL, Tech30) and Nokia (NOK) have also been experimenting with driverless cars. Google's electric-powered LUTZ Pathfinder started rolling through London last month at a not-so-brisk 12 miles per hour, and the company plans to expand tests later this week. 
+ Auto parts company Delphi has a driverless car, an Audi SQ5, that is currently driving cross-country. The car, which has several passengers, started on Sunday. 
+ Related: California OKs first tests of self-driving cars 
+ Related: Driverless Audi reaches 140 miles per hour  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+

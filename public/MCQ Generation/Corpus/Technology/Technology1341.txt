@@ -1,0 +1,54 @@
+ The Surface fills a gadget gap between laptops and tablets. Today's tablets are great for portability, reading and watching video, but they're not ideal for doing work. Laptops are designed for getting stuff done, but you wouldn't want to read a book on them. The Surface is a laptop that looks and acts like a tablet. 
+ But the Surface Pro 3 costs $799, and that's without a keyboard. Throw in a keyboard and Bluetooth pen, and you're looking at a machine that costs close to $1,000. 
+ With the Surface 3, Microsoft (MSFT, Tech30) set out to make a similar tablet priced more attractively for students, parents and on-the-go professionals. 
+ Here's what you need to know about the new Surface 3: 
+ 1. It costs $499. 
+ That's a pretty good price for a PC that comes with 2 GB of RAM and 64 GB of storage. But that doesn't include the $129 keyboard (unless you already happen to have a Surface keyboard lying around, your total price is: $628). 
+ "Surface Pro 3 is a product people know and love," said Panos Panay, head of Microsoft's Surface team, in an exclusive interview with CNNMoney. "When we were bringing [the Surface 3] to life, it was about, 'How do we give all that to folks but bring it to more people?'" 
+ A higher-end Surface 3 is available for $599, giving you twice the RAM and storage. You can also add 4G-LTE wireless connectivity for $100 extra. 
+ The Surface 3 is currently available for pre-order, and it will go on sale May 5. 
+ 2. The keyboards are super-bright.  
+ True to Microsoft's target student audience, the keyboards come in some bright, trendy colors aimed at a younger generation. They come in a bright tomato red, a darker burgundy, light blue, and purple. Those come in addition to the slate gray and dark blue that professionals like. 
+ 3. It weighs more than an iPad Air but less than the new MacBook. 
+ The Surface 3 weighs 1.4 pounds. Even with the type cover, the new Surface weighs less than two pounds. 
+ It's also super thin: just 0.34 inches, only slightly thicker than an iPad Air. 
+ 4. It runs "full" Windows 8.1, and it's upgradable to Windows 10. 
+ Unlike previous non-"pro" versions of the Surface, the Surface 3 runs a full version of Windows, meaning it can run all the software that you're accustomed to running on a PC. 
+ "It has to run everything -- even if it's iTunes or Chrome," said Panay. "You'll feel good because you left nothing on the table when you bought this product." 
+ 5. It has a processor designed for mobile devices. 
+ The original Surface RT and Surface 2 ran on smartphone processors made by Nvidia (NVDA, Tech30). That made them slightly sluggish, but more importantly unable to run full Windows. 
+ The Surface 3 runs an Intel (INTC, Tech30) chip designed for high-end tablets called the Atom x7. The advantages to the switch are twofold: full Windows (see No. 3) and a mix of power and battery efficiency that you'd expect from a mobile processor. 
+ 6. It has a 10.8-inch screen. 
+ Similar to the Surface Pro 3 (but unlike other previous versions of the Surface), the Surface 3's screen has a 3:2 aspect ratio. That makes it a little less ideal for watching HD video but way better for reading and writing when you hold it vertically. 
+ 7. It uses the same plug that charges your smartphone (well...unless you have an iPhone). 
+ The Surface 3 forgoes the magnetic charger that other Surfaces sported in favor of a micro-USB port that every non-Apple mobile device uses for charging. 
+ Panay said micro-USB was of customers' most sought-after features. 
+ 8. It has a kickstand that clicks into three different positions. 
+ The Surface's kickstand is one of its most standout features, and it gets better in each version. The Surface 3 expands the number of positions to three: desk, lap and couch. 
+ It's not quite as useful as the Surface Pro 3's pick-any-angle "continuous hinge," but it's more versatile than the one or two positions you got from previous Surfaces. 
+ 9. It has a pen. 
+ The Surface Pen works on both Surface Pro 3 and the Surface 3. It has a nice weight and thickness to it, and though you can't store it in the device, the tradeoff is that it's far more useful than a stylus. 
+ The pen can be used to write, capture a screen shot, highlight text and launch One Note among other tasks. 
+ 10. It has two HD cameras. 
+ The 8-megapixel rear camera and the 3.5 mexapixel front camera are both capable of shooting 1080p HD video. 
+ 11. Its battery lasts 10 hours. 
+ Battery life is tricky to measure, but Microsoft says the Surface's battery should be able to get you through a day of normal use. Microsoft claims the battery is large enough to let you watch 10 hours of video on a single charge. 
+ 
+ Related: How the Surface lost $1 billion and lived to tell the tale 
+ Related: Meet Microsoft's Jony Ive  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+
