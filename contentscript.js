@@ -101,7 +101,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
     	var text = paragraph.innerHTML;
 
 		//var id = "myID_"+sourceWord+"_"+targetWord+"_"+i.toString();
-		var id = "myID_"+sourceWord+"_"+wordID[j]+"_"+i.toString();
+		var id = "myID_"+sourceWord+"_"+wordID[j]+"_"+i.toString()+"_"+isTest[j];
 
 		//console.log(id);
 
@@ -499,15 +499,18 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 		    {
 		    	console.log("222   "+container[0]);
 		    	var id = container.attr('id');
-
 		    	console.log(id);
 			    var englishWord = id.split('_')[1];
 			    var tempWordID = id.split('_')[2];
+			    var mainOrTest = id.split('_')[4];
 		    	var remembered = new HttpClient();
-				remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=1'+"&url="+document.URL, function(answer) {
-				    console.log("this is answer: "+answer);
-				});
-
+		    	console.log(mainOrTest);
+		    	if(mainOrTest == 0)
+		    	{
+		    		remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=1'+"&url="+document.URL, function(answer) {
+				    	console.log("this is answer: "+answer);
+					});
+		    	}
 				document.body.removeChild(container[0]);
 		    }
 	    	if(id == 'myID_more')
