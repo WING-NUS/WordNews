@@ -176,7 +176,8 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 
 			var myArrayShuffle = [1,2,3,4];
 			myArrayShuffle = shuffle(myArrayShuffle);
-			for(var k=0;k<myArrayShuffle.length;k++)
+
+/*			for(var k=0;k<myArrayShuffle.length;k++)
 			{
 				switch(myArrayShuffle[k])
 				{
@@ -225,15 +226,16 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 				}
 			}
 
-    		popoverContent += "</div>";
+    		popoverContent += "</div>";*/
 
 			//popoverContent += "<button style = \"margin-top:10px;\" id=\""+ id + "_btn3\" class=\"btn btn-success\">Submit</button>";
 			
-	    	popoverContent += "<div id=\"alertSuccess\" class=\"alert alert-success\" role=\"alert\" style=\"display:none;margin-top:20px;\">Well done! You got the correct answer!</div>";
+/*	    	popoverContent += "<div id=\"alertSuccess\" class=\"alert alert-success\" role=\"alert\" style=\"display:none;margin-top:20px;\">Well done! You got the correct answer!</div>";
 	    	if(isTest[j] == 2)
 	    		popoverContent += "<div id=\"alertDanger\" class=\"alert alert-danger\" role=\"alert\" style=\"display:none;margin-top:20px;\">Oh snap! The answer should be \""+targetWord+"\"!</div>";
 	    	else
 	    		popoverContent += "<div id=\"alertDanger\" class=\"alert alert-danger\" role=\"alert\" style=\"display:none;margin-top:20px;\">Oh snap! The answer should be \""+sourceWord+"\"!</div>";
+			*/
 			joinString += "  <span ";
 			joinString += "class = 'fypSpecialClass' ";
 			joinString += "style='text-decoration:underline; font-weight: bold; ' ";
@@ -243,7 +245,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			else
 				joinString += "title='Which of the following is the corresponding Chinese word?' ";
 			joinString += "href='#' ";
-			joinString += "data-content = '" + popoverContent + "'";
+			//joinString += "data-content = '" + popoverContent + "'";
 			joinString += "id = '" + id + "' >";
 			if(isTest[j] != 2)
 				joinString += targetWord;
@@ -402,7 +404,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 
 		});
 		var parts = text.split(" " + sourceWord + " ");
-		var t = 1;
+/*		var t = 1;
 
 		for(var k=0; k< parts.length; k++){
 			var n = occurrences(parts[k],"\"");
@@ -416,12 +418,24 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 					t = 1;
 				}
 			}
-		}
+		}*/
 
-    	var result = parts.join(joinString);
+    	//var result = parts.join(joinString);
+    	var result = "";
+    	if(parts.length > 1)
+    	{
+    		var n = occurrences(parts[0],"\"");
+    		if(n%2 == 1)
+    			result += parts[0] + '"' + joinString + '"';
+    		else
+    			result += parts[0] + joinString;
+    		parts.splice(0, 1);
+    	}
+
+    	result += parts.join(" " + sourceWord + " ");
 
     	paragraph.innerHTML = result;
-    	console.log("paragraph.length is: "+paragraphs.length+" and i is:"+i);
+/*    	console.log("paragraph.length is: "+paragraphs.length+" and i is:"+i);
     	if(i == paragraphs.length-1 && vocabularyListDisplayed == 0){
     		vocabularyListDisplayed = 1;
     		console.log("wowowowowowowowowowowow");
@@ -433,7 +447,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 				oneMoreParagraph+="<p>"+key+" : "+pageDictionary[key]+"</p>";
 			}
 			$(oneMoreParagraph).insertAfter(".cnn_storypgraph"+(i+2));
-		}
+		}*/
 	}
 
 	//this is test on 2015/3/6
@@ -690,7 +704,7 @@ window.addEventListener("load", function(){
 		for(var k = 0; k < splitedWebsite.length; k++){
 			if(document.URL.indexOf(splitedWebsite[k]) !== -1 && websiteSetting !== "")
 				websiteCheck = 1;
-		}
+		} 9
 
 		if(websiteSetting.indexOf('all')!==-1)
 			websiteCheck = 1;
