@@ -258,7 +258,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			var append = '<div id=\"'+ id + '_popup\" class="jfk-bubble gtx-bubble" style="visibility: visible;  opacity: 1; padding-bottom: 40px; ">';
 			append += '<div class="jfk-bubble-content-id"><div id="gtx-host" style="min-width: 200px; max-width: 400px;">';
 			append += '<div id="bubble-content" style="min-width: 200px; max-width: 400px;" class="gtx-content">';
-			append += '<div class="content" style="border: 0px; margin: 0; padding-bottom: 0px;">';
+			//append += '<div class="content" style="border: 0px; margin: 0; padding-bottom: 0px;">';
 			append += '<div id="translation" style="min-width: 200px; max-width: 400px; display: inline;">';
 			append += '<div style="font-size: 150%;" class="gtx-language">FROM</div>';
 			//append += '<div class="gtx-source-audio jfk-button jfk-button-flat gtx-audio-button" role="button" tabindex="0" style="-webkit-user-select: none;">';
@@ -296,7 +296,8 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 
 			//append += '<div class="gtx-language">CHINESE (SIMPLIFIED)</div>';
 			//append += '<a id="myID_more" target="_blank" href="http://dict.youdao.com/search?q='+sourceWord+'&keyfrom=dict.index"  style="color: #A2A2A2; float: right; padding-top: 16px;">MORE »</a>';
-			append += '</div></div></div></div></div>';
+			append += '</div></div></div></div>';
+			//append += '</div>';
 			//append += '<div class="jfk-bubble-closebtn-id jfk-bubble-closebtn" aria-label="Close" role="button" tabindex="0"></div>';
 			append += '<div class="jfk-bubble-arrow-id jfk-bubble-arrow jfk-bubble-arrowup" style="left: 117px;">';
 			append += '<div class="jfk-bubble-arrowimplbefore"></div>';
@@ -563,7 +564,9 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 					remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=1'+"&url="+document.URL, function(answer) {
 					    console.log("select the correct answer");
 					});
-					$('.jfk-bubble').css("background-color", "#cafffb");					
+					$('.jfk-bubble').css("background-image", "url('https://lh4.googleusercontent.com/-RrJfb16vV84/VSvvkrrgAjI/AAAAAAAACCw/K3FWeamIb8U/w725-h525-no/fyp-correct.jpg')");				
+					$('.jfk-bubble').css("background-size", "cover");
+
 					$('.content').css("background-color", "#cafffb");
 	    		}
 	    		else
@@ -571,8 +574,8 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 	    			remembered.get(url_front+'remember?name='+userAccount+'&wordID='+tempWordID+'&isRemembered=0'+"&url="+document.URL, function(answer) {
 					    console.log("select the wrong answer");
 					});
-					$('.jfk-bubble').css("background-color", "#f6688e");
-					$('.content').css("background-color", "#f6688e");
+					$('.jfk-bubble').css("background-image", "url('https://lh6.googleusercontent.com/--PJRQ0mlPes/VSv52jGjlUI/AAAAAAAACDU/dU3ehfK8Dq8/w725-h525-no/fyp-wrong.jpg')");				
+					$('.jfk-bubble').css("background-size", "cover");
 	    		}
 
 	    	}
