@@ -20,6 +20,8 @@
 \usepackage{times}
 \usepackage{url}
 \usepackage{latexsym}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 
 %\setlength\titlebox{5cm}
 
@@ -29,7 +31,7 @@
 % in the camera-ready version and ask you to change it back.
 
 
-\title{Instructions for ACL-2015 Proceedings}
+\title{SECOND LANGUAGE LEARNING FROM NEWS WEBSITES}
 
 \author{First Author \\
   Affiliation / Address line 1 \\
@@ -47,353 +49,700 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-  This document contains the instructions for preparing a camera-ready
-  manuscript for the proceedings of ACL-2015. The document itself
-  conforms to its own specifications, and is therefore an example of
-  what your manuscript should look like. These instructions should be
-  used for both papers submitted for review and for final versions of
-  accepted papers.  Authors are asked to conform to all the directions
-  reported in this document.
+Learning a second language is difficult and requires
+constant revision and immersion.  Fortunately, many of us take the
+time to update ourselves through reading news on a daily basis.  
+In this final year project, we merge both of these goals into a Web browser extension that allows a reader to learn and master vocabulary items. 
+We conducted a user survey to evaluate our system against user requirements collected through an earlier survey. Since we find a word's context to be useful in learning a vocabulary, we further adopt word sense disambiguation (WSD)
+technique to show the best translation for each word in the context.
+Our proposed WSD method, leveraging the extension of standard machine translation system, significantly betters  baseline methods in both coverage and accuracy.
 \end{abstract}
 
-\section{Credits}
-
-This document has been adapted from the instructions for earlier ACL
-proceedings, including those for ACL-2012 by Maggie Li and Michael
-White, those from ACL-2010 by Jing-Shing Chang and Philipp Koehn,
-those for ACL-2008 by Johanna D. Moore, Simone Teufel, James Allan,
-and Sadaoki Furui, those for ACL-2005 by Hwee Tou Ng and Kemal
-Oflazer, those for ACL-2002 by Eugene Charniak and Dekang Lin, and
-earlier ACL and EACL formats. Those versions were written by several
-people, including John Chen, Henry S. Thompson and Donald
-Walker. Additional elements were taken from the formatting
-instructions of the {\em International Joint Conference on Artificial
-  Intelligence}.
 
 \section{Introduction}
+People read news every day. With the increasing popularity of 
+portable devices and computers, more and more people are reading 
+news from news websites \cite{yarlh2012}.
+\\
+Weleverage on this culture to provide users of news websites 
+with an opportunity to learn a second language.
+Learning a new language from language learning websites is very time consuming. 
+To this end, we propose a system to enable visitors to news websites to 
+efficiently learn a new language while they are reading news. We propose to 
+build the system as a browser extension which would run on the client side 
+when readers visit news websites from preconfigured list.
+We choose to build the extension for Google Chrome over others popular browsers 
+such as Firefox, Safari since the former has seen much growth recently (Leather, 2014). 
+Further,Internet Explorer, the most widely used browser, doesn't support extensions.
+\\
+We propose to solve two problems simultaneously: algorithmic  
+teaching of a second language and improving efficiency of users in 
+memorizing a vocabulary.
+Furthermore, as our Chrome Extension needs to modify the original page, 
+minimizing the quantum of code to inject to the original source would 
+improve maintainability and future extensions of the system 
+for deployment in other types of websites.
+\\ 
+Learning a new vocabulary is the most time consuming and boring part of 
+language learning\footnote{\url{https://neltachoutari.wordpress.com/tag/vocabulary/}}. Perhaps, this justifies the 
+poor adoption of current second language learning systems. We, therefore, 
+focus on enabling language learners build their vocabulary efficiently while 
+providing them with an enjoyable user experience.
 
-The following instructions are directed to authors of papers submitted
-to ACL-2015 or accepted for publication in its proceedings. All
-authors are required to adhere to these specifications. Authors are
-required to provide a Portable Document Format (PDF) version of their
-papers. \textbf{The proceedings are designed for printing on A4
-paper.}
+\section{Related Work}
+There are many existing language learning software, which, fall into two categories, learning by  
+lessons and learning vocabularies. In the first category, %learning in lessons, they manually design some lessons to help their 
+lessons are purposefully designed to help user learn a foreign language in an easier way.
+Duolingo\footnote{\url{https://www.duolingo.com/}} is a popular websites in this category. 
+For the second category
+%, learning follow vocabularies, 
+% Tao: "they" refers to who? Same problem for the 1st category. Edited both for you 
+% they let user recite words' list or give the corresponding translations to user's input, 
+users are guided to recite lists of words, or provided with a translation for their input word 
+in the foreign language.
+%a corresponding translation is given according to user's input.
+Google Translate \footnote{\url{https://translate.google.com/}} stands out in this category. The service 
+is available as desktop / mobile / web software including a chrome extension. Our chrome extension is 
+%Muthu: say why
+different from all these existing tools. 
+%Muthu: what are the diference? have you already provided the list?
+I mainly compare our system  with the aforementioned two softwares. Each difference serves as a motivation 
+for developing our extension.
 
-We will make more detailed instructions available at
-\url{http://acl2015.org/publication.html}. Please check this website 
-regularly.
+``Duolingo is a free language-learning and crowdsourced text translation platform''\footnote{\url{http://en.wikipedia.org/wiki/Duolingo}}.
+Most people start to use Duolingo when they know a little or nothing about the new language. They starting 
+from some basic lessons and improve step by step.
+% Tao: your comparison is good, but you need to highlight the uniquencess of your extension in introduction or some other relevant section. 
+However, our target audience include people who know nothing about the foreign language language as well as people with a who are 
+fairly in the foreign language. We can not only help beginners learn a new language but also help them continue their learning 
+by allowing them to practice their foreign language. There are also a lot articles with their translations in Duolingo, but 
+all the articles and their translations are manually added by Duolingo or users from Duolingo. Therefore, parallel articles in Duolingo 
+are old and limited. However, our chrome extension is always working even for those up to the minute news and our user can just practice 
+their foreign language in their daily readings.
 
+\textbf{Google Translate:} ``Highlight or right-click on a section of text and click on Translate icon next to it to translate it to your 
+language"\footnote{\url{http://en.wikipedia.org/wiki/Google_Chrome_Extensions}}. % Tao: please cite
+Google Translate is a chrome extension that displays only the translation when user select a section, which can be a word, a phrase, a 
+sentence or even a whole page. Our chrome extension will translate a single word only, and display the translation, following with the 
+pronunciations and example sentences to help user understand and remember this word. Compared with our extension, Google Translate is more 
+like an extension to help user understand the content of the page. Furthermore, our extension will display the most appropriate translation 
+as it will refer to the context of the word.
+% Tao: Not accurate. If selecting a whole sentence, Google translator also uses context. You may change to "selecting for a single word"?
 
-\section{General Instructions}
+As far as I know, Google Translate will not refer to the context while selecting a single word as the selected section is the only input.
+\\
+\begin{table}[ht]
+  \caption{Summary of the differences}
+  \label{table:difference_summary}
+  \begin{center}
+  \begin{tabular}{| c | c | c | c |}
+    \hline
+    & Duolingo & Google Translate & Our Chrome Extension \\
+    \hline
+    Lessons & Yes & No & No \\
+    \hline
+    User's foreign language level & Low & Low-High & Low-High \\
+    \hline
+    Time consuming & Yes & No & No\\
+    \hline
+    Resource & Limited & Infinite & Infinite \\
+    \hline
+    Customizable & Yes & No & Yes \\
+    \hline
+    Link to External Dictionary & No & No & Yes \\
+    \hline
+  \end{tabular}
+  \end{center}
+\end{table}
+\\
 
-Manuscripts must be in two-column format.  Exceptions to the
-two-column format include the title, authors' names and complete
-addresses, which must be centered at the top of the first page, and
-any full-width figures or tables (see the guidelines in
-Subsection~\ref{ssec:first}). {\bf Type single-spaced.}  Start all
-pages directly under the top margin. See the guidelines later
-regarding formatting the first page.  The manuscript should be
-printed single-sided and its length
-should not exceed the maximum page limit described in Section~\ref{sec:length}.
-Do not number the pages.
+\section{Algorithm}
+Our extension shows the (Chinese) translation of an English word in the learning popup (see Figure~\ref{fig:software_design_4}). As we all know, one word may have multiple translations in another language,and our extension is expected to select the most appropriate one based on the context.We call such translation selection as cross-lingual word sense disambiguation (WSD).
 
+WSD is an open problem in natural language processing and ontology, aiming at identifying the proper sense of a word (i.e. meaning) in a context, when the word has multiple meanings. However, the system that I have implemented is  different from the traditional WSD. Normally, WSD is to identify its sense in its original language, but my system is to identify its sense in another language.
 
-\subsection{Electronically-available resources}
+It has been proved by a lot of studies that context is the key to learning a new language. This further suggests that a good word sense disambiguation system is necessary for our Chrome Extension. It can help user remember vocabulary efficiently and is a key feature that differentiate our software from other language learning tools.
 
-We strongly prefer that you prepare your PDF files using \LaTeX\ with
-the official ACL 2015 style file (acl2015.sty) and bibliography style
-(acl.bst). These files are available at
-\url{http://acl2015.org}. You will also find the document
-you are currently reading (acl2015.pdf) and its \LaTeX\ source code
-(acl2015.tex) on this website.
-
-You can alternatively use Microsoft Word to produce your PDF file. In
-this case, we strongly recommend the use of the Word template file
-(acl2015.dot) on the ACL 2015 website (\url{http://acl2015.org}). 
-If you have an option, we recommend that you use the \LaTeX2e version. 
-If you will be using the Microsoft Word template, we suggest that you 
-anonymize your source file so that the pdf produced does not retain your
-identity.  This can be done by removing any personal information
-from your source document properties.
-
-
-
-\subsection{Format of Electronic Manuscript}
-\label{sect:pdf}
-
-For the production of the electronic manuscript you must use Adobe's
-Portable Document Format (PDF). PDF files are usually produced from
-\LaTeX\ using the \textit{pdflatex} command. If your version of
-\LaTeX\ produces Postscript files, you can convert these into PDF
-using \textit{ps2pdf} or \textit{dvipdf}. On Windows, you can also use
-Adobe Distiller to generate PDF.
-
-Please make sure that your PDF file includes all the necessary fonts
-(especially tree diagrams, symbols, and fonts with Asian
-characters). When you print or create the PDF file, there is usually
-an option in your printer setup to include none, all or just
-non-standard fonts.  Please make sure that you select the option of
-including ALL the fonts. \textbf{Before sending it, test your PDF by
-  printing it from a computer different from the one where it was
-  created.} Moreover, some word processors may generate very large PDF
-files, where each page is rendered as an image. Such images may
-reproduce poorly. In this case, try alternative ways to obtain the
-PDF. One way on some systems is to install a driver for a postscript
-printer, send your document to the printer specifying ``Output to a
-file'', then convert the file to PDF.
-
-It is of utmost importance to specify the \textbf{A4 format} (21 cm
-x 29.7 cm) when formatting the paper. When working with
-{\tt dvips}, for instance, one should specify {\tt -t a4}.
-Or using the command \verb|\special{papersize=210mm,297mm}| in the latex
-preamble (directly below the \verb|\usepackage| commands). Then using 
-{\tt dvipdf} and/or {\tt pdflatex} which would make it easier for some.
-
-
-Print-outs of the PDF file on A4 paper should be identical to the
-hardcopy version. If you cannot meet the above requirements about the
-production of your electronic submission, please contact the
-publication chairs as soon as possible.
-
-
-\subsection{Layout}
-\label{ssec:layout}
-
-Format manuscripts two columns to a page, in the manner these
-instructions are formatted. The exact dimensions for a page on A4
-paper are:
-
+In this following, I describe four approaches that I have tried to accomplish WSD system, which is also my main progress in the second semester. The four approaches are: 
+% Tao: Please give a short definition for other three methods.
 \begin{itemize}
-\item Left and right margins: 2.5 cm
-\item Top margin: 2.5 cm
-\item Bottom margin: 2.5 cm
-\item Column width: 7.7 cm
-\item Column height: 24.7 cm
-\item Gap between columns: 0.6 cm
+\item Frequency based: always selecting the most frequent translation (the baseline),
+\item Part-of-Speech Tag based: selecting the translation based on the Part-of-Speech Tag of the English word
+\item Category based: Selecting the translation based on the category of the news article
+\item Translation based: Selecting the translation based on the result from existing Machine Translation systems
 \end{itemize}
 
-\noindent Papers should not be submitted on any other paper size.
- If you cannot meet the above requirements about the production of 
- your electronic submission, please contact the publication chairs 
- above as soon as possible.
+\subsection{Baseline}
+The simplest way to select a translation from the candidates is by random. However, the correctness of this method is very low, probably less than 20\%, and is not a good baseline for other methods to compete with. Another simple idea is to always select the most commonly used translation. Luckily, when I crawled the dictionary, Google Translate does provide usage frequency of each Chinese Translation.  This turns out to be a much better result, and thus serves as a fair baseline method.
+\\
+\subsection{Part-of-Speech Tag}
+As we all know, many English words have more than one Part-of-Speech (POS) tags and their Chinese translations in different POS may differ a lot. For example, the word ``book" has two POS tags, noun and verb. If it is used as a noun, mostly it means a handwritten or printed work of fiction or nonfiction, which should be translated as ``书", and mostly means to reserve if used as a verb, which should be translated as ``预定". Therefore, if I can get the POS tag of the English word, it might help me identify its sense or the Chinese translation.
+\\
+Among all possible on-line sources, Stanford Log-linear Part-of-Speech Tagger~\cite{Toutanova2003} is the most stable and well performed Part-of-Speech Tagger, which is developed by The Stanford Natural Language Processing Group.
+\\
+\begin{algorithm}[ht]
+\caption{Part-of-Speech Tagger}
+\label{algorithm:wsd_1}
+\begin{algorithmic}
+\REQUIRE POS Tagger, Dictionary \textless English, Chinese, POS \textgreater, Input English
+
+\STATE{$Pairs<word,POS> \leftarrow POSTagger \leftarrow English$}
+
+\IF{$EnglishWord \subset Dictionary.English$}
+    \STATE{$TranslationList \leftarrow Dictionary.Chinese+Dictionary.POS$}
+    \FOR{$word \subset Pairs.word$}
+        \IF{$word = EnglishWord$}
+            \STATE{$POSResult \leftarrow Pairs.POS$}
+            \STATE{$Break$}
+        \ENDIF
+    \ENDFOR
+    \FOR{$POS \subset TranslationList.POS$}
+        \IF{$POS = POSResult$}
+            \STATE{$FinalResult \leftarrow TranslationList.Chinese$}
+            \STATE{$Break$}
+        \ENDIF
+    \ENDFOR
+\ENDIF
+\RETURN FinalResult
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Category based}
+The word ``interest" have two very different translations when it is used as a noun. One translation is ``the feeling of a person whose attention, concern, or curiosity is particularly engaged by something", which should be translated as ``兴趣". The other translation is ``a share, right, or title in the ownership of property, in a commercial or financial undertaking, or the like", which should be translated as ``利益". It is quite obvious that the second sense is mostly used in financial related topics. Therefore, if we can analyze the category of the original article and 
+select the translation with the same category label, it might help disambiguate the word meaning.
+\\
+Getting the category of the original news article is very simple. Most news websites have a manually assigned a category for each news article and in most cases, the category label is part of the URL.
+\\
+However, assigning a category for Chinese word is not simple. As we are dealing with news, it is good to obtain such information from Chinese news domain. I crawled 100 Chinese news articles in each category from  Baidu News\footnote{\url{http://news.baidu.com/}}, making around 1000 news articles in total. After I got all the news articles, I send all the news articles to the Stanford Chinese Word Segmenter, and further calculate word document frequency under each  category. For example, if word ``interest" is found five times in article A and three times in article B, both article A and B are under ``finance" category, then I will add two for category ``finance" of word ``interest" as it will be counted only once even it can be found multi times in one article. I will use ``weight" to represent this value and ``averageweight" is the average weight of all categories of one word. After that, I will normalize the weight and use Equation~\ref{equation:category_1} and Equation~\ref{equation:category_2} to assign categories for those Chinese words. Basically, the two equations means that, if this word can be found in at least ten different news articles and more than 80\% of the articles are under the same category, then I will use this category for this word.
+\begin{algorithm}[ht]
+\caption{News Category}
+\label{algorithm:wsd_2}
+\begin{algorithmic}
+\REQUIRE Dictionary \textless English, Chinese, category\textgreater, Input English, News URL
+
+\IF{$EnglishWord \subset Dictionary.English$}
+    \STATE{$TranslationList \leftarrow Dictionary.Chinese+Dictionary.category$}
+    \STATE{$EnglishCategory \leftarrow URL.category$}
+    \FOR{$category \subset TranslationList.category$}
+        \IF{$category = EnglishCategory$}
+            \STATE{$FinalResult \leftarrow TranslationList.Chinese$}
+            \STATE{$Break$}
+        \ENDIF
+    \ENDFOR
+\ENDIF
+\RETURN FinalResult
+
+\end{algorithmic}
+\end{algorithm}
+\begin{equation}
+averageweight > 1\\
+\label{equation:category_1}
+\end{equation}
+\begin{equation}
+threshold > 8 * averageweight\\
+\label{equation:category_2}
+\end{equation}
+
+\subsection{Translation based}
+Since our target is to select the most appropriate translation based on the context, using existing Machine Translation (MT) systems is also a good approach, as all of them will certainly translate words based on the context.
+\\
+There are mainly two kinds of MT systems. One is off-line Machine Translation systems, which are mostly not available as mostly they are build for internal usage. Luckily, NUS NLP group built one MT system before, and it has been wrapped into a server, so that I can use it as an on-line service. The other one is on-line MT system, which are wrapped as a server and open to public, such as Bing Translator or Google Translate. As only Bing Translator is free, I decide to try Bing Translator as well.
+\\
+The first priority of choosing a MT system is its translation quality, if it can give me a result that nearly as good as a result from human translation, then the Chinese word that I generated from the MT system will have a high chance to be correct as well. However, after I tried both MT systems, the performance of the one from NLP group is worse than Bing Translator and the server is very unstable, I decide to use Bing Translator as my Machine Translation system.
+\\
+\subsubsection{Bing}
+Bing Translator, also called Microsoft Translator, is a on-line Machine Translation system that developed by Microsoft team with a cloud-based API that is conveniently integrated into multiple products, tools, and solutions. Table \ref{table:bing_translator} is the sample input and output of Bing Translator.
+\\
+\begin{algorithm}[ht]
+\caption{Bing Translator}
+\label{algorithm:wsd_3}
+\begin{algorithmic}
+\REQUIRE Bing Translator, Dictionary \textless English, Chinese\textgreater, Input English
+\STATE{$ChineseTranslation \leftarrow Bing Translator \leftarrow English$}
+\IF{$EnglishWord \subset Dictionary.English$}
+    \STATE{$TranslationList \leftarrow Dictionary.Chinese$}
+    \STATE{$MaxLength = 0$}
+    \FOR{$ChineseWord \subset TranslationList.Chinese$}
+        \IF{$(ChineseWord \subset ChineseTranslation) \cap (MaxLength < ChineseWord.Length)$}
+            \STATE{$FinalResult \leftarrow ChineseWord$}
+        \ENDIF
+    \ENDFOR
+\ENDIF
+\RETURN FinalResult
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Bing+}
+\begin{algorithm}[ht]
+\caption{Bing+}
+\label{algorithm:wsd_4}
+\begin{algorithmic}
+\REQUIRE Bing Translator, Word Segmenter, Dictionary \textless English, Chinese\textgreater, Input English
+\STATE{$ChineseTranslation \leftarrow Bing Translator \leftarrow English$}
+\STATE{$SegmentedChineseTranslation \leftarrow Word Segmenter \leftarrow ChineseTranslation$}
+\IF{$EnglishWord \subset Dictionary.English$}
+    \STATE{$TranslationList \leftarrow Dictionary.Chinese$}
+    \STATE{$MaxLength = 0$}
+    \FOR{$ChineseWord \subset TranslationList.Chinese$}
+        \IF{$(ChineseWord \subset ChineseTranslation) \cap (MaxLength < ChineseWord.Length)$}
+            \STATE{$FinalResult \leftarrow ChineseWord$}
+        \ENDIF
+    \ENDFOR
+    \FOR{$SegmentedWord \subset SegmentedChineseTranslation$}
+        \IF{$FinalResult \subset SegmentedWord$}
+            \STATE{$FinalResult \leftarrow SegmentedWord$}
+        \ENDIF
+    \ENDFOR
+\ENDIF
+\RETURN FinalResult
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Bing++}
+Bitext word alignment or simply word alignment is the natural language processing task of identifying translation relationships among the words (or more rarely multiword units) in a bitext, resulting in a bipartite graph between the two sides of the bitext, with an arc between two words if and only if they are translations of one another. I use Bing Word Alignment API\footnote{\url{https://msdn.microsoft.com/en-us/library/dn198370.aspx}} developed by Microsoft team to get the word alignment from English to Chinese Simplified. Luckily, although this API only support very few sets of language pairs, English to Chinese Simplified is one of the few supported sets. Table \ref{table:bing_plus_plus_2} has some examples of input and output from Bing Word Alignment. The left column is the original English sentence, the column in the middle is the translated Chinese sentence and the right column is the word alignment information. For word alignment information, the colon separates start and end index, the dash separates the languages, and space separates the words. For example, in the second column, ``0:1|0:1" means the word ``dr" should match with word ``博士" and ``9:12|6:7" means the word ``knew" should match with word ``知道".
+
+\begin{algorithm}[ht]
+\caption{Bing++}
+\label{algorithm:wsd_5}
+\begin{algorithmic}
+\REQUIRE Bing Translator, Word Segmenter, Word Alignment, Dictionary \textless English, Chinese\textgreater, Input English
+\STATE{$ChineseTranslation \leftarrow Bing Translator \leftarrow English$}
+\STATE{$SegmentedChineseTranslation \leftarrow Word Segmenter \leftarrow ChineseTranslation$}
+\STATE{$Pair<EnglishWord,ChineseWord> \leftarrow Word Alignment \leftarrow English$}
+\IF{$EnglishWord \subset Dictionary.English$}
+    \STATE{$TranslationList \leftarrow Dictionary.Chinese$}
+    \STATE{$MaxLength = 0$}
+    \FOR{$ChineseWord \subset TranslationList.Chinese$}
+        \IF{$(ChineseWord \subset ChineseTranslation) \cap (MaxLength < ChineseWord.Length)$}
+            \STATE{$FinalResult_1 \leftarrow ChineseWord$}
+        \ENDIF
+    \ENDFOR
+    \FOR{$SegmentedWord \subset SegmentedChineseTranslation$}
+        \IF{$FinalResult_1 \subset SegmentedWord$}
+            \STATE{$FinalResult_1 \leftarrow SegmentedWord$}
+        \ENDIF
+    \ENDFOR
+    \FOR{$Word \subset Pairs.EnglishWord$}
+        \IF{$EnglishWord = Word$}
+            \STATE{$FinalResult_2 \leftarrow Pairs.ChineseWord$}
+        \ENDIF
+    \ENDFOR
+\ENDIF
+\RETURN $FinalResult_1 \cup FinalResult_2$
+\end{algorithmic}
+\end{algorithm}
+One general question about this approach is that, since I can get the official word alignment from Bing Word Alignment approach, is Bing+ approach still useful? Table \ref{table:bing_plus_plus_3} contains some examples of Bing+ approach and Bing++ approach. From left to right, the four columns are original English sentence, Chinese translation, result from Bing+ approach and result from Bing++ approach. It is very obvious that the result from Bing+ approach is the substring of the result from Bing++ approach, but which one is better? As the purpose of our Word Sense Disambiguation system is to select the most appropriate translation based on the context, but Bing Translator is a bit too smart comparing with our purpose. Bing Translator will generate some Chinese words that cannot be translated from any of the English word but can make this sentence clear and smooth. In this case, our system will choose the short answer instead of the long answer. That's why in the Bing++ approach, I will keep the result both from Bing+ approach and Bing Word Alignment and choose the better one.
+\\
+\section{Results}
+This project has two main parts, Chrome Extension and WSD system. The Chrome Extension part is a  software development project and the best way to evaluate is to listen to users' voice. The WSD system is a standard research problem and can be evaluated with ground-truth, reporting its performance
+%tested from a few very standard aspects, 
+by coverage and accuracy.
+\subsection{Chrome Extension}
+There are a few standard aspects that can be evaluated from the Chrome Extension part, such as User Interface (UI) design, loading speed and the functionality. UI design and functionality are more related to front end, while the loading speed is highly correlated to the back end. As this project is a joint work, and I am responsible  for the front end, I limit my focus to evaluate the UI design and functionality by surveying users.
+Also, as mentioned in the above chapters, we did a user requirement survey before we really start this project. From this survey, we roughly know  our potential customers' expectation and we need to check whether our Chrome Extension could satisfy them. I got 16 different responses, 15 of them are between 18 and 24, and 11 of them are professional in Chinese.
+\\
+For the details of the survey questions and survey results, please refer to the Appendix. In this survey, I made some screen shots of our Chrome Extension and ask subjects about their opinions. 
+Most of them think that replacing some words with their corresponding Chinese translation will not influence their normal reading, but they will feel a bit uncomfortable and prefer to read the original English articles. Based on their voice, I decide to highlight the original English words as default setting instead of replacing the English words with their Chinese Translations. Besides, most subjects think our Chrome Extension is nice and would like to try it when they are going to learn a new language.
+\\
+\subsection{WSD System}
+% Tao: 1. Why you change eval dataset?  This makes your evaluation results less convicing. I tried my best to address it. But you need to fix this problem in workshop paper. 2. You need to report the exact size of your eval dataset, e.g., # of sentences/words.
+Our Word Sense Disambiguate System can be evaluated from two important aspects: coverage (i.e., is able to return a translation) and accuracy (i.e., the translation is proper). To this end, I manually annotate the ground truth. Each approach was evaluated  right after I had implemented it, therefore,  they was tested against a random but different set of recent news articles from CNN.  Though the evaluation datasets are different, it is still fair to compare their results, as the size of all dataset is sufficiently large. 
 
 
-\subsection{Fonts}
-
-For reasons of uniformity, Adobe's {\bf Times Roman} font should be
-used. In \LaTeX2e{} this is accomplished by putting
-
-\begin{quote}
-\begin{verbatim}
-\usepackage{times}
-\usepackage{latexsym}
-\end{verbatim}
-\end{quote}
-in the preamble. If Times Roman is unavailable, use {\bf Computer
-  Modern Roman} (\LaTeX2e{}'s default).  Note that the latter is about
-  10\% less dense than Adobe's Times Roman font.
+Firstly, we want our algorithm to return at least one result instead of blank. For POSTagger approach, if our dictionary do not cover the Part-of-Speech generated from Stanford POSTagger, the algorithm will return nothing. For News Category approach, as the algorithm will only assign categories for some of the Chinese translations and not all Chinese news categories can match with a English news category, so the algorithm sometimes will return nothing as well. For Bing+ and Bing++ approach, if none of the Chinese translations is the substring of the Bing result, the algorithm will return nothing. For Bing++ approach, if the word alignment information is phrase to phrase matching, for example, it may give a matching between ``in order to" and its Chinese translation, the algorithm will return nothing. Alternatively, for all the listed algorithm listed above, they can always return the translation with the highest frequency of use, but in this case, we cannot know whether the result is generated from the algorithm itself or just the baseline. That's why I choose to return a blank instead of the translation with the highest frequency of use.
 
 
-\begin{table}[h]
-\begin{center}
-\begin{tabular}{|l|rl|}
-\hline \bf Type of Text & \bf Font Size & \bf Style \\ \hline
-paper title & 15 pt & bold \\
-author names & 12 pt & bold \\
-author affiliation & 12 pt & \\
-the word ``Abstract'' & 12 pt & bold \\
-section titles & 12 pt & bold \\
-document text & 11 pt  &\\
-captions & 11 pt & \\
-abstract text & 10 pt & \\
-bibliography & 10 pt & \\
-footnotes & 9 pt & \\
-\hline
-\end{tabular}
-\end{center}
-\caption{\label{font-table} Font guide. }
+\begin{table}[ht]
+  \caption{Coverage for different approaches}
+  \label{table:evaluation_1}
+  \begin{tabular}{| p{2cm} | p{1.8cm} | p{1.8cm} | p{1.8cm} | p{1.8cm} | p{1.8cm} | p{1.8cm} |}   
+    \hline
+    & Baseline & POSTagger & Bing & Bing+ & Bing++ & News Category \\
+    \hline
+    Cover & 580/580 & 510/580 & 801/1095 & 801/1095 & 987/1095 & 15/804 \\
+    \hline
+    Coverage & 100\% & 88\% & 73\% & 73\% & 90\% & 1.9\%\\
+    \hline
+  \end{tabular}
 \end{table}
 
-\subsection{The First Page}
-\label{ssec:first}
+Table~\ref{table:evaluation_1} contains the coverage for different approaches. As the algorithm will try to translate some word only if it is covered by our dictionary, the coverage for Baseline is always 100\%. The coverage for Bing, Bing+, Bing++ and POSTagger are roughly the same and all of them are acceptable. However, the coverage for News Category approach is only 1.9\%. One reason is that when I set the threshold for assigning categories for Chinese word, I purposely make it very high to maximize the accuracy. If the accuracy is quite high, which means this approach is quite useful, then I will lower the threshold and find the balance point.
 
-Center the title, author's name(s) and affiliation(s) across both
-columns. Do not use footnotes for affiliations. Do not include the
-paper ID number assigned during the submission process. Use the
-two-column format only when you begin the abstract.
+\begin{longtable}{| p{5cm} | p{5cm} | p{1cm} | p{1cm} | p{1.5cm} |}   
+  \hline
+  English & Chinese & Word & Bing+ & Word Alignment \\
+  \hline
+  duncan told cnns don lemon hes just painting a picture of urban street life with his lyrics just & 邓肯告诉无耻地辱骂不只画一幅画的城市的街头生活，用他的歌词的柠檬住户开支统计调查 & just & 只 & \\ 
+  \hline
+  prosecutors say lyrics arent the only evidence they have at duncans preliminary hearing they presented social media posts that they say prove duncan is still a gang member have & 检察官说歌词都不是他们有在邓肯初步聆讯中他们提出了一种社会媒体的文章，他们说的唯一证据证明邓肯依然是一个帮派成员 & have & 有 & \\
+  \hline
+  oh the places youll go! rose to the bestseller list shortly after it was released in 1990 and continues to pop up there most every spring as high school and college grads transition to a new phase of life & 哦你要去的地方！升至畅销书排行榜之后不久它于1990年被释放并继续弹出那里大多数每年春天为高中和大学毕业生过渡到人生的一个新阶段 & high & 高中 & \\
+  \hline
+  us president barack obama will travel to saudi arabia on tuesday in order to meet the newly appointed monarch king salman and pay his respects to the family of the late king abdullah the white house said saturday order world & 我们总统巴拉克·奥巴马将前往沙特阿拉伯周二以满足新任命的君主国王萨勒曼和他的敬意向晚的家人国王的阿卜杜拉白宫说星期六 & order & 任命 & \\
+  \hline
+  \caption{Some examples of Bing+ and Word Alignment}
+  \label{table:evaluation_2}
+\end{longtable}
 
-{\bf Title}: Place the title centered at the top of the first page, in
-a 15-point bold font. (For a complete guide to font sizes and styles,
-see Table~\ref{font-table}) Long titles should be typed on two lines
-without a blank line intervening. Approximately, put the title at 2.5
-cm from the top of the page, followed by a blank line, then the
-author's names(s), and the affiliation on the following line. Do not
-use only initials for given names (middle initials are allowed). Do
-not format surnames in all capitals (e.g., use ``Schlangen'' not
-``SCHLANGEN'').  Do not format title and section headings in all
-capitals as well except for proper names (such as ``BLEU'') that are
-conventionally in all capitals.  The affiliation should contain the
-author's complete address, and if possible, an electronic mail
-address. Start the body of the first page 7.5 cm from the top of the
-page.
+For the four examples listed in Table~\ref{table:evaluation_2}, Word Alignment cannot generate any result. For the first two examples, the word that need to be translated actually do not have any actual meaning, which means that it do not have a translation when we are going to translate this word in this context. For the last two examples, the word ``high" is from phrase ``hight school" and the word ``order" is from the phrase ``in order to", therefore, Bing Translator will pass the algorithm a matching between two phrases instead of two words. Furthermore, after roughly went through all the test data, the blank results generated from Word Alignment approach are mostly under the above two situations. Therefore, we decided not to translate words that do not have a Word Alignment result to our user. As a result, the coverage of Bing++ will become 100\% which is fairly good if this approach also has the highest accuracy.
+\\
+Secondly, we want our algorithm to be as accurate as possible, and the most ideal situation is that all the translation returned from the algorithm is the correct or the most appropriate translation in that context. When I evaluate the accuracy of these few approaches, I use a few news articles from CNN as the input data and manually select the most appropriate translation for all the output data. After that, I will compare the result from the algorithm and the result that I manually generated and get the accuracy.
+\\
+\begin{table}[ht]
+  \caption{Accuracy for different approaches}
+  \label{table:evaluation_3}
+  \begin{tabular}{| p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm} | p{2cm} |}
+    \hline
+     & Baseline & POSTagger & Bing & Bing+ & Bing++ & News Category \\
+    \hline
+    Correct & 400/580 & 345/510 & 545/801 & 705/801 & 961/987 & <5/15\\
+    \hline
+    Accuracy & 69\% & 68\% & 68\% & 88\% & 97\% & <30\% \\
+    \hline
+  \end{tabular}
 
-The title, author names and addresses should be completely identical
-to those entered to the electronical paper submission website in order
-to maintain the consistency of author information among all
-publications of the conference. If they are different, the publication
-chairs may resolve the difference without consulting with you; so it
-is in your own interest to double-check that the information is
-consistent.
+\end{table}
+\\
+Figure~\ref{table:evaluation_3} contains the accuracy of all the approaches. The last column is the accuracy for News Category approach and it is only 30\%. As mentioned in above Chapter, since the accuracy is very low, there is no need to lower the threshold and try to allocate more categories for Chinese words. The accuracy for Baseline is 69\%, which is already a fairly hight accuracy. The accuracy for Bing and POSTagger is around 69\% also, which is a bit lower than our expectation. The accuracy for Bing++ is 97\% which I think is a very good result and it is already very hard to improve. Therefore, based on my test results, Bing++ is the best approach among these five approaches.
+\\
+%\section{Credits}
 
-{\bf Abstract}: Type the abstract at the beginning of the first
-column. The width of the abstract text should be smaller than the
-width of the columns for the text in the body of the paper by about
-0.6 cm on each side. Center the word {\bf Abstract} in a 12 point bold
-font above the body of the abstract. The abstract should be a concise
-summary of the general thesis and conclusions of the paper. It should
-be no longer than 200 words. The abstract text should be in 10 point font.
+% This document has been adapted from the instructions for earlier ACL
+% proceedings, including those for ACL-2012 by Maggie Li and Michael
+% White, those from ACL-2010 by Jing-Shing Chang and Philipp Koehn,
+% those for ACL-2008 by Johanna D. Moore, Simone Teufel, James Allan,
+% and Sadaoki Furui, those for ACL-2005 by Hwee Tou Ng and Kemal
+% Oflazer, those for ACL-2002 by Eugene Charniak and Dekang Lin, and
+% earlier ACL and EACL formats. Those versions were written by several
+% people, including John Chen, Henry S. Thompson and Donald
+% Walker. Additional elements were taken from the formatting
+% instructions of the {\em International Joint Conference on Artificial
+%   Intelligence}.
 
-{\bf Text}: Begin typing the main body of the text immediately after
-the abstract, observing the two-column format as shown in 
-the present document. Do not include page numbers.
+%\section{Introduction}
 
-{\bf Indent} when starting a new paragraph. Use 11 points for text and 
-subsection headings, 12 points for section headings and 15 points for
-the title. 
+% The following instructions are directed to authors of papers submitted
+% to ACL-2015 or accepted for publication in its proceedings. All
+% authors are required to adhere to these specifications. Authors are
+% required to provide a Portable Document Format (PDF) version of their
+% papers. \textbf{The proceedings are designed for printing on A4
+% paper.}
 
-\subsection{Sections}
-
-{\bf Headings}: Type and label section and subsection headings in the
-style shown on the present document.  Use numbered sections (Arabic
-numerals) in order to facilitate cross references. Number subsections
-with the section number and the subsection number separated by a dot,
-in Arabic numerals. Do not number subsubsections.
-
-{\bf Citations}: Citations within the text appear in parentheses
-as~\cite{Gusfield:97} or, if the author's name appears in the text
-itself, as Gusfield~\shortcite{Gusfield:97}.  Append lowercase letters
-to the year in cases of ambiguity.  Treat double authors as
-in~\cite{Aho:72}, but write as in~\cite{Chandra:81} when more than two
-authors are involved. Collapse multiple citations as
-in~\cite{Gusfield:97,Aho:72}. Also refrain from using full citations
-as sentence constituents. We suggest that instead of
-\begin{quote}
-  ``\cite{Gusfield:97} showed that ...''
-\end{quote}
-you use
-\begin{quote}
-``Gusfield \shortcite{Gusfield:97}   showed that ...''
-\end{quote}
-
-If you are using the provided \LaTeX{} and Bib\TeX{} style files, you
-can use the command \verb|\newcite| to get ``author (year)'' citations.
-
-As reviewing will be double-blind, the submitted version of the papers
-should not include the authors' names and affiliations. Furthermore,
-self-references that reveal the author's identity, e.g.,
-\begin{quote}
-``We previously showed \cite{Gusfield:97} ...''  
-\end{quote}
-should be avoided. Instead, use citations such as 
-\begin{quote}
-``Gusfield \shortcite{Gusfield:97}
-previously showed ... ''
-\end{quote}
-
-\textbf{Please do not use anonymous citations} and do not include
-acknowledgements when submitting your papers. Papers that do not
-conform to these requirements may be rejected without review.
-
-\textbf{References}: Gather the full set of references together under
-the heading {\bf References}; place the section before any Appendices,
-unless they contain references. Arrange the references alphabetically
-by first author, rather than by order of occurrence in the text.
-Provide as complete a citation as possible, using a consistent format,
-such as the one for {\em Computational Linguistics\/} or the one in the 
-{\em Publication Manual of the American 
-Psychological Association\/}~\cite{APA:83}.  Use of full names for
-authors rather than initials is preferred.  A list of abbreviations
-for common computer science journals can be found in the ACM 
-{\em Computing Reviews\/}~\cite{ACM:83}.
-
-The \LaTeX{} and Bib\TeX{} style files provided roughly fit the
-American Psychological Association format, allowing regular citations, 
-short citations and multiple citations as described above.
-
-{\bf Appendices}: Appendices, if any, directly follow the text and the
-references (but see above).  Letter them in sequence and provide an
-informative title: {\bf Appendix A. Title of Appendix}.
-
-\subsection{Footnotes}
-
-{\bf Footnotes}: Put footnotes at the bottom of the page and use 9
-points text. They may be numbered or referred to by asterisks or other
-symbols.\footnote{This is how a footnote should appear.} Footnotes
-should be separated from the text by a line.\footnote{Note the line
-separating the footnotes from the text.}
-
-\subsection{Graphics}
-
-{\bf Illustrations}: Place figures, tables, and photographs in the
-paper near where they are first discussed, rather than at the end, if
-possible.  Wide illustrations may run across both columns.  Color
-illustrations are discouraged, unless you have verified that  
-they will be understandable when printed in black ink.
-
-{\bf Captions}: Provide a caption for every illustration; number each one
-sequentially in the form:  ``Figure 1. Caption of the Figure.'' ``Table 1.
-Caption of the Table.''  Type the captions of the figures and 
-tables below the body, using 11 point text.
+% We will make more detailed instructions available at
+% \url{http://acl2015.org/publication.html}. Please check this website 
+% regularly.
 
 
-\section{XML conversion and supported \LaTeX\ packages}
+%\section{General Instructions}
 
-Following ACL 2014 we will also we will attempt to automatically convert 
-your \LaTeX\ source files to publish papers in machine-readable 
-XML with semantic markup in the ACL Anthology, in addition to the 
-traditional PDF format.  This will allow us to create, over the next 
-few years, a growing corpus of scientific text for our own future research, 
-and picks up on recent initiatives on converting ACL papers from earlier 
-years to XML. 
+% Manuscripts must be in two-column format.  Exceptions to the
+% two-column format include the title, authors' names and complete
+% addresses, which must be centered at the top of the first page, and
+% any full-width figures or tables (see the guidelines in
+% Subsection~\ref{ssec:first}). {\bf Type single-spaced.}  Start all
+% pages directly under the top margin. See the guidelines later
+% regarding formatting the first page.  The manuscript should be
+% printed single-sided and its length
+% should not exceed the maximum page limit described in Section~\ref{sec:length}.
+% Do not number the pages.
 
-We encourage you to submit a ZIP file of your \LaTeX\ sources along
-with the camera-ready version of your paper. We will then convert them
-to XML automatically, using the LaTeXML tool
-(\url{http://dlmf.nist.gov/LaTeXML}). LaTeXML has \emph{bindings} for
-a number of \LaTeX\ packages, including the ACL 2015 stylefile. These
-bindings allow LaTeXML to render the commands from these packages
-correctly in XML. For best results, we encourage you to use the
-packages that are officially supported by LaTeXML, listed at
-\url{http://dlmf.nist.gov/LaTeXML/manual/included.bindings}
+
+%\subsection{Electronically-available resources}
+
+% We strongly prefer that you prepare your PDF files using \LaTeX\ with
+% the official ACL 2015 style file (acl2015.sty) and bibliography style
+% (acl.bst). These files are available at
+% \url{http://acl2015.org}. You will also find the document
+% you are currently reading (acl2015.pdf) and its \LaTeX\ source code
+% (acl2015.tex) on this website.
+
+% You can alternatively use Microsoft Word to produce your PDF file. In
+% this case, we strongly recommend the use of the Word template file
+% (acl2015.dot) on the ACL 2015 website (\url{http://acl2015.org}). 
+% If you have an option, we recommend that you use the \LaTeX2e version. 
+% If you will be using the Microsoft Word template, we suggest that you 
+% anonymize your source file so that the pdf produced does not retain your
+% identity.  This can be done by removing any personal information
+% from your source document properties.
 
 
 
+%\subsection{Format of Electronic Manuscript}
+%\label{sect:pdf}
+
+% For the production of the electronic manuscript you must use Adobe's
+% Portable Document Format (PDF). PDF files are usually produced from
+% \LaTeX\ using the \textit{pdflatex} command. If your version of
+% \LaTeX\ produces Postscript files, you can convert these into PDF
+% using \textit{ps2pdf} or \textit{dvipdf}. On Windows, you can also use
+% Adobe Distiller to generate PDF.
+
+% Please make sure that your PDF file includes all the necessary fonts
+% (especially tree diagrams, symbols, and fonts with Asian
+% characters). When you print or create the PDF file, there is usually
+% an option in your printer setup to include none, all or just
+% non-standard fonts.  Please make sure that you select the option of
+% including ALL the fonts. \textbf{Before sending it, test your PDF by
+%   printing it from a computer different from the one where it was
+%   created.} Moreover, some word processors may generate very large PDF
+% files, where each page is rendered as an image. Such images may
+% reproduce poorly. In this case, try alternative ways to obtain the
+% PDF. One way on some systems is to install a driver for a postscript
+% printer, send your document to the printer specifying ``Output to a
+% file'', then convert the file to PDF.
+
+% It is of utmost importance to specify the \textbf{A4 format} (21 cm
+% x 29.7 cm) when formatting the paper. When working with
+% {\tt dvips}, for instance, one should specify {\tt -t a4}.
+% Or using the command \verb|\special{papersize=210mm,297mm}| in the latex
+% preamble (directly below the \verb|\usepackage| commands). Then using 
+% {\tt dvipdf} and/or {\tt pdflatex} which would make it easier for some.
 
 
-\section{Translation of non-English Terms}
-
-It is also advised to supplement non-English characters and terms
-with appropriate transliterations and/or translations
-since not all readers understand all such characters and terms.
-Inline transliteration or translation can be represented in
-the order of: original-form transliteration ``translation''.
-
-\section{Length of Submission}
-\label{sec:length}
-
-Long papers may consist of up to 8 pages of content, plus two extra
-pages for references. Short papers may consist of up to 4 pages of
-content, plus two extra pages for references.  Papers that do not
-conform to the specified length and formatting requirements may be
-rejected without review.
+% Print-outs of the PDF file on A4 paper should be identical to the
+% hardcopy version. If you cannot meet the above requirements about the
+% production of your electronic submission, please contact the
+% publication chairs as soon as possible.
 
 
+% \subsection{Layout}
+% \label{ssec:layout}
 
-\section*{Acknowledgments}
+% Format manuscripts two columns to a page, in the manner these
+% instructions are formatted. The exact dimensions for a page on A4
+% paper are:
 
-The acknowledgments should go immediately before the references.  Do
-not number the acknowledgments section. Do not include this section
-when submitting your paper for review.
+% \begin{itemize}
+% \item Left and right margins: 2.5 cm
+% \item Top margin: 2.5 cm
+% \item Bottom margin: 2.5 cm
+% \item Column width: 7.7 cm
+% \item Column height: 24.7 cm
+% \item Gap between columns: 0.6 cm
+% \end{itemize}
+
+% \noindent Papers should not be submitted on any other paper size.
+%  If you cannot meet the above requirements about the production of 
+%  your electronic submission, please contact the publication chairs 
+%  above as soon as possible.
+
+
+% \subsection{Fonts}
+
+% For reasons of uniformity, Adobe's {\bf Times Roman} font should be
+% used. In \LaTeX2e{} this is accomplished by putting
+
+% \begin{quote}
+% \begin{verbatim}
+% \usepackage{times}
+% \usepackage{latexsym}
+% \end{verbatim}
+% \end{quote}
+% in the preamble. If Times Roman is unavailable, use {\bf Computer
+%   Modern Roman} (\LaTeX2e{}'s default).  Note that the latter is about
+%   10\% less dense than Adobe's Times Roman font.
+
+
+% \begin{table}[h]
+% \begin{center}
+% \begin{tabular}{|l|rl|}
+% \hline \bf Type of Text & \bf Font Size & \bf Style \\ \hline
+% paper title & 15 pt & bold \\
+% author names & 12 pt & bold \\
+% author affiliation & 12 pt & \\
+% the word ``Abstract'' & 12 pt & bold \\
+% section titles & 12 pt & bold \\
+% document text & 11 pt  &\\
+% captions & 11 pt & \\
+% abstract text & 10 pt & \\
+% bibliography & 10 pt & \\
+% footnotes & 9 pt & \\
+% \hline
+% \end{tabular}
+% \end{center}
+% \caption{\label{font-table} Font guide. }
+% \end{table}
+
+% \subsection{The First Page}
+% \label{ssec:first}
+
+% Center the title, author's name(s) and affiliation(s) across both
+% columns. Do not use footnotes for affiliations. Do not include the
+% paper ID number assigned during the submission process. Use the
+% two-column format only when you begin the abstract.
+
+% {\bf Title}: Place the title centered at the top of the first page, in
+% a 15-point bold font. (For a complete guide to font sizes and styles,
+% see Table~\ref{font-table}) Long titles should be typed on two lines
+% without a blank line intervening. Approximately, put the title at 2.5
+% cm from the top of the page, followed by a blank line, then the
+% author's names(s), and the affiliation on the following line. Do not
+% use only initials for given names (middle initials are allowed). Do
+% not format surnames in all capitals (e.g., use ``Schlangen'' not
+% ``SCHLANGEN'').  Do not format title and section headings in all
+% capitals as well except for proper names (such as ``BLEU'') that are
+% conventionally in all capitals.  The affiliation should contain the
+% author's complete address, and if possible, an electronic mail
+% address. Start the body of the first page 7.5 cm from the top of the
+% page.
+
+% The title, author names and addresses should be completely identical
+% to those entered to the electronical paper submission website in order
+% to maintain the consistency of author information among all
+% publications of the conference. If they are different, the publication
+% chairs may resolve the difference without consulting with you; so it
+% is in your own interest to double-check that the information is
+% consistent.
+
+% {\bf Abstract}: Type the abstract at the beginning of the first
+% column. The width of the abstract text should be smaller than the
+% width of the columns for the text in the body of the paper by about
+% 0.6 cm on each side. Center the word {\bf Abstract} in a 12 point bold
+% font above the body of the abstract. The abstract should be a concise
+% summary of the general thesis and conclusions of the paper. It should
+% be no longer than 200 words. The abstract text should be in 10 point font.
+
+% {\bf Text}: Begin typing the main body of the text immediately after
+% the abstract, observing the two-column format as shown in 
+% the present document. Do not include page numbers.
+
+% {\bf Indent} when starting a new paragraph. Use 11 points for text and 
+% subsection headings, 12 points for section headings and 15 points for
+% the title. 
+
+% \subsection{Sections}
+
+% {\bf Headings}: Type and label section and subsection headings in the
+% style shown on the present document.  Use numbered sections (Arabic
+% numerals) in order to facilitate cross references. Number subsections
+% with the section number and the subsection number separated by a dot,
+% in Arabic numerals. Do not number subsubsections.
+
+% {\bf Citations}: Citations within the text appear in parentheses
+% as~\cite{Gusfield:97} or, if the author's name appears in the text
+% itself, as Gusfield~\shortcite{Gusfield:97}.  Append lowercase letters
+% to the year in cases of ambiguity.  Treat double authors as
+% in~\cite{Aho:72}, but write as in~\cite{Chandra:81} when more than two
+% authors are involved. Collapse multiple citations as
+% in~\cite{Gusfield:97,Aho:72}. Also refrain from using full citations
+% as sentence constituents. We suggest that instead of
+% \begin{quote}
+%   ``\cite{Gusfield:97} showed that ...''
+% \end{quote}
+% you use
+% \begin{quote}
+% ``Gusfield \shortcite{Gusfield:97}   showed that ...''
+% \end{quote}
+
+% If you are using the provided \LaTeX{} and Bib\TeX{} style files, you
+% can use the command \verb|\newcite| to get ``author (year)'' citations.
+
+% As reviewing will be double-blind, the submitted version of the papers
+% should not include the authors' names and affiliations. Furthermore,
+% self-references that reveal the author's identity, e.g.,
+% \begin{quote}
+% ``We previously showed \cite{Gusfield:97} ...''  
+% \end{quote}
+% should be avoided. Instead, use citations such as 
+% \begin{quote}
+% ``Gusfield \shortcite{Gusfield:97}
+% previously showed ... ''
+% \end{quote}
+
+% \textbf{Please do not use anonymous citations} and do not include
+% acknowledgements when submitting your papers. Papers that do not
+% conform to these requirements may be rejected without review.
+
+% \textbf{References}: Gather the full set of references together under
+% the heading {\bf References}; place the section before any Appendices,
+% unless they contain references. Arrange the references alphabetically
+% by first author, rather than by order of occurrence in the text.
+% Provide as complete a citation as possible, using a consistent format,
+% such as the one for {\em Computational Linguistics\/} or the one in the 
+% {\em Publication Manual of the American 
+% Psychological Association\/}~\cite{APA:83}.  Use of full names for
+% authors rather than initials is preferred.  A list of abbreviations
+% for common computer science journals can be found in the ACM 
+% {\em Computing Reviews\/}~\cite{ACM:83}.
+
+% The \LaTeX{} and Bib\TeX{} style files provided roughly fit the
+% American Psychological Association format, allowing regular citations, 
+% short citations and multiple citations as described above.
+
+% {\bf Appendices}: Appendices, if any, directly follow the text and the
+% references (but see above).  Letter them in sequence and provide an
+% informative title: {\bf Appendix A. Title of Appendix}.
+
+% \subsection{Footnotes}
+
+% {\bf Footnotes}: Put footnotes at the bottom of the page and use 9
+% points text. They may be numbered or referred to by asterisks or other
+% symbols.\footnote{This is how a footnote should appear.} Footnotes
+% should be separated from the text by a line.\footnote{Note the line
+% separating the footnotes from the text.}
+
+% \subsection{Graphics}
+
+% {\bf Illustrations}: Place figures, tables, and photographs in the
+% paper near where they are first discussed, rather than at the end, if
+% possible.  Wide illustrations may run across both columns.  Color
+% illustrations are discouraged, unless you have verified that  
+% they will be understandable when printed in black ink.
+
+% {\bf Captions}: Provide a caption for every illustration; number each one
+% sequentially in the form:  ``Figure 1. Caption of the Figure.'' ``Table 1.
+% Caption of the Table.''  Type the captions of the figures and 
+% tables below the body, using 11 point text.
+
+
+% \section{XML conversion and supported \LaTeX\ packages}
+
+% Following ACL 2014 we will also we will attempt to automatically convert 
+% your \LaTeX\ source files to publish papers in machine-readable 
+% XML with semantic markup in the ACL Anthology, in addition to the 
+% traditional PDF format.  This will allow us to create, over the next 
+% few years, a growing corpus of scientific text for our own future research, 
+% and picks up on recent initiatives on converting ACL papers from earlier 
+% years to XML. 
+
+% We encourage you to submit a ZIP file of your \LaTeX\ sources along
+% with the camera-ready version of your paper. We will then convert them
+% to XML automatically, using the LaTeXML tool
+% (\url{http://dlmf.nist.gov/LaTeXML}). LaTeXML has \emph{bindings} for
+% a number of \LaTeX\ packages, including the ACL 2015 stylefile. These
+% bindings allow LaTeXML to render the commands from these packages
+% correctly in XML. For best results, we encourage you to use the
+% packages that are officially supported by LaTeXML, listed at
+% \url{http://dlmf.nist.gov/LaTeXML/manual/included.bindings}
+
+
+
+
+
+% \section{Translation of non-English Terms}
+
+% It is also advised to supplement non-English characters and terms
+% with appropriate transliterations and/or translations
+% since not all readers understand all such characters and terms.
+% Inline transliteration or translation can be represented in
+% the order of: original-form transliteration ``translation''.
+
+% \section{Length of Submission}
+% \label{sec:length}
+
+% Long papers may consist of up to 8 pages of content, plus two extra
+% pages for references. Short papers may consist of up to 4 pages of
+% content, plus two extra pages for references.  Papers that do not
+% conform to the specified length and formatting requirements may be
+% rejected without review.
+
+
+
+% \section*{Acknowledgments}
+
+% The acknowledgments should go immediately before the references.  Do
+% not number the acknowledgments section. Do not include this section
+% when submitting your paper for review.
 
 % include your own bib file like this:
 %\bibliographystyle{acl}
