@@ -1,0 +1,66 @@
+\section{Related Work}
+There are many existing language learning software, which, fall into two categories, learning by  
+lessons and learning vocabularies. In the first category, %learning in lessons, they manually design some lessons to help their 
+lessons are purposefully designed to help user learn a foreign language in an easier way.
+Duolingo\footnote{\url{https://www.duolingo.com/}} is a popular websites in this category. 
+For the second category
+%, learning follow vocabularies, 
+% Tao: "they" refers to who? Same problem for the 1st category. Edited both for you 
+% they let user recite words' list or give the corresponding translations to user's input, 
+users are guided to recite lists of words, or provided with a translation for their input word 
+in the foreign language.
+%a corresponding translation is given according to user's input.
+Google Translate \footnote{\url{https://translate.google.com/}} stands out in this category. The service 
+is available as desktop / mobile / web software including a chrome extension. Our chrome extension is 
+%Muthu: say why
+different from all these existing tools. 
+%Muthu: what are the diference? have you already provided the list?
+I mainly compare our system  with the aforementioned two softwares. Each difference serves as a motivation 
+for developing our extension.
+
+``Duolingo is a free language-learning and crowdsourced text translation platform''\footnote{\url{http://en.wikipedia.org/wiki/Duolingo}}.
+Most people start to use Duolingo when they know a little or nothing about the new language. They starting 
+from some basic lessons and improve step by step.
+% Tao: your comparison is good, but you need to highlight the uniquencess of your extension in introduction or some other relevant section. 
+However, our target audience include people who know nothing about the foreign language language as well as people with a who are 
+fairly in the foreign language. We can not only help beginners learn a new language but also help them continue their learning 
+by allowing them to practice their foreign language. There are also a lot articles with their translations in Duolingo, but 
+all the articles and their translations are manually added by Duolingo or users from Duolingo. Therefore, parallel articles in Duolingo 
+are old and limited. However, our chrome extension is always working even for those up to the minute news and our user can just practice 
+their foreign language in their daily readings.
+
+\textbf{Google Translate:} ``Highlight or right-click on a section of text and click on Translate icon next to it to translate it to your 
+language"\footnote{\url{http://en.wikipedia.org/wiki/Google_Chrome_Extensions}}. % Tao: please cite
+Google Translate is a chrome extension that displays only the translation when user select a section, which can be a word, a phrase, a 
+sentence or even a whole page. Our chrome extension will translate a single word only, and display the translation, following with the 
+pronunciations and example sentences to help user understand and remember this word. Compared with our extension, Google Translate is more 
+like an extension to help user understand the content of the page. Furthermore, our extension will display the most appropriate translation 
+as it will refer to the context of the word.
+% Tao: Not accurate. If selecting a whole sentence, Google translator also uses context. You may change to "selecting for a single word"?
+
+As far as I know, Google Translate will not refer to the context while selecting a single word as the selected section is the only input.
+\\
+\begin{table}[ht]
+  \caption{Summary of the differences}
+  \label{table:difference_summary}
+  \begin{center}
+  \begin{tabular}{| p{2.4cm} | p{1.2cm} | p{1.2cm} |  p{1.2cm} |}
+    \hline
+    & Duolingo & Google Translate & Chrome Extension \\
+    \hline
+    Lessons & Yes & No & No \\
+    \hline
+    User's foreign language level & Low & Low-High & Low-High \\
+    \hline
+    Time consuming & Yes & No & No\\
+    \hline
+    Resource & Limited & Infinite & Infinite \\
+    \hline
+    Customizable & Yes & No & Yes \\
+    \hline
+    Link to External Dictionary & No & No & Yes \\
+    \hline
+  \end{tabular}
+  \end{center}
+\end{table}
+\\

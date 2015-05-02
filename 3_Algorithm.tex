@@ -1,0 +1,177 @@
+\section{Algorithm}
+Our extension shows the (Chinese) translation of an English word in the learning popup (see Figure~\ref{fig:software_design_4}). As we all know, one word may have multiple translations in another language,and our extension is expected to select the most appropriate one based on the context.We call such translation selection as cross-lingual word sense disambiguation (WSD).
+
+WSD is an open problem in natural language processing and ontology, aiming at identifying the proper sense of a word (i.e. meaning) in a context, when the word has multiple meanings. However, the system that I have implemented is  different from the traditional WSD. Normally, WSD is to identify its sense in its original language, but my system is to identify its sense in another language.
+
+It has been proved by a lot of studies that context is the key to learning a new language. This further suggests that a good word sense disambiguation system is necessary for our Chrome Extension. It can help user remember vocabulary efficiently and is a key feature that differentiate our software from other language learning tools.
+
+In this following, I describe four approaches that I have tried to accomplish WSD system, which is also my main progress in the second semester. The four approaches are: 
+% Tao: Please give a short definition for other three methods.
+\begin{itemize}
+\item Frequency based: always selecting the most frequent translation (the baseline),
+\item Part-of-Speech Tag based: selecting the translation based on the Part-of-Speech Tag of the English word
+\item Category based: Selecting the translation based on the category of the news article
+\item Translation based: Selecting the translation based on the result from existing Machine Translation systems
+\end{itemize}
+
+\subsection{Baseline}
+The simplest way to select a translation from the candidates is by random. However, the correctness of this method is very low, probably less than 20\%, and is not a good baseline for other methods to compete with. Another simple idea is to always select the most commonly used translation. Luckily, when I crawled the dictionary, Google Translate does provide usage frequency of each Chinese Translation.  This turns out to be a much better result, and thus serves as a fair baseline method.
+\\
+\subsection{Part-of-Speech Tag}
+As we all know, many English words have more than one Part-of-Speech (POS) tags and their Chinese translations in different POS may differ a lot. For example, the word ``book" has two POS tags, noun and verb. If it is used as a noun, mostly it means a handwritten or printed work of fiction or nonfiction, which should be translated as ``书", and mostly means to reserve if used as a verb, which should be translated as ``预定". Therefore, if I can get the POS tag of the English word, it might help me identify its sense or the Chinese translation.
+\\
+Among all possible on-line sources, Stanford Log-linear Part-of-Speech Tagger~\cite{Toutanova2003} is the most stable and well performed Part-of-Speech Tagger, which is developed by The Stanford Natural Language Processing Group.
+\\
+\begin{algorithm}[ht]
+\caption{Part-of-Speech Tagger}
+\label{algorithm:wsd_1}
+\begin{algorithmic}
+\REQUIRE POS Tagger, Dictionary \textless English, Chinese, POS \textgreater, Input English
+
+\STATE{$Pairs<word,POS> \leftarrow POSTagger \leftarrow English$}
+
+\IF{$EnglishWord \subset Dictionary.English$}
+    \STATE{$TranslationList \leftarrow Dictionary.Chinese+Dictionary.POS$}
+    \FOR{$word \subset Pairs.word$}
+        \IF{$word = EnglishWord$}
+            \STATE{$POSResult \leftarrow Pairs.POS$}
+            \STATE{$Break$}
+        \ENDIF
+    \ENDFOR
+    \FOR{$POS \subset TranslationList.POS$}
+        \IF{$POS = POSResult$}
+            \STATE{$FinalResult \leftarrow TranslationList.Chinese$}
+            \STATE{$Break$}
+        \ENDIF
+    \ENDFOR
+\ENDIF
+\RETURN FinalResult
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Category based}
+The word ``interest" have two very different translations when it is used as a noun. One translation is ``the feeling of a person whose attention, concern, or curiosity is particularly engaged by something", which should be translated as ``兴趣". The other translation is ``a share, right, or title in the ownership of property, in a commercial or financial undertaking, or the like", which should be translated as ``利益". It is quite obvious that the second sense is mostly used in financial related topics. Therefore, if we can analyze the category of the original article and 
+select the translation with the same category label, it might help disambiguate the word meaning.
+\\
+Getting the category of the original news article is very simple. Most news websites have a manually assigned a category for each news article and in most cases, the category label is part of the URL.
+\\
+However, assigning a category for Chinese word is not simple. As we are dealing with news, it is good to obtain such information from Chinese news domain. I crawled 100 Chinese news articles in each category from  Baidu News\footnote{\url{http://news.baidu.com/}}, making around 1000 news articles in total. After I got all the news articles, I send all the news articles to the Stanford Chinese Word Segmenter, and further calculate word document frequency under each  category. For example, if word ``interest" is found five times in article A and three times in article B, both article A and B are under ``finance" category, then I will add two for category ``finance" of word ``interest" as it will be counted only once even it can be found multi times in one article. I will use ``weight" to represent this value and ``averageweight" is the average weight of all categories of one word. After that, I will normalize the weight and use Equation~\ref{equation:category_1} and Equation~\ref{equation:category_2} to assign categories for those Chinese words. Basically, the two equations means that, if this word can be found in at least ten different news articles and more than 80\% of the articles are under the same category, then I will use this category for this word.
+\begin{algorithm}[ht]
+\caption{News Category}
+\label{algorithm:wsd_2}
+\begin{algorithmic}
+\REQUIRE Dictionary \textless English, Chinese, category\textgreater, Input English, News URL
+
+\IF{$EnglishWord \subset Dictionary.English$}
+    \STATE{$TranslationList \leftarrow Dictionary.Chinese+Dictionary.category$}
+    \STATE{$EnglishCategory \leftarrow URL.category$}
+    \FOR{$category \subset TranslationList.category$}
+        \IF{$category = EnglishCategory$}
+            \STATE{$FinalResult \leftarrow TranslationList.Chinese$}
+            \STATE{$Break$}
+        \ENDIF
+    \ENDFOR
+\ENDIF
+\RETURN FinalResult
+
+\end{algorithmic}
+\end{algorithm}
+\begin{equation}
+averageweight > 1\\
+\label{equation:category_1}
+\end{equation}
+\begin{equation}
+threshold > 8 * averageweight\\
+\label{equation:category_2}
+\end{equation}
+
+\subsection{Translation based}
+Since our target is to select the most appropriate translation based on the context, using existing Machine Translation (MT) systems is also a good approach, as all of them will certainly translate words based on the context.
+\\
+There are mainly two kinds of MT systems. One is off-line Machine Translation systems, which are mostly not available as mostly they are build for internal usage. Luckily, NUS NLP group built one MT system before, and it has been wrapped into a server, so that I can use it as an on-line service. The other one is on-line MT system, which are wrapped as a server and open to public, such as Bing Translator or Google Translate. As only Bing Translator is free, I decide to try Bing Translator as well.
+\\
+The first priority of choosing a MT system is its translation quality, if it can give me a result that nearly as good as a result from human translation, then the Chinese word that I generated from the MT system will have a high chance to be correct as well. However, after I tried both MT systems, the performance of the one from NLP group is worse than Bing Translator and the server is very unstable, I decide to use Bing Translator as my Machine Translation system.
+\\
+\subsubsection{Bing}
+Bing Translator, also called Microsoft Translator, is a on-line Machine Translation system that developed by Microsoft team with a cloud-based API that is conveniently integrated into multiple products, tools, and solutions. Table \ref{table:bing_translator} is the sample input and output of Bing Translator.
+\\
+\begin{algorithm}[ht]
+\caption{Bing Translator}
+\label{algorithm:wsd_3}
+\begin{algorithmic}
+\REQUIRE Bing Translator, Dictionary \textless English, Chinese\textgreater, Input English
+\STATE{$ChineseTranslation \leftarrow Bing Translator \leftarrow English$}
+\IF{$EnglishWord \subset Dictionary.English$}
+    \STATE{$TranslationList \leftarrow Dictionary.Chinese$}
+    \STATE{$MaxLength = 0$}
+    \FOR{$ChineseWord \subset TranslationList.Chinese$}
+        \IF{$(ChineseWord \subset ChineseTranslation) \cap (MaxLength < ChineseWord.Length)$}
+            \STATE{$FinalResult \leftarrow ChineseWord$}
+        \ENDIF
+    \ENDFOR
+\ENDIF
+\RETURN FinalResult
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Bing+}
+\begin{algorithm}[ht]
+\caption{Bing+}
+\label{algorithm:wsd_4}
+\begin{algorithmic}
+\REQUIRE Bing Translator, Word Segmenter, Dictionary \textless English, Chinese\textgreater, Input English
+\STATE{$ChineseTranslation \leftarrow Bing Translator \leftarrow English$}
+\STATE{$SegmentedChineseTranslation \leftarrow Word Segmenter \leftarrow ChineseTranslation$}
+\IF{$EnglishWord \subset Dictionary.English$}
+    \STATE{$TranslationList \leftarrow Dictionary.Chinese$}
+    \STATE{$MaxLength = 0$}
+    \FOR{$ChineseWord \subset TranslationList.Chinese$}
+        \IF{$(ChineseWord \subset ChineseTranslation) \cap (MaxLength < ChineseWord.Length)$}
+            \STATE{$FinalResult \leftarrow ChineseWord$}
+        \ENDIF
+    \ENDFOR
+    \FOR{$SegmentedWord \subset SegmentedChineseTranslation$}
+        \IF{$FinalResult \subset SegmentedWord$}
+            \STATE{$FinalResult \leftarrow SegmentedWord$}
+        \ENDIF
+    \ENDFOR
+\ENDIF
+\RETURN FinalResult
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Bing++}
+Bitext word alignment or simply word alignment is the natural language processing task of identifying translation relationships among the words (or more rarely multiword units) in a bitext, resulting in a bipartite graph between the two sides of the bitext, with an arc between two words if and only if they are translations of one another. I use Bing Word Alignment API\footnote{\url{https://msdn.microsoft.com/en-us/library/dn198370.aspx}} developed by Microsoft team to get the word alignment from English to Chinese Simplified. Luckily, although this API only support very few sets of language pairs, English to Chinese Simplified is one of the few supported sets. Table \ref{table:bing_plus_plus_2} has some examples of input and output from Bing Word Alignment. The left column is the original English sentence, the column in the middle is the translated Chinese sentence and the right column is the word alignment information. For word alignment information, the colon separates start and end index, the dash separates the languages, and space separates the words. For example, in the second column, ``0:1|0:1" means the word ``dr" should match with word ``博士" and ``9:12|6:7" means the word ``knew" should match with word ``知道".
+
+\begin{algorithm}[ht]
+\caption{Bing++}
+\label{algorithm:wsd_5}
+\begin{algorithmic}
+\REQUIRE Bing Translator, Word Segmenter, Word Alignment, Dictionary \textless English, Chinese\textgreater, Input English
+\STATE{$ChineseTranslation \leftarrow Bing Translator \leftarrow English$}
+\STATE{$SegmentedChineseTranslation \leftarrow Word Segmenter \leftarrow ChineseTranslation$}
+\STATE{$Pair<EnglishWord,ChineseWord> \leftarrow Word Alignment \leftarrow English$}
+\IF{$EnglishWord \subset Dictionary.English$}
+    \STATE{$TranslationList \leftarrow Dictionary.Chinese$}
+    \STATE{$MaxLength = 0$}
+    \FOR{$ChineseWord \subset TranslationList.Chinese$}
+        \IF{$(ChineseWord \subset ChineseTranslation) \cap (MaxLength < ChineseWord.Length)$}
+            \STATE{$FinalResult_1 \leftarrow ChineseWord$}
+        \ENDIF
+    \ENDFOR
+    \FOR{$SegmentedWord \subset SegmentedChineseTranslation$}
+        \IF{$FinalResult_1 \subset SegmentedWord$}
+            \STATE{$FinalResult_1 \leftarrow SegmentedWord$}
+        \ENDIF
+    \ENDFOR
+    \FOR{$Word \subset Pairs.EnglishWord$}
+        \IF{$EnglishWord = Word$}
+            \STATE{$FinalResult_2 \leftarrow Pairs.ChineseWord$}
+        \ENDIF
+    \ENDFOR
+\ENDIF
+\RETURN $FinalResult_1 \cup FinalResult_2$
+\end{algorithmic}
+\end{algorithm}
+One general question about this approach is that, since I can get the official word alignment from Bing Word Alignment approach, is Bing+ approach still useful? Table \ref{table:bing_plus_plus_3} contains some examples of Bing+ approach and Bing++ approach. From left to right, the four columns are original English sentence, Chinese translation, result from Bing+ approach and result from Bing++ approach. It is very obvious that the result from Bing+ approach is the substring of the result from Bing++ approach, but which one is better? As the purpose of our Word Sense Disambiguation system is to select the most appropriate translation based on the context, but Bing Translator is a bit too smart comparing with our purpose. Bing Translator will generate some Chinese words that cannot be translated from any of the English word but can make this sentence clear and smooth. In this case, our system will choose the short answer instead of the long answer. That's why in the Bing++ approach, I will keep the result both from Bing+ approach and Bing Word Alignment and choose the better one.
+\\

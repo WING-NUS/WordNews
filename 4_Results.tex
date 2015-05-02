@@ -1,0 +1,68 @@
+\section{Results}
+This project has two main parts, Chrome Extension and WSD system. The Chrome Extension part is a  software development project and the best way to evaluate is to listen to users' voice. The WSD system is a standard research problem and can be evaluated with ground-truth, reporting its performance
+%tested from a few very standard aspects, 
+by coverage and accuracy.
+\subsection{Chrome Extension}
+There are a few standard aspects that can be evaluated from the Chrome Extension part, such as User Interface (UI) design, loading speed and the functionality. UI design and functionality are more related to front end, while the loading speed is highly correlated to the back end. As this project is a joint work, and I am responsible  for the front end, I limit my focus to evaluate the UI design and functionality by surveying users.
+Also, as mentioned in the above chapters, we did a user requirement survey before we really start this project. From this survey, we roughly know  our potential customers' expectation and we need to check whether our Chrome Extension could satisfy them. I got 16 different responses, 15 of them are between 18 and 24, and 11 of them are professional in Chinese.
+\\
+For the details of the survey questions and survey results, please refer to the Appendix. In this survey, I made some screen shots of our Chrome Extension and ask subjects about their opinions. 
+Most of them think that replacing some words with their corresponding Chinese translation will not influence their normal reading, but they will feel a bit uncomfortable and prefer to read the original English articles. Based on their voice, I decide to highlight the original English words as default setting instead of replacing the English words with their Chinese Translations. Besides, most subjects think our Chrome Extension is nice and would like to try it when they are going to learn a new language.
+\\
+\subsection{WSD System}
+% Tao: 1. Why you change eval dataset?  This makes your evaluation results less convicing. I tried my best to address it. But you need to fix this problem in workshop paper. 2. You need to report the exact size of your eval dataset, e.g., # of sentences/words.
+Our Word Sense Disambiguate System can be evaluated from two important aspects: coverage (i.e., is able to return a translation) and accuracy (i.e., the translation is proper). To this end, I manually annotate the ground truth. Each approach was evaluated  right after I had implemented it, therefore,  they was tested against a random but different set of recent news articles from CNN.  Though the evaluation datasets are different, it is still fair to compare their results, as the size of all dataset is sufficiently large. 
+
+
+Firstly, we want our algorithm to return at least one result instead of blank. For POSTagger approach, if our dictionary do not cover the Part-of-Speech generated from Stanford POSTagger, the algorithm will return nothing. For News Category approach, as the algorithm will only assign categories for some of the Chinese translations and not all Chinese news categories can match with a English news category, so the algorithm sometimes will return nothing as well. For Bing+ and Bing++ approach, if none of the Chinese translations is the substring of the Bing result, the algorithm will return nothing. For Bing++ approach, if the word alignment information is phrase to phrase matching, for example, it may give a matching between ``in order to" and its Chinese translation, the algorithm will return nothing. Alternatively, for all the listed algorithm listed above, they can always return the translation with the highest frequency of use, but in this case, we cannot know whether the result is generated from the algorithm itself or just the baseline. That's why I choose to return a blank instead of the translation with the highest frequency of use.
+
+\begin{table}[ht]
+  \caption{Coverage for different approaches}
+  \label{table:evaluation_1}
+  \begin{tabular}{| p{2cm} | p{2cm} | p{2cm} |}
+    \hline
+     & Cover & Coverage\\
+    \hline
+    Baseline & 580/580 & 100\%\\
+    \hline
+    POSTagger & 510/580 & 88\%\\
+    \hline
+    News Category & 15/804 & 1.9\%\\
+    \hline
+    Bing & 801/1095 & 73\%\\
+    \hline
+    Bing+ & 801/1095 & 73\%\\
+    \hline
+    Bing++ & 987/1095 & 90\%\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Table~\ref{table:evaluation_1} contains the coverage for different approaches. As the algorithm will try to translate some word only if it is covered by our dictionary, the coverage for Baseline is always 100\%. The coverage for Bing, Bing+, Bing++ and POSTagger are roughly the same and all of them are acceptable. However, the coverage for News Category approach is only 1.9\%. One reason is that when I set the threshold for assigning categories for Chinese word, I purposely make it very high to maximize the accuracy. If the accuracy is quite high, which means this approach is quite useful, then I will lower the threshold and find the balance point.
+\\
+Secondly, we want our algorithm to be as accurate as possible, and the most ideal situation is that all the translation returned from the algorithm is the correct or the most appropriate translation in that context. When I evaluate the accuracy of these few approaches, I use a few news articles from CNN as the input data and manually select the most appropriate translation for all the output data. After that, I will compare the result from the algorithm and the result that I manually generated and get the accuracy.
+\\
+\begin{table}[ht]
+  \caption{Accuracy for different approaches}
+  \label{table:evaluation_3}
+  \begin{tabular}{| p{2cm} | p{2cm} | p{2cm} |}
+    \hline
+     & Correct & Accuracy\\
+    \hline
+    Baseline & 400/580 & 69\%\\
+    \hline
+    POSTagger & 345/510 & 68\%\\
+    \hline
+    News Category & 5/15 & 30\%\\
+    \hline
+    Bing & 545/801 & 68\%\\
+    \hline
+    Bing+ & 705/801 & 88\%\\
+    \hline
+    Bing++ & 961/987 & 97\%\\
+    \hline
+  \end{tabular}
+\end{table}
+\\
+Figure~\ref{table:evaluation_3} contains the accuracy of all the approaches. The last column is the accuracy for News Category approach and it is only 30\%. As mentioned in above Chapter, since the accuracy is very low, there is no need to lower the threshold and try to allocate more categories for Chinese words. The accuracy for Baseline is 69\%, which is already a fairly hight accuracy. The accuracy for Bing and POSTagger is around 69\% also, which is a bit lower than our expectation. The accuracy for Bing++ is 97\% which I think is a very good result and it is already very hard to improve. Therefore, based on my test results, Bing++ is the best approach among these five approaches.
+\\
