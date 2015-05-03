@@ -1,0 +1,1324 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.4.1)  3 MAY 2015 16:27
+entering extended mode
+**acl2015.tex
+(C:\Users\Naijia\Desktop\nlp-tea-2015\acl2015.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for loaded.
+(d:\CTEX\MiKTeX\tex\latex\base\article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(d:\CTEX\MiKTeX\tex\latex\base\size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(C:\Users\Naijia\Desktop\nlp-tea-2015\acl2015.sty
+Conference Style for ACL 2015 -- released December 7, 2014
+\titlebox=\skip43
+) (d:\CTEX\MiKTeX\tex\latex\psnfss\times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(d:\CTEX\MiKTeX\tex\latex\ltxmisc\url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+(d:\CTEX\MiKTeX\tex\latex\base\latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
+)
+(d:\CTEX\UserData\tex\latex\algorithms\algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(d:\CTEX\MiKTeX\tex\latex\float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count87
+\float@exts=\toks14
+\float@box=\box26
+\@float@everytoks=\toks15
+\@floatcapt=\box27
+)
+(d:\CTEX\MiKTeX\tex\latex\base\ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks16
+\c@algorithm=\count88
+)
+(d:\CTEX\UserData\tex\latex\algorithms\algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+
+(d:\CTEX\MiKTeX\tex\latex\graphics\keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+\c@ALC@unique=\count89
+\c@ALC@line=\count90
+\c@ALC@rem=\count91
+\c@ALC@depth=\count92
+\ALC@tlm=\skip44
+\algorithmicindent=\skip45
+)
+(d:\CTEX\UserData\tex\latex\preprint\fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip46
+)
+(d:\CTEX\MiKTeX\tex\latex\graphics\graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(d:\CTEX\MiKTeX\tex\latex\graphics\graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(d:\CTEX\MiKTeX\tex\latex\graphics\trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(d:\CTEX\MiKTeX\tex\latex\00miktex\graphics.cfg
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(d:\CTEX\MiKTeX\tex\latex\pdftex-def\pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\ltxcmds.sty
+Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count93
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(d:\CTEX\MiKTeX\tex\latex\tools\longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip47
+\LTright=\skip48
+\LTpre=\skip49
+\LTpost=\skip50
+\LTchunksize=\count94
+\LTcapwidth=\dimen105
+\LT@head=\box28
+\LT@firsthead=\box29
+\LT@foot=\box30
+\LT@lastfoot=\box31
+\LT@cols=\count95
+\LT@rows=\count96
+\c@LT@tables=\count97
+\c@LT@chunks=\count98
+\LT@p@ftn=\toks18
+)
+(d:\CTEX\MiKTeX\tex\latex\graphics\lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+(d:\CTEX\MiKTeX\tex\latex\cjk\CJKutf8.sty
+Package: CJKutf8 2008/12/29 4.8.2
+
+(d:\CTEX\MiKTeX\tex\generic\oberdiek\ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(d:\CTEX\MiKTeX\tex\latex\base\inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks19
+\inpenc@posthook=\toks20
+
+(d:\CTEX\MiKTeX\tex\latex\base\utf8.def
+File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
+Now handling font encoding OML ...
+... no UTF-8 mapping file for font encoding OML
+Now handling font encoding T1 ...
+... processing UTF-8 mapping file for font encoding T1
+
+(d:\CTEX\MiKTeX\tex\latex\base\t1enc.dfu
+File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00BB (decimal 187)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C0 (decimal 192)
+   defining Unicode char U+00C1 (decimal 193)
+   defining Unicode char U+00C2 (decimal 194)
+   defining Unicode char U+00C3 (decimal 195)
+   defining Unicode char U+00C4 (decimal 196)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00C7 (decimal 199)
+   defining Unicode char U+00C8 (decimal 200)
+   defining Unicode char U+00C9 (decimal 201)
+   defining Unicode char U+00CA (decimal 202)
+   defining Unicode char U+00CB (decimal 203)
+   defining Unicode char U+00CC (decimal 204)
+   defining Unicode char U+00CD (decimal 205)
+   defining Unicode char U+00CE (decimal 206)
+   defining Unicode char U+00CF (decimal 207)
+   defining Unicode char U+00D0 (decimal 208)
+   defining Unicode char U+00D1 (decimal 209)
+   defining Unicode char U+00D2 (decimal 210)
+   defining Unicode char U+00D3 (decimal 211)
+   defining Unicode char U+00D4 (decimal 212)
+   defining Unicode char U+00D5 (decimal 213)
+   defining Unicode char U+00D6 (decimal 214)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00D9 (decimal 217)
+   defining Unicode char U+00DA (decimal 218)
+   defining Unicode char U+00DB (decimal 219)
+   defining Unicode char U+00DC (decimal 220)
+   defining Unicode char U+00DD (decimal 221)
+   defining Unicode char U+00DE (decimal 222)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E0 (decimal 224)
+   defining Unicode char U+00E1 (decimal 225)
+   defining Unicode char U+00E2 (decimal 226)
+   defining Unicode char U+00E3 (decimal 227)
+   defining Unicode char U+00E4 (decimal 228)
+   defining Unicode char U+00E5 (decimal 229)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00E7 (decimal 231)
+   defining Unicode char U+00E8 (decimal 232)
+   defining Unicode char U+00E9 (decimal 233)
+   defining Unicode char U+00EA (decimal 234)
+   defining Unicode char U+00EB (decimal 235)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F0 (decimal 240)
+   defining Unicode char U+00F1 (decimal 241)
+   defining Unicode char U+00F2 (decimal 242)
+   defining Unicode char U+00F3 (decimal 243)
+   defining Unicode char U+00F4 (decimal 244)
+   defining Unicode char U+00F5 (decimal 245)
+   defining Unicode char U+00F6 (decimal 246)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+00F9 (decimal 249)
+   defining Unicode char U+00FA (decimal 250)
+   defining Unicode char U+00FB (decimal 251)
+   defining Unicode char U+00FC (decimal 252)
+   defining Unicode char U+00FD (decimal 253)
+   defining Unicode char U+00FE (decimal 254)
+   defining Unicode char U+00FF (decimal 255)
+   defining Unicode char U+0102 (decimal 258)
+   defining Unicode char U+0103 (decimal 259)
+   defining Unicode char U+0104 (decimal 260)
+   defining Unicode char U+0105 (decimal 261)
+   defining Unicode char U+0106 (decimal 262)
+   defining Unicode char U+0107 (decimal 263)
+   defining Unicode char U+010C (decimal 268)
+   defining Unicode char U+010D (decimal 269)
+   defining Unicode char U+010E (decimal 270)
+   defining Unicode char U+010F (decimal 271)
+   defining Unicode char U+0110 (decimal 272)
+   defining Unicode char U+0111 (decimal 273)
+   defining Unicode char U+0118 (decimal 280)
+   defining Unicode char U+0119 (decimal 281)
+   defining Unicode char U+011A (decimal 282)
+   defining Unicode char U+011B (decimal 283)
+   defining Unicode char U+011E (decimal 286)
+   defining Unicode char U+011F (decimal 287)
+   defining Unicode char U+0130 (decimal 304)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0132 (decimal 306)
+   defining Unicode char U+0133 (decimal 307)
+   defining Unicode char U+0139 (decimal 313)
+   defining Unicode char U+013A (decimal 314)
+   defining Unicode char U+013D (decimal 317)
+   defining Unicode char U+013E (decimal 318)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0143 (decimal 323)
+   defining Unicode char U+0144 (decimal 324)
+   defining Unicode char U+0147 (decimal 327)
+   defining Unicode char U+0148 (decimal 328)
+   defining Unicode char U+014A (decimal 330)
+   defining Unicode char U+014B (decimal 331)
+   defining Unicode char U+0150 (decimal 336)
+   defining Unicode char U+0151 (decimal 337)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0154 (decimal 340)
+   defining Unicode char U+0155 (decimal 341)
+   defining Unicode char U+0158 (decimal 344)
+   defining Unicode char U+0159 (decimal 345)
+   defining Unicode char U+015A (decimal 346)
+   defining Unicode char U+015B (decimal 347)
+   defining Unicode char U+015E (decimal 350)
+   defining Unicode char U+015F (decimal 351)
+   defining Unicode char U+0160 (decimal 352)
+   defining Unicode char U+0161 (decimal 353)
+   defining Unicode char U+0162 (decimal 354)
+   defining Unicode char U+0163 (decimal 355)
+   defining Unicode char U+0164 (decimal 356)
+   defining Unicode char U+0165 (decimal 357)
+   defining Unicode char U+016E (decimal 366)
+   defining Unicode char U+016F (decimal 367)
+   defining Unicode char U+0170 (decimal 368)
+   defining Unicode char U+0171 (decimal 369)
+   defining Unicode char U+0178 (decimal 376)
+   defining Unicode char U+0179 (decimal 377)
+   defining Unicode char U+017A (decimal 378)
+   defining Unicode char U+017B (decimal 379)
+   defining Unicode char U+017C (decimal 380)
+   defining Unicode char U+017D (decimal 381)
+   defining Unicode char U+017E (decimal 382)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201A (decimal 8218)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+   defining Unicode char U+201E (decimal 8222)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+2039 (decimal 8249)
+   defining Unicode char U+203A (decimal 8250)
+   defining Unicode char U+2423 (decimal 9251)
+)
+Now handling font encoding OT1 ...
+... processing UTF-8 mapping file for font encoding OT1
+
+(d:\CTEX\MiKTeX\tex\latex\base\ot1enc.dfu
+File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00B8 (decimal 184)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+)
+Now handling font encoding OMS ...
+... processing UTF-8 mapping file for font encoding OMS
+
+(d:\CTEX\MiKTeX\tex\latex\base\omsenc.dfu
+File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+)
+Now handling font encoding OMX ...
+... no UTF-8 mapping file for font encoding OMX
+Now handling font encoding U ...
+... no UTF-8 mapping file for font encoding U
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+02C6 (decimal 710)
+   defining Unicode char U+02DC (decimal 732)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2026 (decimal 8230)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2423 (decimal 9251)
+))
+(d:\CTEX\MiKTeX\tex\latex\cjk\CJK.sty
+Package: CJK 2008/12/29 4.8.2
+
+(d:\CTEX\MiKTeX\tex\latex\cjk\mule\MULEenc.sty
+Package: MULEenc 2008/12/29 4.8.2
+)
+(d:\CTEX\MiKTeX\tex\latex\cjk\CJK.enc
+File: CJK.enc 2008/12/29 4.8.2
+Now handling font encoding C00 ...
+... no UTF-8 mapping file for font encoding C00
+Now handling font encoding C05 ...
+... no UTF-8 mapping file for font encoding C05
+Now handling font encoding C09 ...
+... no UTF-8 mapping file for font encoding C09
+Now handling font encoding C10 ...
+... no UTF-8 mapping file for font encoding C10
+Now handling font encoding C20 ...
+... no UTF-8 mapping file for font encoding C20
+Now handling font encoding C19 ...
+... no UTF-8 mapping file for font encoding C19
+Now handling font encoding C40 ...
+... no UTF-8 mapping file for font encoding C40
+Now handling font encoding C42 ...
+... no UTF-8 mapping file for font encoding C42
+Now handling font encoding C43 ...
+... no UTF-8 mapping file for font encoding C43
+Now handling font encoding C50 ...
+... no UTF-8 mapping file for font encoding C50
+Now handling font encoding C52 ...
+... no UTF-8 mapping file for font encoding C52
+Now handling font encoding C49 ...
+... no UTF-8 mapping file for font encoding C49
+Now handling font encoding C60 ...
+... no UTF-8 mapping file for font encoding C60
+Now handling font encoding C61 ...
+... no UTF-8 mapping file for font encoding C61
+Now handling font encoding C63 ...
+... no UTF-8 mapping file for font encoding C63
+Now handling font encoding C64 ...
+... no UTF-8 mapping file for font encoding C64
+Now handling font encoding C65 ...
+... no UTF-8 mapping file for font encoding C65
+Now handling font encoding C70 ...
+... no UTF-8 mapping file for font encoding C70
+Now handling font encoding C31 ...
+... no UTF-8 mapping file for font encoding C31
+Now handling font encoding C32 ...
+... no UTF-8 mapping file for font encoding C32
+Now handling font encoding C33 ...
+... no UTF-8 mapping file for font encoding C33
+Now handling font encoding C34 ...
+... no UTF-8 mapping file for font encoding C34
+Now handling font encoding C35 ...
+... no UTF-8 mapping file for font encoding C35
+Now handling font encoding C36 ...
+... no UTF-8 mapping file for font encoding C36
+Now handling font encoding C37 ...
+... no UTF-8 mapping file for font encoding C37
+Now handling font encoding C80 ...
+... no UTF-8 mapping file for font encoding C80
+Now handling font encoding C81 ...
+... no UTF-8 mapping file for font encoding C81
+Now handling font encoding C01 ...
+... no UTF-8 mapping file for font encoding C01
+Now handling font encoding C11 ...
+... no UTF-8 mapping file for font encoding C11
+Now handling font encoding C21 ...
+... no UTF-8 mapping file for font encoding C21
+Now handling font encoding C41 ...
+... no UTF-8 mapping file for font encoding C41
+Now handling font encoding C62 ...
+... no UTF-8 mapping file for font encoding C62
+)
+LaTeX Info: Redefining \selectfont on input line 756.
+\CJK@indent=\box32
+)
+(d:\CTEX\MiKTeX\tex\latex\base\fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+))
+
+! LaTeX Error: Option clash for package url.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31 \begin
+           {CJK*}{UTF8}{gbsn}
+The package url has already been loaded with options:
+  []
+There has now been an attempt to load it with options
+  [hyphens]
+Adding the global options:
+  ,hyphens
+to your \documentclass declaration may fix this.
+Try typing  <return>  to proceed.
+
+(d:\CTEX\MiKTeX\tex\latex\cjk\UTF8\UTF8.bdg
+File: UTF8.bdg 2008/12/29 4.8.2
+)
+(d:\CTEX\MiKTeX\tex\latex\cjk\UTF8\UTF8.enc
+File: UTF8.enc 2008/12/29 4.8.2
+)
+(d:\CTEX\MiKTeX\tex\latex\cjk\UTF8\UTF8.chr
+File: UTF8.chr 2008/12/29 4.8.2
+)
+(C:\Users\Naijia\Desktop\nlp-tea-2015\acl2015.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 55.
+LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 55.
+
+(d:\CTEX\MiKTeX\tex\latex\psnfss\ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+(d:\CTEX\MiKTeX\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count99
+\scratchdimen=\dimen106
+\scratchbox=\box33
+\nofMPsegments=\count100
+\nofMParguments=\count101
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count102
+\MPscratchDim=\dimen107
+\MPnumerator=\count103
+\makeMPintoPDFobject=\count104
+\everyMPtoPDFconversion=\toks22
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 57.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 57.
+ (d:\CTEX\MiKTeX\tex\latex\base\ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 57.
+
+(d:\CTEX\MiKTeX\tex\latex\psnfss\ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+(C:\Users\Naijia\Desktop\nlp-tea-2015\1_Introduction.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
+
+
+LaTeX Warning: Citation `yarlh2012' on page 1 undefined on input line 4.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 15.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 15.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 15.
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[][]$\OT1/pcr/m/n/9 https : / / neltachoutari . wordpress . com /$
+ []
+
+) (C:\Users\Naijia\Desktop\nlp-tea-2015\2_Related_Work.tex
+Underfull \hbox (badness 2197) in paragraph at lines 21--31
+[]\OT1/ptm/m/n/10.95 ``Duolingo is a free language-learning and
+ []
+
+[1{d:/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+[][]$\OT1/pcr/m/n/9 http : / / en . wikipedia . org / wiki / Google _$
+ []
+
+
+Overfull \hbox (7.22557pt too wide) in paragraph at lines 49--49
+[]\OT1/ptm/m/n/10.95 Duolingo| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]\OT1/ptm/m/n/10.95 Google
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+\OT1/ptm/m/n/10.95 Trans-
+ []
+
+
+Overfull \hbox (1.13733pt too wide) in paragraph at lines 49--50
+[]\OT1/ptm/m/n/10.95 Chrome
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+\OT1/ptm/m/n/10.95 Ex-ten-
+ []
+
+
+Underfull \hbox (badness 4739) in paragraph at lines 53--53
+[]\OT1/ptm/m/n/10.95 User's for-eign
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--53
+[]\OT1/ptm/m/n/10.95 Low-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
+[]\OT1/ptm/m/n/10.95 Low-
+ []
+
+
+Underfull \hbox (badness 3000) in paragraph at lines 55--55
+[]\OT1/ptm/m/n/10.95 Time con-sum-
+ []
+
+
+Overfull \hbox (0.53488pt too wide) in paragraph at lines 57--57
+[]\OT1/ptm/m/n/10.95 Limited| 
+ []
+
+
+Overfull \hbox (0.76807pt too wide) in paragraph at lines 47--64
+ [] 
+ []
+
+) (C:\Users\Naijia\Desktop\nlp-tea-2015\3_Algorithm.tex
+Underfull \hbox (badness 10000) in paragraph at lines 41--1
+
+ []
+
+
+LaTeX Warning: Reference `fig:software_design_4' on page 2 undefined on input l
+ine 2.
+
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 11.
+(d:\CTEX\MiKTeX\tex\latex\psnfss\omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 11.
+
+Underfull \hbox (badness 2050) in paragraph at lines 12--13
+[]\OT1/ptm/m/n/10.95 Part-of-Speech Tag based: s-e-lect-ing the
+ []
+
+
+Underfull \hbox (badness 1281) in paragraph at lines 18--20
+\OT1/ptm/m/n/10.95 the can-di-dates is by ran-dom. How-ev-er, the
+ []
+
+
+Underfull \hbox (badness 1454) in paragraph at lines 18--20
+\OT1/ptm/m/n/10.95 idea is to al-ways s-e-lec-t the most com-mon-ly
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+
+ []
+
+[2]
+LaTeX Font Info:    Try loading font information for C70+gbsn on input line 21.
+
+ (d:\CTEX\MiKTeX\tex\latex\cjk\UTF8\c70gbsn.fd
+File: c70gbsn.fd 2008/12/29 4.8.2
+)
+(d:\CTEX\MiKTeX\tex\latex\cjk\UTF8\c70gbsn.fdx
+File: c70gbsn.fdx 2008/12/29 4.8.2
+)
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]\OT1/ptm/m/n/10.95 They|PRP are|VBP treat-ing|VBG
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 31--32
+[]\OT1/ptm/m/n/10.95 IN | prepo-si-tion
+ []
+
+
+Overfull \hbox (244.84329pt too wide) in paragraph at lines 27--34
+ [] 
+ []
+
+
+LaTeX Warning: Citation `Toutanova2003' on page 3 undefined on input line 37.
+
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 43.
+(d:\CTEX\MiKTeX\tex\latex\psnfss\omlptm.fd
+File: omlptm.fd 
+)
+LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10.95> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 43.
+
+Underfull \hbox (badness 4531) in paragraph at lines 43--44
+[] []\OT1/ptm/m/n/10.95 POS Tag-ger, Dic-tio-nary \OML/cmm/m/it/10.95 <\OT1/ptm
+/m/n/10.95 En-glish,
+ []
+
+
+Underfull \hbox (badness 1331) in paragraph at lines 47--47
+[] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 EnglishWord \OMS/cmsy/m/n/10.95
+  \OML/cmm/m/it/10.95 Dictionary:English$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--49
+[] []$\OML/cmm/m/it/10.95 TranslationList \OMS/cmsy/m/n/10.95  $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--58
+[] []$\OML/cmm/m/it/10.95 FinalResult \OMS/cmsy/m/n/10.95  $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
+[]\OT1/ptm/m/n/10.95 Input En-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
+[]\OT1/ptm/m/n/10.95 English
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+[]\OT1/ptm/m/n/10.95 they are
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+\OT1/ptm/m/n/10.95 treat-ing me
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+\OT1/ptm/m/n/10.95 like fam-i-ly
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+\OT1/ptm/m/n/10.95 treat-ing|VBG
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+\OT1/ptm/m/n/10.95 me|PRP like|IN
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+\OT1/ptm/m/n/10.95 fam-i-ly|NN
+ []
+
+
+Overfull \hbox (240.39052pt too wide) in paragraph at lines 67--74
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--95
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
+Overfull \hbox (204.39053pt too wide) in paragraph at lines 100--111
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
+[] []$\OML/cmm/m/it/10.95 ChineseTranslation \OMS/cmsy/m/n/10.95  $
+ []
+
+
+Underfull \hbox (badness 1331) in paragraph at lines 120--120
+[] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 EnglishWord \OMS/cmsy/m/n/10.95
+  \OML/cmm/m/it/10.95 Dictionary:English$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 123--123
+[] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 ChineseWord \OMS/cmsy/m/n/10.9
+5 $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--124
+[] []\OT1/ptm/b/n/10.95 if $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ChineseWord
+ \OMS/cmsy/m/n/10.95 $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--124
+$\OML/cmm/m/it/10.95 ChineseTranslation\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95
+ \$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--124
+$\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 MaxLength <$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--136
+[]\OT1/ptm/m/n/10.95 English
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--136
+[]\OT1/ptm/m/n/10.95 Dictionary \OML/cmm/m/it/10.95 <\OT1/ptm/m/n/10.95 En-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--138
+[]\OT1/ptm/m/n/10.95 verb:\C70/gbsn/m/n/10.95/62 ½\OT1/ptm/m/n/10.95 , \C70/gbs
+n/m/n/10.95/62 ½ \C70/gbsn/m/n/10.95/6c 4\OT1/ptm/m/n/10.95 ,
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 138--138
+\C70/gbsn/m/n/10.95/62 S \C70/gbsn/m/n/10.95/6c \OT1/ptm/m/n/10.95 , \C70/gbsn
+/m/n/10.95/55 '\OT1/ptm/m/n/10.95 , \C70/gbsn/m/n/10.95/55 ' \C70/gbsn/m/n/10.9
+5/7b R\OT1/ptm/m/n/10.95 ,
+ []
+
+
+Overfull \hbox (226.16414pt too wide) in paragraph at lines 134--141
+[][] 
+ []
+
+[4]
+Overfull \hbox (228.39053pt too wide) in paragraph at lines 156--163
+[][] 
+ []
+
+
+Overfull \hbox (232.84329pt too wide) in paragraph at lines 169--180
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
+[] []$\OML/cmm/m/it/10.95 ChineseTranslation \OMS/cmsy/m/n/10.95  $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
+[] []$\OML/cmm/m/it/10.95 SegmentedChineseTranslation \OMS/cmsy/m/n/10.95  $
+ []
+
+
+Underfull \hbox (badness 1331) in paragraph at lines 191--191
+[] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 EnglishWord \OMS/cmsy/m/n/10.95
+  \OML/cmm/m/it/10.95 Dictionary:English$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
+[] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 ChineseWord \OMS/cmsy/m/n/10.9
+5 $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--195
+[] []\OT1/ptm/b/n/10.95 if $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ChineseWord
+ \OMS/cmsy/m/n/10.95 $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--195
+$\OML/cmm/m/it/10.95 ChineseTranslation\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95
+ \$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--195
+$\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 MaxLength <$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
+[] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 SegmentedWord \OMS/cmsy/m/n/10
+.95 $
+ []
+
+
+Underfull \hbox (badness 1337) in paragraph at lines 200--200
+[] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 FinalResult \OMS/cmsy/m/n/10.95
+  \OML/cmm/m/it/10.95 SegmentedWord$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--212
+[]\OT1/ptm/m/n/10.95 English
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 214--214
+\C70/gbsn/m/n/10.95/80 T \C70/gbsn/m/n/10.95/8d [\OT1/ptm/m/n/10.95 , \C70/gbsn
+/m/n/10.95/8f l \C70/gbsn/m/n/10.95/64 ­\OT1/ptm/m/n/10.95 , \C70/gbsn/m/n/10.9
+5/76 „\OT1/ptm/m/n/10.95 ,
+ []
+
+
+Overfull \hbox (226.16414pt too wide) in paragraph at lines 210--217
+[][] 
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 164--227
+\OT1/ptm/m/n/10.95 ``top" based on the Bing Trans-la-tor, I would
+ []
+
+
+Underfull \hbox (badness 1681) in paragraph at lines 164--227
+\OT1/ptm/m/n/10.95 Text seg-men-ta-tion is the pro-cess of di-vid-ing
+ []
+
+
+Underfull \hbox (badness 1048) in paragraph at lines 164--227
+\OT1/ptm/m/n/10.95 de-vel-ope-d by The S-tan-ford Nat-u-ral Lan-guage
+ []
+
+
+Underfull \hbox (badness 1067) in paragraph at lines 164--227
+\OT1/ptm/m/n/10.95 la-tor to-geth-er with S-tan-ford Word Seg-menter,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--227
+
+ []
+
+[5]
+Overfull \hbox (228.39053pt too wide) in paragraph at lines 232--239
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
+[]\OT1/ptm/m/n/10.95 0:1|0:1 3:7|2:5 9:12|6:7 14:15|8:8
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
+\OT1/ptm/m/n/10.95 17:21|9:9 23:24|10:10 26:28|14:14
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
+\OT1/ptm/m/n/10.95 30:33|15:17 35:38|18:19 40:41|11:11
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 251--252
+[]\OT1/ptm/m/n/10.95 4:10|0:1 12:13|2:2 15:19|3:3 21:28|4:5
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
+\OT1/ptm/m/n/10.95 30:32|6:7 34:41|8:8 43:48|9:10
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
+\OT1/ptm/m/n/10.95 50:53|11:11 59:63|15:16 65:73|17:19
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--253
+[]\OT1/ptm/m/n/10.95 this is some-thing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 253--254
+[]\OT1/ptm/m/n/10.95 0:3|0:0 5:16|1:1 18:29|2:6 31:39|7:8
+ []
+
+
+Overfull \hbox (230.61691pt too wide) in paragraph at lines 245--256
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--258
+[][]$\OT1/pcr/m/n/9 https : / / msdn . microsoft . com / en-[]us /$
+ []
+
+
+Underfull \hbox (badness 6859) in paragraph at lines 264--265
+[] []\OT1/ptm/m/n/10.95 Bing Trans-la-tor, Word Seg-menter,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
+[] []$\OML/cmm/m/it/10.95 ChineseTranslation \OMS/cmsy/m/n/10.95  $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+[] []$\OML/cmm/m/it/10.95 SegmentedChineseTranslation \OMS/cmsy/m/n/10.95  $
+ []
+
+
+Underfull \hbox (badness 1331) in paragraph at lines 268--268
+[] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 EnglishWord \OMS/cmsy/m/n/10.95
+  \OML/cmm/m/it/10.95 Dictionary:English$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 271--271
+[] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 ChineseWord \OMS/cmsy/m/n/10.9
+5 $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
+[] []\OT1/ptm/b/n/10.95 if $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ChineseWord
+ \OMS/cmsy/m/n/10.95 $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
+$\OML/cmm/m/it/10.95 ChineseTranslation\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95
+ \$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
+$\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 MaxLength <$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--276
+[] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 SegmentedWord \OMS/cmsy/m/n/10
+.95 $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
+[] []$\OML/cmm/m/it/10.95 FinalResult[] \OMS/cmsy/m/n/10.95  $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 295--295
+[]\OT1/ptm/m/n/10.95 English
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 295--295
+[]\OT1/ptm/m/n/10.95 Dictionary
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
+[]\OT1/ptm/m/n/10.95 state de-part-men-t
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
+\OT1/ptm/m/n/10.95 spokeswom-an jen p-
+ []
+
+
+Underfull \hbox (badness 1107) in paragraph at lines 297--297
+\OT1/ptm/m/n/10.95 sa-k-i said that the al-lies
+ []
+
+
+Underfull \hbox (badness 4378) in paragraph at lines 297--297
+\OT1/ptm/m/n/10.95 had a long his-to-ry of
+ []
+
+
+Overfull \hbox (252.39052pt too wide) in paragraph at lines 293--300
+[][] 
+ []
+
+[6]
+Underfull \hbox (badness 3735) in paragraph at lines 319--319
+\C70/gbsn/m/n/10.95/95   \C70/gbsn/m/n/10.95/4e f \C70/gbsn/m/n/10.95/63 ’ \C70
+/gbsn/m/n/10.95/88 L \C70/gbsn/m/n/10.95/69 œ \C70/gbsn/m/n/10.95/4e K \C70/gbs
+n/m/n/10.95/54  \C70/gbsn/m/n/10.95/4e  E \C70/gbsn/m/n/10.95/5b ƒ
+ []
+
+
+Overfull \hbox (228.39053pt too wide) in paragraph at lines 315--326
+[][] 
+ []
+
+
+Underfull \hbox (badness 3646) in paragraph at lines 328--330
+\OT1/ptm/m/n/10.95 En-glish sen-tence, Chi-nese trans-la-tion, re-sult
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 328--330
+
+ []
+
+
+Underfull \hbox (badness 1205) in paragraph at lines 339--340
+[]\OT1/ptm/m/n/10.95 However, as-sign-ing a cat-e-go-ry for Chi-nese
+ []
+
+[7]
+
+LaTeX Warning: File `wsd_4.jpg' not found on input line 352.
+
+
+! Package pdftex.def Error: File `wsd_4.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.352 ...egraphics[width=0.9\textwidth]{wsd_4.jpg}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (189.7203pt too wide) in paragraph at lines 352--353
+ [][] 
+ []
+
+
+Underfull \hbox (badness 1331) in paragraph at lines 369--369
+[] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 EnglishWord \OMS/cmsy/m/n/10.95
+  \OML/cmm/m/it/10.95 Dictionary:English$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
+[] []$\OML/cmm/m/it/10.95 TranslationList \OMS/cmsy/m/n/10.95  $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
+$\OML/cmm/m/it/10.95 Dictionary:Chinese \OT1/cmr/m/n/10.95 +$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 372--372
+[] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 category \OMS/cmsy/m/n/10.95 
+$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--375
+[] []$\OML/cmm/m/it/10.95 FinalResult \OMS/cmsy/m/n/10.95  $
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 387--387
+[]\OT1/ptm/m/n/10.95 English
+ []
+
+
+Underfull \hbox (badness 7133) in paragraph at lines 389--389
+[]\OT1/ptm/m/n/10.95 duncan told c-nns don
+ []
+
+
+Underfull \hbox (badness 3635) in paragraph at lines 389--389
+[]\OT1/ptm/m/n/10.95 ... \C70/gbsn/m/n/10.95/76 ø\OT1/ptm/m/n/10.95 , \C70/gbsn
+/m/n/10.95/5f q\OT1/ptm/m/n/10.95 , \C70/gbsn/m/n/10.95/5f q
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 389--389
+\C70/gbsn/m/n/10.95/72 G\OT1/ptm/m/n/10.95 (entertainment),
+ []
+
+
+Overfull \hbox (226.16414pt too wide) in paragraph at lines 385--392
+[][] 
+ []
+
+) (C:\Users\Naijia\Desktop\nlp-tea-2015\4_Results.tex
+Underfull \hbox (badness 10000) in paragraph at lines 6--12
+
+ []
+
+[8]
+Underfull \hbox (badness 4378) in paragraph at lines 30--30
+[]\OT1/ptm/m/n/10.95 News Cat-e-
+ []
+
+
+Underfull \hbox (badness 4378) in paragraph at lines 56--56
+[]\OT1/ptm/m/n/10.95 News Cat-e-
+ []
+
+) (C:\Users\Naijia\Desktop\nlp-tea-2015\5_Application.tex
+Underfull \hbox (badness 10000) in paragraph at lines 41--1
+
+ []
+
+[9])
+No file acl2015.bbl.
+
+! LaTeX Error: \begin{CJK*} on input line 31 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.81 \end{document}
+                   
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[10] [11
+
+] (C:\Users\Naijia\Desktop\nlp-tea-2015\acl2015.aux)
+
+LaTeX Warning: There were undefined references.
+
+ )
+(\end occurred inside a group at level 1)
+
+### semi simple group (level 1) entered at line 31 (\begingroup)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 4018 strings out of 495354
+ 47826 string characters out of 3183860
+ 123327 words of memory out of 3000000
+ 6933 multiletter control sequences out of 15000+200000
+ 39885 words of font info for 119 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 30i,10n,25p,1331b,1532s stack positions out of 5000i,500n,10000p,200000b,50000s
+{d:/CTEX/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<d:/CTEX/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/CTEX/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmr10.pfb><d:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><d
+:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/CTEX/UserData/fonts
+/type1/arphic/gbsnu/gbsnu4e.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsn
+u4f.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu50.pfb><d:/CTEX/UserDat
+a/fonts/type1/arphic/gbsnu/gbsnu51.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbs
+nu/gbsnu52.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu53.pfb><d:/CTEX/
+UserData/fonts/type1/arphic/gbsnu/gbsnu54.pfb><d:/CTEX/UserData/fonts/type1/arp
+hic/gbsnu/gbsnu55.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu56.pfb><d
+:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu57.pfb><d:/CTEX/UserData/fonts/ty
+pe1/arphic/gbsnu/gbsnu58.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu59
+.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu5b.pfb><d:/CTEX/UserData/f
+onts/type1/arphic/gbsnu/gbsnu5c.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/
+gbsnu5d.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu5e.pfb><d:/CTEX/Use
+rData/fonts/type1/arphic/gbsnu/gbsnu5f.pfb><d:/CTEX/UserData/fonts/type1/arphic
+/gbsnu/gbsnu60.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu62.pfb><d:/C
+TEX/UserData/fonts/type1/arphic/gbsnu/gbsnu63.pfb><d:/CTEX/UserData/fonts/type1
+/arphic/gbsnu/gbsnu64.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu65.pf
+b><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu66.pfb><d:/CTEX/UserData/font
+s/type1/arphic/gbsnu/gbsnu67.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbs
+nu68.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu69.pfb><d:/CTEX/UserDa
+ta/fonts/type1/arphic/gbsnu/gbsnu6b.pfb><d:/CTEX/UserData/fonts/type1/arphic/gb
+snu/gbsnu6c.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu6e.pfb><d:/CTEX
+/UserData/fonts/type1/arphic/gbsnu/gbsnu70.pfb><d:/CTEX/UserData/fonts/type1/ar
+phic/gbsnu/gbsnu72.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu73.pfb><
+d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu74.pfb><d:/CTEX/UserData/fonts/t
+ype1/arphic/gbsnu/gbsnu75.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu7
+6.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu77.pfb><d:/CTEX/UserData/
+fonts/type1/arphic/gbsnu/gbsnu79.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu
+/gbsnu7a.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu7b.pfb><d:/CTEX/Us
+erData/fonts/type1/arphic/gbsnu/gbsnu7c.pfb><d:/CTEX/UserData/fonts/type1/arphi
+c/gbsnu/gbsnu7e.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu80.pfb><d:/
+CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu81.pfb><d:/CTEX/UserData/fonts/type
+1/arphic/gbsnu/gbsnu82.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu88.p
+fb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu89.pfb><d:/CTEX/UserData/fon
+ts/type1/arphic/gbsnu/gbsnu8a.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gb
+snu8b.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu8c.pfb><d:/CTEX/UserD
+ata/fonts/type1/arphic/gbsnu/gbsnu8d.pfb><d:/CTEX/UserData/fonts/type1/arphic/g
+bsnu/gbsnu8e.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu8f.pfb><d:/CTE
+X/UserData/fonts/type1/arphic/gbsnu/gbsnu90.pfb><d:/CTEX/UserData/fonts/type1/a
+rphic/gbsnu/gbsnu91.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu95.pfb>
+<d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu96.pfb><d:/CTEX/UserData/fonts/
+type1/arphic/gbsnu/gbsnu97.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu
+98.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu9a.pfb><d:/CTEX/UserData
+/fonts/type1/arphic/gbsnu/gbsnu9e.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsn
+u/gbsnu9f.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnuff.pfb><d:/CTEX/M
+iKTeX/fonts/type1/urw/courier/ucrr8a.pfb><d:/CTEX/MiKTeX/fonts/type1/urw/times/
+utmb8a.pfb><d:/CTEX/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
+Output written on acl2015.pdf (11 pages, 438520 bytes).
+PDF statistics:
+ 377 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 249 words of extra memory for PDF output out of 10000 (max. 10000000)
+
