@@ -38,7 +38,7 @@ class TranslatesController < ApplicationController
 
       meanings = Meaning.where(:english_words_id => @original_word_id, :word_category_id => category_list )
       number_of_meanings = meanings.length
-      puts number_of_meanings
+      #puts number_of_meanings
       temp = Meaning.new
       if number_of_meanings == 0
         next
