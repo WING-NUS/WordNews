@@ -17,15 +17,55 @@ After storing all the news articles document into each category, the server uses
 \\
 \subsubsection{Classification}
 In statistical analysis step, the server counts the document frequency of each word in all those stored news articles, i.e. if word “scored” appeared 4 times in one article, it will only be counted as once. By following this approach we can successfully reduce the bias of some words only appear a lot of times in one article while don’t appear often in other article. As we are storing similar number of articles in each category, this approach will provide a fair comparison of each word’s popularity among different categories. After this step we will know the document frequency count of each word in different category. 
-Assume C is the list of category names, and f(w, C(i))=m means word w appeared in category C(i) for m times, then the sum weight of word w as sw(w) is calculated in :
+Assume C is the list of category names, and f(w, C(i))=m means word w appeared in category C(i) for m times, then the sum weight of word w as sw(w) is calculated in Equation~\ref{equation:Distractor_1}:
 \\
-The average weight of word w as aw(w) is calculated in:
+\begin{equation}
+sw (w) = \sum_{i=1}^{n} f(w,C(i))
+\label{equation:Distractor_1}
+\end{equation}  
 \\
-A word w is classified into category C(i) if it satisfies :
+The average weight of word w as aw(w) is calculated in Equation~\ref{equation:Distractor_2}::
+\\
+\begin{equation}
+aw (w) = sw (w)/n 
+\label{equation:Distractor_2} 
+\end{equation}  
+\\
+A word w is classified into category C(i) if it satisfies Equation~\ref{equation:Distractor_3}::
+\\
+\begin{equation}
+f (w, C(i)) - aw(w) >= \delta
+\label{equation:Distractor_3} 
+\end{equation}  
 \\
 The confidence factor δ can be a positive integer between 0 and the average number of articles in each category. It means on average, the word w must appear in a specific category C(i) δ times more than it appear in other category before it can be classified into category C(i).
 \\
-In the example below in Figure 18, frequency counts for word “investment” in each category are displayed. It is obvious that sw(“investment”) = 2 + 1 + 2 + 10 + 3 + 2 + 1 = 21, thus aw(“investment”) = sw(“investment”)/7 = 3, in this case if we choose a confidence factor δ=3, word “investment” will be classified into category “Finance”, as 10 – 3 > δ = 3. However, it we choose a very big δ, for example δ= 8, then word “investment” will not be classified into any category.
+In the example below in Figure 18, frequency counts for word “investment” in each category are displayed. It is obvious that sw(“investment”) = 2 + 1 + 2 + 10 + 3 + 2 + 1 = 21, thus aw(“investment”) = sw(“investment”)/7 = 3, in this case if we choose a confidence factor δ=3, word “investment” will be classified into category “Finance”, as 10 – 3 \textgreater δ = 3. However, it we choose a very big δ, for example δ= 8, then word “investment” will not be classified into any category.
+\\
+\begin{table}[ht]
+    \caption{Example of classification word into category}
+    \begin{center}
+    \begin{tabular}{| p{3.5cm} | p{3cm} |}
+        \hline
+        Category & Investment\\
+        \hline
+        Technology & 2 \\
+        \hline
+        World & 1 \\
+        \hline
+        Sports & 2 \\
+        \hline
+        Finance & 10 \\
+        \hline
+        Entertainment & 3 \\
+        \hline
+        Health & 2 \\
+        \hline
+        Travel & 1\\
+        \hline
+    \end{tabular}
+    \end{center}
+\end{table}
 \\
 It is obvious that a higher confidence factor value will result in less number words get classified, but it will result in getting words that are more accurate. A lower confidence factor value will result in more number of words get classified, but less accurate in each category. In this experiment, after several round of tests and analysis, we chose a confidence factor value of 10, which is capable of producing enough number of classified words while maintaining the accuracy.
 \subsection{Generating distractors}
@@ -56,8 +96,12 @@ Lin attempted to define a measure of semantic similarity that would be both univ
 \item The maximum similarity between A and B is reached when A and B are identical, no matter how much commonality they share. 
 \end{itemize}
 \\
-Based on the intuition above, Lin proposed his approach in measuring similarity between two concepts c1, c2 in :
+Based on the intuition above, Lin proposed his approach in measuring similarity between two concepts c1, c2 in Equation~\ref{equation:Distractor_4}:
 \\
+\begin{equation}
+sim(c1,c2) = \frac{2*log_p(lso(c1,c2))}{log_p(c1)+log_p(c2)}
+\label{equation:Distractor_4}
+\end{equation}  
 \\
 where p(c) denotes the probability of encountering concept c, and lso(c1,c2) denotes the lowest common subsumer, which is the lowest node in WordNet hierarchy that is a hypernym of c1 and c2. 
 \\
