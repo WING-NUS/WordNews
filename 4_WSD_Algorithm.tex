@@ -88,7 +88,6 @@ Algorithm \ref{algorithm:wsd_1} is the approach of using POSTagger. From Algorit
 In most cases, this algorithm is only a filter. There might be a few Part-of-Speech tags matched from the output and one POS tag might have a few corresponding Chinese translations. In this case, I will choose the translation with the highest frequency of use, which is actually a combination of POSTagger and baseline, so that this system is testable independently.
 
 
-
 \subsection{Machine Translation}
 Since our target is to select the most appropriate translation based on the context, using existing Machine Translation (MT) systems is also a good approach, as all of them will certainly translate words based on the context.
 \\
@@ -333,21 +332,24 @@ Bitext word alignment or simply word alignment is the natural language processin
 
 \begin{table}[ht]
     \caption{Example input/output of Bing++}
-    \begin{tabular}{| p{4cm} | p{1.2cm} | p{2.3cm} | p{3.5cm} | p{1.5cm} | p{1.5cm} |}
+    \begin{center}
+    \begin{tabular}{| p{2.5cm} | p{4cm} |}
         \hline
-        Input English & English Word & Dictionary Chinese & Chinese Translation & Bing+ & Bing++ \\
+        Input English & state department spokeswoman jen psaki said that the allies had a long history of cooperation\\
         \hline
-        state department spokeswoman jen psaki said that the allies had a long history of cooperation & top & ...陈, 陈说, 称, 称述, 发表, 发言... & 国家, 部门, 的, 女, 发言人, jenpsaki, 说, 盟国, 有, 很, 长, 的, 合作, 历史 & 发言人 & 国家 \\
+        English Word & state \\
+        \hline
+        Translation List & \parbox[t]{4cm}{...陈, 陈说, 称, 称述, 发表, 发言...}\\
+        \hline
+        Chinese Translation & 国家, 部门, 的, 女, 发言人, jenpsaki, 说, 盟国, 有, 很, 长, 的, 合作, 历史\\
+        \hline
+        Bing+ Result & 发言人\\
+        \hline
+        Word Alignment Result & 国家\\
         \hline
     \end{tabular}
+    \end{center}
 \end{table}
-%\begin{figure}[ht]
-%   \centering
-%   \includegraphics[width=0.9\textwidth]{wsd_7.jpg}
-%   \caption{Steps of Bing++}
-%   \label{fig:wsd_7}
-%\end{figure}
-
 
 Algorithm \ref{algorithm:wsd_5} is the approach of using Bing+ approach together with the Microsoft Bing Word Alignment. First few steps are exactly the same as Bing+ approach. In this example, ``state" is the word that need to be translated. The result from Bing+ approach is ``发言人", which is the translation of ``spokeswoman", because the Chinese translation ``发言" can be translated from both ``state" and ``spokeswoman". Then step five will send the original English sentence to Bing Word Alignment. Now, there will be two final results, one from Bing+ approach and the other one from Bing Word Alignment and the algorithm will choose the correct one from these two results. In this example, ``state" will match with ``国家" and the algorithm will choose ``国家" as the final result as well.
 
@@ -355,17 +357,28 @@ Algorithm \ref{algorithm:wsd_5} is the approach of using Bing+ approach together
 \begin{table}[ht]
     \caption{Some examples of Bing+ and Bing++}
     \label{table:bing_plus_plus_3}
-    \begin{tabular}{| p{5cm} | p{5cm} | p{2cm} | p{2cm} |}      
+    
+    \begin{center}
+    \begin{tabular}{| p{2.5cm} | p{4cm} |}
         \hline
-        English & Chinese & Bing+ & Bing++ \\
+        Input English & oh the places youll go! rose to the bestseller list shortly after it was released in 1990 and continues to pop up there most every spring as high school and college grads transition to a new phase of life\\
         \hline
-        oh the places youll go! rose to the bestseller list shortly after it was released in 1990 and continues to pop up there most every spring as high school and college grads transition to a new phase of life & 哦你要去的地方！升至畅销书排行榜之后不久它于1990年被释放并继续弹出那里大多数每年春天为高中和大学毕业生过渡到人生的一个新阶段 & 春天 & 年春天\\
+        English Word & spring \\
         \hline
-        the darkness of the book is what makes the optimism credible nel said & 这本书的黑暗是什么使乐观可信nel说 & 书 & 本书\\
+        Bing+ Result & 春天\\
         \hline
-        other seuss books have emerged since his death in 1991 but this was the last he had a hand in & 自从他死后在1991年出现了其他苏斯博士的书，但这是他一只手在最后一次 & 最后 & 最后一次\\
+        Word Alignment Result & 年春天\\
+        \hline
+        Input English & the darkness of the book is what makes the optimism credible nel said\\
+        \hline
+        English Word & book \\
+        \hline
+        Bing+ Result & 书\\
+        \hline
+        Word Alignment Result & 本书\\
         \hline
     \end{tabular}
+    \end{center}
 \end{table}
 
 One general question about this approach is that, since I can get the official word alignment from Bing Word Alignment approach, is Bing+ approach still useful? Table \ref{table:bing_plus_plus_3} contains some examples of Bing+ approach and Bing++ approach. From left to right, the four columns are original English sentence, Chinese translation, result from Bing+ approach and result from Bing++ approach. It is very obvious that the result from Bing+ approach is the substring of the result from Bing++ approach, but which one is better? As the purpose of our Word Sense Disambiguation system is to select the most appropriate translation based on the context, but Bing Translator is a bit too smart comparing with our purpose. Bing Translator will generate some Chinese words that cannot be translated from any of the English word but can make this sentence clear and smooth. In this case, our system will choose the short answer instead of the long answer. That's why in the Bing++ approach, I will keep the result both from Bing+ approach and Bing Word Alignment and choose the better one.
@@ -390,7 +403,7 @@ threshold > 8 * averageweight\\
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.9\textwidth]{wsd_4.jpg}
+    \includegraphics[width=0.45\textwidth]{wsd_4.jpg}
     \caption{Alignment between categories}
     \label{fig:wsd_4}
 \end{figure}
@@ -423,20 +436,22 @@ During the alignment, I not only take the name of category into account, but als
 \end{algorithm}
 \begin{table}[ht]
     \caption{Example input/output of News Cateogry}
-    \begin{tabular}{| p{4cm} | p{1.5cm} | p{3cm} | p{3cm} | p{2cm} |}
+    \begin{center}
+    \begin{tabular}{| p{2.5cm} | p{4cm} |}
         \hline
-        Input English & English Word & Dictionary.Chinese & Category & FinalResult \\
+        Input English & duncan told cnns don lemon hes just painting a picture of urban street life with his lyrics\\
         \hline
-        duncan told cnns don lemon hes just painting a picture of urban street life with his lyrics & picture & ... 相, 影, 影片(entertainment), 帧, 想象, 画 ... & entertainment & 影片 \\
+        English Word & picture \\
+        \hline
+        Translation List & \parbox[t]{4cm}{...陈, 陈说, 称, 称述, 发表, 发言...}\\
+        \hline        
+        Category & entertainment\\
+        \hline
+        Final Result & 影片\\
         \hline
     \end{tabular}
+    \end{center}
 \end{table}
-%\begin{figure}[ht]
-%   \centering
-%   \includegraphics[width=0.9\textwidth]{wsd_3.jpg}
-%   \caption{Steps of using news category}
-%   \label{fig:wsd_3}
-%\end{figure}
 \\
 Algorithm \ref{algorithm:wsd_2} is the steps of using news category. The English sentence is the original sentence and ``picture" is the word that need to be translated. Firstly, the algorithm will fetch all the Chinese translations for word ``picture" and split them with comma. In this example, only the word ``影片" has a category ``entertainment". Next, the algorithm will fetch the category of the English news article from the URL, which is also ``entertainment".
 In this case, the algorithm will use ``影片" as the translation for word ``picture". If a few words shares the same category, the algorithm will choose the translation with the highest frequency of use.
