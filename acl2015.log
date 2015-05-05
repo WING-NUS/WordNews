@@ -1,12 +1,21 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2015.4.1)  3 MAY 2015 16:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.1)  4 MAY 2015 02:03
 entering extended mode
 **acl2015.tex
-(C:\Users\Naijia\Desktop\nlp-tea-2015\acl2015.tex
+(D:\fypreports\nlp-tea-2015\acl2015.tex
 LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for loaded.
-(d:\CTEX\MiKTeX\tex\latex\base\article.cls
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2013-05-26, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(d:\CTEX\MiKTeX\tex\latex\base\size11.clo
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
 File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -21,27 +30,27 @@ File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(C:\Users\Naijia\Desktop\nlp-tea-2015\acl2015.sty
+(D:\fypreports\nlp-tea-2015\acl2015.sty
 Conference Style for ACL 2015 -- released December 7, 2014
 \titlebox=\skip43
-) (d:\CTEX\MiKTeX\tex\latex\psnfss\times.sty
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\times.sty"
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
-(d:\CTEX\MiKTeX\tex\latex\ltxmisc\url.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty"
 \Urlmuskip=\muskip10
-Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(d:\CTEX\MiKTeX\tex\latex\base\latexsym.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\latexsym.sty"
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
 )
-(d:\CTEX\UserData\tex\latex\algorithms\algorithm.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\algorithms\algorithm.sty"
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
 
-(d:\CTEX\MiKTeX\tex\latex\float\float.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count87
 \float@exts=\toks14
@@ -49,16 +58,16 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks15
 \@floatcapt=\box27
 )
-(d:\CTEX\MiKTeX\tex\latex\base\ifthen.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
 \@float@every@algorithm=\toks16
 \c@algorithm=\count88
 )
-(d:\CTEX\UserData\tex\latex\algorithms\algorithmic.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\algorithms\algorithmic.sty"
 Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 
-(d:\CTEX\MiKTeX\tex\latex\graphics\keyval.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks17
 )
@@ -69,39 +78,39 @@ Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \ALC@tlm=\skip44
 \algorithmicindent=\skip45
 )
-(d:\CTEX\UserData\tex\latex\preprint\fullpage.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\preprint\fullpage.sty"
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip46
 )
-(d:\CTEX\MiKTeX\tex\latex\graphics\graphicx.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(d:\CTEX\MiKTeX\tex\latex\graphics\graphics.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(d:\CTEX\MiKTeX\tex\latex\graphics\trig.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(d:\CTEX\MiKTeX\tex\latex\00miktex\graphics.cfg
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(d:\CTEX\MiKTeX\tex\latex\pdftex-def\pdftex.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(d:\CTEX\MiKTeX\tex\generic\oberdiek\infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(d:\CTEX\MiKTeX\tex\generic\oberdiek\ltxcmds.sty
-Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count93
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(d:\CTEX\MiKTeX\tex\latex\tools\longtable.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty"
 Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip47
 \LTright=\skip48
@@ -119,29 +128,29 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \c@LT@chunks=\count98
 \LT@p@ftn=\toks18
 )
-(d:\CTEX\MiKTeX\tex\latex\graphics\lscape.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
-(d:\CTEX\MiKTeX\tex\latex\cjk\CJKutf8.sty
-Package: CJKutf8 2008/12/29 4.8.2
+("C:\Program Files\MiKTeX 2.9\tex\latex\cjk\CJKutf8.sty"
+Package: CJKutf8 2012/05/07 4.8.3
 
-(d:\CTEX\MiKTeX\tex\generic\oberdiek\ifpdf.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-(d:\CTEX\MiKTeX\tex\latex\base\inputenc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks19
 \inpenc@posthook=\toks20
 
-(d:\CTEX\MiKTeX\tex\latex\base\utf8.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def"
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-(d:\CTEX\MiKTeX\tex\latex\base\t1enc.dfu
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.dfu"
 File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -291,7 +300,7 @@ File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-(d:\CTEX\MiKTeX\tex\latex\base\ot1enc.dfu
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ot1enc.dfu"
 File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -322,7 +331,7 @@ File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-(d:\CTEX\MiKTeX\tex\latex\base\omsenc.dfu
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omsenc.dfu"
 File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -346,14 +355,14 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(d:\CTEX\MiKTeX\tex\latex\cjk\CJK.sty
-Package: CJK 2008/12/29 4.8.2
+("C:\Program Files\MiKTeX 2.9\tex\latex\cjk\CJK.sty"
+Package: CJK 2012/05/07 4.8.3
 
-(d:\CTEX\MiKTeX\tex\latex\cjk\mule\MULEenc.sty
-Package: MULEenc 2008/12/29 4.8.2
+("C:\Program Files\MiKTeX 2.9\tex\latex\cjk\mule\MULEenc.sty"
+Package: MULEenc 2012/05/07 4.8.3
 )
-(d:\CTEX\MiKTeX\tex\latex\cjk\CJK.enc
-File: CJK.enc 2008/12/29 4.8.2
+("C:\Program Files\MiKTeX 2.9\tex\latex\cjk\CJK.enc"
+File: CJK.enc 2012/05/07 4.8.3
 Now handling font encoding C00 ...
 ... no UTF-8 mapping file for font encoding C00
 Now handling font encoding C05 ...
@@ -419,10 +428,10 @@ Now handling font encoding C41 ...
 Now handling font encoding C62 ...
 ... no UTF-8 mapping file for font encoding C62
 )
-LaTeX Info: Redefining \selectfont on input line 756.
+LaTeX Info: Redefining \selectfont on input line 755.
 \CJK@indent=\box32
 )
-(d:\CTEX\MiKTeX\tex\latex\base\fontenc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 ))
 
@@ -443,16 +452,16 @@ Adding the global options:
 to your \documentclass declaration may fix this.
 Try typing  <return>  to proceed.
 
-(d:\CTEX\MiKTeX\tex\latex\cjk\UTF8\UTF8.bdg
-File: UTF8.bdg 2008/12/29 4.8.2
+("C:\Program Files\MiKTeX 2.9\tex\latex\cjk\UTF8\UTF8.bdg"
+File: UTF8.bdg 2012/05/07 4.8.3
 )
-(d:\CTEX\MiKTeX\tex\latex\cjk\UTF8\UTF8.enc
-File: UTF8.enc 2008/12/29 4.8.2
+("C:\Program Files\MiKTeX 2.9\tex\latex\cjk\UTF8\UTF8.enc"
+File: UTF8.enc 2012/05/07 4.8.3
 )
-(d:\CTEX\MiKTeX\tex\latex\cjk\UTF8\UTF8.chr
-File: UTF8.chr 2008/12/29 4.8.2
+("C:\Program Files\MiKTeX 2.9\tex\latex\cjk\UTF8\UTF8.chr"
+File: UTF8.chr 2012/05/07 4.8.3
 )
-(C:\Users\Naijia\Desktop\nlp-tea-2015\acl2015.aux)
+(D:\fypreports\nlp-tea-2015\acl2015.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
 LaTeX Font Info:    ... okay on input line 55.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
@@ -531,10 +540,10 @@ LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 55.
 LaTeX Font Info:    ... okay on input line 55.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 55.
 
-(d:\CTEX\MiKTeX\tex\latex\psnfss\ot1ptm.fd
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-(d:\CTEX\MiKTeX\tex\context\base\supp-pdf.mkii
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count99
 \scratchdimen=\dimen106
@@ -557,17 +566,17 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 57.
 LaTeX Font Info:    Try loading font information for U+lasy on input line 57.
- (d:\CTEX\MiKTeX\tex\latex\base\ulasy.fd
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 57.
 
-(d:\CTEX\MiKTeX\tex\latex\psnfss\ot1pcr.fd
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-(C:\Users\Naijia\Desktop\nlp-tea-2015\1_Introduction.tex
+(D:\fypreports\nlp-tea-2015\1_Introduction.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
 
@@ -585,12 +594,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--15
 [][]$\OT1/pcr/m/n/9 https : / / neltachoutari . wordpress . com /$
  []
 
-) (C:\Users\Naijia\Desktop\nlp-tea-2015\2_Related_Work.tex
+) (D:\fypreports\nlp-tea-2015\2_Related_Work.tex
 Underfull \hbox (badness 2197) in paragraph at lines 21--31
 []\OT1/ptm/m/n/10.95 ``Duolingo is a free language-learning and
  []
 
-[1{d:/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}
+[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 
@@ -654,34 +663,30 @@ Overfull \hbox (0.76807pt too wide) in paragraph at lines 47--64
  [] 
  []
 
-) (C:\Users\Naijia\Desktop\nlp-tea-2015\3_Algorithm.tex
+) (D:\fypreports\nlp-tea-2015\3_Algorithm.tex
 Underfull \hbox (badness 10000) in paragraph at lines 41--1
 
  []
 
-
-LaTeX Warning: Reference `fig:software_design_4' on page 2 undefined on input l
-ine 2.
-
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 11.
-(d:\CTEX\MiKTeX\tex\latex\psnfss\omsptm.fd
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 11.
 
 Underfull \hbox (badness 2050) in paragraph at lines 12--13
-[]\OT1/ptm/m/n/10.95 Part-of-Speech Tag based: s-e-lect-ing the
+[]\OT1/ptm/m/n/10.95 Part-of-Speech Tag based: se-lect-ing the
  []
 
 
 Underfull \hbox (badness 1281) in paragraph at lines 18--20
-\OT1/ptm/m/n/10.95 the can-di-dates is by ran-dom. How-ev-er, the
+\OT1/ptm/m/n/10.95 the can-di-dates is by ran-dom. How-ever, the
  []
 
 
 Underfull \hbox (badness 1454) in paragraph at lines 18--20
-\OT1/ptm/m/n/10.95 idea is to al-ways s-e-lec-t the most com-mon-ly
+\OT1/ptm/m/n/10.95 idea is to al-ways se-lect the most com-monly
  []
 
 
@@ -692,31 +697,79 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--20
 [2]
 LaTeX Font Info:    Try loading font information for C70+gbsn on input line 21.
 
- (d:\CTEX\MiKTeX\tex\latex\cjk\UTF8\c70gbsn.fd
-File: c70gbsn.fd 2008/12/29 4.8.2
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\cjk\UTF8\c70gbsn.fd"
+File: c70gbsn.fd 2012/05/07 4.8.3
 )
-(d:\CTEX\MiKTeX\tex\latex\cjk\UTF8\c70gbsn.fdx
-File: c70gbsn.fdx 2008/12/29 4.8.2
+("C:\Program Files\MiKTeX 2.9\tex\latex\cjk\UTF8\c70gbsn.fdx"
+File: c70gbsn.fdx 2012/05/07 4.8.3
 )
+Underfull \hbox (badness 4886) in paragraph at lines 29--30
+[]\OT1/ptm/m/n/10.95 Tag De-scrip-
+ []
+
+
+Underfull \hbox (badness 1708) in paragraph at lines 31--31
+[]\OT1/ptm/m/n/10.95 They are
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 31--31
-[]\OT1/ptm/m/n/10.95 They|PRP are|VBP treat-ing|VBG
+\OT1/ptm/m/n/10.95 treat-ing
  []
 
 
-Underfull \hbox (badness 1502) in paragraph at lines 31--32
-[]\OT1/ptm/m/n/10.95 IN | prepo-si-tion
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+\OT1/ptm/m/n/10.95 me like
  []
 
 
-Overfull \hbox (244.84329pt too wide) in paragraph at lines 27--34
- [] 
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+\OT1/ptm/m/n/10.95 fam-ily
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]\OT1/ptm/m/n/10.95 They|PRP
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+\OT1/ptm/m/n/10.95 are|VBP
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+\OT1/ptm/m/n/10.95 treat-ing|VBG
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+\OT1/ptm/m/n/10.95 me|PRP
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+\OT1/ptm/m/n/10.95 like|IN
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+\OT1/ptm/m/n/10.95 fam-ily|NN
  []
 
 
 LaTeX Warning: Citation `Toutanova2003' on page 3 undefined on input line 37.
 
+
+LaTeX Warning: Reference `table:part_of_speech' on page 3 undefined on input li
+ne 37.
+
+
+LaTeX Warning: Reference `table:part_of_speech' on page 3 undefined on input li
+ne 37.
+
 LaTeX Font Info:    Try loading font information for OML+ptm on input line 43.
-(d:\CTEX\MiKTeX\tex\latex\psnfss\omlptm.fd
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omlptm.fd"
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10.95> not available
@@ -744,403 +797,568 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--58
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--69
-[]\OT1/ptm/m/n/10.95 Input En-
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.66 \begin
+           {table}[ht]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
+[]\OT1/ptm/m/n/10.95 Pairs
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--69
-[]\OT1/ptm/m/n/10.95 English
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
+[]\OT1/ptm/m/n/10.95 they|PRP are|VBP
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
-[]\OT1/ptm/m/n/10.95 they are
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
+\OT1/ptm/m/n/10.95 like|IN fam-ily|NN
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
-\OT1/ptm/m/n/10.95 treat-ing me
- []
+LaTeX Warning: Reference `algorithm:wsd_1' on page 3 undefined on input line 86
+.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
-\OT1/ptm/m/n/10.95 like fam-i-ly
- []
+LaTeX Warning: Reference `algorithm:wsd_1' on page 3 undefined on input line 86
+.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
-\OT1/ptm/m/n/10.95 treat-ing|VBG
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
-\OT1/ptm/m/n/10.95 me|PRP like|IN
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
-\OT1/ptm/m/n/10.95 fam-i-ly|NN
- []
-
-
-Overfull \hbox (240.39052pt too wide) in paragraph at lines 67--74
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 89--95
+Underfull \hbox (badness 10000) in paragraph at lines 93--99
 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
-Overfull \hbox (204.39053pt too wide) in paragraph at lines 100--111
-[][] 
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 112--112
+[]\OT1/ptm/m/n/10.95 possessing car-tridges
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--120
+Underfull \hbox (badness 1412) in paragraph at lines 112--112
+\OT1/ptm/m/n/10.95 used ex-clu-sively by the
+ []
+
+
+Underfull \hbox (badness 2173) in paragraph at lines 112--112
+\OT1/ptm/m/n/10.95 mil-i-tary and car-ry-ing a
+ []
+
+
+LaTeX Warning: Reference `table:bing_translator' on page 4 undefined on input l
+ine 116.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
 [] []$\OML/cmm/m/it/10.95 ChineseTranslation \OMS/cmsy/m/n/10.95  $
  []
 
 
-Underfull \hbox (badness 1331) in paragraph at lines 120--120
+Underfull \hbox (badness 1331) in paragraph at lines 124--124
 [] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 EnglishWord \OMS/cmsy/m/n/10.95
   \OML/cmm/m/it/10.95 Dictionary:English$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--123
+Underfull \hbox (badness 10000) in paragraph at lines 127--127
 [] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 ChineseWord \OMS/cmsy/m/n/10.9
 5 $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--124
+Underfull \hbox (badness 10000) in paragraph at lines 128--128
 [] []\OT1/ptm/b/n/10.95 if $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ChineseWord
  \OMS/cmsy/m/n/10.95 $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--124
+Underfull \hbox (badness 10000) in paragraph at lines 128--128
 $\OML/cmm/m/it/10.95 ChineseTranslation\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95
  \$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--124
+Underfull \hbox (badness 10000) in paragraph at lines 128--128
 $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 MaxLength <$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--136
-[]\OT1/ptm/m/n/10.95 English
+Underfull \hbox (badness 2680) in paragraph at lines 147--147
+[]\OT1/ptm/m/n/10.95 Chinese Trans-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--136
-[]\OT1/ptm/m/n/10.95 Dictionary \OML/cmm/m/it/10.95 <\OT1/ptm/m/n/10.95 En-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 138--138
-[]\OT1/ptm/m/n/10.95 verb:\C70/gbsn/m/n/10.95/62 �\OT1/ptm/m/n/10.95 , \C70/gbs
-n/m/n/10.95/62 � \C70/gbsn/m/n/10.95/6c 4\OT1/ptm/m/n/10.95 ,
- []
-
-
-Underfull \hbox (badness 1946) in paragraph at lines 138--138
-\C70/gbsn/m/n/10.95/62 S \C70/gbsn/m/n/10.95/6c \OT1/ptm/m/n/10.95 , \C70/gbsn
-/m/n/10.95/55 '\OT1/ptm/m/n/10.95 , \C70/gbsn/m/n/10.95/55 ' \C70/gbsn/m/n/10.9
-5/7b R\OT1/ptm/m/n/10.95 ,
- []
-
-
-Overfull \hbox (226.16414pt too wide) in paragraph at lines 134--141
-[][] 
- []
+LaTeX Warning: Reference `algorithm:wsd_3' on page 4 undefined on input line 16
+1.
 
 [4]
-Overfull \hbox (228.39053pt too wide) in paragraph at lines 156--163
+Underfull \hbox (badness 2717) in paragraph at lines 171--172
+[]\OT1/ptm/m/n/10.95 as a re-sult of the lat-
+ []
+
+
+Underfull \hbox (badness 2680) in paragraph at lines 177--177
+[]\OT1/ptm/m/n/10.95 Chinese Trans-
+ []
+
+
+LaTeX Warning: Reference `table:bing_plus_1' on page 5 undefined on input line 
+184.
+
+
+Overfull \hbox (5.22125pt too wide) in paragraph at lines 189--200
 [][] 
  []
 
 
-Overfull \hbox (232.84329pt too wide) in paragraph at lines 169--180
-[][] 
- []
+LaTeX Warning: Reference `table:bing_plus_2' on page 5 undefined on input line 
+202.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
 [] []$\OML/cmm/m/it/10.95 ChineseTranslation \OMS/cmsy/m/n/10.95  $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
+Underfull \hbox (badness 10000) in paragraph at lines 210--211
 [] []$\OML/cmm/m/it/10.95 SegmentedChineseTranslation \OMS/cmsy/m/n/10.95  $
  []
 
 
-Underfull \hbox (badness 1331) in paragraph at lines 191--191
+Underfull \hbox (badness 1331) in paragraph at lines 211--211
 [] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 EnglishWord \OMS/cmsy/m/n/10.95
   \OML/cmm/m/it/10.95 Dictionary:English$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--194
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 [] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 ChineseWord \OMS/cmsy/m/n/10.9
 5 $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
+Underfull \hbox (badness 10000) in paragraph at lines 215--215
 [] []\OT1/ptm/b/n/10.95 if $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ChineseWord
  \OMS/cmsy/m/n/10.95 $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
+Underfull \hbox (badness 10000) in paragraph at lines 215--215
 $\OML/cmm/m/it/10.95 ChineseTranslation\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95
  \$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
+Underfull \hbox (badness 10000) in paragraph at lines 215--215
 $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 MaxLength <$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--199
+Underfull \hbox (badness 10000) in paragraph at lines 219--219
 [] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 SegmentedWord \OMS/cmsy/m/n/10
 .95 $
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 200--200
+Underfull \hbox (badness 1337) in paragraph at lines 220--220
 [] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 FinalResult \OMS/cmsy/m/n/10.95
   \OML/cmm/m/it/10.95 SegmentedWord$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-[]\OT1/ptm/m/n/10.95 English
+Underfull \hbox (badness 2680) in paragraph at lines 240--240
+[]\OT1/ptm/m/n/10.95 Chinese Trans-
  []
 
 
-Underfull \hbox (badness 1946) in paragraph at lines 214--214
-\C70/gbsn/m/n/10.95/80 T \C70/gbsn/m/n/10.95/8d [\OT1/ptm/m/n/10.95 , \C70/gbsn
-/m/n/10.95/8f l \C70/gbsn/m/n/10.95/64 �\OT1/ptm/m/n/10.95 , \C70/gbsn/m/n/10.9
-5/76 �\OT1/ptm/m/n/10.95 ,
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.249 A
+       lgorithm \ref{algorithm:wsd_4} is the approach of using Bing Translat...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Reference `algorithm:wsd_4' on page 5 undefined on input line 24
+9.
+
+
+Underfull \hbox (badness 2080) in paragraph at lines 249--251
+\OT1/ptm/m/n/10.95 Trans-la-tor to-gether with Stan-ford Word Seg-
  []
 
 
-Overfull \hbox (226.16414pt too wide) in paragraph at lines 210--217
-[][] 
- []
-
-
-Underfull \hbox (badness 1122) in paragraph at lines 164--227
-\OT1/ptm/m/n/10.95 ``top" based on the Bing Trans-la-tor, I would
- []
-
-
-Underfull \hbox (badness 1681) in paragraph at lines 164--227
-\OT1/ptm/m/n/10.95 Text seg-men-ta-tion is the pro-cess of di-vid-ing
- []
-
-
-Underfull \hbox (badness 1048) in paragraph at lines 164--227
-\OT1/ptm/m/n/10.95 de-vel-ope-d by The S-tan-ford Nat-u-ral Lan-guage
- []
-
-
-Underfull \hbox (badness 1067) in paragraph at lines 164--227
-\OT1/ptm/m/n/10.95 la-tor to-geth-er with S-tan-ford Word Seg-menter,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 164--227
+Underfull \hbox (badness 10000) in paragraph at lines 249--251
 
  []
 
 [5]
-Overfull \hbox (228.39053pt too wide) in paragraph at lines 232--239
-[][] 
+Underfull \hbox (badness 8038) in paragraph at lines 258--259
+[]\OT1/ptm/m/n/10.95 but the world no 46
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--250
-[]\OT1/ptm/m/n/10.95 0:1|0:1 3:7|2:5 9:12|6:7 14:15|8:8
+Underfull \hbox (badness 2165) in paragraph at lines 258--259
+\OT1/ptm/m/n/10.95 played one of his best
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--250
-\OT1/ptm/m/n/10.95 17:21|9:9 23:24|10:10 26:28|14:14
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
+\OT1/ptm/m/n/10.95 matches cru-cially not
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--250
-\OT1/ptm/m/n/10.95 30:33|15:17 35:38|18:19 40:41|11:11
+Underfull \hbox (badness 2680) in paragraph at lines 264--264
+[]\OT1/ptm/m/n/10.95 Chinese Trans-
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 251--252
-[]\OT1/ptm/m/n/10.95 4:10|0:1 12:13|2:2 15:19|3:3 21:28|4:5
+LaTeX Warning: Reference `table:bing_plus_plus_1' on page 6 undefined on input 
+line 271.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.279         Input_
+                    1 & dr seuss knew it would be the last book he published\\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.279         Input_1 &
+                        dr seuss knew it would be the last book he published\\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.281         Output_
+                     1 & 博士苏斯博士知道这将是他出版的最后...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.281         Output_1 &
+                         博士苏斯博士知道这将是他出版的最后...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.283         Output_
+                     1 & 0:1|0:1 3:7|2:5 9:12|6:7 14:15|8:8 17:21|9:9 23:24|...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.283         Output_1 &
+                         0:1|0:1 3:7|2:5 9:12|6:7 14:15|8:8 17:21|9:9 23:24|...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
+[]\OT1/ptm/m/n/10.95 0:1|0:1 3:7|2:5 9:12|6:7
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--252
-\OT1/ptm/m/n/10.95 30:32|6:7 34:41|8:8 43:48|9:10
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
+\OT1/ptm/m/n/10.95 14:15|8:8 17:21|9:9
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--252
-\OT1/ptm/m/n/10.95 50:53|11:11 59:63|15:16 65:73|17:19
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
+\OT1/ptm/m/n/10.95 23:24|10:10 26:28|14:14
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 253--253
-[]\OT1/ptm/m/n/10.95 this is some-thing
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
+\OT1/ptm/m/n/10.95 30:33|15:17 35:38|18:19
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.285         Input_
+                    2 & the problem is youre going to run straight headon in...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.285         Input_2 &
+                        the problem is youre going to run straight headon in...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.287         Output_
+                     2 & 问题是你将要运行直赫顿到他说的第一...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.287         Output_2 &
+                         问题是你将要运行直赫顿到他说的第一...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.289         Output_
+                     2 & 4:10|0:1 12:13|2:2 15:19|3:3 21:28|4:5 30:32|6:7 34...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.289         Output_2 &
+                         4:10|0:1 12:13|2:2 15:19|3:3 21:28|4:5 30:32|6:7 34...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 289--290
+[]\OT1/ptm/m/n/10.95 4:10|0:1 12:13|2:2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 253--254
-[]\OT1/ptm/m/n/10.95 0:3|0:0 5:16|1:1 18:29|2:6 31:39|7:8
+Underfull \hbox (badness 10000) in paragraph at lines 289--290
+\OT1/ptm/m/n/10.95 15:19|3:3 21:28|4:5
  []
 
 
-Overfull \hbox (230.61691pt too wide) in paragraph at lines 245--256
-[][] 
+Underfull \hbox (badness 10000) in paragraph at lines 289--290
+\OT1/ptm/m/n/10.95 30:32|6:7 34:41|8:8
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--258
+Underfull \hbox (badness 10000) in paragraph at lines 289--290
+\OT1/ptm/m/n/10.95 43:48|9:10 50:53|11:11
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 289--290
+\OT1/ptm/m/n/10.95 59:63|15:16 65:73|17:19
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.291         Input_
+                    3 & this is something preschoolers deal with all the time\\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.291         Input_3 &
+                        this is something preschoolers deal with all the time\\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.293         Output_
+                     3 & 这是学龄前儿童处理所有的时间\\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.293         Output_3 &
+                         这是学龄前儿童处理所有的时间\\
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.295         Output_
+                     3 & 0:3|0:0 5:16|1:1 18:29|2:6 31:39|7:8 41:43|9:10 45:...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.295         Output_3 &
+                         0:3|0:0 5:16|1:1 18:29|2:6 31:39|7:8 41:43|9:10 45:...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 295--296
+\OT1/ptm/m/n/10.95 31:39|7:8 41:43|9:10
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 301--301
 [][]$\OT1/pcr/m/n/9 https : / / msdn . microsoft . com / en-[]us /$
  []
 
 
-Underfull \hbox (badness 6859) in paragraph at lines 264--265
+LaTeX Warning: Reference `table:bing_plus_plus_2' on page 6 undefined on input 
+line 301.
+
+[6]
+Underfull \hbox (badness 6859) in paragraph at lines 307--308
 [] []\OT1/ptm/m/n/10.95 Bing Trans-la-tor, Word Seg-menter,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--266
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
 [] []$\OML/cmm/m/it/10.95 ChineseTranslation \OMS/cmsy/m/n/10.95  $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
+Underfull \hbox (badness 10000) in paragraph at lines 309--310
 [] []$\OML/cmm/m/it/10.95 SegmentedChineseTranslation \OMS/cmsy/m/n/10.95  $
  []
 
 
-Underfull \hbox (badness 1331) in paragraph at lines 268--268
+Underfull \hbox (badness 1331) in paragraph at lines 311--311
 [] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 EnglishWord \OMS/cmsy/m/n/10.95
   \OML/cmm/m/it/10.95 Dictionary:English$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 271--271
+Underfull \hbox (badness 10000) in paragraph at lines 314--314
 [] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 ChineseWord \OMS/cmsy/m/n/10.9
 5 $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
+Underfull \hbox (badness 10000) in paragraph at lines 315--315
 [] []\OT1/ptm/b/n/10.95 if $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ChineseWord
  \OMS/cmsy/m/n/10.95 $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
+Underfull \hbox (badness 10000) in paragraph at lines 315--315
 $\OML/cmm/m/it/10.95 ChineseTranslation\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95
  \$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
+Underfull \hbox (badness 10000) in paragraph at lines 315--315
 $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 MaxLength <$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 276--276
+Underfull \hbox (badness 10000) in paragraph at lines 319--319
 [] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 SegmentedWord \OMS/cmsy/m/n/10
 .95 $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--284
+Underfull \hbox (badness 10000) in paragraph at lines 326--327
 [] []$\OML/cmm/m/it/10.95 FinalResult[] \OMS/cmsy/m/n/10.95  $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 295--295
+Underfull \hbox (badness 10000) in paragraph at lines 338--338
 []\OT1/ptm/m/n/10.95 English
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 295--295
+Underfull \hbox (badness 10000) in paragraph at lines 338--338
 []\OT1/ptm/m/n/10.95 Dictionary
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 297--297
-[]\OT1/ptm/m/n/10.95 state de-part-men-t
+Underfull \hbox (badness 10000) in paragraph at lines 340--340
+[]\OT1/ptm/m/n/10.95 state de-part-ment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 297--297
-\OT1/ptm/m/n/10.95 spokeswom-an jen p-
+Underfull \hbox (badness 10000) in paragraph at lines 340--340
+\OT1/ptm/m/n/10.95 spokeswoman jen
  []
 
 
-Underfull \hbox (badness 1107) in paragraph at lines 297--297
-\OT1/ptm/m/n/10.95 sa-k-i said that the al-lies
+Underfull \hbox (badness 3138) in paragraph at lines 340--340
+\OT1/ptm/m/n/10.95 psaki said that the al-
  []
 
 
-Underfull \hbox (badness 4378) in paragraph at lines 297--297
-\OT1/ptm/m/n/10.95 had a long his-to-ry of
- []
-
-
-Overfull \hbox (252.39052pt too wide) in paragraph at lines 293--300
+Overfull \hbox (252.39052pt too wide) in paragraph at lines 336--343
 [][] 
  []
 
-[6]
-Underfull \hbox (badness 3735) in paragraph at lines 319--319
+
+LaTeX Warning: Reference `algorithm:wsd_5' on page 7 undefined on input line 35
+2.
+
+
+Underfull \hbox (badness 3735) in paragraph at lines 362--362
 \C70/gbsn/m/n/10.95/95   \C70/gbsn/m/n/10.95/4e f \C70/gbsn/m/n/10.95/63 � \C70
 /gbsn/m/n/10.95/88 L \C70/gbsn/m/n/10.95/69 � \C70/gbsn/m/n/10.95/4e K \C70/gbs
 n/m/n/10.95/54  \C70/gbsn/m/n/10.95/4e  E \C70/gbsn/m/n/10.95/5b �
  []
 
 
-Overfull \hbox (228.39053pt too wide) in paragraph at lines 315--326
+Overfull \hbox (228.39053pt too wide) in paragraph at lines 358--369
 [][] 
  []
 
 
-Underfull \hbox (badness 3646) in paragraph at lines 328--330
+LaTeX Warning: Reference `table:bing_plus_plus_3' on page 7 undefined on input 
+line 371.
+
+
+Underfull \hbox (badness 3646) in paragraph at lines 371--373
 \OT1/ptm/m/n/10.95 En-glish sen-tence, Chi-nese trans-la-tion, re-sult
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 328--330
+Underfull \hbox (badness 10000) in paragraph at lines 371--373
 
- []
-
-
-Underfull \hbox (badness 1205) in paragraph at lines 339--340
-[]\OT1/ptm/m/n/10.95 However, as-sign-ing a cat-e-go-ry for Chi-nese
  []
 
 [7]
 
-LaTeX Warning: File `wsd_4.jpg' not found on input line 352.
+LaTeX Warning: Reference `equation:category_1' on page 8 undefined on input lin
+e 380.
+
+
+LaTeX Warning: Reference `equation:category_2' on page 8 undefined on input lin
+e 380.
+
+
+LaTeX Warning: File `wsd_4.jpg' not found on input line 393.
 
 
 ! Package pdftex.def Error: File `wsd_4.jpg' not found.
@@ -1149,91 +1367,109 @@ See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.352 ...egraphics[width=0.9\textwidth]{wsd_4.jpg}
+l.393 ...egraphics[width=0.9\textwidth]{wsd_4.jpg}
                                                   
 Using draft setting for this image.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (189.7203pt too wide) in paragraph at lines 352--353
+Overfull \hbox (189.7203pt too wide) in paragraph at lines 393--394
  [][] 
  []
 
 
-Underfull \hbox (badness 1331) in paragraph at lines 369--369
+LaTeX Warning: Reference `fig:wsd_4' on page 8 undefined on input line 400.
+
+
+Underfull \hbox (badness 1331) in paragraph at lines 410--410
 [] []\OT1/ptm/b/n/10.95 if $\OML/cmm/m/it/10.95 EnglishWord \OMS/cmsy/m/n/10.95
   \OML/cmm/m/it/10.95 Dictionary:English$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 370--371
+Underfull \hbox (badness 10000) in paragraph at lines 411--412
 [] []$\OML/cmm/m/it/10.95 TranslationList \OMS/cmsy/m/n/10.95  $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 370--371
+Underfull \hbox (badness 10000) in paragraph at lines 411--412
 $\OML/cmm/m/it/10.95 Dictionary:Chinese \OT1/cmr/m/n/10.95 +$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 372--372
+Underfull \hbox (badness 10000) in paragraph at lines 413--413
 [] []\OT1/ptm/b/n/10.95 for $\OML/cmm/m/it/10.95 category \OMS/cmsy/m/n/10.95 
 $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 374--375
+Underfull \hbox (badness 10000) in paragraph at lines 415--416
 [] []$\OML/cmm/m/it/10.95 FinalResult \OMS/cmsy/m/n/10.95  $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 387--387
+Underfull \hbox (badness 10000) in paragraph at lines 428--428
 []\OT1/ptm/m/n/10.95 English
  []
 
 
-Underfull \hbox (badness 7133) in paragraph at lines 389--389
-[]\OT1/ptm/m/n/10.95 duncan told c-nns don
+Underfull \hbox (badness 7133) in paragraph at lines 430--430
+[]\OT1/ptm/m/n/10.95 duncan told cnns don
  []
 
 
-Underfull \hbox (badness 3635) in paragraph at lines 389--389
+Underfull \hbox (badness 3635) in paragraph at lines 430--430
 []\OT1/ptm/m/n/10.95 ... \C70/gbsn/m/n/10.95/76 �\OT1/ptm/m/n/10.95 , \C70/gbsn
 /m/n/10.95/5f q\OT1/ptm/m/n/10.95 , \C70/gbsn/m/n/10.95/5f q
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 389--389
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
 \C70/gbsn/m/n/10.95/72 G\OT1/ptm/m/n/10.95 (entertainment),
  []
 
 
-Overfull \hbox (226.16414pt too wide) in paragraph at lines 385--392
+Overfull \hbox (226.16414pt too wide) in paragraph at lines 426--433
 [][] 
  []
 
-) (C:\Users\Naijia\Desktop\nlp-tea-2015\4_Results.tex
+
+LaTeX Warning: Reference `algorithm:wsd_2' on page 8 undefined on input line 44
+1.
+
+) (D:\fypreports\nlp-tea-2015\4_Results.tex [8]
 Underfull \hbox (badness 10000) in paragraph at lines 6--12
 
  []
 
-[8]
+
+Underfull \vbox (badness 1888) has occurred while \output is active []
+
+ [9]
 Underfull \hbox (badness 4378) in paragraph at lines 30--30
 []\OT1/ptm/m/n/10.95 News Cat-e-
  []
+
+
+LaTeX Warning: Reference `table:evaluation_1' on page 10 undefined on input lin
+e 41.
 
 
 Underfull \hbox (badness 4378) in paragraph at lines 56--56
 []\OT1/ptm/m/n/10.95 News Cat-e-
  []
 
-) (C:\Users\Naijia\Desktop\nlp-tea-2015\5_Application.tex
+
+LaTeX Warning: Reference `table:evaluation_3' on page 10 undefined on input lin
+e 67.
+
+) (D:\fypreports\nlp-tea-2015\5_Application.tex
 Underfull \hbox (badness 10000) in paragraph at lines 41--1
 
  []
 
-[9])
+[10])
 No file acl2015.bbl.
 
 ! LaTeX Error: \begin{CJK*} on input line 31 ended by \end{document}.
@@ -1248,11 +1484,14 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[10] [11
+[11] [12
 
-] (C:\Users\Naijia\Desktop\nlp-tea-2015\acl2015.aux)
+] (D:\fypreports\nlp-tea-2015\acl2015.aux)
 
 LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (\end occurred inside a group at level 1)
@@ -1260,65 +1499,75 @@ LaTeX Warning: There were undefined references.
 ### semi simple group (level 1) entered at line 31 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4018 strings out of 495354
- 47826 string characters out of 3183860
- 123327 words of memory out of 3000000
- 6933 multiletter control sequences out of 15000+200000
+ 4022 strings out of 493921
+ 48961 string characters out of 3147274
+ 124151 words of memory out of 3000000
+ 7063 multiletter control sequences out of 15000+200000
  39885 words of font info for 119 fonts, out of 3000000 for 9000
- 14 hyphenation exceptions out of 8191
- 30i,10n,25p,1331b,1532s stack positions out of 5000i,500n,10000p,200000b,50000s
-{d:/CTEX/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<d:/CTEX/MiKTeX
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/CTEX/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmr10.pfb><d:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><d
-:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/CTEX/UserData/fonts
-/type1/arphic/gbsnu/gbsnu4e.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsn
-u4f.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu50.pfb><d:/CTEX/UserDat
-a/fonts/type1/arphic/gbsnu/gbsnu51.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbs
-nu/gbsnu52.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu53.pfb><d:/CTEX/
-UserData/fonts/type1/arphic/gbsnu/gbsnu54.pfb><d:/CTEX/UserData/fonts/type1/arp
-hic/gbsnu/gbsnu55.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu56.pfb><d
-:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu57.pfb><d:/CTEX/UserData/fonts/ty
-pe1/arphic/gbsnu/gbsnu58.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu59
-.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu5b.pfb><d:/CTEX/UserData/f
-onts/type1/arphic/gbsnu/gbsnu5c.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/
-gbsnu5d.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu5e.pfb><d:/CTEX/Use
-rData/fonts/type1/arphic/gbsnu/gbsnu5f.pfb><d:/CTEX/UserData/fonts/type1/arphic
-/gbsnu/gbsnu60.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu62.pfb><d:/C
-TEX/UserData/fonts/type1/arphic/gbsnu/gbsnu63.pfb><d:/CTEX/UserData/fonts/type1
-/arphic/gbsnu/gbsnu64.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu65.pf
-b><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu66.pfb><d:/CTEX/UserData/font
-s/type1/arphic/gbsnu/gbsnu67.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbs
-nu68.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu69.pfb><d:/CTEX/UserDa
-ta/fonts/type1/arphic/gbsnu/gbsnu6b.pfb><d:/CTEX/UserData/fonts/type1/arphic/gb
-snu/gbsnu6c.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu6e.pfb><d:/CTEX
-/UserData/fonts/type1/arphic/gbsnu/gbsnu70.pfb><d:/CTEX/UserData/fonts/type1/ar
-phic/gbsnu/gbsnu72.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu73.pfb><
-d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu74.pfb><d:/CTEX/UserData/fonts/t
-ype1/arphic/gbsnu/gbsnu75.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu7
-6.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu77.pfb><d:/CTEX/UserData/
-fonts/type1/arphic/gbsnu/gbsnu79.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu
-/gbsnu7a.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu7b.pfb><d:/CTEX/Us
-erData/fonts/type1/arphic/gbsnu/gbsnu7c.pfb><d:/CTEX/UserData/fonts/type1/arphi
-c/gbsnu/gbsnu7e.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu80.pfb><d:/
-CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu81.pfb><d:/CTEX/UserData/fonts/type
-1/arphic/gbsnu/gbsnu82.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu88.p
-fb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu89.pfb><d:/CTEX/UserData/fon
-ts/type1/arphic/gbsnu/gbsnu8a.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gb
-snu8b.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu8c.pfb><d:/CTEX/UserD
-ata/fonts/type1/arphic/gbsnu/gbsnu8d.pfb><d:/CTEX/UserData/fonts/type1/arphic/g
-bsnu/gbsnu8e.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu8f.pfb><d:/CTE
-X/UserData/fonts/type1/arphic/gbsnu/gbsnu90.pfb><d:/CTEX/UserData/fonts/type1/a
-rphic/gbsnu/gbsnu91.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu95.pfb>
-<d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu96.pfb><d:/CTEX/UserData/fonts/
-type1/arphic/gbsnu/gbsnu97.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu
-98.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnu9a.pfb><d:/CTEX/UserData
-/fonts/type1/arphic/gbsnu/gbsnu9e.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsn
-u/gbsnu9f.pfb><d:/CTEX/UserData/fonts/type1/arphic/gbsnu/gbsnuff.pfb><d:/CTEX/M
-iKTeX/fonts/type1/urw/courier/ucrr8a.pfb><d:/CTEX/MiKTeX/fonts/type1/urw/times/
-utmb8a.pfb><d:/CTEX/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on acl2015.pdf (11 pages, 438520 bytes).
+ 841 hyphenation exceptions out of 8191
+ 30i,12n,27p,1331b,1545s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/arphic/gbsnu/gbsnu4e.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gb
+snu/gbsnu4f.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu50.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu51.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu52.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/arphic/gbsnu/gbsnu53.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/arphic/gbsnu/gbsnu54.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/g
+bsnu/gbsnu55.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu56.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu57.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu58.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/arphic/gbsnu/gbsnu59.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/arphic/gbsnu/gbsnu5b.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/
+gbsnu/gbsnu5c.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu5d
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu5e.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu5f.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/arphic/gbsnu/gbsnu60.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/arphic/gbsnu/gbsnu62.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic
+/gbsnu/gbsnu63.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu6
+4.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu65.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu66.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu67.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/arphic/gbsnu/gbsnu68.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphi
+c/gbsnu/gbsnu69.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu
+6b.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu6c.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu6e.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu70.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/arphic/gbsnu/gbsnu72.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arph
+ic/gbsnu/gbsnu73.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsn
+u74.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu75.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu76.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu77.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/arphic/gbsnu/gbsnu79.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arp
+hic/gbsnu/gbsnu7a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbs
+nu7b.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu7c.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu7e.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu80.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/arphic/gbsnu/gbsnu81.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/ar
+phic/gbsnu/gbsnu82.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gb
+snu88.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu89.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu8a.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu8b.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/arphic/gbsnu/gbsnu8c.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/a
+rphic/gbsnu/gbsnu8d.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/g
+bsnu8e.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu8f.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu90.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu91.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/arphic/gbsnu/gbsnu95.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+arphic/gbsnu/gbsnu96.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/
+gbsnu97.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu98.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu9a.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/arphic/gbsnu/gbsnu9e.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/arphic/gbsnu/gbsnu9f.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/arphic/gbsnu/gbsnuff.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/
+ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
+Output written on acl2015.pdf (12 pages, 440165 bytes).
 PDF statistics:
- 377 PDF objects out of 1000 (max. 8388607)
+ 380 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  249 words of extra memory for PDF output out of 10000 (max. 10000000)
 
