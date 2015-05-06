@@ -1,0 +1,90 @@
+\section{Introduction}
+Learning a new language from language learning websites is 
+time consuming. Research shows that regular practice, guessing, 
+memorization~\cite{rubin91} as well as immersion into real scenarios~\cite{naiman78} hastens language learning process. 
+Therefore, to make second language learning 
+attractive and efficient we seek to interleave language leaning 
+with a popular daily activity: online news reading.
+Further recent increase in the popularity of 
+portable devices has made online news reading popular~\cite{yarlh2012}. 
+We leverage on this culture to provide users of news websites with an opportunity to learn a second language.
+
+It is observed that language development in children begins with 
+vocabulary acquisition before syntax and other aspects are learnt. One may 
+extrapolate by assumption that vocabulary acquisition is perhaps the first step in language learning, in general. Research also shows that extensive reading builds up vocabulary. This, however, could make learning time consuming and boring, if the learner is uninterested in the reading material. We, therefore, seek to enable learners build 
+their vocabulary efficiently with an enjoyable user experience.
+
+Existing language learning software are either instruction driven or user driven. 
+%teach through structured lessons 
+%or through strategies for memorizing the new vocabularies. 
+%In the first category, 
+%learning in lessons, they manually design some lessons to help their 
+%lessons are purposefully designed to help users easily learn a foreign language.
+%For the second category users are guided to recite lists of words, or provided with 
+%a translation for their input word in the foreign language. 
+Duolingo\footnote{\url{https://www.duolingo.com/}} is a popular instruction driven system that teaches through structured lessons. Google Translate\footnote{\url{https://translate.google.com/}}, on the other hand, allows you to learn by translating your inputs. Instruction driven systems demand dedicated 
+learner time on a daily basis and are difficult to customise according to the learner's skill level. User driven systems, however, lack rigor since the system never tests learners periodically to hone their skills. We seek to seamlessly merge learning and assessment into the same user session. %Learners are tested while they learn. 
+Our system is also able to adapt to the learner's skill during assessment.
+%~\footnote{\url{https://neltachoutari.wordpress.com/tag/%vocabulary/}}. 
+%Perhaps, this justifies the poor adoption of current second language learning 
+%systems. 
+We propose a system to enable online news readers to efficiently learn 
+a new language, Chinese (English), while they are reading English (Chinese) news. Learners are trained by providing translations to randomly chosen open domain words on the English (Chinese) news page. Learners are also assessed by replacing English (Chinese) words in the news article with their Chinese (English) translations and  asked to translate them back given a choice of possible translations. In this paper, 
+we propose algorithms: \textbf{(i)} for translating English (Chinese) words to Chinese (English) from news articles, \textbf{(ii)} for generating distractor translations for learner assessment.
+The system, deployed as a Chrome extension\footnote{a software extension to the Chrome web browser} is triggered when readers visit a preconfigured list of news websites.
+%on a preconfigured list.
+%The system even adapts to the user's current knowledge level during assessment.
+%The service is available as desktop / mobile / web software including a chrome extension. 
+%We mainly compare our system  with the aforementioned two software.
+%Table~\ref{table:difference_summary} summarises important differences between 
+%our system and all these existing tools. Each difference serves as a motivation 
+%for developing our extension.
+%``Duolingo is a free language-learning and crowdsourced text translation 
+%platform''\footnote{\url{http://en.wikipedia.org/wiki/Duolingo}}.
+%Most people start to use Duolingo when they know a little or nothing about 
+%the new language. They starting from some basic lessons and improve step by step.
+%However, our target audience is a mix novice and intermediate level learners of the foreign language. 
+%We can not only help beginners learn 
+%a new language but also help them continue their learning by allowing them to practice 
+%their foreign language. There are also a lot articles with their translations in 
+%Duolingo, but all the articles and their translations are manually added by 
+%Duolingo or users from Duolingo. Therefore, parallel articles in Duolingo are old and 
+%limited. However, our chrome extension is always working even for those up to the 
+%minute news and our user can just practice their foreign language in their daily 
+%readings.
+
+%\textbf{Google Translate:} ``Highlight or right-click on a %section of text and click
+%on Translate icon next to it to translate it to your 
+%language''\footnote{\url{http://en.wikipedia.org/wiki/%Google_Chrome_Extensions}}. 
+%% Tao: please cite
+%Google Translate is a chrome extension that displays only %the translation when user 
+%select a section, which can be a word, a phrase, a sentence %or even a whole page. 
+%Our chrome extension will translate a single word only, and %display the translation,
+%following with the pronunciations and example sentences to %help user understand and 
+%remember this word. Compared with our extension, Google %Translate is more like an extension 
+%to help user understand the content of the page. %Furthermore, our extension will display 
+%the most appropriate translation as it will refer to the %context of the word.
+
+%\begin{table}[ht]
+%  \caption{Summary of the differences}
+%  \label{table:difference_summary}
+%  \begin{center}
+%  \begin{tabular}{| p{2.4cm} | p{1.2cm} | p{1.2cm} |  p{1.2cm} |}
+%    \hline
+%    & Duolingo & Google Translate & Chrome Extension \\
+%    \hline
+%    Lessons & Yes & No & No \\
+%    \hline
+%    User's foreign language level & Low & Low-High & Low-High \\
+%    \hline
+%    Time consuming & Yes & No & No\\
+%    \hline
+%    Resource & Limited & Infinite & Infinite \\
+%    \hline
+%    Customizable & Yes & No & Yes \\
+%    \hline
+%    Link to External Dictionary & No & No & Yes \\
+%    \hline
+%  \end{tabular}
+%  \end{center}
+%\end{table}
