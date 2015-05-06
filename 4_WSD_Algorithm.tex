@@ -1,0 +1,115 @@
+\section{Word Sense Disambiguation System}
+\begin{CJK}{UTF8}{gbsn}
+As we all know, one word may have multiple translations in another language, and our extension is expected to select the most appropriate one based on the context.We call such translation selection as cross-lingual word sense disambiguation (WSD).
+
+In this following, I describe four approaches that I have tried to accomplish WSD system, which is also my main progress in the second semester. The four approaches are: 
+
+\begin{itemize}
+\item Frequency based: always selecting the most frequent translation (the baseline),
+\item Part-of-Speech Tag based: selecting the translation based on the Part-of-Speech Tag of the English word
+\item Translation based: Selecting the translation based on the result from existing Machine Translation systems
+\item Category based: Selecting the translation based on the category of the news article
+\end{itemize}
+
+\begin{table*}[t]
+	\caption{Example input/output of WSD}
+	\label{table:wsd_1}
+	\begin{center}
+	\begin{tabular}{| p{3cm} | p{1cm} | p{3.5cm} | p{1.2cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
+		\hline
+		English Sentence & Word & Dictionary & Baseline & Category & Bing & Bing+ & Bing++ \\
+		\hline
+		... treating me like family ... & like & \parbox[t]{3cm}{verb : 喜欢, 爱...\\ ... \\preposition : 好像, 好比 ...} & 喜欢 & 好像 & & & \\
+		\hline
+		... painting a picture of urban street life ... & picture & \parbox[t]{3cm}{... 相, 影, 影片(entertainment), 帧, 想象, 画 ...} & & 影片 & & & \\
+		\hline
+		... pistol a pump shotgun ... & pump & \parbox[t]{3cm}{verb:抽, 抽水, 打气, 唧, 唧筒, 套\\ noun:抽水机, 唧筒} & & & 唧筒 & & \\
+		\hline
+		... have made it into the worlds top 40 clubs ... & top & \parbox[t]{3cm}{顶部, 顶端, 顶, 颠, 盖, 极 ...} & 顶部 &  & 顶 & 顶级 & \\
+		\hline
+		state department spokeswoman ... & state & \parbox[t]{3cm}{...陈, 陈说, 称, 称述, 发表, 发言...} & & & 发言 & 发言人 & 国家 \\
+		\hline
+		...  ... &  & \parbox[t]{3cm}{...  ...} & & & & & \\
+		\hline
+	\end{tabular}
+	\end{center}
+\end{table*}
+
+\subsection{Baseline}
+The simplest way to select a translation from the candidates is by random. However, the correctness of this method is very low, probably less than 20\%, and is not a good baseline for other methods to compete with. Another simple idea is to always select the most commonly used translation. Luckily, when I crawled the dictionary, Google Translate does provide usage frequency of each Chinese Translation.  This turns out to be a much better result, and thus serves as a fair baseline method.
+
+\subsection{Part-of-Speech Tagger}
+As we all know, many English words have more than one Part-of-Speech (POS) tags and their Chinese translations in different POS may differ a lot. For example, the word ``book" has two POS tags, noun and verb. If it is used as a noun, mostly it means a handwritten or printed work of fiction or nonfiction, which should be translated as \begin{CJK}{UTF8}{gbsn}``书"\end{CJK}, and mostly means to reserve if used as a verb, which should be translated as \begin{CJK}{UTF8}{gbsn}``预定"\end{CJK}. Therefore, getting the POS tag of the English word might help us identify its sense or the Chinese translation. We decide use Stanford Log-linear Part-of-Speech Tagger \cite{Toutanova2003}.
+
+Firstly, if the word "like" need to be translated, the algorithm will fetch all the Chinese translations as well as their Part-of-Speech tag from our dictionary. Secondly, the algorithm will send the original English sentence to Part-of-Speech Tagger, which is a Java package and has been wrapped into a server. After the client has got the output from the server, it will fetch the corresponding tag and match it to Part-of-Speech tag based on the guidelines mentioned above. Lastly, it will select the translations based on the POS.
+
+\subsection{News Category}
+The word ``interest" have two very different translations when it is used as a noun. One translation is about ``the feeling of a person whose attention, concern, or curiosity is particularly engaged by something", which should be translated as ``兴趣". The other translation is about ``a share, right, or title in the ownership of property", which should be translated as ``利息". It is quite obvious that the second sense is mostly used in financial related topics. Therefore, analysing the category of the original article and selecting the translation with the same category label might help disambiguate the word meaning.
+
+In Table~\ref{table:wsd_1}, word ``picture" is the word that need to be translated. Firstly, the algorithm will fetch all the Chinese translations for word ``picture" and only the word ``影片" has a category ``entertainment". Next, the algorithm will fetch the category of the English news article from the URL, which is also ``entertainment".In this case, the algorithm will use ``影片" as the translation for word ``picture". If a few words shares the same category, the algorithm will choose the translation with the highest frequency of use.
+
+\subsection{Machine Translation}
+Since our target is to select the most appropriate translation based on the context, using existing Machine Translation (MT) systems is also a good approach, as all of them will certainly translate words based on the context. After I tried a few on-line or off-line MT systems, We decide to use Bing Translator as our Machine Translation system.
+
+\subsubsection{Bing}
+
+In the example, the original English sentence is ``including a 45-caliber pistol a pump shotgun and an ar-15 rifle" and ``pump" is the word that we want to translate. Firstly, this algorithm will fetch all the Chinese translations from the database. Next, it will send the original English sentence to Bing Translator using the API provided by Microsoft and get the result that returned from Bing Translator. After that, for each Chinese translation, I will check whether this translation is a substring of the Bing Translator result. If there are a few translations that can match with the Bing Translator result, I will select the longest translation. If there are a few translations with the same length and all of them can match with the Bing Translator result, I will select the translation with the highest frequency of use. In this example, both ``唧" and ``唧筒" are the substrings of Bing Translator result. As ``唧筒" have two characters and ``唧" only have one character, this algorithm will take ``唧筒" as the final result.
+
+\subsubsection{Bing+}
+ is the approach of using Bing Translator together with Stanford Word Segmenter, and I would like to use Bing+ to represent this algorithm. Step one, two and three has been described in the previous section as it is exactly the same as Bing approach. From Bing approach, this algorithm will generate ``顶" as the result. After that, Bing+ approach will send the Chinese sentence returned from Bing Translator to Stanford Word Segmenter. Then, this algorithm will use the segmented word that contains the Bing result as a substring or equals to the Bing result as the final result. In this example, the final result of Bing+ is ``顶级" which is the best result that can be generated from the result of Bing Translator and also a result that does not covered by our dictionary.
+
+\subsubsection{Bing++}
+The Bing++ algorithm is basically the approach of using Bing+ approach together with the Microsoft Bing Word Alignment. First few steps are exactly the same as Bing+ approach. In this example, ``state" is the word that need to be translated. The result from Bing+ approach is ``发言人", which is the translation of ``spokeswoman", because the Chinese translation ``发言" can be translated from both ``state" and ``spokeswoman". Then step five will send the original English sentence to Bing Word Alignment. Now, there will be two final results, one from Bing+ approach and the other one from Bing Word Alignment and the algorithm will choose the correct one from these two results. In this example, ``state" will match with ``国家" and the algorithm will choose ``国家" as the final result as well.
+
+\subsection{WSD System}
+Our Word Sense Disambiguate System can be evaluated from two important aspects: coverage (i.e., is able to return a translation) and accuracy (i.e., the translation is proper). To this end, I manually annotate the ground truth.
+
+\begin{table}[ht]
+  \caption{Coverage for different approaches}
+  \label{table:evaluation_1}
+  \begin{tabular}{| p{2cm} | p{2cm} | p{2cm} |}
+    \hline
+     & Cover & Coverage\\
+    \hline
+    Baseline & 707/707 & 100\%\\
+    \hline
+    POSTagger & 668/707 & 94.5\%\\
+    \hline
+    News Category & 14/707 & 2.0\%\\
+    \hline
+    Bing & 555/707 & 78.5\%\\
+    \hline
+    Bing+ & 535/707 & 75.7\%\\
+    \hline
+    Bing++ & 544/707 & 76.9\%\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Table~\ref{table:evaluation_1} contains the coverage for different approaches. As the algorithm will try to translate some word only if it is covered by our dictionary, the coverage for Baseline is always 100\%. The coverage for Bing, Bing+, Bing++ and POSTagger are roughly the same and all of them are acceptable. However, the coverage for News Category approach is only 1.9\%. One reason is that when I set the threshold for assigning categories for Chinese word, I purposely make it very high to maximize the accuracy. If the accuracy is quite high, which means this approach is quite useful, then I will lower the threshold and find the balance point.
+
+\begin{table}[ht]
+  \caption{Accuracy for different approaches}
+  \label{table:evaluation_3}
+  \begin{tabular}{| p{2cm} | p{2cm} | p{2cm} |}
+    \hline
+     & Correct & Accuracy\\
+    \hline
+    Baseline & 405/707 & 57.3\%\\
+    \hline
+    POSTagger & 369/668 & 55.2\%\\
+    \hline
+    News Category & 1/14 & 7.1\%\\
+    \hline
+    Bing & 443/555 & 79.8\%\\
+    \hline
+    Bing+ & 433/535 & 80.9\%\\
+    \hline
+    Bing++ & 530/544 & 97.4\%\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Figure~\ref{table:evaluation_3} contains the accuracy of all the approaches. The last column is the accuracy for News Category approach and it is only 30\%. As mentioned in above Chapter, since the accuracy is very low, there is no need to lower the threshold and try to allocate more categories for Chinese words. The accuracy for Baseline is 69\%, which is already a fairly hight accuracy. The accuracy for Bing and POSTagger is around 69\% also, which is a bit lower than our expectation. The accuracy for Bing++ is 97\% which I think is a very good result and it is already very hard to improve. Therefore, based on my test results, Bing++ is the best approach among these five approaches.
+
+\end{CJK}
