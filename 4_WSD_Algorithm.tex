@@ -12,27 +12,27 @@ In this following, I describe four approaches that I have tried to accomplish WS
 \end{itemize}
 
 \begin{table*}[t]
-	\caption{Example input/output of WSD}
-	\label{table:wsd_1}
-	\begin{center}
-	\begin{tabular}{| p{3cm} | p{1cm} | p{3.5cm} | p{1.2cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
-		\hline
-		English Sentence & Word & Dictionary & Baseline & Category & Bing & Bing+ & Bing++ \\
-		\hline
-		... treating me like family ... & like & \parbox[t]{3cm}{verb : 喜欢, 爱...\\ ... \\preposition : 好像, 好比 ...} & 喜欢 & 好像 & & & \\
-		\hline
-		... painting a picture of urban street life ... & picture & \parbox[t]{3cm}{... 相, 影, 影片(entertainment), 帧, 想象, 画 ...} & & 影片 & & & \\
-		\hline
-		... pistol a pump shotgun ... & pump & \parbox[t]{3cm}{verb:抽, 抽水, 打气, 唧, 唧筒, 套\\ noun:抽水机, 唧筒} & & & 唧筒 & & \\
-		\hline
-		... have made it into the worlds top 40 clubs ... & top & \parbox[t]{3cm}{顶部, 顶端, 顶, 颠, 盖, 极 ...} & 顶部 &  & 顶 & 顶级 & \\
-		\hline
-		state department spokeswoman ... & state & \parbox[t]{3cm}{...陈, 陈说, 称, 称述, 发表, 发言...} & & & 发言 & 发言人 & 国家 \\
-		\hline
-		...  ... &  & \parbox[t]{3cm}{...  ...} & & & & & \\
-		\hline
-	\end{tabular}
-	\end{center}
+  \caption{Example input/output of WSD}
+  \label{table:wsd_1}
+  \begin{center}
+  \begin{tabular}{| p{3cm} | p{1cm} | p{3.5cm} | p{1.2cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
+    \hline
+    English Sentence & Word & Dictionary & Baseline & Category & Bing & Bing+ & Bing++ \\
+    \hline
+    ... treating me like family ... & like & \parbox[t]{3cm}{verb : 喜欢, 爱...\\ ... \\preposition : 好像, 好比 ...} & 喜欢 & 好像 & & & \\
+    \hline
+    ... painting a picture of urban street life ... & picture & \parbox[t]{3cm}{... 相, 影, 影片(entertainment), 帧, 想象, 画 ...} & & 影片 & & & \\
+    \hline
+    ... pistol a pump shotgun ... & pump & \parbox[t]{3cm}{verb:抽, 抽水, 打气, 唧, 唧筒, 套\\ noun:抽水机, 唧筒} & & & 唧筒 & & \\
+    \hline
+    ... have made it into the worlds top 40 clubs ... & top & \parbox[t]{3cm}{顶部, 顶端, 顶, 颠, 盖, 极 ...} & 顶部 &  & 顶 & 顶级 & \\
+    \hline
+    state department spokeswoman ... & state & \parbox[t]{3cm}{...陈, 陈说, 称, 称述, 发表, 发言...} & & & 发言 & 发言人 & 国家 \\
+    \hline
+    ...  ... &  & \parbox[t]{3cm}{...  ...} & & & & & \\
+    \hline
+  \end{tabular}
+  \end{center}
 \end{table*}
 
 \subsection{Baseline}
@@ -69,47 +69,25 @@ Our Word Sense Disambiguate System can be evaluated from two important aspects: 
   \label{table:evaluation_1}
   \begin{tabular}{| p{2cm} | p{2cm} | p{2cm} |}
     \hline
-     & Cover & Coverage\\
+     & Coverage & Accuracy\\
     \hline
-    Baseline & 707/707 & 100\%\\
+    Baseline & 100\% & 57.3\%\\
     \hline
-    POSTagger & 668/707 & 94.5\%\\
+    POSTagger & 94.5\% & 55.2\%\\
     \hline
-    News Category & 14/707 & 2.0\%\\
+    News Category & 2.0\% & 7.1\%\\
     \hline
-    Bing & 555/707 & 78.5\%\\
+    Bing & 78.5\% & 79.8\%\\
     \hline
-    Bing+ & 535/707 & 75.7\%\\
+    Bing+ & 75.7\% & 80.9\%\\
     \hline
-    Bing++ & 544/707 & 76.9\%\\
-    \hline
-  \end{tabular}
-\end{table}
-
-Table~\ref{table:evaluation_1} contains the coverage for different approaches. As the algorithm will try to translate some word only if it is covered by our dictionary, the coverage for Baseline is always 100\%. The coverage for Bing, Bing+, Bing++ and POSTagger are roughly the same and all of them are acceptable. However, the coverage for News Category approach is only 1.9\%. One reason is that when I set the threshold for assigning categories for Chinese word, I purposely make it very high to maximize the accuracy. If the accuracy is quite high, which means this approach is quite useful, then I will lower the threshold and find the balance point.
-
-\begin{table}[ht]
-  \caption{Accuracy for different approaches}
-  \label{table:evaluation_3}
-  \begin{tabular}{| p{2cm} | p{2cm} | p{2cm} |}
-    \hline
-     & Correct & Accuracy\\
-    \hline
-    Baseline & 405/707 & 57.3\%\\
-    \hline
-    POSTagger & 369/668 & 55.2\%\\
-    \hline
-    News Category & 1/14 & 7.1\%\\
-    \hline
-    Bing & 443/555 & 79.8\%\\
-    \hline
-    Bing+ & 433/535 & 80.9\%\\
-    \hline
-    Bing++ & 530/544 & 97.4\%\\
+    Bing++ & 76.9\% & 97.4\%\\
     \hline
   \end{tabular}
 \end{table}
 
-Figure~\ref{table:evaluation_3} contains the accuracy of all the approaches. The last column is the accuracy for News Category approach and it is only 30\%. As mentioned in above Chapter, since the accuracy is very low, there is no need to lower the threshold and try to allocate more categories for Chinese words. The accuracy for Baseline is 69\%, which is already a fairly hight accuracy. The accuracy for Bing and POSTagger is around 69\% also, which is a bit lower than our expectation. The accuracy for Bing++ is 97\% which I think is a very good result and it is already very hard to improve. Therefore, based on my test results, Bing++ is the best approach among these five approaches.
+Table~\ref{table:evaluation_1} column two contains the coverage for different approaches. As the algorithm will try to translate some word only if it is covered by our dictionary, the coverage for Baseline is always 100\%. The coverage for Bing, Bing+, Bing++ and POSTagger are roughly the same and all of them are acceptable. However, the coverage for News Category approach is only 2.0\%. One reason is that when I set the threshold for assigning categories for Chinese word, I purposely make it very high to maximize the accuracy. If the accuracy is quite high, which means this approach is quite useful, then I will lower the threshold and find the balance point.
+
+Figure~\ref{table:evaluation_1} column three contains the accuracy of all the approaches. The last column is the accuracy for News Category approach and it is only 7.1\%. As mentioned in above Chapter, since the accuracy is very low, there is no need to lower the threshold and try to allocate more categories for Chinese words. The accuracy for Baseline is 57.3\%, which is already a fairly hight accuracy. The accuracy for  POSTagger is around 55.2\% also, which is a bit lower than our expectation. The accuracy for Bing++ is 97.4\% which I think is a very good result and it is already very hard to improve. Therefore, based on my test results, Bing++ is the best approach among these five approaches.
 
 \end{CJK}
