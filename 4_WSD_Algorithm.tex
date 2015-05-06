@@ -11,8 +11,10 @@ In this following, I describe four approaches that I have tried to accomplish WS
 \item Category based: Selecting the translation based on the category of the news article
 \end{itemize}
 
+% Tao: Please bold the correct answer. In the caption, indicate the meaning of bold  font. Does the blank means no returned result? Please also indicate it in the caption. Longer and meaningful caption is fine.
+                                                         
 \begin{table*}[t]
-  \caption{Example input/output of WSD}
+  \caption{Example input/output of WSD.}
   \label{table:wsd_1}
   \begin{center}
   \begin{tabular}{| p{3cm} | p{1cm} | p{3.5cm} | p{1.2cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
@@ -29,8 +31,8 @@ In this following, I describe four approaches that I have tried to accomplish WS
     \hline
     state department spokeswoman ... & state & \parbox[t]{3cm}{...陈, 陈说, 称, 称述, 发表, 发言...} & & & 发言 & 发言人 & 国家 \\
     \hline
-    ...  ... &  & \parbox[t]{3cm}{...  ...} & & & & & \\
-    \hline
+    %...  ... &  & \parbox[t]{3cm}{...  ...} & & & & & \\
+    %\hline
   \end{tabular}
   \end{center}
 \end{table*}
@@ -64,6 +66,8 @@ The Bing++ algorithm is basically the approach of using Bing+ approach together 
 \subsection{WSD System}
 Our Word Sense Disambiguate System can be evaluated from two important aspects: coverage (i.e., is able to return a translation) and accuracy (i.e., the translation is proper). To this end, I manually annotate the ground truth.
 
+% Tao: The results for news category is very poor. Does it make more sense to combine category with the baseline (frequency-based) method? Say, if category is not matched, we downgrade to frequency-based method.
+
 \begin{table}[ht]
   \caption{Coverage for different approaches}
   \label{table:evaluation_1}
@@ -89,5 +93,7 @@ Our Word Sense Disambiguate System can be evaluated from two important aspects: 
 Table~\ref{table:evaluation_1} column two contains the coverage for different approaches. As the algorithm will try to translate some word only if it is covered by our dictionary, the coverage for Baseline is always 100\%. The coverage for Bing, Bing+, Bing++ and POSTagger are roughly the same and all of them are acceptable. However, the coverage for News Category approach is only 2.0\%. One reason is that when I set the threshold for assigning categories for Chinese word, I purposely make it very high to maximize the accuracy. If the accuracy is quite high, which means this approach is quite useful, then I will lower the threshold and find the balance point.
 
 Figure~\ref{table:evaluation_1} column three contains the accuracy of all the approaches. The last column is the accuracy for News Category approach and it is only 7.1\%. As mentioned in above Chapter, since the accuracy is very low, there is no need to lower the threshold and try to allocate more categories for Chinese words. The accuracy for Baseline is 57.3\%, which is already a fairly hight accuracy. The accuracy for  POSTagger is around 55.2\% also, which is a bit lower than our expectation. The accuracy for Bing++ is 97.4\% which I think is a very good result and it is already very hard to improve. Therefore, based on my test results, Bing++ is the best approach among these five approaches.
+
+% Tao: Could you show some examples that Bing++ failed? And also analyze why.
 
 \end{CJK}
