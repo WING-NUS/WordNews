@@ -1,76 +1,10 @@
 \section{Distractors Generation Algorithm}
 The key research topic here is to investigate a way to automatically generate suitable distractors for a certain vocabulary test. The distractors are generated in English form.
 \subsection{Collecting category-related words}
-To generate good category-related distractors, it is essential to gather enough words that are more related in a certain category to serve as distractors candidates.
-\\
-To find good “category-related” words, it is essential to get the words from those already classified news articles. The process involves 3 steps, crawling news contents from popular news website, preprocessing, and classifying word category.
-\\
-\subsubsection{Crawling news content}
-Several web crawlers are designed to get news content from different popular news websites. The crawler will detect URLs from each news website’s main page as and its sub-category pages. For example, there are sub-categories like “football”, “basketball” under main category “Sports”, and the crawler is able to crawl URLs from “football” page and “basketball” page as well. 
-\\
-After detailed comparison of most news websites, I divided news articles into seven categories, namely “World”, “Technology”, “Sports”, “Entertainment”, “Finance”, “Health” and “Travel”. Most news articles can be classified into one of the seven categories. The web crawler will store all paragraph tags from each websites and store them as one file under one category. 
-\\
-In this experiment, around 1400 news articles, i.e. 200 news articles from each category are crawled and stored locally. Post natural language processing is then applied to this category corpus.
-\\
-\subsubsection{Preprocessing}
-After storing all the news articles document into each category, the server uses Natural Language Tool Kit \cite{edw09} for word tokenizing and POS Tagging. The system will store the POS tag of each word. After elimination of all non-English words and those words that contain special symbols, like ``O’Real", ``S\$40", all words that contains only alphabetic letters are conserved. All stop words are also eliminated as well. They are stored as lower case for the ease of future process.
-\\
-\subsubsection{Classification}
-In statistical analysis step, the server counts the document frequency of each word in all those stored news articles, i.e. if word “scored” appeared 4 times in one article, it will only be counted as once. By following this approach we can successfully reduce the bias of some words only appear a lot of times in one article while don’t appear often in other article. As we are storing similar number of articles in each category, this approach will provide a fair comparison of each word’s popularity among different categories. After this step we will know the document frequency count of each word in different category. 
-Assume C is the list of category names, and f(w, C(i))=m means word w appeared in category C(i) for m times, then the sum weight of word w as sw(w) is calculated in Equation~\ref{equation:Distractor_1}:
+To generate good category-related distractors, it is essential to gather enough words that are more related in a certain category to serve as distractors candidates. By using the approach discussed in Section 3, we crawled more than 1400 articles for seven categories, with around 200 articles in each category. The confidence factor is selected to be 10, which is suitable to classify enough words into different categories. After this step, there should be sufficient “Category-Related� words in each category.
 
-\begin{equation}
-sw (w) = \sum_{i=1}^{n} f(w,C(i))
-\label{equation:Distractor_1}
-\end{equation}  
-
-The average weight of word w as aw(w) is calculated in Equation~\ref{equation:Distractor_2}::
-
-\begin{equation}
-aw (w) = sw (w)/n 
-\label{equation:Distractor_2} 
-\end{equation}  
-
-A word w is classified into category C(i) if it satisfies Equation~\ref{equation:Distractor_3}::
-
-\begin{equation}
-f (w, C(i)) - aw(w) >= \delta
-\label{equation:Distractor_3} 
-\end{equation}  
-
-% Tao: unrecongized character for confidence factor. Please use the proper greek letter in math envoriment (e.g., $ $). Here I replace it to \delta
-The confidence factor $\delta$ can be a positive integer between 0 and the average number of articles in each category. It means on average, the word w must appear in a specific category C(i) $\delta$ times more than it appear in other category before it can be classified into category C(i).
-
-In the example below in Figure 18, frequency counts for word “investment” in each category are displayed. It is obvious that sw(“investment”) = 2 + 1 + 2 + 10 + 3 + 2 + 1 = 21, thus aw(“investment”) = sw(“investment”)/7 = 3, in this case if we choose a confidence factor $\delta=3$, word “investment” will be classified into category “Finance”, as $10 – 3 \textgreater \delta=3$. However, it we choose a very big $\delta$, for example $\delta=8$, then word “investment” will not be classified into any category.
-
-\begin{table}[ht]
-    \caption{Example of classification word into category}
-    \begin{center}
-    \begin{tabular}{| p{3.5cm} | p{3cm} |}
-        \hline
-        Category & Investment\\
-        \hline
-        Technology & 2 \\
-        \hline
-        World & 1 \\
-        \hline
-        Sports & 2 \\
-        \hline
-        Finance & 10 \\
-        \hline
-        Entertainment & 3 \\
-        \hline
-        Health & 2 \\
-        \hline
-        Travel & 1\\
-        \hline
-    \end{tabular}
-    \end{center}
-\end{table}
-
-It is obvious that a higher confidence factor value will result in less number words get classified, but it will result in getting words that are more accurate. A lower confidence factor value will result in more number of words get classified, but less accurate in each category. In this experiment, after several round of tests and analysis, we chose a confidence factor value of 10, which is capable of producing enough number of classified words while maintaining the accuracy.
 \subsection{Generating distractors}
-My selection strategy in choosing distractors takes following parameters:
+The category-related words obtained from the previous step will be used in this step. Out selection strategy in choosing distractors takes following parameters:
 \begin{itemize}
 \item News website URL
 \item News sentence
