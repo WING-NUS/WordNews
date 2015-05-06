@@ -18,30 +18,31 @@ After storing all the news articles document into each category, the server uses
 \subsubsection{Classification}
 In statistical analysis step, the server counts the document frequency of each word in all those stored news articles, i.e. if word “scored” appeared 4 times in one article, it will only be counted as once. By following this approach we can successfully reduce the bias of some words only appear a lot of times in one article while don’t appear often in other article. As we are storing similar number of articles in each category, this approach will provide a fair comparison of each word’s popularity among different categories. After this step we will know the document frequency count of each word in different category. 
 Assume C is the list of category names, and f(w, C(i))=m means word w appeared in category C(i) for m times, then the sum weight of word w as sw(w) is calculated in Equation~\ref{equation:Distractor_1}:
-\\
+
 \begin{equation}
 sw (w) = \sum_{i=1}^{n} f(w,C(i))
 \label{equation:Distractor_1}
 \end{equation}  
-\\
+
 The average weight of word w as aw(w) is calculated in Equation~\ref{equation:Distractor_2}::
-\\
+
 \begin{equation}
 aw (w) = sw (w)/n 
 \label{equation:Distractor_2} 
 \end{equation}  
-\\
+
 A word w is classified into category C(i) if it satisfies Equation~\ref{equation:Distractor_3}::
-\\
+
 \begin{equation}
 f (w, C(i)) - aw(w) >= \delta
 \label{equation:Distractor_3} 
 \end{equation}  
-\\
-The confidence factor δ can be a positive integer between 0 and the average number of articles in each category. It means on average, the word w must appear in a specific category C(i) δ times more than it appear in other category before it can be classified into category C(i).
-\\
-In the example below in Figure 18, frequency counts for word “investment” in each category are displayed. It is obvious that sw(“investment”) = 2 + 1 + 2 + 10 + 3 + 2 + 1 = 21, thus aw(“investment”) = sw(“investment”)/7 = 3, in this case if we choose a confidence factor δ=3, word “investment” will be classified into category “Finance”, as 10 – 3 \textgreater δ = 3. However, it we choose a very big δ, for example δ= 8, then word “investment” will not be classified into any category.
-\\
+
+% Tao: unrecongized character for confidence factor. Please use the proper greek letter in math envoriment (e.g., $ $). Here I replace it to \delta
+The confidence factor $\delta$ can be a positive integer between 0 and the average number of articles in each category. It means on average, the word w must appear in a specific category C(i) $\delta$ times more than it appear in other category before it can be classified into category C(i).
+
+In the example below in Figure 18, frequency counts for word “investment” in each category are displayed. It is obvious that sw(“investment”) = 2 + 1 + 2 + 10 + 3 + 2 + 1 = 21, thus aw(“investment”) = sw(“investment”)/7 = 3, in this case if we choose a confidence factor $\delta=3$, word “investment” will be classified into category “Finance”, as $10 – 3 \textgreater \delta=3$. However, it we choose a very big $\delta$, for example $\delta=8$, then word “investment” will not be classified into any category.
+
 \begin{table}[ht]
     \caption{Example of classification word into category}
     \begin{center}
@@ -66,7 +67,7 @@ In the example below in Figure 18, frequency counts for word “investment” in
     \end{tabular}
     \end{center}
 \end{table}
-\\
+
 It is obvious that a higher confidence factor value will result in less number words get classified, but it will result in getting words that are more accurate. A lower confidence factor value will result in more number of words get classified, but less accurate in each category. In this experiment, after several round of tests and analysis, we chose a confidence factor value of 10, which is capable of producing enough number of classified words while maintaining the accuracy.
 \subsection{Generating distractors}
 My selection strategy in choosing distractors takes following parameters:
@@ -78,41 +79,40 @@ My selection strategy in choosing distractors takes following parameters:
 \end{itemize}
 \subsubsection{Detect news category}
 After getting the news URL, our system needs to determine the category of the news. Based on the analysis from most popular news URLs, there is a set of common identifiers that can identify the category of the news article. For example, technology news URL often contains “/tech”, “/science”, and if we find these strings in news URL, we will classify this news URL into “Technology” category. The algorithm will go through all category identifier in the list, and will return the category name the moment it finds a match. The current list of category provides reasonable accuracy for the purpose of detecting news category.
-\\
+
 \subsubsection{Detect Part-Of-Speech Tag}
 Given the target word and the target sentence, it is easy to run the NLTK POS tagger to get the correct POS tag of this word. This step is essential to help select distractors with similar forms, i.e. if the target word is adjective, it will be appropriate to choose three other adjectives, not verbs, as distractors.
-\\
+
 \subsubsection{Semantic Distance}
 Before we go to explain the next step, it is essential to introduce the semantic distance calculator we used in the server implementation. 
-\\
+
 The perspective of semantic relatedness or its inverse, semantic distance, is a concept that indicates the likeness of two words. It is more general than the concept of similarity as stated in WordNet’s synset relation. Similar entities in WordNet are classified into same synset based on their similarity. However, dissimilar entries may also have a close semantic connection by lexical relationships  such as meronymy (car-wheel) and antonymy (hot-cold), or just by any kind of functional relationship or frequent association(pencil-paper, penguin-Antarctica) \cite{ale01}. Semantic distance calculator aims to calculate the semantic relatedness score between two words.
-\\
+
 There are many approaches to calculate semantic relatedness score. In this application, we are using Lin Distance \cite{lin98} to calculate the semantic distance between two concepts. The detail of Lin Distance methodology is explained as follows.
-\\
+
 Lin attempted to define a measure of semantic similarity that would be both universal and theoretically justified. There are three intuitions that he used as a basis:
 \begin{itemize}
 \item The similarity between arbitrary objects A and B is related to their commonality; the more commonality they share, the more similar they are;
 \item The similarity between A and B is related to the differences between them; the more differences they have, the less similar they are.
 \item The maximum similarity between A and B is reached when A and B are identical, no matter how much commonality they share. 
 \end{itemize}
-\\
+
 Based on the intuition above, Lin proposed his approach in measuring similarity between two concepts c1, c2 in Equation~\ref{equation:Distractor_4}:
-\\
+
 \begin{equation}
 sim(c1,c2) = \frac{2*log_p(lso(c1,c2))}{log_p(c1)+log_p(c2)}
 \label{equation:Distractor_4}
 \end{equation}  
-\\
+
 where p(c) denotes the probability of encountering concept c, and lso(c1,c2) denotes the lowest common subsumer, which is the lowest node in WordNet hierarchy that is a hypernym of c1 and c2. 
-\\
+
 The distance calculator will return a score from 0 to 1, as can be easily seen from the formula above. If the score is closer to 1, it means the two words are closer in semantic sense. This distance calculator will play an important role in the following algorithm. 
-\\
+
 \subsubsection{Distractors Selection Algorithm}
 Based on the input parameters, at this stage the server has already got the current category of the news article and the correct POS tag of the target word to test. The server is going to generate distractors based on user’s knowledge level of the target word to test.
-\\
+
 Knowledge level is 1: This indicates that the user has just learnt this word. The algorithm will randomly select three words from current category’s word list. The reason for using randomization is to avoid the situation that similar distractors are generated every time.
-\\
+
 Knowledge level is 2: This indicates that the user has known this word for some times. The algorithm will randomly select two words from the current category’s word list as two distractors. Then the algorithm will randomly select word from the current category’s word list and calculated the semantic distance between the selected word and the target word, once the score is above certain threshold, the selected word will be chose as the third distractor. The selection of threshold value will have a direct effect on the speed of distractors generation process. As a very high threshold value will result in more rounds of calculation in semantic distance calculator, and it will take a long time before the distractors are returned to the front end. After several rounds of analysis of each category’s words and the results returned from semantic distance calculator, the threshold value of 0.1 is selected.
-\\
+
 Knowledge level is 3: This indicates that the user has a good understanding of the word already; the algorithm will choose distractors solely based on results returned from semantic distance calculator. Similar to the approach when knowledge level is 2, the algorithm will randomly select word from current category’s word list and calculate the semantic distance between the selected word and the target word. If the score is above certain threshold, the selected word is chosen as one of the distractors. The process is continued until the server can find three distractors. 
-\\

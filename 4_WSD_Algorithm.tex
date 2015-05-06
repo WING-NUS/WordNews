@@ -1,4 +1,5 @@
 \section{Word Sense Disambiguation System}
+\begin{CJK}{UTF8}{gbsn}
 As we all know, one word may have multiple translations in another language, and our extension is expected to select the most appropriate one based on the context.We call such translation selection as cross-lingual word sense disambiguation (WSD).
 \\
 WSD is an open problem in natural language processing and ontology, aiming at identifying the proper sense of a word (i.e. meaning) in a context, when the word has multiple meanings. However, the system that I have implemented is  different from the traditional WSD. Normally, WSD is to identify its sense in its original language, but my system is to identify its sense in another language.
@@ -18,7 +19,7 @@ In this following, I describe four approaches that I have tried to accomplish WS
 The simplest way to select a translation from the candidates is by random. However, the correctness of this method is very low, probably less than 20\%, and is not a good baseline for other methods to compete with. Another simple idea is to always select the most commonly used translation. Luckily, when I crawled the dictionary, Google Translate does provide usage frequency of each Chinese Translation.  This turns out to be a much better result, and thus serves as a fair baseline method.
 \\
 \subsection{Part-of-Speech Tagger}
-As we all know, many English words have more than one Part-of-Speech (POS) tags and their Chinese translations in different POS may differ a lot. For example, the word ``book" has two POS tags, noun and verb. If it is used as a noun, mostly it means a handwritten or printed work of fiction or nonfiction, which should be translated as ``书", and mostly means to reserve if used as a verb, which should be translated as ``预定". Therefore, if I can get the POS tag of the English word, it might help me identify its sense or the Chinese translation.
+As we all know, many English words have more than one Part-of-Speech (POS) tags and their Chinese translations in different POS may differ a lot. For example, the word ``book" has two POS tags, noun and verb. If it is used as a noun, mostly it means a handwritten or printed work of fiction or nonfiction, which should be translated as \begin{CJK}{UTF8}{gbsn}``书"\end{CJK}, and mostly means to reserve if used as a verb, which should be translated as \begin{CJK}{UTF8}{gbsn}``预定"\end{CJK}. Therefore, if I can get the POS tag of the English word, it might help me identify its sense or the Chinese translation.
 
 \begin{table}[ht]
     \caption{Sample input/output of POSTagger}
@@ -62,7 +63,7 @@ Among all possible on-line sources, Stanford Log-linear Part-of-Speech Tagger~\c
 \RETURN FinalResult
 \end{algorithmic}
 \end{algorithm}
-\\
+
 \begin{table}[ht]
     \caption{Example input/output of POSTagger}
     \label{table:part_of_speech_example}
@@ -73,11 +74,11 @@ Among all possible on-line sources, Stanford Log-linear Part-of-Speech Tagger~\c
         \hline
         English Word & like \\
         \hline
-        Translation List & \parbox[t]{4cm}{verb : 喜欢, 爱, 爱好, 待见, 好, 看上, 喜, 喜爱, 喜好\\ adjective : 一样, 似, 同, 相似\\ conjunction : 如同\\noun : 类\\preposition : 好像, 好比, 好以\\adverb : 不啻, 若}\\
+        Translation List & \parbox[t]{4cm}{\begin{CJK}{UTF8}{gbsn}verb : 喜欢, 爱, 爱好, 待见, 好, 看上, 喜, 喜爱, 喜好\\ adjective : 一样, 似, 同, 相似\\ conjunction : 如同\\noun : 类\\preposition : 好像, 好比, 好以\\adverb : 不啻, 若\end{CJK}}\\
         \hline
         Pairs \textless word,POS\textgreater & they|PRP are|VBP treating|VBG me|PRP like|IN family|NN now|RB\\
         \hline
-        Final Result & 好像\\
+        Final Result & \begin{CJK}{UTF8}{gbsn}好像\end{CJK}\\
         \hline
     \end{tabular}
     \end{center}
@@ -95,6 +96,7 @@ There are mainly two kinds of MT systems. One is off-line Machine Translation sy
 \\
 The first priority of choosing a MT system is its translation quality, if it can give me a result that nearly as good as a result from human translation, then the Chinese word that I generated from the MT system will have a high chance to be correct as well. However, after I tried both MT systems, the performance of the one from NLP group is worse than Bing Translator and the server is very unstable, I decide to use Bing Translator as my Machine Translation system.
 \\
+
 
 \subsubsection{Bing}
 \begin{table}[ht]
@@ -244,9 +246,9 @@ Text segmentation is the process of dividing written text into meaningful units,
     \end{center}
 \end{table}
 
-\\
+
 Algorithm \ref{algorithm:wsd_4} is the approach of using Bing Translator together with Stanford Word Segmenter, and I would like to use Bing+ to represent this algorithm. Step one, two and three has been described in the previous section as it is exactly the same as Bing approach. From Bing approach, this algorithm will generate ``顶" as the result. After that, Bing+ approach will send the Chinese sentence returned from Bing Translator to Stanford Word Segmenter. Then, this algorithm will use the segmented word that contains the Bing result as a substring or equals to the Bing result as the final result. In this example, the final result of Bing+ is ``顶级" which is the best result that can be generated from the result of Bing Translator and also a result that does not covered by our dictionary.
-\\
+
 \subsubsection{Bing++}
 \begin{table}[ht]
     \caption{Another example of Bing+ Translator}
@@ -268,35 +270,36 @@ Algorithm \ref{algorithm:wsd_4} is the approach of using Bing Translator togethe
     \end{center}
 \end{table}
 Table \ref{table:bing_plus_plus_1} is another example of Bing+ Translator. In this example, ``line" is the word that need to be translated and the correct translation based on Bing Translator should be ``线上". The Bing approach will get ``线" as the result. After the Bing approach got the result, the next step should be finding the segmented word that contains ``线" as a substring. However, both word ``线上" and word ``视线" contains word ``线" as a substring and, obviously, only the word ``线上" is the correct result and ``视线" is actually the translation for English word ``sight". As both results generated by Bing+ approach are not covered by our dictionary, the algorithm cannot get the frequency of use information. As a result, Bing+ approach will randomly choose one word, so there is only 50\% to get the correct result. Is there any way to solve this problem and always choose the correct result in this case? Yes, as long as the algorithm could get the word alignment information, it will know exactly how to match the Chinese words with those English words.
-\\
+
+% Tao: XX_1 is to use subscript in Math equation, and thus should be included in "$",eg., $XX_1$. Here I do not think you want to use subscript.
 \begin{table}[ht]
     \caption{Example input/output of Word Alignment}
     \label{table:bing_plus_plus_2}
     \begin{center}
     \begin{tabular}{| p{1.5cm} | p{5cm} |}
         \hline
-        Input_1 & dr seuss knew it would be the last book he published\\
+        Input 1 & dr seuss knew it would be the last book he published\\
         \hline
-        Output_1 & 博士苏斯博士知道这将是他出版的最后一本书\\
+        Output 1 & 博士苏斯博士知道这将是他出版的最后一本书\\
         \hline
-        Output_1 & 0:1|0:1 3:7|2:5 9:12|6:7 14:15|8:8 17:21|9:9 23:24|10:10 26:28|14:14 30:33|15:17 35:38|18:19 40:41|11:11 43:51|12:13 \\
+        Output 1 & 0:1|0:1 3:7|2:5 9:12|6:7 14:15|8:8 17:21|9:9 23:24|10:10 26:28|14:14 30:33|15:17 35:38|18:19 40:41|11:11 43:51|12:13 \\
         \hline
-        Input_2 & the problem is youre going to run straight headon into the first amendment he said \\
+        Input 2 & the problem is youre going to run straight headon into the first amendment he said \\
         \hline
-        Output_2 & 问题是你将要运行直赫顿到他说的第一修正案\\
+        Output 2 & 问题是你将要运行直赫顿到他说的第一修正案\\
         \hline
-        Output_2 & 4:10|0:1 12:13|2:2 15:19|3:3 21:28|4:5 30:32|6:7 34:41|8:8 43:48|9:10 50:53|11:11 59:63|15:16 65:73|17:19 75:76|12:12 78:81|13:13 \\
+        Output 2 & 4:10|0:1 12:13|2:2 15:19|3:3 21:28|4:5 30:32|6:7 34:41|8:8 43:48|9:10 50:53|11:11 59:63|15:16 65:73|17:19 75:76|12:12 78:81|13:13 \\
         \hline
-        Input_3 & this is something preschoolers deal with all the time\\
+        Input 3 & this is something preschoolers deal with all the time\\
         \hline
-        Output_3 & 这是学龄前儿童处理所有的时间\\
+        Output 3 & 这是学龄前儿童处理所有的时间\\
         \hline
-        Output_3 & 0:3|0:0 5:16|1:1 18:29|2:6 31:39|7:8 41:43|9:10 45:47|11:11 49:52|12:13\\
+        Output 3 & 0:3|0:0 5:16|1:1 18:29|2:6 31:39|7:8 41:43|9:10 45:47|11:11 49:52|12:13\\
         \hline
     \end{tabular}
     \end{center}
 \end{table}
-\\
+
 Bitext word alignment or simply word alignment is the natural language processing task of identifying translation relationships among the words (or more rarely multiword units) in a bitext, resulting in a bipartite graph between the two sides of the bitext, with an arc between two words if and only if they are translations of one another. I use Bing Word Alignment API\footnote{\url{https://msdn.microsoft.com/en-us/library/dn198370.aspx}} developed by Microsoft team to get the word alignment from English to Chinese Simplified. Luckily, although this API only support very few sets of language pairs, English to Chinese Simplified is one of the few supported sets. Table \ref{table:bing_plus_plus_2} has some examples of input and output from Bing Word Alignment. The left column is the original English sentence, the column in the middle is the translated Chinese sentence and the right column is the word alignment information. For word alignment information, the colon separates start and end index, the dash separates the languages, and space separates the words. For example, in the second column, ``0:1|0:1" means the word ``dr" should match with word ``博士" and ``9:12|6:7" means the word ``knew" should match with word ``知道".
 
 \begin{algorithm}[ht]
@@ -455,3 +458,4 @@ During the alignment, I not only take the name of category into account, but als
 \\
 Algorithm \ref{algorithm:wsd_2} is the steps of using news category. The English sentence is the original sentence and ``picture" is the word that need to be translated. Firstly, the algorithm will fetch all the Chinese translations for word ``picture" and split them with comma. In this example, only the word ``影片" has a category ``entertainment". Next, the algorithm will fetch the category of the English news article from the URL, which is also ``entertainment".
 In this case, the algorithm will use ``影片" as the translation for word ``picture". If a few words shares the same category, the algorithm will choose the translation with the highest frequency of use.
+\end{CJK}
