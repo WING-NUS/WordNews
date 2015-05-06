@@ -11,13 +11,13 @@ The category-related words obtained from the previous step will be used in this 
 \item Word to test
 \item User’s knowledge level of the word
 \end{itemize}
-\subsubsection{Detect news category}
+{\bf Detect news category.}
 After getting the news URL, our system needs to determine the category of the news. Based on the analysis from most popular news URLs, there is a set of common identifiers that can identify the category of the news article. For example, technology news URL often contains “/tech”, “/science”, and if we find these strings in news URL, we will classify this news URL into “Technology” category. The algorithm will go through all category identifier in the list, and will return the category name the moment it finds a match. The current list of category provides reasonable accuracy for the purpose of detecting news category.
 
-\subsubsection{Detect Part-Of-Speech Tag}
+{\bf Detect Part-Of-Speech Tag.}
 Given the target word and the target sentence, it is easy to run the NLTK POS tagger to get the correct POS tag of this word. This step is essential to help select distractors with similar forms, i.e. if the target word is adjective, it will be appropriate to choose three other adjectives, not verbs, as distractors.
 
-\subsubsection{Semantic Distance}
+{\bf Semantic Distance.}
 Before we go to explain the next step, it is essential to introduce the semantic distance calculator we used in the server implementation. 
 
 The perspective of semantic relatedness or its inverse, semantic distance, is a concept that indicates the likeness of two words. It is more general than the concept of similarity as stated in WordNet’s synset relation. Similar entities in WordNet are classified into same synset based on their similarity. However, dissimilar entries may also have a close semantic connection by lexical relationships  such as meronymy (car-wheel) and antonymy (hot-cold), or just by any kind of functional relationship or frequent association(pencil-paper, penguin-Antarctica) \cite{ale01}. Semantic distance calculator aims to calculate the semantic relatedness score between two words.
