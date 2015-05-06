@@ -1,13 +1,14 @@
 \section{Word Sense Disambiguation System}
 \begin{CJK}{UTF8}{gbsn}
-As we all know, one word may have multiple translations in another language, and our extension is expected to select the most appropriate one based on the context.We call such translation selection as cross-lingual word sense disambiguation (WSD).
-\\
-WSD is an open problem in natural language processing and ontology, aiming at identifying the proper sense of a word (i.e. meaning) in a context, when the word has multiple meanings. However, the system that I have implemented is  different from the traditional WSD. Normally, WSD is to identify its sense in its original language, but my system is to identify its sense in another language.
-\\
-It has been proved by a lot of studies that context is the key to learning a new language. This further suggests that a good word sense disambiguation system is necessary for our Chrome Extension. It can help user remember vocabulary efficiently and is a key feature that differentiate our software from other language learning tools.
-\\
+As we all know, one word often have multiple translations ({\it i.e.}, meanings) in another language and our extension is expected to show the most appropriate one based on the context. We call such translation selection as word sense disambiguation (WSD).
+WSD is an open task in natural language processing, aiming at identifying the proper sense ({\it i.e.}, meaning) of a word  in a context, when the word has multiple meanings~\cite{Navigli2009}. Traditionally, WSD system shows the proper sense in the same language, while we show the proper sense in another language.
+
+%It has been proved by a lot of studies that context is the key to learning a new language. This further suggests that a good word sense disambiguation system is necessary for our Chrome Extension. It can help user remember vocabulary efficiently and is a key feature that differentiate our software from other language learning tools.
+
+
+\cite{Boyd-Graber2007}: topic models for WSD
+
 In this following, I describe four approaches that I have tried to accomplish WSD system, which is also my main progress in the second semester. The four approaches are: 
-% Tao: Please give a short definition for other three methods.
 \begin{itemize}
 \item Frequency based: always selecting the most frequent translation (the baseline),
 \item Part-of-Speech Tag based: selecting the translation based on the Part-of-Speech Tag of the English word
