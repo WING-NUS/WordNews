@@ -1,59 +1,55 @@
 \section{Introduction}
 Learning a new language from language learning websites is 
-time consuming. It is, therefore, necessary to make second 
-language learning attractive and efficient. Further, since habitual 
-learning is effective, we seek to interleave language leaning with 
-a popular daily activity. Reading news online is once such 
-activity. 
-% Muthu: can you find a citation that says lot of people read new online?.
-Further recent increase in the popularity of 
+time consuming. Therefore, to make second language learning 
+attractive and efficient we seek to interleave language leaning 
+with a popular daily activity, online news reading. Research shows 
+that regular practice, guessing, memorization~\cite{rubin91} as well 
+as immersion into a real context that requires usage~\cite{naiman78} hastens 
+the learning process. Further recent increase in the popularity of 
 portable devices has made online news reading popular than ever 
 before~\cite{yarlh2012}. We leverage on this culture to provide 
 users of news websites with an opportunity to learn a second 
 language.
 
 We propose a system to enable online news readers to efficiently learn 
-a new language while they are reading news on news websites. We propose 
-a Chrome extension which would run on the client (Chrome web browser) 
-when readers visit news websites on a preconfigured list.
+a new language, Chinese, while they are reading news online. The system, deployed 
+as a Chrome extension~\footnote{a software extension to the Chrome web browser}  
+is triggered when readers visit news websites on a preconfigured list.
 
-% Muthu: can you ealborate a liitle bit? That is, find a citaion that says
-% grammar learning, etc., is less important or useful than learning vocabulary (words)
-% in a new second langauge 
-Learning a new vocabulary is the most time consuming and boring part of 
+Since learning a new vocabulary is the most time consuming and boring part of 
 language learning~\footnote{\url{https://neltachoutari.wordpress.com/tag/vocabulary/}}. 
 Perhaps, this justifies the poor adoption of current second language learning 
 systems. We, therefore, focus on enabling language learners build their vocabulary 
 efficiently while providing them with an enjoyable user experience.
 
-There are many existing language learning software, which, fall into two categories, 
-learning by lessons and learning vocabularies. In the first category, 
+Many existing language learning software teach through structured lessons 
+or through strategies for memorizing the new vocabularies. 
+%In the first category, 
 %learning in lessons, they manually design some lessons to help their 
-lessons are purposefully designed to help users easily learn a foreign language.
-Duolingo\footnote{\url{https://www.duolingo.com/}} is a popular websites in this category. 
-For the second categoryusers are guided to recite lists of words, or provided with 
-a translation for their input word in the foreign language. 
-Google Translate \footnote{\url{https://translate.google.com/}} stands out in this 
-category. The service is available as desktop / mobile / web software including a 
-chrome extension. We mainly compare our system  with the aforementioned two software.
-Table~\ref{table:difference_summary} summarises important differences between 
-our system and all these existing tools. Each difference serves as a motivation 
-for developing our extension.
-
-``Duolingo is a free language-learning and crowdsourced text translation 
-platform''\footnote{\url{http://en.wikipedia.org/wiki/Duolingo}}.
-Most people start to use Duolingo when they know a little or nothing about 
-the new language. They starting from some basic lessons and improve step by step.
-However, our target audience 
-is a mix novice and intermediate level learners of the foreign language. 
-We can not only help beginners learn 
-a new language but also help them continue their learning by allowing them to practice 
-their foreign language. There are also a lot articles with their translations in 
-Duolingo, but all the articles and their translations are manually added by 
-Duolingo or users from Duolingo. Therefore, parallel articles in Duolingo are old and 
-limited. However, our chrome extension is always working even for those up to the 
-minute news and our user can just practice their foreign language in their daily 
-readings.
+%lessons are purposefully designed to help users easily learn a foreign language.
+%For the second category users are guided to recite lists of words, or provided with 
+%a translation for their input word in the foreign language. 
+While Duolingo\footnote{\url{https://www.duolingo.com/}} teaches through lessons, 
+Google Translate \footnote{\url{https://translate.google.com/}} allows you to learn by 
+translating your inputs. 
+%The service is available as desktop / mobile / web software including a chrome extension. 
+%We mainly compare our system  with the aforementioned two software.
+%Table~\ref{table:difference_summary} summarises important differences between 
+%our system and all these existing tools. Each difference serves as a motivation 
+%for developing our extension.
+%``Duolingo is a free language-learning and crowdsourced text translation 
+%platform''\footnote{\url{http://en.wikipedia.org/wiki/Duolingo}}.
+%Most people start to use Duolingo when they know a little or nothing about 
+%the new language. They starting from some basic lessons and improve step by step.
+%However, our target audience is a mix novice and intermediate level learners of the foreign language. 
+%We can not only help beginners learn 
+%a new language but also help them continue their learning by allowing them to practice 
+%their foreign language. There are also a lot articles with their translations in 
+%Duolingo, but all the articles and their translations are manually added by 
+%Duolingo or users from Duolingo. Therefore, parallel articles in Duolingo are old and 
+%limited. However, our chrome extension is always working even for those up to the 
+%minute news and our user can just practice their foreign language in their daily 
+%readings.
 
 \textbf{Google Translate:} ``Highlight or right-click on a section of text and click
 on Translate icon next to it to translate it to your 
