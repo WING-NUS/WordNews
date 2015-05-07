@@ -11,42 +11,55 @@ To make the distractors fitting the context, we identify news category  (approac
 %To generate good category-related distractors, it is essential to gather enough words that are more related in a certain category to serve as distractors candidates. By using the approach discussed in Section~\ref{subsec:category}, we crawled more than 1400 articles for seven categories, with around 200 articles in each category. The confidence factor is selected to be 10, which is suitable to classify enough words into different categories. After this step, there should be sufficient “Category-Related" words in each category.
 
 
-The difficulty of a distractor is measured by its {\bf semantic distance} to the target word: a closer is, a more difficult distractor.
+The difficulty of a distractor is measured by its {\bf semantic distance} to the target word: a closer is,  a more difficult distractor is. To quantify the semantic distance, we employ  Lin Distance~\cite{lin98}  to measure the distance betwen two words in WordNet~\cite{Miller1995} and define  distractors to be difficult if the Lin Distance score is below some threshold.
+By observing the generated distractors, we empirically set $0.1$ as the threshold.
 
-{\bf Semantic Distance.}
-Before we go to explain the next step, it is essential to introduce the semantic distance calculator we used in the server implementation. 
+%The selection of threshold value will have a direct effect on the speed of distractors generation process. As a very high threshold value will result in more rounds of calculation in semantic distance calculator, and it will take a long time before the distractors are returned to the front end. After several rounds of analysis of each category’s words and the results returned from semantic distance calculator, the threshold value of 0.1 is selected.
 
-The perspective of semantic relatedness or its inverse, semantic distance, is a concept that indicates the likeness of two words. It is more general than the concept of similarity as stated in WordNet’s synset relation. Similar entities in WordNet are classified into same synset based on their similarity. However, dissimilar entries may also have a close semantic connection by lexical relationships  such as meronymy (car-wheel) and antonymy (hot-cold), or just by any kind of functional relationship or frequent association(pencil-paper, penguin-Antarctica) \cite{ale01}. Semantic distance calculator aims to calculate the semantic relatedness score between two words.
 
-There are many approaches to calculate semantic relatedness score. In this application, we are using Lin Distance \cite{lin98} to calculate the semantic distance between two concepts. The detail of Lin Distance methodology is explained as follows.
 
-Lin attempted to define a measure of semantic similarity that would be both universal and theoretically justified. There are three intuitions that he used as a basis:
-\begin{itemize}
-\item The similarity between arbitrary objects A and B is related to their commonality; the more commonality they share, the more similar they are;
-\item The similarity between A and B is related to the differences between them; the more differences they have, the less similar they are.
-\item The maximum similarity between A and B is reached when A and B are identical, no matter how much commonality they share. 
-\end{itemize}
 
-Based on the intuition above, Lin proposed his approach in measuring similarity between two concepts c1, c2 in Equation~\ref{equation:Distractor_4}:
 
-\begin{equation}
-sim(c1,c2) = \frac{2*log_p(lso(c1,c2))}{log_p(c1)+log_p(c2)}
-\label{equation:Distractor_4}
-\end{equation}  
-
-where p(c) denotes the probability of encountering concept c, and lso(c1,c2) denotes the lowest common subsumer, which is the lowest node in WordNet hierarchy that is a hypernym of c1 and c2. 
-
-The distance calculator will return a score from 0 to 1, as can be easily seen from the formula above. If the score is closer to 1, it means the two words are closer in semantic sense. This distance calculator will play an important role in the following algorithm. 
+%{\bf Semantic Distance.}
+%Before we go to explain the next step, it is essential to introduce the semantic distance calculator we used in the server implementation. 
+%
+%The perspective of semantic relatedness or its inverse, semantic distance, is a concept that indicates the likeness of two words. It is more general than the concept of similarity as stated in WordNet’s synset relation. Similar entities in WordNet are classified into same synset based on their similarity. However, dissimilar entries may also have a close semantic connection by lexical relationships  such as meronymy (car-wheel) and antonymy (hot-cold), or just by any kind of functional relationship or frequent association(pencil-paper, penguin-Antarctica) \cite{ale01}. Semantic distance calculator aims to calculate the semantic relatedness score between two words.
+%
+%There are many approaches to calculate semantic relatedness score. In this application, we are using Lin Distance \cite{lin98} to calculate the semantic distance between two concepts. The detail of Lin Distance methodology is explained as follows.
+%
+%Lin attempted to define a measure of semantic similarity that would be both universal and theoretically justified. There are three intuitions that he used as a basis:
+%\begin{itemize}
+%\item The similarity between arbitrary objects A and B is related to their commonality; the more commonality they share, the more similar they are;
+%\item The similarity between A and B is related to the differences between them; the more differences they have, the less similar they are.
+%\item The maximum similarity between A and B is reached when A and B are identical, no matter how much commonality they share. 
+%\end{itemize}
+%
+%Based on the intuition above, Lin proposed his approach in measuring similarity between two concepts c1, c2 in Equation~\ref{equation:Distractor_4}:
+%
+%\begin{equation}
+%sim(c1,c2) = \frac{2*log_p(lso(c1,c2))}{log_p(c1)+log_p(c2)}
+%\label{equation:Distractor_4}
+%\end{equation}  
+%
+%where p(c) denotes the probability of encountering concept c, and lso(c1,c2) denotes the lowest common subsumer, which is the lowest node in WordNet hierarchy that is a hypernym of c1 and c2. 
+%
+%The distance calculator will return a score from 0 to 1, as can be easily seen from the formula above. If the score is closer to 1, it means the two words are closer in semantic sense. This distance calculator will play an important role in the following algorithm. 
 
 %\subsubsection{Distractors Selection Algorithm}
-\subsection{A Hybrid Approach}
-Based on the input parameters, at this stage the server has already got the current category of the news article and the correct POS tag of the target word to test. The server is going to generate distractors based on user’s knowledge level of the target word to test.
+\subsection{User knowlege Awared Approach}
+As mentioned, our extension logs user's detailed learning history, and we categorize user's knowlege  on a certain word into three levels, based on the number of times that he/she has encountered  the word.  Then we adopt different strategies to generate  distractors for users in different knowledge level. 
 
-Knowledge level is 1: This indicates that the user has just learnt this word. The algorithm will randomly select three words from current category’s word list. The reason for using randomization is to avoid the situation that similar distractors are generated every time.
+% Tao: please fill the BUG by the actual number and quatify "just learnt" etc.
 
-Knowledge level is 2: This indicates that the user has known this word for some times. The algorithm will randomly select two words from the current category’s word list as two distractors. Then the algorithm will randomly select word from the current category’s word list and calculated the semantic distance between the selected word and the target word, once the score is above certain threshold, the selected word will be chose as the third distractor. The selection of threshold value will have a direct effect on the speed of distractors generation process. As a very high threshold value will result in more rounds of calculation in semantic distance calculator, and it will take a long time before the distractors are returned to the front end. After several rounds of analysis of each category’s words and the results returned from semantic distance calculator, the threshold value of 0.1 is selected.
 
-Knowledge level is 3: This indicates that the user has a good understanding of the word already; the algorithm will choose distractors solely based on results returned from semantic distance calculator. Similar to the approach when knowledge level is 2, the algorithm will randomly select word from current category’s word list and calculate the semantic distance between the selected word and the target word. If the score is above certain threshold, the selected word is chosen as one of the distractors. The process is continued until the server can find three distractors. 
+{\bf Knowledge level 1}: This indicated user is tested on this word for the first time. Considering this, our system prefers to generate simple distractors, and thus randomly select three words from the same news category. 
+
+{\bf Knowlege level 2}: This indicates that the user has known this word for BUG times. Therefore, the testing is expected to be harder. Our system first randomly selects two words from the same news category. For the third distractor,  the system keeps randomly selecting distractor from the same category, computing its semantic distance to the target word, and stops until meeting a difficulty one.
+
+
+{\bf Knowledge level 3}: This indicates that the user already has a good understanding of the word, {\it i.e.}, passing the test for BUG times. As such, we make the test even harder, and choose  three difficulty distractors from the new category. 
+
+%; the algorithm will choose distractors solely based on results returned from semantic distance calculator. Similar to the approach when knowledge level is 2, the algorithm will randomly select word from current category’s word list and calculate the semantic distance between the selected word and the target word. If the score is above certain threshold, the selected word is chosen as one of the distractors. The process is continued until the server can find three distractors. 
 
 
 \subsection{Evaluation}
