@@ -44,21 +44,24 @@ Topic information have been shown useful in WSD~\cite{Boyd-Graber2007}. Take Eng
 
 \subsection{Part-of-Speech Tagger}
 The word class, {\it i.e.}, the Part-of-Speech (POS) tag is believed to be beneficial for WSD~\cite{Wilks1998} and Machine Translation~\cite{Toutanova2002,Ueffing2003}.
-For example, the English word ``book" has two major classes, verb and noun, meaning ``reserve" (``预定" in Chinese) and ``printed work" (``书"), respectively.
-% Tao: stop here.
-
-
-As we all know, many English words have more than one Part-of-Speech (POS) tags and their Chinese translations in different POS may differ a lot. For example, the word ``book" has two POS tags, noun and verb. If it is used as a noun, mostly it means a handwritten or printed work of fiction or nonfiction, which should be translated as ``书", and mostly means to reserve if used as a verb, which should be translated as ``预定". Therefore, getting the POS tag of the English word might help us identify its sense or the Chinese translation. We decide use Stanford Log-linear Part-of-Speech Tagger \cite{Toutanova2003}.
-
-Firstly, if the word "like" need to be translated, the algorithm will fetch all the Chinese translations as well as their Part-of-Speech tag from our dictionary. Secondly, the algorithm will send the original English sentence to Part-of-Speech Tagger, which is a Java package and has been wrapped into a server. After the client has got the output from the server, it will fetch the corresponding tag and match it to Part-of-Speech tag based on the guidelines mentioned above. Lastly, it will select the translations based on the POS.
-
+For example, the English word ``book" has two major classes, verb and noun, meaning ``reserve" (``预定" in Chinese) and ``printed work" (``书"), respectively. The two  Chinese translations have the same POS tag as their corresponding English counterpart.
+Therefore, once knowing the POS tag for the English word in the context, we are able to pick up the Chinese translation with the same POS tag from the dictionary.
+In our system, we employ Standford Log-linear Part-of-Speech tagger~\cite{Toutanova2003} to obtain the POS tag for English word, and POS tag for Chinese words are contained in our dictionary.
+ In some cases, after applying this rule, there is still multiple candidate Chinese translations and we will choose the most frequently used one. 
 
 
 \subsection{Machine Translation}
-Since our target is to select the most appropriate translation based on the context, using existing Machine Translation (MT) systems is also a good approach, as all of them will certainly translate words based on the context. After I tried a few on-line or off-line MT systems, We decide to use Bing Translator as our Machine Translation system.
+A richer context can be exploited is the neighboring word. We regard the whole sentence as the context for the target word and send the sentence to Microsoft Bing Translator\footnote{\url{https://www.bing.com/translator/}}, an online machine translation system with a limited free usage. The returned Chinese translation, however, does not have explicit word alignment to the original English sentence. Therefore, we need additional processing on the Chinese sentence, in order to find the Chinese word for the target English word.
+
 
 {\bf Bing.}
-In Table~\ref{table:wsd_1}, the thrid example, the original English sentence is ``including a 45-caliber pistol a pump shotgun and an ar-15 rifle" and ``pump" is the word that we want to translate. Firstly, this algorithm will fetch all the Chinese translations from the database. Next, it will send the original English sentence to Bing Translator using the API provided by Microsoft and get the result that returned from Bing Translator. After that, for each Chinese translation, I will check whether this translation is a substring of the Bing Translator result. If there are a few translations that can match with the Bing Translator result, I will select the longest translation. If there are a few translations with the same length and all of them can match with the Bing Translator result, I will select the translation with the highest frequency of use. In this example, both ``唧" and ``唧筒" are the substrings of Bing Translator result. As ``唧筒" have two characters and ``唧" only have one character, this algorithm will take ``唧筒" as the final result.
+%In Table~\ref{table:wsd_1}, the thrid example, the original English sentence is ``including a 45-caliber pistol a pump shotgun and an ar-15 rifle" and ``pump" is the word that we want to translate. Firstly, this algorithm will fetch all the Chinese translations from the database. Next, it will send the original English sentence to Bing Translator using the API provided by Microsoft and get the result that returned from Bing Translator. After that, for each Chinese translation, I will check whether this translation is a substring of the Bing Translator result. If there are a few translations that can match with the Bing Translator result, I will select the longest translation. If there are a few translations with the same length and all of them can match with the Bing Translator result, I will select the translation with the highest frequency of use. In this example, both ``唧" and ``唧筒" are the substrings of Bing Translator result. As ``唧筒" have two characters and ``唧" only have one character, this algorithm will take ``唧筒" as the final result.
+
+% Tao: stop here.
+
+As all potential Chinese translations are available in our dictionary, the most intuitive processing is to perform a substring match, {\it i.e.},
+
+
 
 {\bf Bing+.}
 Bing approach is not perfect. The results that generated by Bing approach is limited by the covearge of our dictionary size. In Table~\ref{table:wsd_1}, the fourth example is the approach of using Bing Translator together with Stanford Word Segmenter, and I would like to use Bing+ to represent this algorithm. The Bing approach will generate ``顶" as the result. After that, our algorithm will send the Chinese sentence returned from Bing Translator to Stanford Word Segmenter. Then, this algorithm will use the segmented word that contains the Bing result as a substring or equals to the Bing result as the final result. In this example, the final result of Bing+ is ``顶级" which is the best result that can be generated from the result of Bing Translator and also a result that does not covered by our dictionary.
