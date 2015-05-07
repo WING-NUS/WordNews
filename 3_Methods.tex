@@ -12,7 +12,7 @@
 
 \section{The {\tt SystemA} Chrome Extension}
 %%Muthu: To introduce and motivate context here
-% Tao: Please mention our bilinguial dictionary 
+% Tao: Please also mention our bilinguial dictionary 
 
 
 We give a running scenario to illustrate the use of our language
@@ -107,7 +107,7 @@ model the news category of both individual words and webpages.  Of
 particular import to {\tt SystemA} is the association of words to a
 news category, which is used downstream in both word sense
 disambiguation (Section~\ref{sec:wsd}) and the generation of
-distractors in the interactive tests (Section~\ref{sec:distractor}.
+distractors in the interactive tests (Section~\ref{sec:distractor}).
 Here, our goal is to automatically find highly relevant words to a
 particular news category -- e.g., ``what are typical {\it finance}
 words?''.  
@@ -120,7 +120,9 @@ webpage that has the seed word ``football'' in its URL is deemed of
 category ``Sports''.  After a survey of a number of news websites, we
 decided on seven categories: namely, ``World'', ``Technology”,
 “Sports”, “Entertainment'', ``Finance'', ``Health'' and
-``Travel''.  
+``Travel''.
+  
+% Tao: As we discussed, need to mention the category alighment of English and Chinese news and show the example words in a table?
 
 We tokenize and part-of-speech tag the main body text of the
 categorized articles, discarding punctuation and stopwords.  The
@@ -129,6 +131,8 @@ frequency.  A word $w$ is classified to a category $c$ if it appears a
 tunable threshold $\delta=$BUG more often than its average category
 document frequency.  Note that a word can be categorized to multiple
 categories under this scheme.
+
+
 
 %% A word w is classified into category C(i) if it satisfies Equation~\ref{equation:Distractor_3}::
 
