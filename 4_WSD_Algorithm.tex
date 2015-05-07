@@ -13,21 +13,21 @@ In WSD, context information is the key to disambiguate word sense. We, therefore
   \caption{Example translations of WSD approaches. The target words are italicized and the proper translations are bolded.  We omit the results for Category-based method, due to its poor performance.}
   \label{table:wsd_1}
   \begin{center}
-  \begin{tabular}{| p{3.5cm} | p{3.5cm} | p{1.2cm} | p{1cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
+  \begin{tabular}{| p{3.5cm} | p{4cm} | p{1.2cm} | p{1cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
     \hline
     English Sentence & Dictionary & Baseline & POST & Bing & Bing+ & Bing++ \\
     \hline
-    ... a very \textit{close} friend of ... & \parbox[t]{3cm}{关闭, 合, 关 ... 密切, 紧密, 闭合 ... 亲密 ...} & 关闭 & 密切 & {\bf 亲密} & {\bf 亲密} & {\bf 亲密} \\
+    ... a very \textit{close} friend of ... & \parbox[t]{4cm}{verb: 关闭, 合, 关 ...\\ adj: 密切, 紧密, 闭合 ... 亲密 ...} & 关闭 & 密切 & {\bf 亲密} & {\bf 亲密} & {\bf 亲密} \\
     \hline
-    ... kids cant \textit{stop} singing ... & \parbox[t]{3cm}{停止, 站, 阻止, 停 ...} & {\bf 停止} & 阻止 & {\bf 停止} & {\bf 停止} & {\bf 停止} \\
+    ... kids cant \textit{stop} singing ... & \parbox[t]{4cm}{verb: 停止, 站, 阻止, 停 ...} & {\bf 停止} & 阻止 & {\bf 停止} & {\bf 停止} & {\bf 停止} \\
     \hline
-    ... it was about elsa being happy and \textit{free} ... & \parbox[t]{3cm}{免费, 自由, 游离, 畅, 空闲的...} & 免费 & 免费 & {\bf 自由} & {\bf 自由} & {\bf 自由} \\
+    ... it was about elsa being happy and \textit{free} ... & \parbox[t]{4cm}{adj: 免费, 自由, 游离, 畅, 空闲的...} & 免费 & 免费 & {\bf 自由} & {\bf 自由} & {\bf 自由} \\
     \hline
-    ... why obama's \textit{trip} to my homeland is meaningful ... & \parbox[t]{3cm}{旅, 旅程 ... 旅游 ...} & 旅 & 旅 & 旅 & {\bf 旅行} & {\bf 旅行} \\
+    ... why obama's \textit{trip} to my homeland is meaningful ... & \parbox[t]{4cm}{noun: 旅, 旅程 ... 旅游 ...} & 旅 & 旅 & 旅 & {\bf 旅行} & {\bf 旅行} \\
     \hline
-    ... winning more points in the \textit{match} ... & \parbox[t]{3cm}{匹配, 比赛, 赛, 敌手, 对手, 火柴 ...} & 匹配 & 匹配 & {\bf 比赛} & {\bf 比赛} & {\bf 比赛} \\
+    ... winning more points in the \textit{match} ... & \parbox[t]{4cm}{noun: 匹配, 比赛, 赛, 敌手, 对手, 火柴 ...} & 匹配 & 匹配 & {\bf 比赛} & {\bf 比赛} & {\bf 比赛} \\
     \hline
-    ... that what i did was the \textit{right} thing ... & \parbox[t]{3cm}{右, 权利, 权 ... 对, 不错, 当...} & 右 & 对 & 是 & 是 & {\bf 正确} \\
+    ... \textit{state} department spokeswoman jen psaki said that the allies had a long history of cooperation ... & \parbox[t]{4cm}{noun: 态, 国, 州, 状况 ... \\verb: 声明, 陈述, 述, 申明 ... 发言 ... \\adj: 国家的 ...} & 态 & 态 & 发言 & 发言人 & {\bf 国家} \\
     \hline
     \end{tabular}
   \end{center}
