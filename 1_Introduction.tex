@@ -70,10 +70,15 @@ back given a choice of possible translations.  The system, deployed as
 a Chrome web browser extension, is triggered when readers visit a
 preconfigured list of news websites.
 
-In the development of the system, we discovered two key issues that
-affect system performance.  Both problems originate from the
-difficulty of representing {\it context} to baseline implementations
-of the natural language processing components.  We report on these
+A key design property of our language learning extension is only
+active on certain news websites.  This is important as news articles
+typically are classified with respect to a news category, such as {\it
+  finance}, {\it world news}, and {\it sports}.  If we know which
+category of news the learner is viewing, we can leverage this
+contextual knowledge to improve the learning experience.
+
+In the development of the system, we discovered two key components
+that can be affected by this context modeling.  We report on these
 developments here.  In specific, we propose algorithms: \textbf{(i)}
 for translating English words to Chinese from news articles,
 \textbf{(ii)} for generating distractor translations for learner

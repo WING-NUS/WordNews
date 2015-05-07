@@ -6,66 +6,113 @@
   article {\it Treacherous journey to epicenter of deadly Nepal
     earthquake}.  Underlined components are clickable to yield
   tooltips of two different forms: (l) a definition for learning, (r)
-  a multiple-choice interactive test.  }
+  a multiple-choice interactive test.}
 \label{fig:chrome_extension_1}
 \end{figure*}
 
-\section{Methods}
+\section{The {\tt SystemA} Chrome Extension}
 %%Muthu: To introduce and motivate context here
 % Tao: Please mention our bilinguial dictionary 
 
-\subsection{Software Design}
-We divide the extension into three components: translating, learning and testing. After user opened a news website, 
-some words in the main content will be replaced by their translation from user's preferred foreign language, and this is what our translating 
-component is doing. If user want to know more about the replaced word, he can simply move his mouse over the translation and a window will pop 
-over to help user learn this word, and this is learning component. If user have encountered some word for a few times, we will generate some 
-quiz for him and this is testing component.
 
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.45\textwidth]{software_design_2.jpg}
-  \caption{Screen shot of Translating Component}
-  \label{fig:software_design_2}
-\end{figure}
-{\bf Translating.} After the original web page, our chrome extension will fetch the content of the news and pass them to the server paragraph by paragraph. After receiving the content, server will compare every word in the paragraph with the words in our vocabulary. If there are some matches, which simply means there are some words that need to be replaced. As every English word might have a few Chinese meanings, our server must select the most appropriate translation among all the meanings. The way that we are trying to solve this problem so far is to compare all the Chinese meanings with the translation of the whole sentence from Bing Translate. If any of the Chinese meanings is the substring of the translation of the sentence, our server will choose that meaning (This is not a proper and accurate way to solve this problem, but it is much better than randomly choose one Chinese meanings. Also, this would be my main research problem that I need to solve next semester). Then, server will pass a JSON string that contains all the words that need to be replaced, their Chinese meanings as well as their pronunciations back to front end. Then, front end will replace the content of the news paragraph by paragraph, in which some words have been replaced. Figure \ref{fig:software_design_2} is the screen shot of this component.
+We give a running scenario to illustrate the use of our language
+learning platform, {\tt SystemA}.  When a learner browses to an
+English webpage on a news website, our extension selectively replaces
+certain original English words words with their Chinese translation
+(Figure~\ref{fig:chrome_extension_1}, middle).  While the meaning of
+the Chinese word is often apparent in context, the learner can choose
+to learn more about the replaced word, by mousing over the translation
+to reveal a definition tooltip (Figure~\ref{fig:chrome_extension_1},
+left) to aid mastery of the Chinese word.  Once the learner has
+encountered the replaced word a few times, {\tt SystemA} will assess
+the learner's mastery by generating a multipl choice translation test
+on the target word (Figure~\ref{fig:chrome_extension_1}, right).  Our
+learning platform thus can be viewed as have three logical components:
+{\it translating}, {\it learning} and {\it testing}. \\
 
-\begin{figure}[ht]
-  \centering
-    \includegraphics[width=0.3\textwidth]{software_design_4.jpg}
-  \caption{Screen shot of popover with highlighted English word}
-  \label{fig:software_design_4}
-\end{figure}
+%% \begin{figure}[ht]
+%%   \centering
+%%   \includegraphics[width=0.45\textwidth]{software_design_2.jpg}
+%%   \caption{Screen shot of Translating Component}
+%%   \label{fig:software_design_2}
+%% \end{figure}
+{\bf Translating.}  We pass the main content of the webpage from the
+extension client to our server for candidate selection and
+translation.  As certain words are polysemous, the server must select
+the most appropriate translation among all possible meanings.  Our
+initial selection method replaces any instance of words stored in our
+dictionary.  For translation, we check the word's stored meanings
+against the machine translation of each sentence obtained from the
+Microsoft Bing Translation API (hereafter, ``Bing'').  Matches are
+deemed as correct translations and are pushed back to the Chrome
+client for rendering.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.3\textwidth]{software_design_5.jpg}
-    \caption{Screen shot of popover with highlighted Chinese word}
-    \label{fig:software_design_5}
-\end{figure}
+%% \begin{figure}[ht]
+%%   \centering
+%%     \includegraphics[width=0.3\textwidth]{software_design_4.jpg}
+%%   \caption{Screen shot of popover with highlighted English word}
+%%   \label{fig:software_design_4}
+%% \end{figure}
+%%  \begin{figure}[ht]
+%%      \centering
+%%     \includegraphics[width=0.3\textwidth]{software_design_5.jpg}
+%%      \caption{Screen shot of popover with highlighted Chinese word}
+%%      \label{fig:software_design_5}
+%%  \end{figure}
 
-{\bf Learning.} By moving mouse on the Chinese word for one second, a window with its English meaning and pronunciation will pop over. Figure \ref{fig:software_design_4} is the screen shot of the pop over without its example sentence. If user want to know how to use this word, he can just click the button next to the pronunciation to get the example sentences of this word. After user click the button to get example sentence, our extension will send a request to server and wait for server' response. There is another way of doing this, which is simply get the example sentences together with the words in the Translating component. However, the example sentences contains much more characters comparing with the pronunciation. We want to maximize the loading speed and minimize the data transferred between front end and server, so we decided to split the pop over content into two request. Figure \ref{fig:software_design_5} is the screen shot of the pop over with its example sentences.
+{\bf Learning.} Hovering the mouse over the replacement Chinese word
+causes a tooltip to appear, which gives the translation,
+pronunciation, simplified and traditional written form, and a {\tt
+  More} link that loads additional contextual example sentences (that
+were previously translated by the backend) for the learner to study.
+The more link must be clicked for activation, as we find this
+two-click architecture helps to minimize latency and the loading of
+unnecessary data.  The server keeps record of the learning tooltip
+activations, logging the enclosing webpage URL, the target word and
+the user identity.
+% Min: doesn't seem to be shown, actually.  Where is an example sentence?
+%  Figure \ref{fig:software_design_5} is the screen
+% shot of the pop over with its example sentences.
 
-\begin{figure}[ht]
-\centering
-  \centering
-  \includegraphics[width=0.3\textwidth]{software_design_7.jpg}
-  \caption{Screenshot of English test popover}
-  \label{fig:software_design_7}
-\end{figure}
+%% \begin{figure}[ht]
+%% \centering
+%%   \centering
+%%   \includegraphics[width=0.3\textwidth]{software_design_7.jpg}
+%%   \caption{Screenshot of English test popover}
+%%   \label{fig:software_design_7}
+%% \end{figure}
+%% \begin{figure}[ht]
+%%     \centering
+%%   \includegraphics[width=0.3\textwidth]{software_design_8.jpg}
+%%   \caption{Screen shot of Chinese test popover}
+%%   \label{fig:software_design_8}
+%% \end{figure}
 
-\begin{figure}[ht]
-    \centering
-  \includegraphics[width=0.3\textwidth]{software_design_8.jpg}
-  \caption{Screen shot of Chinese test popover}
-  \label{fig:software_design_8}
-\end{figure}
-{\bf Testing.} When the user has encountered the same word for a few times, our system will generate a quiz about this word for him.  If user move mouse over this replaced word, a window with a quiz will pop over. After user select one option, this window will tell user the correct answer and sent whether the answer is correct to server. Figure \ref{fig:software_design_7} is the screen shot of our testing popover in English. Figure \ref{fig:software_design_8} is the screen shot of our testing popover in Chinese.
+{\bf Testing.}  After the learner encounters the same word a
+pre-defined number $t=BUG$ times, {\tt SystemA} generates a MCQ test
+to assess mastery.  When the learner hovers over the replaced word,
+the test is shown for the learner to select the correct answer. When
+an option is clicked, the server logs the selection, and the correct
+answer is revealed by the client extension.  Statistics on the user's
+test history are also updated.
 
 %{\bf Classifying words category.}
 % Tao: please keep the label, as I have referred it in wsd section
-\subsection{Classifying words category}
+\subsection{News Categories}
 \label{subsec:category}
-In this section we propose a simple way to classifying words into different categories from online news articles. To find good “category-related” words, it is essential to get the words from those already classified news articles. The following several steps described the approach we used in classifying words category information. The result of this approach is used as a possible approach in the WSD system (Section~\ref{sec:wds}) and generating suitable distractors (Section~\ref{sec:distractor}). 
+
+A key design property of our language learning extension is only
+active on certain news websites.  This is important as news articles
+typically are classified with respect to a news category, such as
+finance, world news, and sports.  If we know which category of news
+the learner is viewing, we can leverage this knowledge for improving
+the learning experience.
+
+In particular, the category of news can impact  
+
+domain of the 
+
+We propose a simple way to classifying words into different categories from online news articles. To find good “category-related” words, it is essential to get the words from those already classified news articles. The following several steps described the approach we used in classifying words category information. The result of this approach is used as a possible approach in the WSD system (Section~\ref{sec:wds}) and generating suitable distractors (Section~\ref{sec:distractor}). 
 
 {\bf Crawling news content.}
 Several web crawlers are designed to get news contents from news websites. The crawler will detect URLs from each news website’s main page as and its sub-category pages. For example, there are sub-categories like “football”, “basketball” under main category “Sports”, and the crawler is able to crawl URLs from “football” page and “basketball” page as well. 
