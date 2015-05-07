@@ -89,7 +89,7 @@ the user identity.
 %% \end{figure}
 
 {\bf Testing.}  After the learner encounters the same word a
-pre-defined number $t=BUG$ times, {\tt SystemA} generates a MCQ test
+pre-defined number $t=$BUG times, {\tt SystemA} generates a MCQ test
 to assess mastery.  When the learner hovers over the replaced word,
 the test is shown for the learner to select the correct answer. When
 an option is clicked, the server logs the selection, and the correct
@@ -98,49 +98,48 @@ test history are also updated.
 
 %{\bf Classifying words category.}
 % Tao: please keep the label, as I have referred it in wsd section
+% Min: will note and change
 \subsection{News Categories}
 \label{subsec:category}
 
-A key design property of our language learning extension is only
-active on certain news websites.  This is important as news articles
-typically are classified with respect to a news category, such as
-finance, world news, and sports.  If we know which category of news
-the learner is viewing, we can leverage this knowledge for improving
-the learning experience.
+As our learning platform is active only on certain news websites, we
+model the news category of both individual words and webpages.  Of
+particular import to {\tt SystemA} is the association of words to a
+news category, which is used downstream in both word sense
+disambiguation (Section~\ref{sec:wsd}) and the generation of
+distractors in the interactive tests (Section~\ref{sec:distractor}.
+Here, our goal is to automatically find highly relevant words to a
+particular news category -- e.g., ``what are typical {\it finance}
+words?''.  
 
-In particular, the category of news can impact  
+We first obtain a large sample of categorized English news webpages,
+by creating custom crawlers for specific news websites.  We use a seed
+list of words that are matched against a target webpage's URL.  If any
+match, the webpage is deemed to be of that category.  For example, a
+webpage that has the seed word ``football'' in its URL is deemed of
+category ``Sports''.  After a survey of a number of news websites, we
+decided on seven categories: namely, ``World'', ``Technology”,
+“Sports”, “Entertainment'', ``Finance'', ``Health'' and
+``Travel''.  
 
-domain of the 
+We tokenize and part-of-speech tag the main body text of the
+categorized articles, discarding punctuation and stopwords.  The
+remaining words are classified to a news category based on document
+frequency.  A word $w$ is classified to a category $c$ if it appears a
+tunable threshold $\delta=$BUG more often than its average category
+document frequency.  Note that a word can be categorized to multiple
+categories under this scheme.
 
-We propose a simple way to classifying words into different categories from online news articles. To find good “category-related” words, it is essential to get the words from those already classified news articles. The following several steps described the approach we used in classifying words category information. The result of this approach is used as a possible approach in the WSD system (Section~\ref{sec:wds}) and generating suitable distractors (Section~\ref{sec:distractor}). 
+%% A word w is classified into category C(i) if it satisfies Equation~\ref{equation:Distractor_3}::
 
-{\bf Crawling news content.}
-Several web crawlers are designed to get news contents from news websites. The crawler will detect URLs from each news website’s main page as and its sub-category pages. For example, there are sub-categories like “football”, “basketball” under main category “Sports”, and the crawler is able to crawl URLs from “football” page and “basketball” page as well. 
+%% \begin{equation}
+%% f (w, C(i)) - sw(w)/n >= \delta
+%% \label{equation:Distractor_3} 
+%% \end{equation}  
 
-After detailed comparison of most news websites, we divided news articles into seven categories, namely “World”, “Technology”, “Sports”, “Entertainment”, “Finance”, “Health” and “Travel”. Most news articles can be classified into one of the seven categories. The web crawler will store all paragraph tags from each websites and store them as one file under one category. 
+%% The confidence factor $\delta$ can be a positive integer between 0 and the average number of articles in each category. It means on average, the word w must appear in a specific category C(i) $\delta$ times more than it appear in other category before it can be classified into category C(i).
 
-{\bf Preprocessing.}
-In this step the server uses Natural Language Tool Kit \cite{edw09} for word tokenizing and POS Tagging. The server will store the POS tag of each word. After elimination of all non-English words and those words that contain special symbols, like ``O’Real", ``S\$40", all words that contains only alphabetic letters are conserved. All stop words are also eliminated as well. They are stored as lower case for the ease of future process.
-
-{\bf Classification.}
-In the classification step, the server counts the document frequency of each word in all those stored news articles, i.e. if word “scored” appeared 4 times in one article, it will only be counted as once. By following this approach we can successfully reduce the bias of some words only appear a lot of times in one article while don’t appear often in other article. As we are storing similar number of articles in each category, this approach will provide a fair comparison of each word’s popularity among different categories. After this step we will know the document frequency count of each word in different category. 
-Assume C is the list of category names, and f(w, C(i))=m means word w appeared in category C(i) for m times, then the sum weight of word w as sw(w) is calculated in Equation~\ref{equation:Distractor_1}:
-
-\begin{equation}
-sw (w) = \sum_{i=1}^{n} f(w,C(i))
-\label{equation:Distractor_1}
-\end{equation}  
-
-A word w is classified into category C(i) if it satisfies Equation~\ref{equation:Distractor_3}::
-
-\begin{equation}
-f (w, C(i)) - sw(w)/n >= \delta
-\label{equation:Distractor_3} 
-\end{equation}  
-
-The confidence factor $\delta$ can be a positive integer between 0 and the average number of articles in each category. It means on average, the word w must appear in a specific category C(i) $\delta$ times more than it appear in other category before it can be classified into category C(i).
-
-It is obvious that a higher confidence factor value will result in less number words getting classified, but it will result in getting words that are more accurate. A suitable confident value is selected to generating category-related words in the later section.
+%% It is obvious that a higher confidence factor value will result in less number words getting classified, but it will result in getting words that are more accurate. A suitable confident value is selected to generating category-related words in the later section.
 
 
 
