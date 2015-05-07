@@ -1,5 +1,6 @@
 \section{Methods}
 %%Muthu: To introduce and motivate context here
+% Tao: Please mention our bilinguial dictionary 
 
 \subsection{Software Design}
 Based on the user study, we divided the extension into three components: translating, learning and testing. After user opened a news website, 
@@ -48,8 +49,11 @@ quiz for him and this is testing component.
 \end{figure}
 {\bf Testing.} When the user has encountered the same word for a few times, our system will generate a quiz about this word for him.  If user move mouse over this replaced word, a window with a quiz will pop over. After user select one option, this window will tell user the correct answer and sent whether the answer is correct to server. Figure \ref{fig:software_design_7} is the screen shot of our testing popover in English. Figure \ref{fig:software_design_8} is the screen shot of our testing popover in Chinese.
 
-{\bf Classifying words category.}
-In this section we propose a simple way to classifying words into different categories from online news articles. To find good “category-related” words, it is essential to get the words from those already classified news articles. The following several steps described the approach we used in classifying words category information. The result of this approach is used in generating suitable distractors in Section 5 and as an possible approach in the WSD system discussed in Section 4. 
+%{\bf Classifying words category.}
+% Tao: please keep the label, as I have referred it in wsd section
+\subsection{Classifying words category}
+\label{subsec:category}
+In this section we propose a simple way to classifying words into different categories from online news articles. To find good “category-related” words, it is essential to get the words from those already classified news articles. The following several steps described the approach we used in classifying words category information. The result of this approach is used as a possible approach in the WSD system (Section~\ref{sec:wds}) and generating suitable distractors (Section~\ref{sec:distractor}). 
 
 {\bf Crawling news content.}
 Several web crawlers are designed to get news contents from news websites. The crawler will detect URLs from each news website’s main page as and its sub-category pages. For example, there are sub-categories like “football”, “basketball” under main category “Sports”, and the crawler is able to crawl URLs from “football” page and “basketball” page as well. 

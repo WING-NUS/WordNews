@@ -1,15 +1,11 @@
 \section{Word Sense Disambiguation System}
+\label{sec:wds}
 \begin{CJK}{UTF8}{gbsn}
-As we all know, one word may have multiple translations in another language, and our extension is expected to select the most appropriate one based on the context.We call such translation selection as cross-lingual word sense disambiguation (WSD).
+As we all know, one word often have multiple translations in another language, and our extension is expected to show the most appropriate one based on the context. We call such translation selection as word sense disambiguation (WSD). WSD is an open task in natural language processing, aiming at identifying the proper sense ({\it i.e.}, meaning) of a word  in a context, when the word has multiple meanings~\cite{Navigli2009}. Traditionally, WSD system identifies the proper sense in the same language, while we show the proper sense in the form of another language.
 
-In this following, I describe four approaches that I have tried to accomplish WSD system, which is also my main progress in the second semester. The four approaches are: 
+% Tao: mention the dict in sec2?
+In WSD, context information is the key to disambiguate word sense. We, therefore, make use of different granularity of context, {\it i.e.}, the category of the news, the word class, and the sentence, to select proper translations from our bilingual dictionary.
 
-\begin{itemize}
-\item Frequency based: always selecting the most frequent translation (the baseline),
-\item Part-of-Speech Tag based: selecting the translation based on the Part-of-Speech Tag of the English word
-\item Translation based: Selecting the translation based on the result from existing Machine Translation systems
-\item Category based: Selecting the translation based on the category of the news article
-\end{itemize}
 
 % Tao: Please bold the correct answer. In the caption, indicate the meaning of bold  font. Does the blank means no returned result? Please also indicate it in the caption. Longer and meaningful caption is fine.
                                                          
@@ -37,18 +33,25 @@ In this following, I describe four approaches that I have tried to accomplish WS
   \end{center}
 \end{table*}
 
-\subsection{Baseline}
-The simplest way to select a translation from the candidates is by random. However, the correctness of this method is very low, probably less than 20\%, and is not a good baseline for other methods to compete with. Another simple idea is to always select the most commonly used translation. Luckily, when I crawled the dictionary, Google Translate does provide usage frequency of each Chinese Translation.  This turns out to be a much better result, and thus serves as a fair baseline method.
+%\subsection{Baseline}
+%The simplest way to select a translation from the candidates is by random. However, the correctness of this method is very low, probably less than 20\%, and is not a good baseline for other methods to compete with. Another simple idea is to always select the most commonly used translation. Luckily, when I crawled the dictionary, Google Translate does provide usage frequency of each Chinese Translation.  This turns out to be a much better result, and thus serves as a fair baseline method.
+
+
+\subsection{News Category}
+Topic information have been shown useful in WSD~\cite{Boyd-Graber2007}. Take English word  ``interest" as an example. In finance related articles, ``interest" is more likely to be ``a share, right, or title in the ownership of property" (``利息" in Chinese), than `the feeling of a person whose attention, concern, or curiosity is particularly engaged by something" (``兴趣").  Therefore, analysing the topic of the original article and selecting the translation with the same topic label might help disambiguate the word sense. We leverage the algorithm described in Section~\ref{subsec:category} to obtain the category for news and candidate Chinese translations. 
+
 
 \subsection{Part-of-Speech Tagger}
+The word class, {\it i.e.}, the Part-of-Speech (POS) tag is believed to be beneficial for WSD~\cite{Wilks1998} and Machine Translation~\cite{Toutanova2002,Ueffing2003}.
+For example, the English word ``book" has two major classes, verb and noun, meaning ``reserve" (``预定" in Chinese) and ``printed work" (``书"), respectively.
+% Tao: stop here.
+
+
 As we all know, many English words have more than one Part-of-Speech (POS) tags and their Chinese translations in different POS may differ a lot. For example, the word ``book" has two POS tags, noun and verb. If it is used as a noun, mostly it means a handwritten or printed work of fiction or nonfiction, which should be translated as ``书", and mostly means to reserve if used as a verb, which should be translated as ``预定". Therefore, getting the POS tag of the English word might help us identify its sense or the Chinese translation. We decide use Stanford Log-linear Part-of-Speech Tagger \cite{Toutanova2003}.
 
 Firstly, if the word "like" need to be translated, the algorithm will fetch all the Chinese translations as well as their Part-of-Speech tag from our dictionary. Secondly, the algorithm will send the original English sentence to Part-of-Speech Tagger, which is a Java package and has been wrapped into a server. After the client has got the output from the server, it will fetch the corresponding tag and match it to Part-of-Speech tag based on the guidelines mentioned above. Lastly, it will select the translations based on the POS.
 
-\subsection{News Category}
-The word ``interest" have two very different translations when it is used as a noun. One translation is about ``the feeling of a person whose attention, concern, or curiosity is particularly engaged by something", which should be translated as ``兴趣". The other translation is about ``a share, right, or title in the ownership of property", which should be translated as ``利息". It is quite obvious that the second sense is mostly used in financial related topics. Therefore, analysing the category of the original article and selecting the translation with the same category label might help disambiguate the word meaning.
 
-In Table~\ref{table:wsd_1}, the second example, word ``picture" is the word that need to be translated. Firstly, the algorithm will fetch all the Chinese translations for word ``picture" and only the word ``影片" has a category ``entertainment". Next, the algorithm will fetch the category of the English news article from the URL, which is also ``entertainment".In this case, the algorithm will use ``影片" as the translation for word ``picture". If a few words shares the same category, the algorithm will choose the translation with the highest frequency of use.
 
 \subsection{Machine Translation}
 Since our target is to select the most appropriate translation based on the context, using existing Machine Translation (MT) systems is also a good approach, as all of them will certainly translate words based on the context. After I tried a few on-line or off-line MT systems, We decide to use Bing Translator as our Machine Translation system.
@@ -56,7 +59,7 @@ Since our target is to select the most appropriate translation based on the cont
 {\bf Bing.}
 In Table~\ref{table:wsd_1}, the thrid example, the original English sentence is ``including a 45-caliber pistol a pump shotgun and an ar-15 rifle" and ``pump" is the word that we want to translate. Firstly, this algorithm will fetch all the Chinese translations from the database. Next, it will send the original English sentence to Bing Translator using the API provided by Microsoft and get the result that returned from Bing Translator. After that, for each Chinese translation, I will check whether this translation is a substring of the Bing Translator result. If there are a few translations that can match with the Bing Translator result, I will select the longest translation. If there are a few translations with the same length and all of them can match with the Bing Translator result, I will select the translation with the highest frequency of use. In this example, both ``唧" and ``唧筒" are the substrings of Bing Translator result. As ``唧筒" have two characters and ``唧" only have one character, this algorithm will take ``唧筒" as the final result.
 
-\subsubsection{Bing+}
+{\bf Bing+.}
 Bing approach is not perfect. The results that generated by Bing approach is limited by the covearge of our dictionary size. In Table~\ref{table:wsd_1}, the fourth example is the approach of using Bing Translator together with Stanford Word Segmenter, and I would like to use Bing+ to represent this algorithm. The Bing approach will generate ``顶" as the result. After that, our algorithm will send the Chinese sentence returned from Bing Translator to Stanford Word Segmenter. Then, this algorithm will use the segmented word that contains the Bing result as a substring or equals to the Bing result as the final result. In this example, the final result of Bing+ is ``顶级" which is the best result that can be generated from the result of Bing Translator and also a result that does not covered by our dictionary.
 
 {\bf Bing++.}
