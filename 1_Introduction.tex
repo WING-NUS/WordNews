@@ -1,38 +1,88 @@
 \section{Introduction}
 Learning a new language from language learning websites is 
 time consuming. Research shows that regular practice, guessing, 
-memorization~\cite{rubin91} as well as immersion into real scenarios~\cite{naiman78} hastens language learning process. 
-Therefore, to make second language learning 
-attractive and efficient we seek to interleave language leaning 
+memorization~\cite{rubin91},BUG as well as immersion into real 
+scenarios~\cite{naiman78}BUG hastens language learning process. 
+To make second language learning 
+attractive and efficient, we seek to interleave language learning 
 with a popular daily activity: online news reading.
-Further recent increase in the popularity of 
-portable devices has made online news reading popular~\cite{yarlh2012}. 
-We leverage on this culture to provide users of news websites with an opportunity to learn a second language.
+% Min: not needed. 
+%% Further recent increase in the popularity of 
+%% portable devices and computers has made online news reading 
+%% popular~\cite{yarlh2012}. We leverage on this culture to provide 
+%% users of news websites with an opportunity to learn a second language.
 
-It is observed that language development in children begins with 
-vocabulary acquisition before syntax and other aspects are learnt. One may 
-extrapolate by assumption that vocabulary acquisition is perhaps the first step in language learning, in general. Research also shows that extensive reading builds up vocabulary. This, however, could make learning time consuming and boring, if the learner is uninterested in the reading material. We, therefore, seek to enable learners build 
-their vocabulary efficiently with an enjoyable user experience.
+%% It is observed that language development in children begins with 
+%% vocabulary acquisition before syntax and other aspects are learnt~\cite{}BUG. 
+%% One may extrapolate by assumption that vocabulary acquisition is perhaps 
+%% the first step in language learning, in general. Research~\cite{}BUG also 
+%% shows that extensive reading builds up vocabulary. This, however, could 
+%% make learning time consuming and boring, if the learner is uninterested 
+%% in the reading material. We, therefore, seek to enable learners build 
+%% their vocabulary efficiently with an enjoyable user experience.
 
-Existing language learning software are either instruction driven or user driven. 
+%Existing language learning software  
 %teach through structured lessons 
 %or through strategies for memorizing the new vocabularies. 
 %In the first category, 
 %learning in lessons, they manually design some lessons to help their 
 %lessons are purposefully designed to help users easily learn a foreign language.
 %For the second category users are guided to recite lists of words, or provided with 
-%a translation for their input word in the foreign language. 
-Duolingo\footnote{\url{https://www.duolingo.com/}} is a popular instruction driven system that teaches through structured lessons. Google Translate\footnote{\url{https://translate.google.com/}}, on the other hand, allows you to learn by translating your inputs. Instruction driven systems demand dedicated 
-learner time on a daily basis and are difficult to customise according to the learner's skill level. User driven systems, however, lack rigor since the system never tests learners periodically to hone their skills. We seek to seamlessly merge learning and assessment into the same user session. %Learners are tested while they learn. 
-Our system is also able to adapt to the learner's skill during assessment.
+%a translation for their input word in the foreign language.
+
+Most existing language learning software are either instruction-driven
+or user-driven.  Duolingo\footnote{\url{https://www.duolingo.com/}} is
+a popular instruction-driven system that teaches through structured
+lessons.
+% Tao: I think users are able to select lessons by difficulty and thus match their skills.
+% are difficult to customise according to the learner's skill level. 
+% Muthu: agreed. 
+Instruction driven systems demand dedicated learner time on a daily
+basis and are limited by learning materials as lesson curation is
+often labor-intensive.
+
+In contrast, many people informally use Google
+Translate\footnote{\url{https://translate.google.com/}} to learn
+vocabulary, making it a prominent example of a user-driven system.
+% Tao: It is better to  postpone mentioning the specific two languages. Perhpas mention it 
+% at the end of this paragraph. Too many Chinese (English) makes reading a little bit hard. 
+% In addition, our current system is to help a English speaker to learn Chinese, not suitable 
+% for a Chinese speaker to learn English.
+% Muthu: okay. I thought, I saw screenshots for both ways.
+% Anway, we will stick with Eng -> Chinese throughout.
+Translate, however, lacks the rigor of a learning platform as it lacks
+tests to allow learners to demonstrate mastery.  In our work, we merge
+learning and assessment within the single activity of news reading.
+%Learners are tested while they learn. 
+Our system also adapts to the learner's skill during assessment.
 %~\footnote{\url{https://neltachoutari.wordpress.com/tag/%vocabulary/}}. 
 %Perhaps, this justifies the poor adoption of current second language learning 
 %systems. 
-We propose a system to enable online news readers to efficiently learn 
-a new language, Chinese (English), while they are reading English (Chinese) news. Learners are trained by providing translations to randomly chosen open domain words on the English (Chinese) news page. Learners are also assessed by replacing English (Chinese) words in the news article with their Chinese (English) translations and  asked to translate them back given a choice of possible translations. In this paper, 
-we propose algorithms: \textbf{(i)} for translating English (Chinese) words to Chinese (English) from news articles, \textbf{(ii)} for generating distractor translations for learner assessment.
-The system, deployed as a Chrome extension\footnote{a software extension to the Chrome web browser} is triggered when readers visit a preconfigured list of news websites.
-%on a preconfigured list.
+
+We propose a system to enable online news readers to efficiently learn
+a new language.  Our prototype targets Chinese language learning while
+reading English language news. Learners are provided translations of
+open-domain words for learning from an English news page. In the same
+environment -- for words that the system deems mastered by the learner
+-- learners are assessed by replacing the original English text in the
+article with their Chinese translations and asked to translate them
+back given a choice of possible translations.  The system, deployed as
+a Chrome web browser extension, is triggered when readers visit a
+preconfigured list of news websites.
+
+A key design property of our language learning extension is only
+active on certain news websites.  This is important as news articles
+typically are classified with respect to a news category, such as {\it
+  finance}, {\it world news}, and {\it sports}.  If we know which
+category of news the learner is viewing, we can leverage this
+contextual knowledge to improve the learning experience.
+
+In the development of the system, we discovered two key components
+that can be affected by this context modeling.  We report on these
+developments here.  In specific, we propose algorithms: \textbf{(i)}
+for translating English words to Chinese from news articles,
+\textbf{(ii)} for generating distractor translations for learner
+assessment.
 %The system even adapts to the user's current knowledge level during assessment.
 %The service is available as desktop / mobile / web software including a chrome extension. 
 %We mainly compare our system  with the aforementioned two software.

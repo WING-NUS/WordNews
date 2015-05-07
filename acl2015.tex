@@ -38,7 +38,7 @@
 
 % Tao: All upper-case is hard to read.
 %\title{LEARNING SECOND LANGUAGE FROM NEWS WEBSITES}
-\title{Learning Second Languages from News Websites}
+\title{Interactive Second Language Learning from News Websites}
 
 %\author{First Author \\
 %  Affiliation / Address line 1 \\
@@ -81,18 +81,21 @@
 %through an earlier survey.
 
 
-Learning a second language is difficult and requires
-constant revision and immersion.  Fortunately, many of us 
-read news online everyday. In this paper, we propose a web browser extension that allows readers to learn a second language vocabulary 
-while reading news online. To this end, we propose algorithms to disambiguate  word sense and translate the words in new articles properly 
-to target langauge.
-%for translating source language words in news articles to target 
-%language. We find that a standard machine translation system extended 
-%with a word sense disambiguation (WSD) system significantly betters baseline translation methods in both coverage and accuracy.
-We find a machine translation based method significantly betters baselines in both coverage and accuracy.
-We also propose techniques for generating appropriate distractors for multiple-choice word mastery quizzes for assessing language learners.
-We conducted a user survey to evaluate our system.
-%% complete what is your finding and what we learn from it
+We propose a web browser extension that allows readers to learn a
+second language vocabulary while reading news online.  Injected
+tooltips allow readers to look up selected vocabulary and give
+interactive tests to assess vocabulary mastery.  
+
+We discover that two key system components needed improvement, both
+which stem from the need to model context.  These two issues are in
+practical word sense disambigution (WSD) to aid translation quality
+and constructing the interactive tests. We start with Microsoft's Bing
+translation API but employ additional dictionary based heuristics that
+significantly improve translation quality over a baseline in both
+coverage and accuracy. We also propose techniques for generating
+appropriate distractors for multiple-choice word mastery tests.  Our
+preliminary user survey confirms the need and viability of such a
+language learning platform.
 
 \end{abstract}
 
