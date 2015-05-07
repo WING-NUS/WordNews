@@ -1,24 +1,17 @@
 \section{Distractors Generation Algorithm}
 \label{sec:distractor}
-Vocabulary testing is a key functionality in our extension. We investigate a way to
-automatically generate suitable distractors (in English form) for a target word. News category information is utilized to make the distractors fitting the reading context, while semantic distance between words is used to control the difficulty.
+Vocabulary testing is a key functionality in our extension. In this section, we investigate a way to automatically generate suitable distractors (in English form) for a target word. We postulate "a  set of suitable distractors" as: 1) being the same form as the target word, 2) fitting the reading context,  and 3)
+having proper difficulty level according to user's knowledge skill.
 
-\subsection{Collecting category-related words}
-To generate good category-related distractors, it is essential to gather enough words that are more related in a certain category to serve as distractors candidates. By using the approach discussed in Section~\ref{subsec:category}, we crawled more than 1400 articles for seven categories, with around 200 articles in each category. The confidence factor is selected to be 10, which is suitable to classify enough words into different categories. After this step, there should be sufficient “Category-Related" words in each category.
+By applying Part-of-Speech tagger, we obtain the POS tag for the target word, and then restrict the  candidate distractors to be selected from the same word class.
+To make the distractors fitting the context, we identify news category  (approach is detailed in Section~\ref{subsec:category}), and select the distractors from the same category.
 
-\subsection{Generating distractors}
-The category-related words obtained from the previous step will be used in this step. Out selection strategy in choosing distractors takes following parameters:
-\begin{itemize}
-\item News website URL
-\item News sentence
-\item Word to test
-\item User’s knowledge level of the word
-\end{itemize}
-{\bf Detect news category.}
-After getting the news URL, our system needs to determine the category of the news. Based on the analysis from most popular news URLs, there is a set of common identifiers that can identify the category of the news article. For example, technology news URL often contains “/tech”, “/science”, and if we find these strings in news URL, we will classify this news URL into “Technology” category. The algorithm will go through all category identifier in the list, and will return the category name the moment it finds a match. The current list of category provides reasonable accuracy for the purpose of detecting news category.
 
-{\bf Detect Part-Of-Speech Tag.}
-Given the target word and the target sentence, it is easy to run the NLTK POS tagger to get the correct POS tag of this word. This step is essential to help select distractors with similar forms, i.e. if the target word is adjective, it will be appropriate to choose three other adjectives, not verbs, as distractors.
+
+%To generate good category-related distractors, it is essential to gather enough words that are more related in a certain category to serve as distractors candidates. By using the approach discussed in Section~\ref{subsec:category}, we crawled more than 1400 articles for seven categories, with around 200 articles in each category. The confidence factor is selected to be 10, which is suitable to classify enough words into different categories. After this step, there should be sufficient “Category-Related" words in each category.
+
+
+The difficulty of a distractor is measured by its {\bf semantic distance} to the target word: a closer is, a more difficult distractor.
 
 {\bf Semantic Distance.}
 Before we go to explain the next step, it is essential to introduce the semantic distance calculator we used in the server implementation. 
@@ -45,7 +38,8 @@ where p(c) denotes the probability of encountering concept c, and lso(c1,c2) den
 
 The distance calculator will return a score from 0 to 1, as can be easily seen from the formula above. If the score is closer to 1, it means the two words are closer in semantic sense. This distance calculator will play an important role in the following algorithm. 
 
-\subsubsection{Distractors Selection Algorithm}
+%\subsubsection{Distractors Selection Algorithm}
+\subsection{A Hybrid Approach}
 Based on the input parameters, at this stage the server has already got the current category of the news article and the correct POS tag of the target word to test. The server is going to generate distractors based on user’s knowledge level of the target word to test.
 
 Knowledge level is 1: This indicates that the user has just learnt this word. The algorithm will randomly select three words from current category’s word list. The reason for using randomization is to avoid the situation that similar distractors are generated every time.
