@@ -1,6 +1,7 @@
-\section{Word Sense Disambiguation System}
+\section{Practical Word Sense Disambiguation}
 \label{sec:wds}
 \begin{CJK}{UTF8}{gbsn}
+
 As we all know, one word often have multiple translations in another language, and our extension is expected to show the most appropriate one based on the context. We call such translation selection as word sense disambiguation (WSD). WSD is an open task in natural language processing, aiming at identifying the proper sense ({\it i.e.}, meaning) of a word  in a context, when the word has multiple meanings~\cite{Navigli2009}. Traditionally, WSD system identifies the proper sense in the same language, while we show the proper sense in the form of another language.
 
 % Tao: mention the dict in sec2?
@@ -10,22 +11,22 @@ In WSD, context information is the key to disambiguate word sense. We, therefore
 % Tao: Please bold the correct answer. In the caption, indicate the meaning of bold  font. Does the blank means no returned result? Please also indicate it in the caption. Longer and meaningful caption is fine.
                                                          
 \begin{table*}[t]
-  \caption{Example input/output of WSD.}
+  \caption{Example input and output of our word sense disambiguation configurations. {\bf Boldface} indicates (Column 1) the target word to translate and, (Columns 3--8) the correct translation(s).}
   \label{table:wsd_1}
   \begin{center}
-  \begin{tabular}{| p{3cm} | p{1cm} | p{3.5cm} | p{1.2cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
+  \begin{tabular}{| p{4cm} | p{3.5cm} | p{1.2cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
     \hline
-    English Sentence & Word & Dictionary & Baseline & Category & Bing & Bing+ & Bing++ \\
+    English Sentence & Dictionary & Baseline & Category & Bing & Bing+ & Bing++ \\
     \hline
-    ... treating me like family ... & like & \parbox[t]{3cm}{verb : 喜欢, 爱...\\ ... \\preposition : 好像, 好比 ...} & 喜欢 & 好像 & & & \\
+    ... treating me {\bf like} family ... & \parbox[t]{3cm}{verb : 喜欢, 爱...\\ ... \\preposition : 好像, 好比 ...} & 喜欢 & 好像 & & & \\
     \hline
-    ... painting a picture of urban street life ... & picture & \parbox[t]{3cm}{... 相, 影, 影片(entertainment), 帧, 想象, 画 ...} & & 影片 & & & \\
+    ... painting a {\bf picture} of urban street life ... & \parbox[t]{3cm}{... 相, 影, 影片(entertainment), 帧, 想象, 画 ...} & & 影片 & & & \\
     \hline
-    ... pistol a pump shotgun ... & pump & \parbox[t]{3cm}{verb:抽, 抽水, 打气, 唧, 唧筒, 套\\ noun:抽水机, 唧筒} & & & 唧筒 & & \\
+    ... pistol a {\bf pump} shotgun ... & \parbox[t]{3cm}{verb:抽, 抽水, 打气, 唧, 唧筒, 套\\ noun:抽水机, 唧筒} & & & 唧筒 & & \\
     \hline
-    ... have made it into the worlds top 40 clubs ... & top & \parbox[t]{3cm}{顶部, 顶端, 顶, 颠, 盖, 极 ...} & 顶部 &  & 顶 & 顶级 & \\
+    ... have made it into the world's {\bf top} 40 clubs ... & \parbox[t]{3cm}{顶部, 顶端, 顶, 颠, 盖, 极 ...} & 顶部 &  & 顶 & 顶级 & \\
     \hline
-    state department spokeswoman ... & state & \parbox[t]{3cm}{...陈, 陈说, 称, 称述, 发表, 发言...} & & & 发言 & 发言人 & 国家 \\
+    {\bf state} department spokeswoman ... & \parbox[t]{3cm}{...陈, 陈说, 称, 称述, 发表, 发言...} & & & 发言 & 发言人 & 国家 \\
     \hline
     %...  ... &  & \parbox[t]{3cm}{...  ...} & & & & & \\
     %\hline
