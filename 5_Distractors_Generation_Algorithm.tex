@@ -50,26 +50,28 @@ By observing the generated distractors, we empirically set $0.1$ as the threshol
 As mentioned, our extension logs user's detailed learning history, and we categorize user's knowlege  on a certain word into three levels, based on the number of times that he/she has encountered  the word.  Then we adopt different strategies to generate  distractors for users in different knowledge level. 
 
 % Tao: please fill the BUG by the actual number and quatify "just learnt" etc.
-
+% Zhao: Filled already.
 
 {\bf Knowledge level 1}: This indicated user is tested on this word for the first time. Considering this, our system prefers to generate simple distractors, and thus randomly select three words from the same news category. 
 
-{\bf Knowlege level 2}: This indicates that the user has known this word for BUG times. Therefore, the testing is expected to be harder. Our system first randomly selects two words from the same news category. For the third distractor,  the system keeps randomly selecting distractor from the same category, computing its semantic distance to the target word, and stops until meeting a difficulty one.
+{\bf Knowlege level 2}: This indicates that the user has known this word for 3 times. Therefore, the testing is expected to be harder. Our system first randomly selects two words from the same news category. For the third distractor,  the system keeps randomly selecting distractor from the same category, computing its semantic distance to the target word, and stops until meeting a difficulty one.
 
 
-{\bf Knowledge level 3}: This indicates that the user already has a good understanding of the word, {\it i.e.}, passing the test for BUG times. As such, we make the test even harder, and choose  three difficulty distractors from the new category. 
+{\bf Knowledge level 3}: This indicates that the user already has a good understanding of the word, {\it i.e.}, passing the test for 6 times. As such, we make the test even harder, and choose  three difficulty distractors from the new category. 
 
 %; the algorithm will choose distractors solely based on results returned from semantic distance calculator. Similar to the approach when knowledge level is 2, the algorithm will randomly select word from current category’s word list and calculate the semantic distance between the selected word and the target word. If the score is above certain threshold, the selected word is chosen as one of the distractors. The process is continued until the server can find three distractors. 
 
 
 \subsection{Evaluation}
 % Tao: How to choose the third distractor? from d2's 
-To compare with our proposed method, we further implemented an existing distractor generation method  used in WordGap system~\cite{Knoop2013}. WordGap still adopt knowledge-based approach, selecting the synonyms of synonyms (computed in WordNet) as the distractors. That is, the first distractor {\textit d1} is the most frequently used word from target word’s synonym set, and the second distractor {\textit d2} is the most frequently used synonym for  {\textit d1},
-similarly, {\textit d3} BUG (HOW TO GENERATE d3). However, if the number of valid result we can get is less than three, we will choose the word that shares the same antonym with the target word.
+% Zhao: The three distractors are all selected from the same synset.
+To compare with our proposed method, we further implemented an existing distractor generation method  used in WordGap system~\cite{Knoop2013}. WordGap still adopts knowledge-based approach, selecting the synonyms of synonyms (computed in WordNet) as the distractors. That is, we select the most frequently used word, let's call it w1, from the target word’s synonym set. Then we select the synset, let's call it s1, which the synset where the most frequently used word of w1 lies in. Synset s1 will now contain all the words that are synonyms of synonyms of the target word, we will select the 3 most frequently used words are the three distractors in baseline approach.
+
+
+%he first distractor {\textit d1} is the most frequently used word from target word’s synonym set, and the second distractor {\textit d2} is the most frequently used synonym for  {\textit d1},
+%similarly, {\textit d3} BUG (HOW TO GENERATE d3). However, if the number of valid result we can get is less than three, we will choose the word that shares the same antonym with the target word.
 
 %To evaluate the distractors selection strategy as described in this report, we chose the knowledge-based approach used by many other language learning systems, which is to utilize the WordNet data and selection distractors based on synonyms of synonyms. WordGap system uses this approach to generate vocabulary test for its android application.
-
-
 
 %In our implementation of the baseline algorithm, we will choose the most frequent used word w1 from the target word’s synonym set, and select the most frequent used word w2 from word w1’s synonym set. The selection process is continued until we can find 3 distractors to form a vocabulary test. However, if the number of valid result we can get is less than 3, we will choose the word that shares the same antonym with the target word.
 
