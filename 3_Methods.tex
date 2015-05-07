@@ -14,7 +14,7 @@
 %%Muthu: To introduce and motivate context here
 % Tao: Please also mention our bilinguial dictionary 
 
-
+\begin{CJK}{UTF8}{gbsn}
 We give a running scenario to illustrate the use of our language
 learning platform, {\tt SystemA}.  When a learner browses to an
 English webpage on a news website, our extension selectively replaces
@@ -121,8 +121,43 @@ category ``Sports''.  After a survey of a number of news websites, we
 decided on seven categories: namely, ``World'', ``Technology”,
 “Sports”, “Entertainment'', ``Finance'', ``Health'' and
 ``Travel''.
-  
+ 
 % Tao: As we discussed, need to mention the category alighment of English and Chinese news and show the example words in a table?
+
+\begin{table}[ht]
+\centering
+  \caption{Experimental results.}
+  \label{table:evaluation_1}
+  \begin{tabular}{| p{2.3cm} | p{2.3cm} | p{1.5cm} |}
+    \hline
+    Chinese Category & English Category & Example Words\\
+    \hline
+    Entertainment & Entertainment & 饰演\\
+    \hline
+    Military & World & 服役\\
+    \hline
+    Finance & Finance & 存款\\
+    \hline
+    Sports & Sports & 比分\\
+    \hline
+    International & World & |\\
+    \hline
+    Social & World & |\\
+    \hline
+    Technology & Tech & 芯片\\
+    \hline
+    Lady & Fashion & 瘦\\
+    \hline
+    Auto & Travel & 奔驰\\
+    \hline
+    Game & | & |\\
+    \hline
+    Education & | & |\\
+    \hline
+    | & Health & |\\
+    \hline
+  \end{tabular}
+\end{table}
 
 We tokenize and part-of-speech tag the main body text of the
 categorized articles, discarding punctuation and stopwords.  The
@@ -147,5 +182,5 @@ categories under this scheme.
 
 
 
-
+\end{CJK}
 
