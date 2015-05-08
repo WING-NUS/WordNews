@@ -1,24 +1,18 @@
 \section{Distractors Generation Algorithm}
 \label{sec:distractor}
-Vocabulary testing is a key functionality in our extension. In this section, we investigate a way to automatically generate suitable distractors (in English form) for a target word. We postulate "a  set of suitable distractors" as: 1) being the same form as the target word, 2) fitting the reading context,  and 3)
-having proper difficulty level according to user's knowledge skill.
-
-By applying Part-of-Speech tagger, we obtain the POS tag for the target word, and then restrict the  candidate distractors to be selected from the same word class.
-To make the distractors fitting the context, we identify news category  (approach is detailed in Section~\ref{subsec:category}), and select the distractors from the same category.
-
-
+Assesing mastery over vocabulary is a key functionality in our extension. In this section, we investigate a way to automatically generate suitable distractors (in English form) for a target word. We postulate ``a  set of suitable distractors'' as: 1) having the same form as the target word, 2) fitting the reading context, and 3) having proper difficulty level according to user's level of mastery.
+%By applying a part-of-speech tagger, we obtain the POS tag for the target word, and then restrict the  %candidate distractors to be selected from the same word class.
+We obtain the POS tag for the target word and restrict the candidate distractors to the same word class.
+To make the distractors fit the context, we identify the target word's news category (approach is detailed in Section~\ref{subsec:category}), and select the distractors from the same category.
 
 %To generate good category-related distractors, it is essential to gather enough words that are more related in a certain category to serve as distractors candidates. By using the approach discussed in Section~\ref{subsec:category}, we crawled more than 1400 articles for seven categories, with around 200 articles in each category. The confidence factor is selected to be 10, which is suitable to classify enough words into different categories. After this step, there should be sufficient “Category-Related" words in each category.
 
 
-The difficulty of a distractor is measured by its {\bf semantic distance} to the target word: a closer is,  a more difficult distractor is. To quantify the semantic distance, we employ  Lin Distance~\cite{lin98}  to measure the distance betwen two words in WordNet~\cite{Miller1995} and define  distractors to be difficult if the Lin Distance score is below some threshold.
-By observing the generated distractors, we empirically set $0.1$ as the threshold.
+The difficulty of a distractor is measured by its {\bf semantic distance} to the target word: the closer it is to the target word, the more difficult the distractor is. To quantify the semantic distance, we employ  Lin's Distance~\cite{lin98} to measure the distance between two words in WordNet~\cite{Miller1995} and define distractors to be difficult if the Lin's Distance score is below some threshold. 
+%By observing the generated distractors, 
+We empirically set $0.1$ as the threshold.
 
 %The selection of threshold value will have a direct effect on the speed of distractors generation process. As a very high threshold value will result in more rounds of calculation in semantic distance calculator, and it will take a long time before the distractors are returned to the front end. After several rounds of analysis of each category’s words and the results returned from semantic distance calculator, the threshold value of 0.1 is selected.
-
-
-
-
 
 %{\bf Semantic Distance.}
 %Before we go to explain the next step, it is essential to introduce the semantic distance calculator we used in the server implementation. 
@@ -47,29 +41,26 @@ By observing the generated distractors, we empirically set $0.1$ as the threshol
 
 %\subsubsection{Distractors Selection Algorithm}
 \subsection{User knowledge Aware Approach}
-As mentioned, our extension logs user's detailed learning history, and we categorize user's knowledge  on a certain word into three levels, based on the number of times that he/she has encountered  the word.  Then we adopt different strategies to generate  distractors for users in different knowledge level. 
+As previously mentioned, our extension logs user's detailed learning history. We categorize a user's knowledge on a certain word into three levels, based on the number of times that he / she has encountered  the word. Then we adopt different strategies to generate distractors for users in different knowledge levels. 
 
+{\bf Knowledge Level 1 (K1)}: This is the default knowledge level assigned to a user on a new word. Users aren't tested on words where their knowledge level is K1.
+%Considering this, our system prefers to generate simple distractors, and thus randomly select three words %from the same news category. 
 
-{\bf Knowledge Level 1 (K1)}: This indicated user is tested on this word for the first time. Considering this, our system prefers to generate simple distractors, and thus randomly select three words from the same news category. 
+{\bf Knowledge Level 2 (K2)}: This indicates that the user has known this word for three times. Therefore, the testing is expected to be harder. The first two distractors are randomly selected from those words that share the same news category. For the third distractor, its semantic distance to the target word is checked in addition, making it a more difficult distractor.  
+%For the third distractor, the system keeps randomly selecting distractor from the same category, computing %its semantic distance to the target word, and stops until meeting a difficulty one.
 
-{\bf Knowledge Level 2 (K2)}: This indicates that the user has known this word for three times. Therefore, the testing is expected to be harder. Our system first randomly selects two words from the same news category. For the third distractor,  the system keeps randomly selecting distractor from the same category, computing its semantic distance to the target word, and stops until meeting a difficulty one.
-
-
-{\bf Knowledge Level 3 (K3)}: This indicates that the user already has a good understanding of the word, {\it i.e.}, passing the test for six times. As such, we make the test even harder, and choose  three difficulty distractors from the new category. 
+{\bf Knowledge Level 3 (K3)}: At this level the user is expected to have a good understanding of the word since she has {\it i.e.}, passed the test six times. Therefore, we make the test even harder, and choose  all three distractors from the same news category along with the semantic distance criteria. 
 
 %; the algorithm will choose distractors solely based on results returned from semantic distance calculator. Similar to the approach when knowledge level is 2, the algorithm will randomly select word from current category’s word list and calculate the semantic distance between the selected word and the target word. If the score is above certain threshold, the selected word is chosen as one of the distractors. The process is continued until the server can find three distractors. 
-
 
 \subsection{Evaluation}
 % Tao: How to choose the third distractor? from d2's 
 % Zhao: The three distractors are all selected from the same synset.
-To compare with our proposed method, we further implemented an existing distractor generation method  used in WordGap system~\cite{Knoop2013}. WordGap still adopts knowledge-based approach, selecting the synonyms of synonyms (computed in WordNet) as the distractors. That is, we select the most frequently used word (referred as w1), from the target word’s synonym set. %Then we select the synset, let's call it  s1, which the synset where the most frequently used word of w1 lies in. 
-Then we select the synonyms of w1 and call this set as s1.
-Synset s1 contain all the words that are synonyms of synonyms of the target word. Finally we select three most frequently used words from s1 as distractors for the baseline approach.
+To compare with our proposed method, we reimplemented an existing distractor generation method used in WordGap system~\cite{Knoop2013}. WordGap adopts a knowledge-based approach: selecting the synonyms of synonyms (computed in WordNet) as distractors. That is, they select the most frequently used word, w1, from the target word's synonym set. %Then we select the synset, let's call it  s1, which the synset where the most frequently used word of w1 lies in. 
+Then they select the synonyms of w1 and call this set as s1.
+Synset s1 contains all the words that are synonyms of synonyms of the target word. Finally they select three most frequently used words from s1 as distractors. This we use is as our baseline approach for comparison.
 
-For our proposed method, we adopt three different strategies to generate distractors, according to user's knowledge level. In our evaluation, we focus on assessing distractors generated for two extreme cases, {\it i.e.}, knowledge level 1, and knowledge level 2. Therefore, we conduct a pairwise comparison -- K1  vs. Baseline, and K3  vs. Baseline, using the same testing dataset.
-
-
+Our proposed method adopts three different strategies to generate distractors according to user's knowledge level. In our evaluation, we study distractors generated for the two extreme cases, {\it i.e.}, knowledge level 1, and knowledge level 3. Therefore, we conduct a pairwise comparison -- K1  vs. Baseline, and K3  vs. Baseline, using the same test dataset.
 
 %There are two evaluations to be done as follows:
 %1.  Compare Baseline with Knowledge Level 1 Algorithm
@@ -86,10 +77,9 @@ For our proposed method, we adopt three different strategies to generate distrac
 
 
 \subsubsection{User Study}
-To compare the two approaches in generating distractors, we turn to users, asking users to compare the plausibility of distractors.
+To compare the two approaches in generating distractors, we ask users to compare the plausibility of distractors.
 %To compare the two approaches in generating distractors, we designed several survey sets to ask users to compare the plausibility of distractors.
- We randomly selected 50 sentences from recent news articles and then chose a noun or adjective from the sentence as the target word. In our survey, each question looks like a real MCQ quiz: we show the original sentence (leaving the target word as blank) as the context,  and randomly display the six distractors and the target word as choices. Users are required to read the sentence and select the correct answer (that they think) as rating 1, and 
- rank the other choices from 2 (most plausible) to 7 (least plausible) based on their plausibility. Figure~\ref{fig:distractor_1} shows an example survey question.
+ We randomly selected 50 sentences from recent news articles and then chose a noun or adjective from the sentence as the target word. In our survey, each question looks like a real MCQ quiz: we show the original sentence (leaving the target word as blank) as the context, and randomly display the six distractors and the target word as choices. Users are required to read the sentence and select the correct answer (that they think) as rating 1, and rank the other choices from 2 (most plausible) to 7 (least plausible) based on their plausibility. Figure~\ref{fig:distractor_1} shows an example survey question.
  
  %In the survey, participants are required to answer each question and rank the plausibility of all distractors from 1 to 7. The correct answer will be ranked as 1, and the least plausible distractor will be ranked as 7. A screenshot of one sample question is shown in Figure \ref{fig:distractor_1}.
 
