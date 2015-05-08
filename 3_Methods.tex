@@ -120,43 +120,72 @@ category ``Sports''.  After a survey of a number of news websites, we
 decided on seven categories: namely, ``World'', ``Technology'',
 ``Sports'', ``Entertainment'', ``Finance'', ``Health'' and
 ``Travel''.
- 
-% Tao: As we discussed, need to mention the category alighment of English and Chinese news and show the example words in a table?
+
+
+%\begin{table}[ht]
+%\centering
+%  \caption{The alignment of English and Chinese news categories and example categorical words.}
+%  \label{table:category}
+%  \begin{tabular}{| p{2.3cm} | p{2.3cm} | p{1.5cm} |}
+%    \hline
+%    Chinese Category & English Category & Example Words\\
+%    \hline
+%    Entertainment & Entertainment & designï¿½\\
+%    \hline
+%    Military & World & attacks \\
+%    \hline
+%    Finance & Finance & accounts\\
+%    \hline
+%    Sports & Sports & score\\
+%    \hline
+%    International & World & attacks\\
+%    \hline
+%    Social & World & attacks \\
+%    \hline
+%    Technology & Tech & phone \\
+%    \hline
+%    Lady & Fashion & |\\
+%    \hline
+%    Auto & Travel & natural\\
+%    \hline
+%    Game & | & |\\
+%    \hline
+%    Education & | & |\\
+%    \hline
+%    | & Health & stress \\
+%    \hline
+%  \end{tabular}
+%\end{table}
 
 \begin{table}[ht]
 \centering
-  \caption{Experimental results.}
-  \label{table:evaluation_1}
+  \caption{The alignment of English and Chinese news categories and example English categorical words.}
+  \label{table:category}
   \begin{tabular}{| p{2.3cm} | p{2.3cm} | p{1.5cm} |}
     \hline
-    Chinese Category & English Category & Example Words\\
+    {\bf English \qquad Category} & {\bf Chinese \qquad Category} & {\bf Example Words}\\
     \hline
-    Entertainment & Entertainment & design”\\
+    Entertainment & Entertainment & superstar\\
     \hline
-    Military & World & attacks \\
+     World &  Military, \qquad International, Social & attack \\
     \hline
-    Finance & Finance & accounts\\
+    Finance & Finance & investment\\
     \hline
     Sports & Sports & score\\
     \hline
-    International & World & attacks\\
+    Technology & Technology & phone \\
     \hline
-    Social & World & attacks \\
+    Fashion &  Lady & jewelry\\
     \hline
-    Technology & Tech & phone \\
+    Travel  & Auto & natural\\
     \hline
-    Lady & Fashion & |\\
+   Health &  & stress \\
     \hline
-    Auto & Travel & natural\\
-    \hline
-    Game & | & |\\
-    \hline
-    Education & | & |\\
-    \hline
-    | & Health & stress \\
-    \hline
+    
+    
   \end{tabular}
 \end{table}
+
 
 We tokenize and part-of-speech tag the main body text of the
 categorized articles, discarding punctuation and stopwords. The
@@ -164,7 +193,8 @@ remaining words are classified to a news category based on document
 frequency. A word $w$ is classified to a category $c$ if it appears a
 tunable threshold $\delta=10$ more often than its average category
 document frequency.  Note that a word can be categorized to multiple
-categories under this scheme.
+categories under this scheme. Table~\ref{table:category} shows example
+words under each category.
 
 
 
