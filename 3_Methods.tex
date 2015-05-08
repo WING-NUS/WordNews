@@ -1,5 +1,7 @@
 
-% Tao: Erased "FROM" in the testing popover for now. Need a new screenshot later.
+% Tao: Erased "FROM" in the testing popover for now. 
+% @Naijia, please fix the interface (replace "FROM" by a more proper word/phrase), and
+% then fix the screenshot.
 \begin{figure*}[ht]
 \centering
 \includegraphics[width=0.99\textwidth]{chrome_extension.jpg}
@@ -29,12 +31,6 @@ on the target word (Figure~\ref{fig:chrome_extension_1}, right). Our
 learning platform thus can be viewed as three logical use cases:
 {\it translating}, {\it learning} and {\it testing}. \\
 
-%% \begin{figure}[ht]
-%%   \centering
-%%   \includegraphics[width=0.45\textwidth]{software_design_2.jpg}
-%%   \caption{Screen shot of Translating Component}
-%%   \label{fig:software_design_2}
-%% \end{figure}
 {\bf Translating.}  We pass the main content of the webpage from the
 extension client to our server for candidate selection and
 translation.  As certain words are polysemous, the server must select
@@ -47,18 +43,6 @@ Microsoft Bing Translation API\footnote{\url{https://www.bing.com/translator/}}
 deemed as correct translations and are pushed back to the Chrome
 client for rendering.
 
-%% \begin{figure}[ht]
-%%   \centering
-%%     \includegraphics[width=0.3\textwidth]{software_design_4.jpg}
-%%   \caption{Screen shot of popover with highlighted English word}
-%%   \label{fig:software_design_4}
-%% \end{figure}
-%%  \begin{figure}[ht]
-%%      \centering
-%%     \includegraphics[width=0.3\textwidth]{software_design_5.jpg}
-%%      \caption{Screen shot of popover with highlighted Chinese word}
-%%      \label{fig:software_design_5}
-%%  \end{figure}
 
 {\bf Learning.} Hovering the mouse over the replacement Chinese word
 causes a tooltip to appear, which gives the translation,
@@ -70,23 +54,6 @@ two-click architecture helps to minimize latency and the loading of
 unnecessary data.  The server keeps record of the learning tooltip
 activations, logging the enclosing webpage URL, the target word and
 the user identity.
-% Min: doesn't seem to be shown, actually.  Where is an example sentence?
-%  Figure \ref{fig:software_design_5} is the screen
-% shot of the pop over with its example sentences.
-
-%% \begin{figure}[ht]
-%% \centering
-%%   \centering
-%%   \includegraphics[width=0.3\textwidth]{software_design_7.jpg}
-%%   \caption{Screenshot of English test popover}
-%%   \label{fig:software_design_7}
-%% \end{figure}
-%% \begin{figure}[ht]
-%%     \centering
-%%   \includegraphics[width=0.3\textwidth]{software_design_8.jpg}
-%%   \caption{Screen shot of Chinese test popover}
-%%   \label{fig:software_design_8}
-%% \end{figure}
 
 {\bf Testing.}  After the learner encounters the same word a
 pre-defined number $t=3$ times, {\tt SystemA} generates a MCQ test
@@ -96,9 +63,6 @@ an option is clicked, the server logs the selection, and the correct
 answer is revealed by the client extension.  Statistics on the user's
 test history are also updated.
 
-%{\bf Classifying words category.}
-% Tao: please keep the label, as I have referred it in wsd section
-% Min: will note and change
 \subsection{News Categories}
 \label{subsec:category}
 As our learning platform is active only on certain news websites, we
@@ -108,7 +72,7 @@ news category, which is used downstream in both word sense
 disambiguation (Section~\ref{sec:wsd}) and the generation of
 distractors in the interactive tests (Section~\ref{sec:distractor}).
 Here, our goal is to automatically find highly relevant words to a
-particular news category -- e.g., ``what are typical {\it finance}
+particular news category -- {\it e.g.}, ``what are typical {\it finance}
 words?''.  
 
 We first obtain a large sample of categorized English news webpages,
@@ -126,7 +90,6 @@ Chinese news websites, we decided on seven categories: namely,
  
 
 % Tao: please check the example words.
-
 \begin{table}[ht]
 \centering
   \caption{News category alignment between English and Chinese.}
