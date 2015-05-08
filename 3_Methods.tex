@@ -128,7 +128,7 @@ Chinese news websites, we decided on seven categories: namely,
 
 \begin{table}[ht]
 \centering
-  \caption{News Category Alignment between English and Chinese.}
+  \caption{News category alignment between English and Chinese.}
   \label{table:cat}
   \begin{tabular}{| p{2.3cm} | p{2.0cm} | p{1.8cm} |}
     \hline
@@ -155,12 +155,12 @@ Chinese news websites, we decided on seven categories: namely,
 We tokenize and part-of-speech tag the main body text of the
 categorized articles, discarding punctuation and stopwords.  For
 Chinese, we additionally carried out Chinese word segmentation using
-the Stanford Chinese word segmenter. The remaining words are
-classified to a news category based on document frequency. A word $w$
-is classified to a category $c$ if it appears a tunable threshold
-$\delta=10$ more often than its average category document frequency.
-Note that a word can be categorized to multiple categories under this
-scheme.
+the Stanford Chinese word segmenter~\cite{Chang2008}. The remaining
+words are classified to a news category based on document frequency. A
+word $w$ is classified to a category $c$ if it appears a tunable
+threshold $\delta=10$ more often than its average category document
+frequency.  Note that a word can be categorized to multiple categories
+under this scheme.
 
 
 %% A word w is classified into category C(i) if it satisfies Equation~\ref{equation:Distractor_3}::
