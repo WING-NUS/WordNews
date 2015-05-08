@@ -10,26 +10,26 @@ In WSD, context information is the key to disambiguate word sense. We, therefore
 % Tao: Please bold the correct answer. In the caption, indicate the meaning of bold  font. Does the blank means no returned result? Please also indicate it in the caption. Longer and meaningful caption is fine.
                                                          
 \begin{table*}[t]
-  \caption{Example input/output of WSD.}
+  \caption{Example translations of WSD approaches. The target words are italicized and the proper translations are bolded.  We omit the results for Category-based method, due to its poor performance.}
   \label{table:wsd_1}
   \begin{center}
-  \begin{tabular}{| p{3cm} | p{1cm} | p{3.5cm} | p{1.2cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
+  \begin{tabular}{| p{3.5cm} | p{4cm} | p{1.2cm} | p{1cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
     \hline
-    English Sentence & Word & Dictionary & Baseline & Category & Bing & Bing+ & Bing++ \\
+    English Sentence & Dictionary & Baseline & POST & Bing & Bing+ & Bing++ \\
     \hline
-    ... treating me like family ... & like & \parbox[t]{3cm}{verb : 喜欢, 爱... \\preposition : 好像, 好比 ...} & 喜欢 & 好像 & & & \\
+    ... a very \textit{close} friend of ... & \parbox[t]{4cm}{verb: 关闭, 合, 关 ...\\ adj: 密切, 紧密, 闭合 ... 亲密 ...} & 关闭 & 密切 & {\bf 亲密} & {\bf 亲密} & {\bf 亲密} \\
     \hline
-    ... painting a picture of urban street life ... & picture & \parbox[t]{3cm}{... 相, 影, 影片(entertainment), 帧, 想象, 画 ...} & & 影片 & & & \\
+    ... kids cant \textit{stop} singing ... & \parbox[t]{4cm}{verb: 停止, 站, 阻止, 停 ...} & {\bf 停止} & 阻止 & {\bf 停止} & {\bf 停止} & {\bf 停止} \\
     \hline
-    ... pistol a pump shotgun ... & pump & \parbox[t]{3cm}{verb:抽, 抽水, 打气, 唧, 唧筒, 套\\ noun:抽水机, 唧筒} & & & 唧筒 & & \\
+    ... it was about elsa being happy and \textit{free} ... & \parbox[t]{4cm}{adj: 免费, 自由, 游离, 畅, 空闲的...} & 免费 & 免费 & {\bf 自由} & {\bf 自由} & {\bf 自由} \\
     \hline
-    ... have made it into the worlds top 40 clubs ... & top & \parbox[t]{3cm}{顶部, 顶端, 顶, 颠, 盖, 极 ...} & 顶部 &  & 顶 & 顶级 & \\
+    ... why obama's \textit{trip} to my homeland is meaningful ... & \parbox[t]{4cm}{noun: 旅, 旅程 ... 旅游 ...} & 旅 & 旅 & 旅 & {\bf 旅行} & {\bf 旅行} \\
     \hline
-    state department spokeswoman ... & state & \parbox[t]{3cm}{...陈, 陈说, 称, 称述, 发表, 发言...} & & & 发言 & 发言人 & 国家 \\
+    ... winning more points in the \textit{match} ... & \parbox[t]{4cm}{noun: 匹配, 比赛, 赛, 敌手, 对手, 火柴 ...} & 匹配 & 匹配 & {\bf 比赛} & {\bf 比赛} & {\bf 比赛} \\
     \hline
-    %...  ... &  & \parbox[t]{3cm}{...  ...} & & & & & \\
-    %\hline
-  \end{tabular}
+    ... \textit{state} department spokeswoman jen psaki said that the allies had a long history of cooperation ... & \parbox[t]{4cm}{noun: 态, 国, 州, 状况 ... \\verb: 声明, 陈述, 述, 申明 ... 发言 ... \\adj: 国家的 ...} & 态 & 态 & 发言 & 发言人 & {\bf 国家} \\
+    \hline
+    \end{tabular}
   \end{center}
 \end{table*}
 
@@ -71,7 +71,7 @@ A richer context can be exploited is the neighboring word. We regard the whole s
 
 % Tao: How many sentences are used in eval? Please fill the information in the BUG.
 \subsection{Evaluation}
-To evaluate the effectiveness of our proposed  methods, we randomly sampled BUG words and their sentences from recent CNN news articles, and manually annotated the ground truth translation for each target English word. We report both the {\bf coverage} ({\it i.e.}, the chances that a system is able to return a translation) and {\bf accuracy} ({\it i.e.}, the chances that a translation is appropriate). For comparison purpose, we also report the performance for the baseline method -- always select the most frequently used Chinese translation.
+To evaluate the effectiveness of our proposed  methods, we randomly sampled 707 words and their sentences from recent CNN news articles, and manually annotated the ground truth translation for each target English word. We report both the {\bf coverage} ({\it i.e.}, the chances that a system is able to return a translation) and {\bf accuracy} ({\it i.e.}, the chances that a translation is appropriate). For comparison purpose, we also report the performance for the baseline method -- always select the most frequently used Chinese translation.
 
 
 %TODO: mention the table in the text
