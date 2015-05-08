@@ -18,16 +18,16 @@
 We give a running scenario to illustrate the use of our language
 learning platform, {\tt SystemA}.  When a learner browses to an
 English webpage on a news website, our extension selectively replaces
-certain original English words words with their Chinese translation
+certain original English words with their Chinese translation
 (Figure~\ref{fig:chrome_extension_1}, middle).  While the meaning of
 the Chinese word is often apparent in context, the learner can choose
 to learn more about the replaced word, by mousing over the translation
 to reveal a definition tooltip (Figure~\ref{fig:chrome_extension_1},
 left) to aid mastery of the Chinese word.  Once the learner has
 encountered the replaced word a few times, {\tt SystemA} will assess
-the learner's mastery by generating a multipl choice translation test
-on the target word (Figure~\ref{fig:chrome_extension_1}, right).  Our
-learning platform thus can be viewed as have three logical components:
+the learner's mastery by generating a multiple choice translation test
+on the target word (Figure~\ref{fig:chrome_extension_1}, right). Our
+learning platform thus can be viewed as three logical components:
 {\it translating}, {\it learning} and {\it testing}. \\
 
 %% \begin{figure}[ht]
@@ -39,9 +39,9 @@ learning platform thus can be viewed as have three logical components:
 {\bf Translating.}  We pass the main content of the webpage from the
 extension client to our server for candidate selection and
 translation.  As certain words are polysemous, the server must select
-the most appropriate translation among all possible meanings.  Our
+the most appropriate translation among all possible meanings. Our
 initial selection method replaces any instance of words stored in our
-dictionary.  For translation, we check the word's stored meanings
+dictionary. For translation, we check the word's stored meanings
 against the machine translation of each sentence obtained from the
 Microsoft Bing Translation API (hereafter, ``Bing'').  Matches are
 deemed as correct translations and are pushed back to the Chrome
@@ -89,7 +89,7 @@ the user identity.
 %% \end{figure}
 
 {\bf Testing.}  After the learner encounters the same word a
-pre-defined number $t=$BUG times, {\tt SystemA} generates a MCQ test
+pre-defined number $t=3$ times, {\tt SystemA} generates a MCQ test
 to assess mastery.  When the learner hovers over the replaced word,
 the test is shown for the learner to select the correct answer. When
 an option is clicked, the server logs the selection, and the correct
@@ -101,10 +101,9 @@ test history are also updated.
 % Min: will note and change
 \subsection{News Categories}
 \label{subsec:category}
-
 As our learning platform is active only on certain news websites, we
-model the news category of both individual words and webpages.  Of
-particular import to {\tt SystemA} is the association of words to a
+model the news category of both individual words and webpages. Of
+particular importance to {\tt SystemA} is the association of words to a
 news category, which is used downstream in both word sense
 disambiguation (Section~\ref{sec:wsd}) and the generation of
 distractors in the interactive tests (Section~\ref{sec:distractor}).
@@ -118,8 +117,8 @@ list of words that are matched against a target webpage's URL.  If any
 match, the webpage is deemed to be of that category.  For example, a
 webpage that has the seed word ``football'' in its URL is deemed of
 category ``Sports''.  After a survey of a number of news websites, we
-decided on seven categories: namely, ``World'', ``Technology”,
-“Sports”, “Entertainment'', ``Finance'', ``Health'' and
+decided on seven categories: namely, ``World'', ``Technology'',
+``Sports'', ``Entertainment'', ``Finance'', ``Health'' and
 ``Travel''.
  
 % Tao: As we discussed, need to mention the category alighment of English and Chinese news and show the example words in a table?
@@ -160,10 +159,10 @@ decided on seven categories: namely, ``World'', ``Technology”,
 \end{table}
 
 We tokenize and part-of-speech tag the main body text of the
-categorized articles, discarding punctuation and stopwords.  The
+categorized articles, discarding punctuation and stopwords. The
 remaining words are classified to a news category based on document
-frequency.  A word $w$ is classified to a category $c$ if it appears a
-tunable threshold $\delta=$BUG more often than its average category
+frequency. A word $w$ is classified to a category $c$ if it appears a
+tunable threshold $\delta=10$ more often than its average category
 document frequency.  Note that a word can be categorized to multiple
 categories under this scheme.
 
