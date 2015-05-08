@@ -1,15 +1,19 @@
 \section{Word Sense Disambiguation System}
 \label{sec:wsd}
 \begin{CJK}{UTF8}{gbsn}
-It is common knowledge that a word in one language can often have multiple translations in another language. Our extension is expected to show the most appropriate one based on the context. We call such translation selection as cross-lingual word sense disambiguation (c-WSD). WSD is an open task in natural language processing, aiming at identifying the proper sense ({\it i.e.}, meaning) of a word  in a context, when the word has multiple meanings~\cite{Navigli2009}. Traditionally, WSD systems identify the right sense in the same language. Here, we find the proper sense in the target language for a given word in the source language.
+Our extension needs to show the most appropriate translation sense
+based on the context. Such a translation selection task --
+cross-lingual word sense disambiguation -- is a common problem in
+machine translation.  
 
-% Tao: mention the dict in sec2?
-Context information is the key to disambiguate word sense. We, therefore, make use of context at different granularities, {\it i.e.}, the category of the news, the word class, and the sentence, to select proper translations from our bilingual dictionary.
+The contextual information that we use to assist WSD in our extension
+comes in two forms: the news category of the viewing URL and the
+enclosing.
 
 % Tao: Please bold the correct answer. In the caption, indicate the meaning of bold  font. Does the blank means no returned result? Please also indicate it in the caption. Longer and meaningful caption is fine.
                                                          
 \begin{table*}[t]
-  \caption{Example translations of WSD approaches. The target words are italicized and the proper translations are bolded.  We omit the results for Category-based method, due to its poor performance.}
+  \caption{Example translations from our approaches to WSD. Target words are italicized and correct translations are bolded.}
   \label{table:wsd_1}
   \begin{center}
   \begin{tabular}{| p{3.5cm} | p{4cm} | p{1.2cm} | p{1cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1cm} |}
@@ -35,9 +39,17 @@ Context information is the key to disambiguate word sense. We, therefore, make u
 %\subsection{Baseline}
 %The simplest way to select a translation from the candidates is by random. However, the correctness of this method is very low, probably less than 20\%, and is not a good baseline for other methods to compete with. Another simple idea is to always select the most commonly used translation. Luckily, when I crawled the dictionary, Google Translate does provide usage frequency of each Chinese Translation.  This turns out to be a much better result, and thus serves as a fair baseline method.
 
-
 \subsection{News Category}
-Topic information has been shown to be useful in WSD~\cite{Boyd-Graber2007}. as For example, consider the English word \textit{interest}. In finance related articles, ``interest'' is more likely to be ``a share, right, or title in the ownership of property'' (``利息'' in Chinese), than `the feeling of a person whose attention, concern, or curiosity is particularly engaged by something'' (``兴趣'').  Therefore, analysing the topic of the original article and selecting the translation with the same topic label might help disambiguate the word sense. We use the algorithm described in Section~\ref{subsec:category} to obtain the category for news and candidate Chinese translations. 
+Topic information has been shown to be useful in
+WSD~\cite{Boyd-Graber2007}.  For example, consider the English word
+\textit{interest}. In finance related articles, ``interest'' is more
+likely to carry the sense of ``a share, right, or title in the
+ownership of property'' (``利息'' in Chinese), over other senses.
+Therefore, analysing the topic of the original article and selecting
+the translation with the same topic label might help disambiguate the
+word sense. We use the algorithm described in
+Section~\ref{subsec:category} to obtain the category for news and
+candidate Chinese translations.
 
 \subsection{Part-of-Speech Tagger}
 The word class, {\it i.e.}, the Part-of-Speech (POS) tag is believed to be beneficial for WSD~\cite{Wilks1998} and Machine Translation~\cite{Toutanova2002,Ueffing2003}.
