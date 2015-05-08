@@ -90,9 +90,9 @@ work on automated distractor generation, and forms our
 baseline. WordGap adopts a knowledge-based approach: selecting the
 synonyms of synonyms (also computed by WordNet) as distractors.  They
 first select the most frequently used word, $w1$, from the target
-word's synonym set.
+word's synonym set, and 
 %Then we select the synset, let's call it  s1, which the synset where the most frequently used word of w1 lies in. 
-WordGap then selects the synonyms of $w1$, called $s1$.  WordGap
+then select the synonyms of $w1$, called $s1$.  Finally, WordGap
 selects the three most frequently-used words from $s1$ as
 distractors.
 
@@ -109,10 +109,11 @@ distractors.
 
 %In our implementation of the baseline algorithm, we will choose the most frequent used word w1 from the target word’s synonym set, and select the most frequent used word w2 from word w1’s synonym set. The selection process is continued until we can find 3 distractors to form a vocabulary test. However, if the number of valid result we can get is less than 3, we will choose the word that shares the same antonym with the target word.
 
-We study distractors generated for the two extreme cases, {\it i.e.},
-knowledge level 1, and knowledge level 3. Therefore, we conduct a
-pairwise comparison -- K1 vs. Baseline, and K3 vs. Baseline, using the
-same test dataset.
+% Tao: commented
+%We study distractors generated for the two extreme cases, {\it i.e.},
+%knowledge level 1, and knowledge level 3. Therefore, we conduct a
+%pairwise comparison -- K1 vs. Baseline, and K3 vs. Baseline, using the
+%same test dataset.
 
 %To compare the two approaches in generating distractors, we designed several survey sets to ask users to compare the plausibility of distractors.
 
@@ -149,7 +150,6 @@ algorithm is used to generate all distractors against WordGap.  This
 evaluation aims to assess the efficacy of our algorithm over the
 baseline.
 
-% Tao: please check
 
 %The evaluation contains 100 questions and is separated into 4 surveys, with each survey containing 25 questions. Each participant is free to choose one or more than one surveys. The purpose is to reduce the workload in each survey to get better responses. The surveys are sent to Year 1 students from School of Computing, National University of Singapore.  There are 15 valid responses with each participant ranking each distractor with a different weight from 1 to 7. Half of the participants are native English speakers.
 
@@ -169,7 +169,7 @@ average ranking for each choice. A lower rating means a more plausible
 subjects answered the survey seriously, assuring the validity of the
 evaluation.
 
-For each question, we deem a algorithm to be the winner if its three
+For each question, we deem an algorithm to be the winner if its three
 distractors as a whole (the sum of three average ratings) are assessed
 to be more plausible than the distractors by its competitor. We
 calculate the number of wins for each algorithm over the 50 questions
@@ -209,13 +209,6 @@ in each evaluation.
     \end{center}
 \end{table}
 
-<<<<<<< HEAD
-We display the results for Baseline vs. K1 and Baseline vs. K3, in  
-Table \ref{table:distractor_1} and Table \ref{table:distractor_2}, respectively.  We see baseline outperforms the K1 algorithm by four more winning questions and 0.26 average score. Recall that, K1 algorithm is solely relied on category information, without taking word semantic relatedness into account. When a target word does not have a strong category tendency, {\it e.g.}, ``venue" and ``week", it is hard for K1 algorithm to select plausible distractors. On the other hand, we see context information ({\it i.e.}, new category) do play a key role, as K1 wins for 23 times.
-
-
-In Table~\ref{table:distractor_2}, we see our K3 algorithm significantly betters the baseline for both winning questions (8 more) and average score ($0.67$ lower). This further confirms that context and semantic information are complementary for distractor generation, and a good distractor should fit the reading context and have a certain level of difficulty.
-=======
 We display the results of both evaluations in Table
 \ref{table:distractor_1} and Table \ref{table:distractor_2}.  We see
 that the WordGap baseline outperforms the random selection,
@@ -232,7 +225,7 @@ lower).  This further confirms that context and semantic information
 are complementary for distractor generation. As we mentioned before, a
 good distractor should fit the reading context and have a certain
 level of difficulty.
->>>>>>> fd976961cbff775406d4079dda8c6c330330f48f
+
  
 %If for any question, the sum of weight from all participants for one approach is bigger than the other, then this approach is considered to have won this question. The “average score” is the average sum of weight from each approach for all questions. The lower the average score is, the better performance this approach has gained.
 
