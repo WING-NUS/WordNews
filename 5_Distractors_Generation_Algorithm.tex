@@ -1,16 +1,51 @@
-\section{Distractors Generation Algorithm}
+\section{Distractor Generation Component}
 \label{sec:distractor}
-Assesing mastery over vocabulary is a key functionality in our extension. In this section, we investigate a way to automatically generate suitable distractors (in English form) for a target word. We postulate ``a  set of suitable distractors'' as: 1) having the same form as the target word, 2) fitting the reading context, and 3) having proper difficulty level according to user's level of mastery.
+
+Assesing mastery over vocabulary is the other key functionality of our
+prototype learning platform.  The generation of the multiple choice
+selection test requires the selection of alternative choices aside
+from the correct answer of the target word.  In this section, we
+investigate a way to automatically generate such choices (called
+``distractors'') (in English form) for a target word. We postulate ``a
+set of suitable distractors'' as: 1) having the same form as the
+target word, 2) fitting the sentence's context, and 3) having proper
+difficulty level according to user's level of mastery.
 %By applying a part-of-speech tagger, we obtain the POS tag for the target word, and then restrict the  %candidate distractors to be selected from the same word class.
-We obtain the POS tag for the target word and restrict the candidate distractors to the same word class.
-To make the distractors fit the context, we identify the target word's news category (approach is detailed in Section~\ref{subsec:category}), and select the distractors from the same category.
+As input to the distractor generation algorithm, we provide the target
+word, its part-of-speech (obtained by tagging the input sentence
+first) and the enclosing webpage's news category. We restrict the
+algorithm to produce distractors matching the input POS), and which
+match the news category of the page.
 
 %To generate good category-related distractors, it is essential to gather enough words that are more related in a certain category to serve as distractors candidates. By using the approach discussed in Section~\ref{subsec:category}, we crawled more than 1400 articles for seven categories, with around 200 articles in each category. The confidence factor is selected to be 10, which is suitable to classify enough words into different categories. After this step, there should be sufficient “Category-Related" words in each category.
 
+We can design the test to be more difficult by choosing distractors
+that are more similar to the target word.  By varying the semantic
+distance, we can generate tests at varying difficulty levels.  We
+quantify similarity by using the Lin distance~\cite{lin98} between two
+input candidate concepts in WordNet:
 
-The difficulty of a distractor is measured by its {\bf semantic distance} to the target word: the closer it is to the target word, the more difficult the distractor is. To quantify the semantic distance, we employ  Lin's Distance~\cite{lin98} to measure the distance between two words in WordNet~\cite{Miller1995} and define distractors to be difficult if the Lin's Distance score is below some threshold. 
-%By observing the generated distractors, 
-We empirically set $0.1$ as the threshold.
+\begin{equation}
+sim(c1,c2) = \frac{2*log_p(lso(c1,c2))}{log_p(c1)+log_p(c2)}
+\label{equation:Distractor_4}
+\end{equation}  
+
+\noindent where $p(c)$ denotes the probability of encountering concept
+$c$, and $lso(c1,c2)$ denotes the lowest common subsumer synset, which
+is the lowest node in the WordNet hierarchy that is a hypernym of both
+$c1$ and $c2$.  This returns a score from 0 (completely dissimilar) to
+1 (semantically equivalent).
+
+If we use a target word $e$ as the starting point, we can use WordNet
+to retrieve related words using WordNet relations (hypernyms/hyponyms,
+synonyms/antonyms) and determine their similarity using Lin distance.
+
+We empirically set $0.1$ as the similarity threshold -- words that are
+deemed more similar than $0.1$ are returned as possible distractors
+for our algorithm.  We note that Lin distance often returns a score of
+0 for many pairs and the threshold of $0.1$ allows us to have a large
+set of distractors to choose from, while remaining fairly efficient in
+run-time distractor generation.
 
 %The selection of threshold value will have a direct effect on the speed of distractors generation process. As a very high threshold value will result in more rounds of calculation in semantic distance calculator, and it will take a long time before the distractors are returned to the front end. After several rounds of analysis of each category’s words and the results returned from semantic distance calculator, the threshold value of 0.1 is selected.
 
@@ -27,36 +62,32 @@ We empirically set $0.1$ as the threshold.
 %\item The similarity between A and B is related to the differences between them; the more differences they have, the less similar they are.
 %\item The maximum similarity between A and B is reached when A and B are identical, no matter how much commonality they share. 
 %\end{itemize}
-%
-%Based on the intuition above, Lin proposed his approach in measuring similarity between two concepts c1, c2 in Equation~\ref{equation:Distractor_4}:
-%
-%\begin{equation}
-%sim(c1,c2) = \frac{2*log_p(lso(c1,c2))}{log_p(c1)+log_p(c2)}
-%\label{equation:Distractor_4}
-%\end{equation}  
-%
-%where p(c) denotes the probability of encountering concept c, and lso(c1,c2) denotes the lowest common subsumer, which is the lowest node in WordNet hierarchy that is a hypernym of c1 and c2. 
-%
-%The distance calculator will return a score from 0 to 1, as can be easily seen from the formula above. If the score is closer to 1, it means the two words are closer in semantic sense. This distance calculator will play an important role in the following algorithm. 
 
 %\subsubsection{Distractors Selection Algorithm}
-\subsection{User knowledge Aware Approach}
-As previously mentioned, our extension logs user's detailed learning history. We categorize a user's knowledge on a certain word into three levels, based on the number of times that he / she has encountered  the word. Then we adopt different strategies to generate distractors for users in different knowledge levels. 
 
-{\bf Knowledge Level 1 (K1)}: This is the default knowledge level assigned to a user on a new word. Users aren't tested on words where their knowledge level is K1.
-%Considering this, our system prefers to generate simple distractors, and thus randomly select three words %from the same news category. 
+We discretize a learner's knowledge of the word based on their prior
+exposure to it.  We then adopt a strategy to generate distractors for
+the input word learners based their level: \\
 
-{\bf Knowledge Level 2 (K2)}: This indicates that the user has known this word for three times. Therefore, the testing is expected to be harder. The first two distractors are randomly selected from those words that share the same news category. For the third distractor, its semantic distance to the target word is checked in addition, making it a more difficult distractor.  
+{\bf Easy}: The learner has been exposed to the word at least $t=$ 3
+times.  Two distractors are randomly selected from words that share
+the same news category as the target word $e$. The third distractor is
+generated using our algorithm. \\
 %For the third distractor, the system keeps randomly selecting distractor from the same category, computing %its semantic distance to the target word, and stops until meeting a difficulty one.
 
-{\bf Knowledge Level 3 (K3)}: At this level the user is expected to have a good understanding of the word since she has {\it i.e.}, passed the test six times. Therefore, we make the test even harder, and choose  all three distractors from the same news category along with the semantic distance criteria. 
+{\bf Difficult}: The learner has passed the Easy level test $x=$ 6
+times.  All three distractors are generated from the same news
+category, using our algorithm.
 
 %; the algorithm will choose distractors solely based on results returned from semantic distance calculator. Similar to the approach when knowledge level is 2, the algorithm will randomly select word from current category’s word list and calculate the semantic distance between the selected word and the target word. If the score is above certain threshold, the selected word is chosen as one of the distractors. The process is continued until the server can find three distractors. 
 
 \subsection{Evaluation}
 % Tao: How to choose the third distractor? from d2's 
 % Zhao: The three distractors are all selected from the same synset.
-To compare with our proposed method, we reimplemented an existing distractor generation method used in WordGap system~\cite{Knoop2013}. WordGap adopts a knowledge-based approach: selecting the synonyms of synonyms (computed in WordNet) as distractors. That is, they select the most frequently used word, w1, from the target word's synonym set. %Then we select the synset, let's call it  s1, which the synset where the most frequently used word of w1 lies in. 
+
+To compare with our proposed method, we reimplemented an existing distractor generation method used in WordGap system~\cite{Knoop2013}. WordGap adopts a knowledge-based approach: selecting the synonyms of synonyms (computed in WordNet) as distractors. That is, they select the most frequently used word, w1, from the target word's synonym set. 
+%Then we select the synset, let's call it  s1, which the synset where the most frequently used word of w1 lies in. 
+
 Then they select the synonyms of w1 and call this set as s1.
 Synset s1 contains all the words that are synonyms of synonyms of the target word. Finally they select three most frequently used words from s1 as distractors. This we use is as our baseline approach for comparison.
 
