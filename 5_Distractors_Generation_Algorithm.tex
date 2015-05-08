@@ -46,15 +46,15 @@ By observing the generated distractors, we empirically set $0.1$ as the threshol
 %The distance calculator will return a score from 0 to 1, as can be easily seen from the formula above. If the score is closer to 1, it means the two words are closer in semantic sense. This distance calculator will play an important role in the following algorithm. 
 
 %\subsubsection{Distractors Selection Algorithm}
-\subsection{User knowlege Awared Approach}
-As mentioned, our extension logs user's detailed learning history, and we categorize user's knowlege  on a certain word into three levels, based on the number of times that he/she has encountered  the word.  Then we adopt different strategies to generate  distractors for users in different knowledge level. 
+\subsection{User knowledge Aware Approach}
+As mentioned, our extension logs user's detailed learning history, and we categorize user's knowledge  on a certain word into three levels, based on the number of times that he/she has encountered  the word.  Then we adopt different strategies to generate  distractors for users in different knowledge level. 
 
 % Tao: please fill the BUG by the actual number and quantify "just learnt" etc.
 % Zhao: Filled already.
 
 {\bf Knowledge Level 1 (K1)}: This indicated user is tested on this word for the first time. Considering this, our system prefers to generate simple distractors, and thus randomly select three words from the same news category. 
 
-{\bf Knowlege Level 2 (K2)}: This indicates that the user has known this word for three times. Therefore, the testing is expected to be harder. Our system first randomly selects two words from the same news category. For the third distractor,  the system keeps randomly selecting distractor from the same category, computing its semantic distance to the target word, and stops until meeting a difficulty one.
+{\bf Knowledge Level 2 (K2)}: This indicates that the user has known this word for three times. Therefore, the testing is expected to be harder. Our system first randomly selects two words from the same news category. For the third distractor,  the system keeps randomly selecting distractor from the same category, computing its semantic distance to the target word, and stops until meeting a difficulty one.
 
 
 {\bf Knowledge Level 3 (K3)}: This indicates that the user already has a good understanding of the word, {\it i.e.}, passing the test for six times. As such, we make the test even harder, and choose  three difficulty distractors from the new category. 
@@ -116,7 +116,7 @@ Finally, we recruited 15 users from our university, and half of them are native 
 \subsubsection{Results}
 As each question is answered by five different users, we compute the average rating for each choice. A lower rating means a more plausible (harder) distractor. 
 % Tao: Plese fill 
-Unsurprisingly, the rating for all the target words is low (BUG in average), as they are the ground truth. This implies that users were answering the questions seriously, and the evaluation quality 
+Unsurprisingly, the rating for all the target words is low ($1.1$ in average), as they are the ground truth. This implies that the users answered the survey questions seriously, and the evaluation quality is controlled.
 
 
 %Each participant’s rank will be the weight of the particular distractor in that question, i.e. if the user rank one distractor as rank “5”, the weight of this distractor in this user’s response will be 5. For each distractor of each question, the ranks of all users’ responses are summed. As the more plausible the distractor is, the higher rank it will have, thus if the sum is higher, the approach is not as plausible as the other from user’s point of view.
@@ -158,7 +158,7 @@ Table \ref{table:distractor_1} and Table \ref{table:distractor_2} showed the det
 From Figure \ref{fig:distractor_1} we can see that in the first comparison, the baseline algorithm actually outscored the knowledge level 1 generation algorithm by 4 questions, with a sum of weight lower than 0.26. From Table \ref{table:distractor_1} we can see that in the second comparison, the knowledge level 3 generation algorithm surpassed the baseline algorithm by 8 questions, with the average weight of 3.49 vs 4.16. 
 
 \subsubsection{Analysis}
-In knowledge level 1 generation algorithm, there is no semantic distance calculation involved. If the target word to test has no strong category indication, for example, words like “venue”, “week”, it is possible that the knowledge level 1 algorithm will select some distractors that are not as plausible as those coming from the target word’s synonym of synonym. 
+In knowledge level 1 generation algorithm, there is no semantic distance calculation involved. If the target word to test has no strong category indication, for example, words like 'venue', 'week', it is possible that the knowledge level 1 algorithm will select some distractors that are not as plausible as those coming from the target word's synonym of synonym. 
 
 However, this problem is solved with the help of semantic distance calculator. In the knowledge level 3 generation algorithm, the distractors chosen are both semantic close and also category-related, which produced a relatively better experiment result.
 

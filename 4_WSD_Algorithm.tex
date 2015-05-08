@@ -1,11 +1,10 @@
 \section{Word Sense Disambiguation System}
 \label{sec:wsd}
 \begin{CJK}{UTF8}{gbsn}
-As we all know, one word often have multiple translations in another language, and our extension is expected to show the most appropriate one based on the context. We call such translation selection as word sense disambiguation (WSD). WSD is an open task in natural language processing, aiming at identifying the proper sense ({\it i.e.}, meaning) of a word  in a context, when the word has multiple meanings~\cite{Navigli2009}. Traditionally, WSD system identifies the proper sense in the same language, while we show the proper sense in the form of another language.
+It is common knowledge that a word in one language can often have multiple translations in another language. Our extension is expected to show the most appropriate one based on the context. We call such translation selection as cross-lingual word sense disambiguation (c-WSD). WSD is an open task in natural language processing, aiming at identifying the proper sense ({\it i.e.}, meaning) of a word  in a context, when the word has multiple meanings~\cite{Navigli2009}. Traditionally, WSD systems identify the right sense in the same language. Here, we find the proper sense in the target language for a given word in the source language.
 
 % Tao: mention the dict in sec2?
-In WSD, context information is the key to disambiguate word sense. We, therefore, make use of different granularity of context, {\it i.e.}, the category of the news, the word class, and the sentence, to select proper translations from our bilingual dictionary.
-
+Context information is the key to disambiguate word sense. We, therefore, make use of context at different granularities, {\it i.e.}, the category of the news, the word class, and the sentence, to select proper translations from our bilingual dictionary.
 
 % Tao: Please bold the correct answer. In the caption, indicate the meaning of bold  font. Does the blank means no returned result? Please also indicate it in the caption. Longer and meaningful caption is fine.
                                                          
@@ -38,20 +37,17 @@ In WSD, context information is the key to disambiguate word sense. We, therefore
 
 
 \subsection{News Category}
-Topic information have been shown useful in WSD~\cite{Boyd-Graber2007}. Take English word  ``interest" as an example. In finance related articles, ``interest" is more likely to be ``a share, right, or title in the ownership of property" (``利息" in Chinese), than `the feeling of a person whose attention, concern, or curiosity is particularly engaged by something" (``兴趣").  Therefore, analysing the topic of the original article and selecting the translation with the same topic label might help disambiguate the word sense. We leverage the algorithm described in Section~\ref{subsec:category} to obtain the category for news and candidate Chinese translations. 
-
+Topic information has been shown to be useful in WSD~\cite{Boyd-Graber2007}. as For example, consider the English word \textit{interest}. In finance related articles, ``interest'' is more likely to be ``a share, right, or title in the ownership of property'' (``利息'' in Chinese), than `the feeling of a person whose attention, concern, or curiosity is particularly engaged by something'' (``兴趣'').  Therefore, analysing the topic of the original article and selecting the translation with the same topic label might help disambiguate the word sense. We use the algorithm described in Section~\ref{subsec:category} to obtain the category for news and candidate Chinese translations. 
 
 \subsection{Part-of-Speech Tagger}
 The word class, {\it i.e.}, the Part-of-Speech (POS) tag is believed to be beneficial for WSD~\cite{Wilks1998} and Machine Translation~\cite{Toutanova2002,Ueffing2003}.
-For example, the English word ``book" has two major classes, verb and noun, meaning ``reserve" (``预定" in Chinese) and ``printed work" (``书"), respectively. The two  Chinese translations have the same POS tag as their corresponding English counterpart.
-Therefore, once knowing the POS tag for the English word in the context, we are able to pick up the Chinese translation with the same POS tag from the dictionary.
-In our system, we employ Standford Log-linear Part-of-Speech tagger~\cite{Toutanova2003} to obtain the POS tag for English word, and POS tag for Chinese words are contained in our dictionary.
- In some cases, after applying this rule, there is still multiple candidate Chinese translations and we will choose the most frequently used one. 
-
+For example, the English word ``book'' has two major classes, verb and noun, meaning ``reserve'' (``预定" in Chinese) and ``printed work'' (``书"), respectively. The two Chinese translations have the same POS tag as their corresponding English counterpart.
+Therefore, knowledge of the word's POS tag English cold be used to pick Chinese translation with the same POS tag from the dictionary.
+In our system, we employ Standford Log-linear Part-of-Speech tagger~\cite{Toutanova2003} to obtain the POS tag for the English word. POS tag for Chinese words are contained in our dictionary.
+In some cases, after applying this rule, there are still multiple candidate Chinese translations. In such cases, we select the most frequently used candidate.
 
 \subsection{Machine Translation}
-A richer context can be exploited is the neighboring word. We regard the whole sentence as the context for the target word and send the sentence to Microsoft Bing Translator\footnote{\url{https://www.bing.com/translator/}}, an online machine translation system with a limited free usage. The returned Chinese translation, however, does not have explicit word alignment to the original English sentence. Therefore, we need additional processing on the Chinese sentence, in order to find the Chinese word that is aligned to the English target.
-
+Neighbouring words provide a richer context. We consider the entire sentence as our context window for the target word and send the sentence to Microsoft Bing Translator\footnote{\url{https://www.bing.com/translator/}}, an online machine translation system with a limited free usage. The returned Chinese translation, however, does not have explicit word alignment to the original English sentence. Therefore, we need additional processing on the Chinese sentence, in order to find the Chinese word that is aligned to the English target.
 
 {\bf Bing.} As potential Chinese translations are available in our dictionary, the most intuitive processing is to perform a substring match, {\it i.e.}, check whether the candidate Chinese translation is a substring of the Bing translation. If more than one candidate is matched, we pick up the longest one as the final output. If none is matched, our system will not show translation for the target English word.
 
