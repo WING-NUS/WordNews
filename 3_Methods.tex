@@ -106,7 +106,7 @@ Chinese news websites, we decided on seven categories: namely,
     \hline
     Sports & Sports & ``score'', ``比赛" \\
     \hline
-    Fashion &  Lady & ``jewelry", ``时髦"\\
+    Fashion &  Beauty \& Health & ``jewelry", ``时髦"\\
     \hline
     Travel  &  & ``natural'', \\
     \hline
@@ -121,8 +121,8 @@ categorized articles, discarding punctuation and stopwords.  For
 Chinese, we additionally carried out Chinese word segmentation using
 the Stanford Chinese word segmenter~\cite{Chang2008}. The remaining
 words are classified to a news category based on document frequency. A
-word $w$ is classified to a category $c$ if it appears a tunable
-threshold $\delta=10$ more often than its average category document
+word $w$ is classified to a category $c$ if it appears  more often 
+(a tunable threshold $\delta=10$) than its average category document
 frequency.  Note that a word can be categorized to multiple categories
 under this scheme.
 
