@@ -23,7 +23,7 @@ We can design the test to be more difficult by choosing distractors
 that are more similar to the target word.  By varying the semantic
 distance, we can generate tests at varying difficulty levels.  We
 quantify similarity by using the Lin distance~\cite{Lin1998} between two
-input candidate concepts in WordNet:
+input candidate concepts in WordNet~\cite{Miller1995}:
 
 \begin{equation}
 sim(c1,c2) = \frac{2*log_p(lso(c1,c2))}{log_p(c1)+log_p(c2)}
@@ -67,7 +67,7 @@ run-time distractor generation.
 
 We discretize a learner's knowledge of the word based on their prior
 exposure to it.  We then adopt a strategy to generate distractors for
-the input word learners based their level: \\
+the input word based learners' knowledge level: \\
 
 {\bf Easy}: The learner has been exposed to the word at least $t=$ 3
 times.  Two distractors are randomly selected from words that share
@@ -183,7 +183,7 @@ in each evaluation.
     \begin{center}
     \begin{tabular}{| p{2.5cm} | p{1.5cm} | p{1.8cm} |}
         \hline
-         & \# of wins & Avg. score\\
+         & {\bf \# of wins} & {\bf Avg. score}\\
         \hline
         WordGap & 27 & 3.84\\
         \hline
@@ -199,7 +199,7 @@ in each evaluation.
     \begin{center}
     \begin{tabular}{| p{2.5cm} | p{1.5cm} | p{1.8cm} |}
         \hline
-         & \# of wins & Avg. score\\
+         & {\bf \# of wins} & {\bf Avg. score}\\
         \hline
         WordGap & 21 & 4.16\\
         \hline
