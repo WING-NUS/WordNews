@@ -160,5 +160,5 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { render :nothing => true, :status =>200 }
     end
-
+  end
 end
