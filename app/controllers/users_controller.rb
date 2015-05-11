@@ -156,7 +156,7 @@ class UsersController < ApplicationController
     @time_elapsed = params[:time]
     @move = params[:move]
 
-    puts "User " + @user.id + ":" + @time_elapsed + ":" + @move
+    puts "User " + @user.id.to_s + ":" + @time_elapsed.to_s + ":" + @move.to_s
     respond_to do |format|
       format.html { render :nothing => true, :status =>200 }
     end
