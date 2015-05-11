@@ -152,7 +152,7 @@ class UsersController < ApplicationController
   end
 
   def log
-    @user = User.where(:user_name => @user_name).first
+    @user = User.where(:user_name => params[:id]).first
     @time_elapsed = params[:time]
     @move = params[:move]
 
