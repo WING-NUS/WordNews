@@ -150,4 +150,15 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def log
+    @user = User.find(params[:id])
+    @time_elapsed = params[:time]
+    @move = params[:move]
+
+    puts "User " + @user.id + ":" + @time_elapsed + ":" + @move
+    respond_to do |format|
+      format.html { render :nothing => true, :status =>200 }
+    end
+
 end
