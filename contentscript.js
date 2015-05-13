@@ -260,7 +260,7 @@ function replaceWords(sourceWords, targetWords, isTest, pronunciation, wordID, c
 			append += '<div id="bubble-content" style="min-width: 200px; max-width: 400px;" class="gtx-content">';
 			//append += '<div class="content" style="border: 0px; margin: 0; padding-bottom: 0px;">';
 			append += '<div id="translation" style="min-width: 200px; max-width: 400px; display: inline;">';
-			append += '<div style="font-size: 150%;" class="gtx-language">FROM</div>';
+			append += '<div style="font-size: 80%;" class="gtx-language">Choose the most appropriate translation:</div>';
 			//append += '<div class="gtx-source-audio jfk-button jfk-button-flat gtx-audio-button" role="button" tabindex="0" style="-webkit-user-select: none;">';
 			//append += '<div class="jfk-button-img"></div></div>';
 			//append += '<div class="gtx-body" style="padding-left:21px;">'+sourceWord+'</div><br>';
