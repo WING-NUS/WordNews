@@ -1,0 +1,84 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citename{Boyd-Graber \bgroup et al.\egroup
+  }2007]{Boyd-Graber2007}
+Jordan Boyd-Graber, David Blei, and Xiaojin Zhu.
+\newblock 2007.
+\newblock {A Topic Model for Word Sense Disambiguation}.
+\newblock In {\em Proceedings of the 2007 Joint Conference on Empirical Methods
+  in Natural Language Processing and Computational Natural Language Learning},
+  EMNLP-CoNLL'07, pages 1024--1033.
+
+\bibitem[\protect\citename{Chang \bgroup et al.\egroup }2008]{Chang2008}
+Pi-Chuan Chang, Michel Galley, and Christopher~D. Manning.
+\newblock 2008.
+\newblock {Optimizing Chinese Word Segmentation for Machine Translation
+  Performance}.
+\newblock In {\em Proceedings of the Third Workshop on Statistical Machine
+  Translation}, StatMT'08, pages 224--232.
+
+\bibitem[\protect\citename{Knoop and Wilske}2013]{Knoop2013}
+Susanne Knoop and Sabrina Wilske.
+\newblock 2013.
+\newblock {WordGap-Automatic Generation of Gap-filling Vocabulary Exercises for
+  Mobile Learning}.
+\newblock In {\em Proceedings of Second Workshop NLP Computer-Assisted Language
+  Learning}, pages 39--47.
+
+\bibitem[\protect\citename{Lin}1998]{Lin1998}
+Dekang Lin.
+\newblock 1998.
+\newblock An information-theoretic definition of similarity.
+
+\bibitem[\protect\citename{Miller}1995]{Miller1995}
+George~A. Miller.
+\newblock 1995.
+\newblock {WordNet: A Lexical Database for English}.
+\newblock {\em Communications of the ACM}, 38(11):39--41.
+
+\bibitem[\protect\citename{Naiman}1978]{Naiman1978}
+Neil Naiman.
+\newblock 1978.
+\newblock {\em {The Good Language Learner}}, volume~4.
+\newblock Multilingual Matters.
+
+\bibitem[\protect\citename{Rubin}1975]{Rubin1975}
+Joan Rubin.
+\newblock 1975.
+\newblock What the "good language learner" can teach us.
+\newblock {\em TESOL quarterly}, pages 41--51.
+
+\bibitem[\protect\citename{Toutanova \bgroup et al.\egroup
+  }2002]{Toutanova2002}
+Kristina Toutanova, H~Tolga Ilhan, and Christopher~D Manning.
+\newblock 2002.
+\newblock {Extensions to HMM-based Statistical Word Alignment Models}.
+\newblock In {\em Proceedings of the 2002 Conference on Empirical Methods in
+  Natural Language Processing}, EMNLP EMNLP'02, pages 87--94.
+
+\bibitem[\protect\citename{Toutanova \bgroup et al.\egroup
+  }2003]{Toutanova2003}
+Kristina Toutanova, Dan Klein, Christopher~D. Manning, and Yoram Singer.
+\newblock 2003.
+\newblock {Feature-rich Part-of-speech Tagging with a Cyclic Dependency
+  Network}.
+\newblock In {\em Proceedings of the 2003 Conference of the North American
+  Chapter of the Association for Computational Linguistics on Human Language
+  Technology}, NAACL '03, pages 173--180.
+
+\bibitem[\protect\citename{Ueffing and Ney}2003]{Ueffing2003}
+Nicola Ueffing and Hermann Ney.
+\newblock 2003.
+\newblock {Using POS Information for Statistical Machine Translation into
+  Morphologically Rich Languages}.
+\newblock In {\em Proceedings of the 10th Conference on European Chapter of the
+  Association for Computational Linguistics}, EACL'03, pages 347--354.
+
+\bibitem[\protect\citename{Wilks and Stevenson}1998]{Wilks1998}
+Yorick Wilks and Mark Stevenson.
+\newblock 1998.
+\newblock {The Grammar of Sense: Using Part-of-speech Tags As a First Step in
+  Semantic Disambiguation}.
+\newblock {\em Natural Language Engineering}, 4(2):135--143.
+
+\end{thebibliography}

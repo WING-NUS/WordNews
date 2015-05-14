@@ -58,7 +58,7 @@ likely to carry the sense of ``a share, right, or title in the
 ownership of property'' (``利息'' in Chinese), over other senses.
 Therefore, analysing the topic of the original article and selecting
 the translation with the same topic label might help disambiguate the
-word sense. For a target English $e$ word, for each prospective Chinese
+word sense. For a target English word $e$, for each prospective Chinese
 sense $c \in C$, choose the first (in terms of relative frequency)
 sense that has the same news category as the containing webpage.
 
@@ -96,10 +96,9 @@ available in our dictionary, a straightforward use of substring
 matching recovers a Chinese translation; {\it i.e.}, check whether the
 candidate Chinese translation is a substring of the Bing
 translation. If more than one candidate matches, we use the longest
-string match heuristic and pick the one with longest match as the
+string match heuristic and pick the one with the longest match as the
 final output. If none match, the system does not output a translation
 for the word.  
-
 
 {\bf Relaxed Match.} The final rule in the substring match method
 unfortunately fires often, as the coverage of {\tt SystemA}'s lexicon
@@ -149,7 +148,7 @@ sampled 707 words and their sentences from recent
 CNN\footnote{\url{http://edition.cnn.com/}} news articles, manually
 annotating the ground truth translation for each target English
 word. We report both the {\bf coverage} ({\it i.e.}, the ability of
-the system is to return a translation) and {\bf accuracy} ({\it i.e.},
+the system to return a translation) and {\bf accuracy} ({\it i.e.},
 whether the translation is contextually accurate).
 
 \begin{table}[t]
