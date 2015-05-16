@@ -55,9 +55,7 @@ class UsersController < ApplicationController
     @find_to_learn_query = "user_id = " + @user.id.to_s + " and frequency = 0"
     @find_learnt_query = "user_id = " + @user.id.to_s + " and frequency > 0"
     @MeaningToLearnIdList = History.find(:all, :select => "meaning_id",:conditions => [@find_to_learn_query] )
-    puts "hahhhhhhhh"
     @wordsToLearn=[]
-    puts @MeaningToLearnIdList.length
     if @MeaningToLearnIdList.length !=0
       for id in @MeaningToLearnIdList
         @temp = Meaning.find(id.meaning_id)
@@ -156,7 +154,7 @@ class UsersController < ApplicationController
     @time_elapsed = params[:time]
     @move = params[:move]
 
-    puts "User " + @user.id.to_s + ":" + @time_elapsed.to_s + ":" + @move.to_s
+    puts "Log: User " + @user.id.to_s + ":" + @time_elapsed.to_s + ":" + @move.to_s
     respond_to do |format|
       format.html { render :nothing => true, :status =>200 }
     end

@@ -5,7 +5,7 @@ class TranslatesController < ApplicationController
   # GET /translates
   # GET /translates.json
   include Bing
-  
+
   def index
     @translates = Translate.all
     respond_to do |format|
@@ -17,11 +17,10 @@ class TranslatesController < ApplicationController
   # GET /translates/1
   # GET /translates/1.json
   def show
-    #@translate = Translate.find(params[:id])
-    @text=Hash.new
-    word_list=params[:text].split(" ")
+    
+    @text = Hash.new
+    word_list = params[:text].split(" ")
     chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
-    puts chinese_sentence
     @user_name = params[:name]
     user = User.where(:user_name => @user_name).first
     @url = params[:url]
@@ -38,7 +37,7 @@ class TranslatesController < ApplicationController
 
       meanings = Meaning.where(:english_words_id => @original_word_id, :word_category_id => category_list )
       number_of_meanings = meanings.length
-      #puts number_of_meanings
+      
       temp = Meaning.new
       if number_of_meanings == 0
         next
@@ -57,31 +56,37 @@ class TranslatesController < ApplicationController
       end
 
 
-      @text[word]= Hash.new
+      @text[word] = Hash.new
       @original_word_chinese_id = temp.chinese_words_id
       @user_id = User.where(:user_name => @user_name).first.id
+
       # see if the user understands this word before
       @text[word]['wordID'] = temp.id #pass meaning Id to extension
-      @text[word]['chinese']= ChineseWords.find(temp.chinese_words_id).chinese_meaning
-      @text[word]['pronunciation']= ChineseWords.find(temp.chinese_words_id).pronunciation
+      @text[word]['chinese'] = ChineseWords.find(temp.chinese_words_id).chinese_meaning
+      @text[word]['pronunciation'] = ChineseWords.find(temp.chinese_words_id).pronunciation
       
       testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
-        @text[word]['isTest']=0
+        @text[word]['isTest'] = 0
+
       elsif testEntry.frequency > 3 and testEntry.frequency < 7 #testing mah
-        @text[word]['isTest']=1
-        @text[word]['choices']=Hash.new
+        @text[word]['isTest'] = 1
+        @text[word]['choices'] = Hash.new
+
         choices = Meaning.where(:word_category_id => category_list).where("english_words_id != ?", @original_word_id).random(3)
         choices.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s]=EnglishWords.find(val.english_words_id).english_meaning
+          @text[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
+
       elsif testEntry.frequency > 6 
-        @text[word]['isTest']=2
-        @text[word]['choices']=Hash.new
+        @text[word]['isTest'] = 2
+        @text[word]['choices'] = Hash.new
+
         choices = Meaning.where(:word_category_id => category_list).where("chinese_words_id != ?", @original_word_chinese_id).random(3)
         choices.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s]=ChineseWords.find(val.chinese_words_id).chinese_meaning
+          @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
+
       else
         next
       end
@@ -98,12 +103,13 @@ class TranslatesController < ApplicationController
   def getExampleSentences
     @meaning_id = params[:wordID]
     sentence_list = MeaningsExampleSentence.where(:meaning_id => @meaning_id)
+
     @text = Hash.new
-    @text['chineseSentence']=Hash.new
-    @text['englishSentence']=Hash.new
+    @text['chineseSentence'] = Hash.new
+    @text['englishSentence'] = Hash.new
     sentence_list.each_with_index{ |val, idx|
-      @text['chineseSentence'][idx.to_s]=ExampleSentence.find(val.example_sentences_id).chinese_sentence
-      @text['englishSentence'][idx.to_s]=ExampleSentence.find(val.example_sentences_id).english_sentence
+      @text['chineseSentence'][idx.to_s] = ExampleSentence.find(val.example_sentences_id).chinese_sentence
+      @text['englishSentence'][idx.to_s] = ExampleSentence.find(val.example_sentences_id).english_sentence
     }
 
     respond_to do |format|
@@ -111,6 +117,7 @@ class TranslatesController < ApplicationController
       format.json { render json: @translate }
     end
   end
+
   # GET /translates/new
   # GET /translates/new.json
 
@@ -130,7 +137,6 @@ class TranslatesController < ApplicationController
       testEntry.url = @url
       testEntry.save
     else # this is a new word the user has some operations on
-      puts "inside here"
       understand = History.new
       understand.user_id = @user_id
       understand.meaning_id = @meaning_id
@@ -170,14 +176,14 @@ class TranslatesController < ApplicationController
     end
 
     if user.blank? #no user
-      @number['learnt']=0
-      @number['toLearn']=0
+      @number['learnt'] = 0
+      @number['toLearn'] = 0
     else
       @user_id = user.id
       @querylearnt = "user_id=" + @user_id.to_s+ " and frequency > 0"
       @querytolearn = "user_id=" + @user_id.to_s+ " and frequency = 0"
-      @number['learnt']=History.count('user_id', :conditions => [@querylearnt])
-      @number['toLearn']=History.count('user_id', :conditions => [@querytolearn])
+      @number['learnt'] = History.count('user_id', :conditions => [@querylearnt])
+      @number['toLearn'] = History.count('user_id', :conditions => [@querytolearn])
     end
 
     respond_to do |format|
