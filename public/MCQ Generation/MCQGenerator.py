@@ -40,7 +40,8 @@ class MCQGenerator(object):
 			word2 = self.stemmer.stem(candidate, tag)
 			calculator = WordDistance()
 			distance = calculator.get_distance(word1, word2)
-			print "Distance is: " + str(distance) + " " + candidate + " " + word
+			#print "Distance is: " + str(distance) + " " + candidate + " " + word
+
 			# JJ is weird for distance program
 			if tag == "JJ":
 				if distance == 1:
@@ -60,7 +61,7 @@ class MCQGenerator(object):
 	def get_distractors(self, category, sentence,understanding_level, word):
 		# get the correct pos tag
 		target_tag = self.get_target_tag(sentence, word)
-		print target_tag
+		#print target_tag
 		# if understanding level is 1, just simply return 3 words from the category
 		if understanding_level == 1:
 			distractors_list = random.sample(self.super_dict[category][target_tag].keys(),3)
@@ -68,7 +69,7 @@ class MCQGenerator(object):
 			return distractors_list
 		elif understanding_level == 2:
 			distractors_list = random.sample(self.super_dict[category][target_tag].keys(),2)
-			print "Is it here?"
+			#print "Is it here?"
 			similar_list = self.get_similarity(category, word, target_tag, 1)
 			distractors_list.append(word)
 			return distractors_list + similar_list
@@ -83,8 +84,8 @@ class MCQGenerator(object):
 		tag = self.get_target_tag(word, word)
 
 		#print "haha1"
-		for cate in self.strong_dict:
-			print cate
+		#for cate in self.strong_dict:
+			#print cate
 
 		shuffle(self.strong_dict[category])
 
@@ -120,4 +121,4 @@ if __name__ == "__main__":
   
     generator = MCQGenerator()
     result = generator.get_distractors(args.category, args.knowledge_level, args.token)
-    print result
+    print ", ".join(result)
