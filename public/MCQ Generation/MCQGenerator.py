@@ -1,17 +1,21 @@
 import pickle
+import argparse
 import csv
 import nltk
 import random
+
 from random import shuffle
 from collections import Counter
 from WordDistanceCalculator import WordDistance
 from WordNetStemmer import Stemmer
 
+nltk.data.path.append('./public/MCQ Generation/nltk_data')
+
 class MCQGenerator(object):
 
 	def __init__(self):
-		file1 = open('news_data4.txt', 'r')
-		file2 = open('strongwords.txt', 'r')
+		file1 = open('./public/MCQ Generation/news_data4.txt', 'r')
+		file2 = open('./public/MCQ Generation/strongwords.txt', 'r')
 		self.super_dict = pickle.load(file1)
 		self.strong_dict = pickle.load(file2)
 		self.stemmer = Stemmer()
@@ -75,10 +79,10 @@ class MCQGenerator(object):
 
 	def get_distractors(self, category, understanding_level, word):
 		distractors_list = []
-		print "Tag is: "
+		#print "Tag is: "
 		tag = self.get_target_tag(word, word)
 
-		print "haha1"
+		#print "haha1"
 		for cate in self.strong_dict:
 			print cate
 
@@ -86,14 +90,14 @@ class MCQGenerator(object):
 
 		for dict_word in self.strong_dict[category]:
 			similarity_score = self.get_similarity(dict_word, word, tag)
-			print "Lin Distance is ", similarity_score
+		#	print "Lin Distance is ", similarity_score
 			if self.get_target_tag(dict_word, dict_word) == tag and dict_word != word and  similarity_score> 0:
 				distractors_list.append(dict_word)
 			if len(distractors_list) >=3:
 				break
 
-		print "Haha"
-		print distractors_list
+		#print "Haha"
+		#print distractors_list
 		distractors_list.append(word)
 		return distractors_list
 
@@ -106,11 +110,14 @@ class MCQGenerator(object):
 
 
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('category')
+    parser.add_argument('knowledge_level', type=int)
+    parser.add_argument('token')
 
-
-
-
-
-
-
-
+    args = parser.parse_args()
+  
+    generator = MCQGenerator()
+    result = generator.get_distractors(args.category, args.knowledge_level, args.token)
+    print result
