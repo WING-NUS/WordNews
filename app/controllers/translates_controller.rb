@@ -44,11 +44,12 @@ class TranslatesController < ApplicationController
       elsif number_of_meanings == 1 #has one meaning
         temp = meanings[0]
       else
-        number_of_meanings.times do |index|
-          if chinese_sentence.to_s.include? ChineseWords.find(meanings[index].chinese_words_id).chinese_meaning
-            temp = meanings[index]
-          end
-        end
+        ## temporarily not translate tokens with multiple possible chinese substitutions
+        #number_of_meanings.times do |index|
+        #  if chinese_sentence.to_s.include? ChineseWords.find(meanings[index].chinese_words_id).chinese_meaning
+        #    temp = meanings[index]
+        #  end
+        #end
       end
 
       if temp.chinese_words_id.nil?
