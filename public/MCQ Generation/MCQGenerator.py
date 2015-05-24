@@ -19,6 +19,7 @@ class MCQGenerator(object):
 		    self.super_dict = pickle.load(file1)
 		    self.strong_dict = pickle.load(file2)
 		self.stemmer = Stemmer()
+		self.calculator = WordDistance()
             except IOError as e:
                 print "[Error in MCQGenerator: while opening files]"
 
@@ -30,7 +31,6 @@ class MCQGenerator(object):
 			if i[0] == input_word:
 				return i[1]
 
-	# return 10 words with good similarity to caller
 	def get_similarity(self, category, word, tag, number):
                 """ Return the specified number of words with good similarity"""
 		similar_list = []
@@ -58,11 +58,11 @@ class MCQGenerator(object):
 		# get the correct pos tag
 		target_tag = self.get_target_tag(sentence, word)
 		if understanding_level == 1:
-			distractors_list = random.sample(self.super_dict[category][target_tag].keys(),3)
+			distractors_list = random.sample(self.super_dict[category][target_tag].keys(), 3)
 			distractors_list.append(word)
 			return distractors_list
 		elif understanding_level == 2:
-			distractors_list = random.sample(self.super_dict[category][target_tag].keys(),2)
+			distractors_list = random.sample(self.super_dict[category][target_tag].keys(), 2)
 			
 			similar_list = self.get_similarity(category, word, target_tag, 1)
 			distractors_list.append(word)
@@ -77,16 +77,16 @@ class MCQGenerator(object):
 		
 		tag = self.get_target_tag(word, word)
 
-                for x in xrange(1, 150):
+                for x in xrange(1, 200):
                         try: 
-                            dict_word = random.choice(self.strong_dict[category])
+                            distractor = random.choice(self.strong_dict[category])
                         except KeyError as e:
                             # no distractors avaliable TODO!
                             break
-			similarity_score = self.get_similarity(dict_word, word, tag)
 	
-			if self.get_target_tag(dict_word, dict_word) == tag and dict_word != word and  similarity_score> 0:
-				distractors_list.append(dict_word)
+			if self.get_target_tag(distractor, distractor) == tag and distractor != word:
+				if self.get_similarity(distractor, word, tag) > 0 :
+  				    distractors_list.append(distractor)
 			if len(distractors_list) >= 3:
 				break
 
@@ -94,8 +94,7 @@ class MCQGenerator(object):
 		return distractors_list
 
 	def get_similarity(self, word1, word2, tag):
-		calculator = WordDistance()
-		distance = calculator.get_lin_distance(word1, word2)
+		distance = self.calculator.get_lin_distance(word1, word2)
 		return distance
 
 

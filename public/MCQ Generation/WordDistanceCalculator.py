@@ -21,7 +21,7 @@ class WordDistance(object):
 			if freq > max_frequent:
 				current_synset = synset
 		target1 =  current_synset
-		#print target1
+		
 		max_frequent = 0
 		for synset in wn.synsets(word2):
 			freq = 0
@@ -30,7 +30,7 @@ class WordDistance(object):
 			if freq > max_frequent:
 				current_synset = synset
 		target2 =  current_synset
-		#print target2
+		
 		return wn.path_similarity(target1, target2)
 
 	def get_lin_distance(self, word1, word2):
@@ -41,13 +41,12 @@ class WordDistance(object):
 		target1 = wn.synsets(word1)[0]
 		target2 = wn.synsets(word2)[0]
 
-		result = 0
 		try:
 			result = target1.lin_similarity(target2, brown_ic)
+                        return result
 		except:
-			result = 0
+			return 0
 
-		return result
 
 
 
