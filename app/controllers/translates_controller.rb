@@ -72,6 +72,7 @@ class TranslatesController < ApplicationController
       elsif testEntry.frequency > 3 and testEntry.frequency <= 6 #testing mah
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
+        @text[word]['isChoicesProvided'] = true
 
         choices = Meaning.where(:word_category_id => category_list).where("english_words_id != ?", @original_word_id).random(3)
         choices.each_with_index { |val, idx|   
@@ -81,6 +82,7 @@ class TranslatesController < ApplicationController
       elsif testEntry.frequency > 6 and testEntry.frequency <= 10
         @text[word]['isTest'] = 2
         @text[word]['choices'] = Hash.new
+        @text[word]['isChoicesProvided'] = true
 
         choices = Meaning.where(:word_category_id => category_list).where("chinese_words_id != ?", @original_word_chinese_id).random(3)
         choices.each_with_index { |val, idx|   
@@ -95,12 +97,13 @@ class TranslatesController < ApplicationController
         level = 3
         word_under_test = original_word
 
-        distractors_str = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
-        distractors = distractors_str.split(',')
+        #distractors_str = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
+        #distractors = distractors_str.split(',')
         
-        distractors.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s] = val.strip
-        }
+        #distractors.each_with_index { |val, idx|   
+        #  @text[word]['choices'][idx.to_s] = val.strip
+        #}
+        @text[word]['isChoicesProvided'] = false
       end
 
     end # end of for word in word_list
@@ -150,7 +153,7 @@ class TranslatesController < ApplicationController
     distractors = distractors_str.split(',')
 
     distractors.each_with_index { |val, idx|   
-      @result[word]['choices'][idx.to_s] = val.strip
+      @result[word_under_test]['choices'][idx.to_s] = val.strip
     }
     
     respond_to do |format|
