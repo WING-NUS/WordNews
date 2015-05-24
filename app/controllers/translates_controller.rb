@@ -136,22 +136,25 @@ class TranslatesController < ApplicationController
     @category = params[:category]
     @knowledge_level = params[:level]
     
-    @text[word]['isTest'] = 1    # TODO rename isTest to testType
-    @text[word]['choices'] = Hash.new
+    # use a doubly-nested structure for now, as so to support receiving multiple tokens in future
+    @result = Hash.new  
+    @result[@token] = Hash.new
+    @result[@token]['isTest'] = 1    # TODO rename isTest to testType
+    @result[@token]['choices'] = Hash.new
 
-    category = 'Technology' # TODO extract category
-    level = 3
-    word_under_test = original_word
+    category = @category
+    level = @knowledge_level
+    word_under_test = @token
 
     distractors_str = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
     distractors = distractors_str.split(',')
 
     distractors.each_with_index { |val, idx|   
-      @text[word]['choices'][idx.to_s] = val.strip
+      @result[word]['choices'][idx.to_s] = val.strip
     }
     
     respond_to do |format|
-      format.json { render json: @text}
+      format.json { render json: @result}
     end 
   end
 
