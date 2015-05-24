@@ -77,7 +77,7 @@ class MCQGenerator(object):
 		
 		tag = self.get_target_tag(word, word)
 
-                for x in xrange(1, 200):
+                for x in xrange(1, 500):
                         try: 
                             distractor = random.choice(self.strong_dict[category])
                         except KeyError as e:

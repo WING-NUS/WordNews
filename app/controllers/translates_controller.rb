@@ -152,6 +152,7 @@ class TranslatesController < ApplicationController
 
     distractors_str = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
     distractors = distractors_str.split(',')
+    puts "#{word_under_test} has " << distractors.size  << 'distractors'
 
     distractors.each_with_index { |val, idx|   
       @result[word_under_test]['choices'][idx.to_s] = val.strip
