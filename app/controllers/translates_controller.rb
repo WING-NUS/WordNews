@@ -91,11 +91,12 @@ class TranslatesController < ApplicationController
         @text[word]['isTest'] = 2
         @text[word]['choices'] = Hash.new
         
-        category = 'Finance'
+        category = 'Finance' # TODO extract category
         level = 3
         word_under_test = original_word
 
-        distractors = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
+        distractors_str = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
+        distractors = distractors_str.split(',')
         
         distractors.each_with_index { |val, idx|   
           @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
