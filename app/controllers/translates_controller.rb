@@ -91,7 +91,7 @@ class TranslatesController < ApplicationController
         @text[word]['isTest'] = 2
         @text[word]['choices'] = Hash.new
         
-        category = 'Tech' # TODO extract category
+        category = 'Technology' # TODO extract category
         level = 3
         word_under_test = original_word
 
