@@ -99,7 +99,7 @@ class TranslatesController < ApplicationController
         distractors = distractors_str.split(',')
         
         distractors.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
+          @text[word]['choices'][idx.to_s] = val
         }
       end
 
