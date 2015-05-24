@@ -88,7 +88,7 @@ class TranslatesController < ApplicationController
         }
 
       elsif testEntry.frequency > 11
-        @text[word]['isTest'] = 2
+        @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
         
         category = 'Technology' # TODO extract category
