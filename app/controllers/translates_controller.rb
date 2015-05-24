@@ -69,7 +69,7 @@ class TranslatesController < ApplicationController
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
         @text[word]['isTest'] = 0
 
-      elsif testEntry.frequency > 3 and testEntry.frequency < 7 #testing mah
+      elsif testEntry.frequency > 3 and testEntry.frequency <= 6 #testing mah
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
 
@@ -78,7 +78,7 @@ class TranslatesController < ApplicationController
           @text[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
 
-      elsif testEntry.frequency > 6 
+      elsif testEntry.frequency > 6 and testEntry.frequency <= 10
         @text[word]['isTest'] = 2
         @text[word]['choices'] = Hash.new
 
@@ -87,8 +87,19 @@ class TranslatesController < ApplicationController
           @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
 
-      else
-        next
+      elsif testEntry.frequency > 11
+        @text[word]['isTest'] = 2
+        @text[word]['choices'] = Hash.new
+        
+        category = 'Finance'
+        level = 3
+        word_under_test = original_word
+
+        distractors = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
+        
+        distractors.each_with_index { |val, idx|   
+          @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
+        }
       end
 
     end # end of for word in word_list
