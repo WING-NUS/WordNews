@@ -32,6 +32,9 @@ gem 'hirb', '~> 0.7.2'
 #end
 gem 'pg', '0.16.0'
 
+gem 'rb-readline'
+gem 'test-unit'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
