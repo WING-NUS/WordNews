@@ -91,7 +91,7 @@ class TranslatesController < ApplicationController
         @text[word]['isTest'] = 2
         @text[word]['choices'] = Hash.new
         
-        category = 'Finance' # TODO extract category
+        category = 'Tech' # TODO extract category
         level = 3
         word_under_test = original_word
 
@@ -99,7 +99,7 @@ class TranslatesController < ApplicationController
         distractors = distractors_str.split(',')
         
         distractors.each_with_index { |val, idx|   
-          @text[word]['choices'][idx.to_s] = val
+          @text[word]['choices'][idx.to_s] = val.strip
         }
       end
 
