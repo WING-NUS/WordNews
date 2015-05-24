@@ -78,7 +78,11 @@ class MCQGenerator(object):
 		tag = self.get_target_tag(word, word)
 
                 for x in xrange(1, 150):
-                        dict_word = random.choice(self.strong_dict[category])
+                        try: 
+                            dict_word = random.choice(self.strong_dict[category])
+                        except KeyError as e:
+                            # no distractors avaliable TODO!
+                            break
 			similarity_score = self.get_similarity(dict_word, word, tag)
 	
 			if self.get_target_tag(dict_word, dict_word) == tag and dict_word != word and  similarity_score> 0:
