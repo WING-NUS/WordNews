@@ -20,7 +20,7 @@ class MCQGenerator(object):
 		    self.strong_dict = pickle.load(file2)
 		self.stemmer = Stemmer()
             except IOError as e:
-                print "[Error while opening files]"
+                print "[Error in MCQGenerator: while opening files]"
 
 	# return the correct POS tag information
 	def get_target_tag(self, input_sentence, input_word):
@@ -32,6 +32,7 @@ class MCQGenerator(object):
 
 	# return 10 words with good similarity to caller
 	def get_similarity(self, category, word, tag, number):
+                """ Return the specified number of words with good similarity"""
 		similar_list = []
 		word1 = self.stemmer.stem(word, tag)
 		word_list = self.super_dict[category][tag].keys()
@@ -76,7 +77,7 @@ class MCQGenerator(object):
 		
 		tag = self.get_target_tag(word, word)
 
-                for x in xrange(1, 50):
+                for x in xrange(1, 150):
                         dict_word = random.choice(self.strong_dict[category])
 			similarity_score = self.get_similarity(dict_word, word, tag)
 	
@@ -102,7 +103,11 @@ if __name__ == "__main__":
     parser.add_argument('token')
 
     args = parser.parse_args()
-  
-    generator = MCQGenerator()
-    result = generator.get_distractors(args.category, args.knowledge_level, args.token)
+    try: 
+        generator = MCQGenerator()
+        result = generator.get_distractors(args.category, args.knowledge_level, args.token)
+    except Exception as e:
+        print "Error in MCQGenerator!"
+        print e
+    
     print ", ".join(result)
