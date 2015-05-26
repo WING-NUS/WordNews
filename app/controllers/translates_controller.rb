@@ -47,9 +47,7 @@ class TranslatesController < ApplicationController
       english_meaning_row = EnglishWords.joins(:meanings)
                                         .select('english_meaning, meanings.id, meanings.chinese_words_id')
                                         .where("english_meaning = ?", original_word)
-      
-      @original_word_id = english_meaning_row.first.id
-      
+
       temp = nil
       if english_meaning_row.length == 0
         next
@@ -64,6 +62,9 @@ class TranslatesController < ApplicationController
         #end
         next
       end
+
+      @original_word_id = english_meaning_row.first.id
+      
 
       #if temp.chinese_words_id.nil?
       #  temp = meanings[0]
