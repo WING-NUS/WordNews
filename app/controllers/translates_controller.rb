@@ -29,7 +29,7 @@ class TranslatesController < ApplicationController
 
     words_retrieved = 0
     for word in word_list
-      if words_retrieved >= @num_word
+      if words_retrieved >= @num_words
         break  # no need to continue as @num_word is the number of words requested by the client
       end      
 
