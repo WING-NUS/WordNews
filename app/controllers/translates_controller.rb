@@ -35,21 +35,26 @@ class TranslatesController < ApplicationController
 
       #this is to add downcase and singularize support
       original_word = word.downcase.singularize
-      english_word_entry = EnglishWords.where(:english_meaning => original_word)
-      if english_word_entry.length == 0
-        next
-      else
-        @original_word_id = english_word_entry.first.id
-      end
-
-      meanings = Meaning.where(:english_words_id => @original_word_id, :word_category_id => category_list )
-      number_of_meanings = meanings.length
+      #english_word_entry = EnglishWords.where(:english_meaning => original_word)
+      #if english_word_entry.length == 0
+      #  next
+      #else
+      #  @original_word_id = english_word_entry.first.id
       
-      temp = Meaning.new
-      if number_of_meanings == 0
+
+      #meanings = Meaning.where(:english_words_id => @original_word_id, :word_category_id => category_list)
+      
+      english_meaning_row = EnglishWords.joins(:meanings)
+                                        .select('english_meaning, meanings.id, meanings.chinese_words_id')
+                                        .where("english_meaning = ?", original_word)
+      
+      @original_word_id = english_meaning_row.first.id
+      
+      temp = nil
+      if english_meaning_row.length == 0
         next
-      elsif number_of_meanings == 1 #has one meaning
-        temp = meanings[0]
+      elsif english_meaning_row.length == 1 #has one meaning
+        temp = english_meaning_row.first
       else
         #### temporarily not translate tokens with multiple possible chinese substitutions ###
         #number_of_meanings.times do |index|
@@ -60,9 +65,9 @@ class TranslatesController < ApplicationController
         next
       end
 
-      if temp.chinese_words_id.nil?
-        temp = meanings[0]
-      end
+      #if temp.chinese_words_id.nil?
+      #  temp = meanings[0]
+      #end
 
       # if this point is reached, then the word and related information is sent back
       words_retrieved = words_retrieved + 1
@@ -73,8 +78,9 @@ class TranslatesController < ApplicationController
 
       # see if the user understands this word before
       @text[word]['wordID'] = temp.id #pass meaning Id to extension
-      @text[word]['chinese'] = ChineseWords.find(temp.chinese_words_id).chinese_meaning
-      @text[word]['pronunciation'] = ChineseWords.find(temp.chinese_words_id).pronunciation
+      chinese_word = ChineseWords.find(temp.chinese_words_id)
+      @text[word]['chinese'] = chinese_word.chinese_meaning
+      @text[word]['pronunciation'] = chinese_word.pronunciation
       
       testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
