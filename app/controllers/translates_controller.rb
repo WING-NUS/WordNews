@@ -24,7 +24,7 @@ class TranslatesController < ApplicationController
     @user_name = params[:name]
     user = User.where(:user_name => @user_name).first
     @url = params[:url]
-    @num_words = params[:num_words] | 2
+    @num_words = params[:num_words] || 2
     category_list = user.translate_categories.split(",")
 
     words_retrieved = 0
