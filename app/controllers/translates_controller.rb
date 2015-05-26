@@ -24,8 +24,15 @@ class TranslatesController < ApplicationController
     @user_name = params[:name]
     user = User.where(:user_name => @user_name).first
     @url = params[:url]
+    @num_words = params[:num_words] | 2
     category_list = user.translate_categories.split(",")
+
+    words_retrieved = 0
     for word in word_list
+      if words_retrieved >= @num_word
+        break  # no need to continue as @num_word is the number of words requested by the client
+      end      
+
       #this is to add downcase and singularize support
       original_word = word.downcase.singularize
       english_word_entry = EnglishWords.where(:english_meaning => original_word)
@@ -44,18 +51,21 @@ class TranslatesController < ApplicationController
       elsif number_of_meanings == 1 #has one meaning
         temp = meanings[0]
       else
-        ## temporarily not translate tokens with multiple possible chinese substitutions
+        #### temporarily not translate tokens with multiple possible chinese substitutions ###
         #number_of_meanings.times do |index|
         #  if chinese_sentence.to_s.include? ChineseWords.find(meanings[index].chinese_words_id).chinese_meaning
         #    temp = meanings[index]
         #  end
         #end
+        next
       end
 
       if temp.chinese_words_id.nil?
         temp = meanings[0]
       end
 
+      # if this point is reached, then the word and related information is sent back
+      words_retrieved = words_retrieved + 1
 
       @text[word] = Hash.new
       @original_word_chinese_id = temp.chinese_words_id
@@ -152,7 +162,8 @@ class TranslatesController < ApplicationController
 
     distractors_str = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
     distractors = distractors_str.split(',')
-    puts "#{word_under_test} has " << distractors.size  << 'distractors'
+    distractor_size = distractors.size
+    puts "#{word_under_test} has  #{distractors.size} distractors"
 
     distractors.each_with_index { |val, idx|   
       @result[word_under_test]['choices'][idx.to_s] = val.strip
