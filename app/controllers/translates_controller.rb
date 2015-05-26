@@ -24,14 +24,11 @@ class TranslatesController < ApplicationController
     @user_name = params[:name]
     user = User.where(:user_name => @user_name).first
     @url = params[:url]
-    @num_words = params[:num_words] || 2
+    @num_words = params[:num_words].to_i || 2
     category_list = user.translate_categories.split(",")
 
     words_retrieved = 0
     for word in word_list
-      puts "->>>"
-      puts @num_words
-      puts words_retrieved
       if words_retrieved >= @num_words
         break  # no need to continue as @num_words is the number of words requested by the client
       end      
