@@ -29,8 +29,11 @@ class TranslatesController < ApplicationController
 
     words_retrieved = 0
     for word in word_list
+      puts "->>>"
+      puts @num_words
+      puts words_retrieved
       if words_retrieved >= @num_words
-        break  # no need to continue as @num_word is the number of words requested by the client
+        break  # no need to continue as @num_words is the number of words requested by the client
       end      
 
       #this is to add downcase and singularize support
