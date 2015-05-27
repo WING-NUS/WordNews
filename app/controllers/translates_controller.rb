@@ -79,9 +79,9 @@ class TranslatesController < ApplicationController
       #@user_id = User.where(:user_name => @user_name).first.id
       testEntry = Meaning.joins(:histories)
                          .select('meaning_id, frequency')
-                         .where("user_id = ? AND meaning_id = ?", user_id, temp.id)
+                         .where("user_id = ? AND meaning_id = ?", user_id, temp.id).first
 
-      #testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
+
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
         @text[word]['isTest'] = 0
 
