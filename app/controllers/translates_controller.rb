@@ -26,6 +26,9 @@ class TranslatesController < ApplicationController
     @num_words = params[:num_words].to_i || 2
 
     user = User.where(:user_name => @user_name).first
+    if user.nil?
+      user = make_user @user_name
+    end
     user_id = user.id
     category_list = user.translate_categories.split(",")
 
@@ -130,6 +133,15 @@ class TranslatesController < ApplicationController
     end
   end
 
+  # TODO put this in another module
+  def make_user(user_name)
+    newUser = User.new
+    newUser.user_name = user_name
+    newUser.if_translate = 1
+    newUser.translate_categories = "1,2,3,4" # the default will be translate all
+    newUser.save
+    newUser
+  end
 
   def getExampleSentences
     @meaning_id = params[:wordID]
@@ -219,10 +231,6 @@ class TranslatesController < ApplicationController
     end
   end
 
-  # GET /translates/1/edit
-  def edit
-    @translate = Translate.find(params[:id])
-  end
 
   def calculate
     @user_name = params[:name]
@@ -253,47 +261,6 @@ class TranslatesController < ApplicationController
     end
   end
 
-  # POST /translates
-  # POST /translates.json
-  def create
-    @translate = Translate.new(params[:translate])
 
-    respond_to do |format|
-      if @translate.save
-        format.html { redirect_to @translate, notice: 'Translate was successfully created.' }
-        format.json { render json: @translate, status: :created, location: @translate }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @translate.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
-  # PUT /translates/1
-  # PUT /translates/1.json
-  def update
-    @translate = Translate.find(params[:id])
-
-    respond_to do |format|
-      if @translate.update_attributes(params[:translate])
-        format.html { redirect_to @translate, notice: 'Translate was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @translate.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /translates/1
-  # DELETE /translates/1.json
-  def destroy
-    @translate = Translate.find(params[:id])
-    @translate.destroy
-
-    respond_to do |format|
-      format.html { redirect_to translates_url }
-      format.json { head :no_content }
-    end
-  end
 end

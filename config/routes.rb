@@ -1,7 +1,7 @@
 TranslateApp::Application.routes.draw do
   resources :users
   resources :dictionaries
-  resources :translates
+  
   
   root to: 'translates#index'
   match '/show', to: 'translates#show', via: :post

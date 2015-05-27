@@ -23,22 +23,29 @@ class UsersController < ApplicationController
 
   def getIfTranslate
     @user_name = params[:name]
-    @find_user_query = "user_name = '" + @user_name+"'"
+    
     @user = User.where(:user_name => @user_name).first
     if @user.blank? #no user
-      newUser = User.new
-      newUser.user_name = @user_name
-      newUser.if_translate = 1
-      newUser.translate_categories = "1,2,3,4" # the default will be translate all
-      newUser.save
+      make_user @user_name
     end
+
     @user = User.where(:user_name => @user_name).first
     @ifTranslate = @user.if_translate
     @result = Hash.new
     @result['if_translate'] = @ifTranslate
+
     respond_to do |format|
       format.html { render :layout => false }
     end
+  end
+
+  def make_user(user_name)
+    newUser = User.new
+    newUser.user_name = user_name
+    newUser.if_translate = 1
+    newUser.translate_categories = "1,2,3,4" # the default will be translate all
+    newUser.save
+    newUser
   end
 
   def getSuggestURL
