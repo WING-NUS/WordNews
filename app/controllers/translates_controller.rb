@@ -22,7 +22,6 @@ class TranslatesController < ApplicationController
     word_list = params[:text].split(" ")
     chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
     @user_name = params[:name]
-    user = User.where(:user_name => @user_name).first
     @url = params[:url]
     @num_words = params[:num_words].to_i || 2
     category_list = user.translate_categories.split(",")
@@ -75,19 +74,27 @@ class TranslatesController < ApplicationController
 
       @text[word] = Hash.new
       @original_word_chinese_id = temp.chinese_words_id
-      @user_id = User.where(:user_name => @user_name).first.id
 
       # see if the user understands this word before
-      @text[word]['wordID'] = temp.id #pass meaning Id to extension
+      @text[word]['wordID'] = temp.id # pass meaningId to client
       chinese_word = ChineseWords.find(temp.chinese_words_id)
       @text[word]['chinese'] = chinese_word.chinese_meaning
       @text[word]['pronunciation'] = chinese_word.pronunciation
       
-      testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
+      ##english_meaning_row = EnglishWords.joins(:meanings)
+      ##                                  .select('english_meaning, meanings.id, meanings.chinese_words_id')
+      ##                                  .where("english_meaning = ?", original_word)
+      
+      #@user_id = User.where(:user_name => @user_name).first.id
+      testEntry = User.joins(:histories)
+                      .select('users.id, frequency, meaning_id')
+                      .where("users.user_name = ? AND meaning_id = ?", @user_name, temp.id)
+
+      #testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
         @text[word]['isTest'] = 0
 
-      elsif testEntry.frequency > 3 and testEntry.frequency <= 6 #testing mah
+      elsif testEntry.frequency > 3 and testEntry.frequency <= 6 #testing 
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
