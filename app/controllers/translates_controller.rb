@@ -24,6 +24,9 @@ class TranslatesController < ApplicationController
     @user_name = params[:name]
     @url = params[:url]
     @num_words = params[:num_words].to_i || 2
+
+    user = User.where(:user_name => @user_name).first
+    user_id = user.id
     category_list = user.translate_categories.split(",")
 
     words_retrieved = 0
@@ -34,15 +37,6 @@ class TranslatesController < ApplicationController
 
       #this is to add downcase and singularize support
       original_word = word.downcase.singularize
-      #english_word_entry = EnglishWords.where(:english_meaning => original_word)
-      #if english_word_entry.length == 0
-      #  next
-      #else
-      #  @original_word_id = english_word_entry.first.id
-      
-
-      #meanings = Meaning.where(:english_words_id => @original_word_id, :word_category_id => category_list)
-      
       english_meaning_row = EnglishWords.joins(:meanings)
                                         .select('english_meaning, meanings.id, meanings.chinese_words_id')
                                         .where("english_meaning = ?", original_word)
@@ -81,14 +75,11 @@ class TranslatesController < ApplicationController
       @text[word]['chinese'] = chinese_word.chinese_meaning
       @text[word]['pronunciation'] = chinese_word.pronunciation
       
-      ##english_meaning_row = EnglishWords.joins(:meanings)
-      ##                                  .select('english_meaning, meanings.id, meanings.chinese_words_id')
-      ##                                  .where("english_meaning = ?", original_word)
       
       #@user_id = User.where(:user_name => @user_name).first.id
-      testEntry = User.joins(:histories)
-                      .select('users.id, frequency, meaning_id')
-                      .where("users.user_name = ? AND meaning_id = ?", @user_name, temp.id)
+      testEntry = Meaning.joins(:histories)
+                         .select('meaning_id, frequency')
+                         .where("user_id = ? AND meaning_id = ?", user_id, temp.id)
 
       #testEntry = History.where(:user_id => @user_id, :meaning_id => temp.id).first
       if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
