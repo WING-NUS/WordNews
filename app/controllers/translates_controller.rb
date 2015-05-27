@@ -82,10 +82,10 @@ class TranslatesController < ApplicationController
                          .where("user_id = ? AND meaning_id = ?", user_id, temp.id).first
 
 
-      if testEntry.blank? or testEntry.frequency <= 3  #just translate the word
+      if testEntry.blank? or testEntry.frequency.to_i <= 3  #just translate the word
         @text[word]['isTest'] = 0
 
-      elsif testEntry.frequency > 3 and testEntry.frequency <= 6 #testing 
+      elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 6 #testing 
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
@@ -95,7 +95,7 @@ class TranslatesController < ApplicationController
           @text[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
 
-      elsif testEntry.frequency > 6 and testEntry.frequency <= 10
+      elsif testEntry.frequency.to_i > 6 and testEntry.frequency.to_i <= 10
         @text[word]['isTest'] = 2
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
@@ -105,7 +105,7 @@ class TranslatesController < ApplicationController
           @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
 
-      elsif testEntry.frequency > 11
+      elsif testEntry.frequency.to_i > 11
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
         
