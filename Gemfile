@@ -35,6 +35,8 @@ gem 'pg', '0.16.0'
 gem 'rb-readline'
 gem 'test-unit'
 
+gem 'newrelic_rpml
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
