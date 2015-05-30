@@ -88,7 +88,7 @@ class TranslatesController < ApplicationController
       if testEntry.blank? or testEntry.frequency.to_i <= 3  #just translate the word
         @text[word]['isTest'] = 0
 
-      elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 6 #testing 
+      elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 6 # quiz 
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
@@ -108,7 +108,7 @@ class TranslatesController < ApplicationController
           @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
 
-      elsif testEntry.frequency.to_i > 11
+      elsif testEntry.frequency.to_i >= 11
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
         
