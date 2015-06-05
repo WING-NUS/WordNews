@@ -1,0 +1,202 @@
+============================================================================
+                            REVIEWER #1
+============================================================================
+
+Interactive learning model is interesting, but it is difficult to evaluate its
+precise effectiveness. How to compare with the instruction-driven or
+user-driven learning models? Besides, it will better to demonstrate the
+learning process by real case studies.
+
+============================================================================
+                            REVIEWER #2
+============================================================================
+
+
+To start with, the authors do not make any references to existing publications
+on web extensions for CALL purposes, one of them being available for at least
+the past 5+ years (5 - because I have installed Werti in 2010, but publications
+date back even longer than that):
+
+* Vanessa Metcalf and Detmar Meurers. 2006. Generating web-based English
+preposition exercises from real-world texts. Presentation at EUROCALL, Sept. 7,
+2006. Granada, Spain. http://purl.org/dm/handouts/
+eurocall06-metcalf-meurers.pdf.
+* Meurers, D., Ziai, R., Amaral, L., Boyd, A., Dimitrov, A., Metcalf, V., and
+Ott, N. (2010). Enhancing authentic web pages for language learners. In
+Proceedings of the 5th Workshop on Innovative Use of NLP for Building
+Educational Applications (BEA-5) at NAACL-HLT 2010, pages 10–18, Los Angeles
+* Metcalf, Vanessa and Detmar Meurers (2006). When to Use Deep Processing and
+When Not To – The Example of Word Order Errors. Pre-conference Workshop on
+NLP in CALL – Computational and Linguistic Challenges. CALICO 2006. May 17,
+2006. University of Hawaii.
+* Robert Reynolds, Eduard Schaf and Detmar Meurers. 2014. A VIEW of Russian:
+Visual Input Enhancement for a morphologically rich language
+
+The VIEW add-on (referenced above, plus a link below) is also very
+user-friendly since it can be switched on or off depending on user preferences,
+and offers training for learners several languages.
+
+Please, check the websites where you can see examples and test extensions for
+language learners:
+* http://sifnos.sfs.uni-tuebingen.de/VIEW/ (newer version)
+* http://sifnos.sfs.uni-tuebingen.de/WERTi/ (previous version of VIEW)
+*http://gramtrans.com/webpainter (a prototype tool)
+
+
+Zooming into system description, I am a bit confused by section 2.1: Why do you
+need the list of Chinese news sites? And why would you need to perform Chinese
+word segmentation? Please, explain so that this is obvious to the reader.
+
+I am wondering about the validity of your target vocabulary selection (the
+vocabulary that your replace with the Chinese translations). Just going by
+random selection as section 2 suggests, is not pedagogically grounded, unless
+it is only done in diagnostic purposes as the initial step. Look for example
+how this kind of diagnosis based on known lexical items is performed in an
+online tool  https://bliubliu.com/en/ so that the difficulty of learning
+materials is adjusted thereof. In general, target vocabulary selection should
+be steered either (1) by learners, or (2) via diagnosis of learner level on
+some proficiency scale and subsequent use of vocabulary lists appropriate for
+that level. For a prototype of a tool it is probably too much to expect, but in
+the future that issue should be addressed if the tool is ever to be offered to
+the learners. The authors need to at least mention that they are aware of the
+problem and name the ways they are planning to tackle it.
+Do you target any multi-word expressions? Figure 1 suggests that you do (e.g
+underlined expression  “recognized that”). How do you identify them? This
+is a very interesting and relevant issue for both computational linguistics and
+for language learning. How accurate is the tool at identifying multi-word
+expressions?
+You talk about replacing some selected English words with Chinese equivalents.
+However,  figure 1 shows underlined vocabulary (e.g. video, recognized that)...
+It is not consequent with your text. I presume that the underlined words  are
+the features introduced after the evaluation? In either case, make it clear
+from the text or select a screenshot that is in accordance with your
+description.
+
+It is commendable that the authors explore word sense disambiguation for
+selection of the most useful alternatives. As far as I understand, you are
+using a bilingual lexicon (CET4 list), which is later called “SystemA's
+lexicon” in 3.4 and which contains English-Chinese  mappings. You refer in
+3.1 to selection of senses from the (same?) dictionary that have “the same
+news category as the news webpage”. Would you please make it obvious
+somewhere in the text what structure this dictionary has and what kind of
+“news categories” the items in the dictionary are assigned? Or did you
+probably mean domains (that would be more expected in a dictionary) that
+overlap with the news categories? Are they directly matching?
+In 3.3. you say that in case of multiple candidates you select a candidate with
+the highest relative frequency. Where from do you get the frequency?
+In the evaluation you use 707 randomly sampled words. Do you have all possible
+wordclasses among these words? Or are you targeting only lexical wordclasses
+(nouns, verbs, adjectives, adverbs)? Do you contrast monosemous versus
+polysemous items? How many of the items are polysemous? Do you have any
+statistics over how many senses these randomly selected words have?
+
+The part on distractor generation (4) demonstrates lack of awareness of the
+extensive research carried out in this area. To start with, WordGap in not the
+only application using multiple-choice items. The principles for distractor
+selection has been a cornerstone for a lot of discussions, especially when it
+comes to the validity of automatically selected distractors. Look for example
+at the following sources:
+
+* Coniam 1997 Preliminary Inquiry into using Corpus Word Frequency Data in the
+Automatic Generation of English Language Cloze Tests.
+* Read 2000 Assessing Vocabulary
+* Aist 2001 Towards automatic glossarization: automatically constructing and
+administering vocabulary assistance factoids and multiple-choice assessment.
+* Brown, Friskoff, Eskenazi 2005 Automatic question generation for vocabulary
+assessment
+* Volodina 2008
+https://www.researchgate.net/publication/276942199_Corpora_in_Language_Classroo
+m_Reusing_Stockholm_Ume_Corpus_in_a_vocabulary_exercise_generator
+* Graesser, Wisher 2001 Question Generation as a learning multiplier in
+distributed learning environments
+* Pho, V.-M., André, T., Ligozat, A.L., Grau, B., Illouz, G. et François, T.
+Multiple Choice Question Corpus Analysis for Distractor Characterization In the
+9th International Conference on Language Resources and Evaluation (LREC 2014).
+Reykjavik, Iceland, 26-31 May.
+
+Generation of distractors that are plausible in the context of a sentence leads
+to a problem that more that one alternative can be used in the sentence. When
+you evaluate your distractors and report the plausibility as a positive
+feature, you also need to evaluate whether those distractors can in fact be
+used in the context of the sentence instead of the right answer. You should
+provide sentences for readers together with the distractors, e.g. in Table 6,
+and even add more such examples, so that the readers can judge distractor
+quality. Compared to WordGap you also have a Chinese word as an indicator of
+the sense, so part of the problem is solved that way, whereas in WordGap you
+don't have that (am I right?), so the comparison is not really fair. So I would
+say that the evaluation of the distractors has a wrong focus (or maybe it is
+the rhetorics that needs to be changed a bit to present that in a different
+way). Evaluation 1 does not seem to serve any purpose, since no one will
+attempt to generate distractors randomly provided there are (at least)
+POS-taggers. The “across-POS” distractor selection is only justifiable for
+absolute beginners, see Aist in the references above.
+I also suggest the paragraph with description of WordGap in the beginning of
+4.1 to be moved to the introductory part of section4.
+
+The description of the evaluation in 4.1.1 is too short and hasty. You need to
+provide more details on who the users are (linguists, language learners, which
+L1 they have, level of knowledge of Chinese, etc). You are using randomly
+selected 50 sentences from news articles. How many WordGap sentences are you
+using for comparison? Is it the same sentences (I don't know how WordGap app is
+working)? Were the evaluators provided with the Chinese words (as a clue), both
+in case of WordGap-MCQ and MCQ generated by your system?
+
+The system evaluation (section 5) is also too shortly presented to assess its
+validity.
+I think the system described in the article is very interesting and has a lot
+of potential, and the authors have carried out a lot of interesting
+experiments, but as it is, there are too many aspects crammed into one paper,
+and therefore therefore provide too little information. The article could be
+split into several articles, for example it would have beneficial to focus on
+the systems architecture and overview of the  tools and methods used in one
+article  leaving evaluation in section 5 for another article. As it is now, the
+paper gives too fragmentary information on each of the aspects, with system
+evaluation given way too little space.
+
+Detailed comments:
+
+* p1, abstract:  sentence starting “These two issues ….interactive tests”
+is very obscure. Consider reprasing it. The phrase “in practical” needs
+some noun afterwards (e.g. in practical terms)
+* p1, section1: “Translate” as a reference to GoogleTranslate is
+misleading. Please, write the full name "GoogleTranslate".
+* p1, section1: could you provide some examples of preconfigured news websites?
+* p2, sect.2, “Learning”: More-link is once highlighted, and the second
+time is not. Please, be consequent.
+* p2, sect.2: “MCQ” as an abbreviation has not been introduced before.
+Spell it out the first time.
+* p.2, sect 2.1: tense problem. Sometimes you use presence (we tokenize) and
+sometimes past (we additionally carried out)
+* p.3, figure1: I have decoded (l) and (r) as left and right. It is a bit
+unusual to use these abbreviations.
+*p.3, sect.3.1: a list cannot have “breadth”. You probably should use
+“contains”; “are based from” → “are based on”
+* p.4, 3.4 : “in order recover” → “in order to recover”; “if more
+than one candidate matches” → “if... match”; “If none match” →
+“If … matches”
+* p.5, 3.4: “the target English e's “ → what is “e's”?
+* p.5, 3.2, “Word Alignment”: Sentence 3 in paragraph 2 is ungrammatical.
+Please, revise.
+* p.5, sect 4: the desctiption of formula does not match with the formula, e.g.
+“p(c)” is not in the formula,  neither is “c”.
+* p.6, 4.1: “uses random word selection” → “uses random distractor
+selection”???
+* p.6, 4.1.1: “significantly betters” → “significantly improves”
+
+============================================================================
+                            REVIEWER #3
+============================================================================
+
+1)The coverage of Baseline in Table3 is 100%. Should give more explanation, why
+“choose the most frequent relative Chinese translation sense c” can get
+100% coverage. What do you mean coverage here?
+2)And classifying a word to a category by counting the frequency may have
+problems, e.g. the threshold, how to get it? Give more space to introduce this
+part.
+3)As we can see in Table 3, the category-based approach performs the worst. The
+authors explain that because Chinese word senses do not have a strong topic
+tendency, this can explain why the accuracy is low, but what caused the
+coverage is so low?
+4)Bing-Align method performs the best in the WSD component, but there is still
+much room for the improvement of coverage. Fusion of the proposed method may be
+a viable attempt.
