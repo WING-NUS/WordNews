@@ -1,0 +1,29 @@
+<%= form_for @translation, url: {action: "add"} do |f| %>
+ 
+  <% if @translation.errors.any? %>
+    <div id="errorExplanation">
+      <h2><%= pluralize(@translation.errors.count, "error") %> prohibited
+          this translation from being saved:</h2>
+      <ul>
+      <% @translation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :url %><br />
+      <%= f.text_field :url %>
+    </div>
+    <div class="field">
+      <%= f.label :word %><br />
+      <%= f.text_field :word %>
+    </div>
+    <div class="field">
+      <%= f.label :translation %><br />
+      <%= f.text_field :translation %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
