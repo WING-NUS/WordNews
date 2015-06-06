@@ -1,4 +1,13 @@
 TranslateApp::Application.routes.draw do
+  get "hardcode/new"
+  post "hardcode/add"
+  get "hardcode/view"
+  get "hardcode/delete"
+  get "hardcode/newquiz"
+  post "hardcode/addquiz"
+  get "hardcode/viewquiz"
+  get "hardcode/deletequiz"
+
   resources :users
   resources :dictionaries
   

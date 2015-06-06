@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141103073224) do
+ActiveRecord::Schema.define(:version => 20150605142024) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(:version => 20141103073224) do
   end
 
   create_table "chinese_words", :force => true do |t|
-    t.string   "chinese_words"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "chinese_meaning"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "pronunciation"
   end
 
   create_table "dictionaries", :force => true do |t|
@@ -54,9 +55,9 @@ ActiveRecord::Schema.define(:version => 20141103073224) do
   end
 
   create_table "english_words", :force => true do |t|
-    t.string   "english_words"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "english_meaning"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "example_sentences", :force => true do |t|
@@ -64,6 +65,24 @@ ActiveRecord::Schema.define(:version => 20141103073224) do
     t.string   "chinese_sentence"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "hard_coded_quizzes", :force => true do |t|
+    t.string   "url"
+    t.string   "word"
+    t.string   "option1"
+    t.string   "option2"
+    t.string   "option3"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "hard_coded_words", :force => true do |t|
+    t.string   "url"
+    t.string   "word"
+    t.string   "translation"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "histories", :force => true do |t|
