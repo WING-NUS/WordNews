@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150605142024) do
+ActiveRecord::Schema.define(:version => 20150607104945) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20150605142024) do
     t.string   "option3"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "quiz_type"
   end
 
   create_table "hard_coded_words", :force => true do |t|
