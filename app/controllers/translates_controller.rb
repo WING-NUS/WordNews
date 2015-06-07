@@ -118,7 +118,7 @@ class TranslatesController < ApplicationController
           @text[word]['choices']['0'] = hard_coded_quiz.first.option1
           @text[word]['choices']['1'] = hard_coded_quiz.first.option2
           @text[word]['choices']['2'] = hard_coded_quiz.first.option3
-          @text[word]['isTest'] = hard_coded_quiz.quiz_type
+          @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
         end
 
       elsif testEntry.frequency.to_i > 6 and testEntry.frequency.to_i <= 10
@@ -138,7 +138,7 @@ class TranslatesController < ApplicationController
           @text[word]['choices']['0'] = hard_coded_quiz.first.option1
           @text[word]['choices']['1'] = hard_coded_quiz.first.option2
           @text[word]['choices']['2'] = hard_coded_quiz.first.option3
-          @text[word]['isTest'] = hard_coded_quiz.quiz_type
+          @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
         end
       elsif testEntry.frequency.to_i >= 11
         @text[word]['isTest'] = 1
