@@ -11,6 +11,8 @@
       </ul>
     </div>
   <% end %>
+
+
     <div class="field">
       <%= f.label :url %><br />
       <%= f.text_field :url %>
@@ -32,8 +34,8 @@
       <%= f.text_field :option3 %>
     </div>
     <div class="field">
-      <%= f.label :quiztype %><br />
-      <%= f.select :quiztype, options_for_select([['English-to-Chinese', '0'], ['Chinese-to-English', '1']]) %>
+      <%= f.label :quiz_type %><br />
+      <%= f.select :quiz_type, options_for_select([['English-to-Chinese', '2'], ['Chinese-to-English', '1']]) %>
     </div>
     <div class="actions">
       <%= f.submit %>

@@ -10,8 +10,8 @@ class HardcodeController < ApplicationController
     @translation = HardCodedWord.new(params[:hard_coded_word])
     respond_to do |format|
       if @translation.save
-        format.html  { redirect_to(:controller => "hardcode", :action => "new",
-                    :notice => 'translation was successfully created.') }
+        flash[:notice] = "Translation was successfully created"
+        format.html  { redirect_to(:controller => "hardcode", :action => "new") }
         format.json  { render :json => @translation,
                     :status => :created, :location => @translation }
       else
@@ -33,8 +33,8 @@ class HardcodeController < ApplicationController
     @quiz = HardCodedQuiz.new(params[:hard_coded_quiz])
     respond_to do |format|
       if @quiz.save
-        format.html  { redirect_to(:controller => "hardcode", :action => "quiznew",
-                    :notice => 'translation was successfully created.') }
+        flash[:notice] = "Quiz was successfully created"
+        format.html  { redirect_to(:controller => "hardcode", :action => "newquiz") }
         format.json  { render :json => @quiz,
                     :status => :created, :location => @quiz }
       else
