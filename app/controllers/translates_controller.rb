@@ -118,6 +118,7 @@ class TranslatesController < ApplicationController
           @text[word]['choices']['0'] = hard_coded_quiz.first.option1
           @text[word]['choices']['1'] = hard_coded_quiz.first.option2
           @text[word]['choices']['2'] = hard_coded_quiz.first.option3
+          @text[word]['isTest'] = hard_coded_quiz.quiz_type
         end
 
       elsif testEntry.frequency.to_i > 6 and testEntry.frequency.to_i <= 10
@@ -132,11 +133,12 @@ class TranslatesController < ApplicationController
 
         hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word )
         # if there is a hard coded quiz, replace the words with the hard-coded values
-        if hard_coded_quiz.length > 0
+        if hard_coded_quiz.length > 0 
           
           @text[word]['choices']['0'] = hard_coded_quiz.first.option1
           @text[word]['choices']['1'] = hard_coded_quiz.first.option2
           @text[word]['choices']['2'] = hard_coded_quiz.first.option3
+          @text[word]['isTest'] = hard_coded_quiz.quiz_type
         end
       elsif testEntry.frequency.to_i >= 11
         @text[word]['isTest'] = 1
