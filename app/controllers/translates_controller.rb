@@ -64,7 +64,11 @@ class TranslatesController < ApplicationController
       # check if a hard-coded translation is specified for this word
       hard_coded_word = HardCodedWord.where(:url => @url, :word => original_word )
       if hard_coded_word.length > 0
-        @text[word]['chinese'] = hard_coded_word.first.translation
+        if hard_coded_word.first.translation?
+          @text[word]['chinese'] = hard_coded_word.first.translation
+        else
+          next
+        end
       end
 
       @original_word_id = english_meaning_row.first.id
@@ -108,6 +112,7 @@ class TranslatesController < ApplicationController
         }
 
         hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word )
+        # if there is a hard coded quiz, replace the words with the hard-coded values
         if hard_coded_quiz.length > 0
           
           @text[word]['choices']['0'] = hard_coded_word.first.option1
@@ -126,6 +131,7 @@ class TranslatesController < ApplicationController
         }
 
         hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word )
+        # if there is a hard coded quiz, replace the words with the hard-coded values
         if hard_coded_quiz.length > 0
           
           @text[word]['choices']['0'] = hard_coded_word.first.option1
