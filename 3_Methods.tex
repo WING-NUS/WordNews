@@ -24,13 +24,16 @@
 We give a running scenario to illustrate the use of our language
 learning platform, {\tt SystemA}.  When a learner browses to an
 English webpage on a news website, our extension selectively replaces
-certain original English words with their Chinese translation
-(Figure~\ref{fig:chrome_extension_1}, middle).  While the meaning of
+certain original English words with their Chinese translation 
+% Tao2: added 
+or underlines the English words\footnote{Replace or underline is configurable
+in software setting.} (Figure~\ref{fig:chrome_extension_1}, middle).  
+While the meaning of
 the Chinese word is often apparent in context, the learner can choose
-to learn more about the replaced word, by mousing over the translation
+to learn more about the replaced/underlined word, by mousing over the word
 to reveal a definition tooltip (Figure~\ref{fig:chrome_extension_1},
 left) to aid mastery of the Chinese word.  Once the learner has
-encountered the replaced word a few times, {\tt SystemA} will assess
+encountered the replaced/underlined word a few times, {\tt SystemA} will assess
 the learner's mastery by generating a multiple choice translation test
 on the target word (Figure~\ref{fig:chrome_extension_1}, right). Our
 learning platform thus can be viewed as three logical use cases:
@@ -81,11 +84,15 @@ particular news category -- {\it e.g.}, ``what are typical {\it finance}
 words?''.  
 
 We first obtain a large sample of categorized English news webpages,
-by creating custom crawlers for specific news websites.  We use a seed
+by creating custom crawlers for specific news websites~({\it e.g.} CNN).  We use a seed
 list of words that are matched against a target webpage's URL.  If any
 match, the webpage is deemed to be of that category.  For example, a
 webpage that has the seed word ``football'' in its URL is deemed of
-category ``Sports''.  However, note that Chinese news sites have a
+category ``Sports''.  
+%Tao2: added
+Since news category is  also required for Chinese words (used in word sense disambiguation), we perform similar procedure to crawl news articles from 
+Chinese news websites ({\it e.g.}, BaiduNews\footnote{\url{http://news.baidu.com}})
+However, Chinese news sites have a
 different categorization scheme, and as such, we first had to manually
 align the different categories based on our observation (See
 Table~\ref{table:cat}).  After a survey of a number of English and

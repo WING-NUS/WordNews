@@ -66,9 +66,9 @@ the future that issue should be addressed if the tool is ever to be offered to
 the learners. The authors need to at least mention that they are aware of the
 problem and name the ways they are planning to tackle it.
 
->>Tao: future work, assign a difficulty score for each word in our vocabulary, and 
+>>Tao: perhaps discuss it in future work: assign a difficulty score for each word in our vocabulary, and 
 ask users to select their knowlege level, and the target words are selected according 
-to their self-reported knowlege leve.
+to their self-reported knowlege level.
 
 Do you target any multi-word expressions? Figure 1 suggests that you do (e.g
 underlined expression  “recognized that”). How do you identify them? This
@@ -145,7 +145,7 @@ May mention it again in the caption of table 6.
 You should provide sentences for readers together with the distractors, e.g. in Table 6,
 and even add more such examples, so that the readers can judge distractor
 quality. 
->>Tao: no nesssary.
+>>Tao: not necessary.
 
 Compared to WordGap you also have a Chinese word as an indicator of
 the sense, so part of the problem is solved that way, whereas in WordGap you
@@ -153,13 +153,13 @@ don't have that (am I right?), so the comparison is not really fair. So I would
 say that the evaluation of the distractors has a wrong focus (or maybe it is
 the rhetorics that needs to be changed a bit to present that in a different
 way).
->>Tao: We did not show the Chinese word in the user evaluation.
+>>Tao: We did not show the Chinese word in the user evaluation. No further explanation as Fig2 clearly shows this. 
 
  Evaluation 1 does not seem to serve any purpose, since no one will
 attempt to generate distractors randomly provided there are (at least)
 POS-taggers. The “across-POS” distractor selection is only justifiable for
 absolute beginners, see Aist in the references above.
->>Tao: rewrite the last sentence of random news system to clarify this point.
+>>Tao:  quite clear.
 
 I also suggest the paragraph with description of WordGap in the beginning of
 4.1 to be moved to the introductory part of section4.

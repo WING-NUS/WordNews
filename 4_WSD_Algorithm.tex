@@ -37,13 +37,17 @@ translated and the enclosing sentence.
 \end{table*}
 
 \subsection{Bilingual Dictionary and Baseline}
-
+% Tao2: revised
 {\tt SystemA}'s server component includes a bilingual lexicon of
-English words with possible Chinese senses.  The dictionary includes
-an indication of the relative frequency among Chinese senses, with
-their part-of-speech, per English word. The Chinese words in our
-bilingual lexicon are based on the publicly-available College
+English words with possible Chinese senses. The English words in our 
+dictionary is based on the publicly-available College
 English Test (CET 4) list, which has a breadth of about 4,000 words.
+We expand this list to include an indication of the relative frequency among Chinese senses, with their part-of-speech, per English word.
+%The dictionary includes
+%an indication of the relative frequency among Chinese senses, with
+%their part-of-speech, per English word. The Chinese  words in our
+%bilingual lexicon are based on the publicly-available College
+%English Test (CET 4) list, which has a breadth of about 4,000 words.
 Our baseline translation uses the most frequent sense: for an English
 word to be translated, choose the most frequent relative Chinese
 translation sense $c$ from the possible set of senses $C$. This method
