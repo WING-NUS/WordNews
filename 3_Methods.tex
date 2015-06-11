@@ -13,7 +13,7 @@
   article 
   {\it Verizon wants to eat Google's and Facebook's lunch}.
     Underlined components are clickable to yield
-  tooltips of two different forms: (l) a definition for learning, (r)
+  tooltips of two different forms: (left) a definition for learning, (right)
   a multiple-choice interactive test.}
 \label{fig:chrome_extension_1}
 \end{figure*}
@@ -54,14 +54,14 @@ causes a tooltip to appear, which gives the translation,
 pronunciation, and simplified written form, and a {\tt
   More} link that loads additional contextual example sentences (that
 were previously translated by the backend) for the learner to study.
-The more link must be clicked for activation, as we find this
+The  {\tt More}  link must be clicked for activation, as we find this
 two-click architecture helps to minimize latency and the loading of
 unnecessary data.  The server keeps record of the learning tooltip
 activations, logging the enclosing webpage URL, the target word and
 the user identity.
 
 {\bf Testing.}  After the learner encounters the same word a
-pre-defined number $t=3$ times, {\tt SystemA} generates a MCQ test
+pre-defined number $t=3$ times, {\tt SystemA} generates a multiple choice questions (MCQ) test
 to assess mastery.  When the learner hovers over the replaced word,
 the test is shown for the learner to select the correct answer. When
 an option is clicked, the server logs the selection, and the correct
@@ -149,11 +149,11 @@ Chinese news websites, we decided on seven categories: namely,
 
 We tokenize and part-of-speech tag the main body text of the
 categorized articles, discarding punctuation and stopwords.  For
-Chinese, we additionally carried out Chinese word segmentation using
+Chinese, we additionally carry out Chinese word segmentation using
 the Stanford Chinese word segmenter~\cite{Chang2008}. The remaining
 words are classified to a news category based on document frequency. A
 word $w$ is classified to a category $c$ if it appears  more often 
-(a tunable threshold $\delta=10$) than its average category document
+(a tunable threshold $\delta=10$\footnote{We empirically set this value.}) than its average category document
 frequency.  Note that a word can be categorized to multiple categories
 under this scheme.
 

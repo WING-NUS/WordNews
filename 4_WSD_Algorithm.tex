@@ -42,7 +42,7 @@ translated and the enclosing sentence.
 English words with possible Chinese senses.  The dictionary includes
 an indication of the relative frequency among Chinese senses, with
 their part-of-speech, per English word. The Chinese words in our
-bilingual lexicon are based from the publicly-available College
+bilingual lexicon are based on the publicly-available College
 English Test (CET 4) list, which has a breadth of about 4,000 words.
 Our baseline translation uses the most frequent sense: for an English
 word to be translated, choose the most frequent relative Chinese
@@ -88,7 +88,7 @@ API.  As we access the translation as a third party, the Chinese
 translation comes as-is, without the needed explicit word alignment to
 locate the target English word to translate in the original input
 sentence. We need to perform alignment of the Chinese and English
-sentences in order recover the target word's translation from the
+sentences in order to recover the target word's translation from the
 sentence translation.
 
 {\bf Substring Match.} As potential Chinese translations are
@@ -97,7 +97,7 @@ matching recovers a Chinese translation; {\it i.e.}, check whether the
 candidate Chinese translation is a substring of the Bing
 translation. If more than one candidate matches, we use the longest
 string match heuristic and pick the one with the longest match as the
-final output. If none match, the system does not output a translation
+final output. If none matches, the system does not output a translation
 for the word.  
 
 {\bf Relaxed Match.} The final rule in the substring match method

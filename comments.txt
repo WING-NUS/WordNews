@@ -232,7 +232,7 @@ than one candidate matches” → “if... match”; “If none match” →
 =>Tao: change as suggested
 
 * p.5, 3.4: “the target English e's “ → what is “e's”?
-=>Tao: target English word's
+=>Tao: no change, as the e is corresponding to chinese c.
 
 * p.5, 3.2, “Word Alignment”: Sentence 3 in paragraph 2 is ungrammatical.
 Please, revise.
@@ -257,12 +257,12 @@ selection”???
 1)The coverage of Baseline in Table3 is 100%. Should give more explanation, why
 “choose the most frequent relative Chinese translation sense c” can get
 100% coverage. What do you mean coverage here?
->>Tao: detail
+>>Tao: I think it is obvious.
 
 2)And classifying a word to a category by counting the frequency may have
 problems, e.g. the threshold, how to get it? Give more space to introduce this
 part.
->>Tao: Footnote (emprically setting), and learn this threshold in the future work
+>>Tao: Footnote (emprically setting).
 
 3)As we can see in Table 3, the category-based approach performs the worst. The
 authors explain that because Chinese word senses do not have a strong topic
@@ -273,4 +273,4 @@ coverage is so low?
 4)Bing-Align method performs the best in the WSD component, but there is still
 much room for the improvement of coverage. Fusion of the proposed method may be
 a viable attempt.
->>Tao: future work
+>>Tao: I do not think fusion is good solution. Accuracy is more important than coverage.

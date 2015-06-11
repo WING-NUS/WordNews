@@ -26,11 +26,11 @@ quantify similarity by using the Lin distance~\cite{Lin1998} between two
 input candidate concepts in WordNet~\cite{Miller1995}:
 
 \begin{equation}
-sim(c1,c2) = \frac{2*log_p(lso(c1,c2))}{log_p(c1)+log_p(c2)}
+sim(c1,c2) = \frac{2*log P(lso(c1,c2))}{log P(c1)+log P(c2)}
 \label{equation:Distractor_4}
 \end{equation}  
 
-\noindent where $p(c)$ denotes the probability of encountering concept
+\noindent where $P(c)$ denotes the probability of encountering concept
 $c$, and $lso(c1,c2)$ denotes the lowest common subsumer synset, which
 is the lowest node in the WordNet hierarchy that is a hypernym of both
 $c1$ and $c2$.  This returns a score from 0 (completely dissimilar) to
