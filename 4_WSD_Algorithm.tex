@@ -89,7 +89,7 @@ target word appears as our context. We then acquire its translation
 from Microsoft Bing
 Translator using its
 API.  As we access the translation as a third party, the Chinese
-translation comes as-is, without the needed explicit word alignment to
+translation comes as-is, without the needed explicit word  to
 locate the target English word to translate in the original input
 sentence. We need to perform alignment of the Chinese and English
 sentences in order to recover the target word's translation from the
@@ -98,8 +98,10 @@ sentence translation.
 {\bf Substring Match.} As potential Chinese translations are
 available in our dictionary, a straightforward use of substring
 matching recovers a Chinese translation; {\it i.e.}, check whether the
-candidate Chinese translation is a substring of the Bing
-translation. If more than one candidate matches, we use the longest
+candidate %Chinese translation is a substring of the Bing
+% Tao2: Naijia, please check
+Bing translation is a substring of the Chinese translation. 
+If more than one candidate matches, we use the longest
 string match heuristic and pick the one with the longest match as the
 final output. If none matches, the system does not output a translation
 for the word.  
@@ -116,7 +118,11 @@ translation ``旅行'' is allowed to be relaxed to match the dictionary
 To this end, we must know the extent of the words in the translation.
 We first segment the obtained Bing translation with the Stanford
 Chinese Word Segmenter, and then use string matching to find a Chinese
-translation $c$.  This technique significantly augments the
+translation $c$.  
+% Tao2: added this. Naijia, please check
+If more than one candidate matches, we heuristically 
+use the last matched candidate. 
+This technique significantly augments the
 translation range of our extension beyond the reach of our lexicon.
 % Tao: from the experimental result, this method has a slightly lower coverage than substring match. Why?
 
@@ -130,10 +136,10 @@ translation range of our extension beyond the reach of our lexicon.
 the target English $e$'s Chinese prospective translations (from our
 lexicon) may generate several possible matches.  
 
+% Tao2: Naijia, please check
 Consider Example 6 in Table~\ref{table:wsd_1}.  The target English
 word ``state'' has corresponding Chinese entries ``发言'' and ``国家的''.
-Our relaxed approach yields ``发言人" (``spokeswoman'', incorrect),
-because the Chinese translation ``发言'' (``state'' as a verb).  
+For this reason, both ``国家" (``country'', correct) and ``发言人" (``spokeswoman'', incorrect) are relaxed matched.  As relaexed approach always picks up the last candidate,  ``发言人" is yielded as a final output.
 
 To address this, we use the Bing Word Alignment
 API\footnote{\url{https://msdn.microsoft.com/en-us/library/dn198370.aspx}}

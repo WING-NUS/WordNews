@@ -236,8 +236,7 @@ than one candidate matches” → “if... match”; “If none match” →
 
 * p.5, 3.2, “Word Alignment”: Sentence 3 in paragraph 2 is ungrammatical.
 Please, revise.
-=>Tao: ask Naijia to check substring match, relaxed match, and alginment, as well
-as the the ungrammatical sentence.
+=>Tao: ask Naijia to check substring match, relaxed match, and alignment, as well as the the ungrammatical sentence.
 
 * p.5, sect 4: the desctiption of formula does not match with the formula, e.g.
 “p(c)” is not in the formula,  neither is “c”.
