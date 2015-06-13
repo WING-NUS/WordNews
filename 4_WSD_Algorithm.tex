@@ -99,7 +99,7 @@ sentence translation.
 available in our dictionary, a straightforward use of substring
 matching recovers a Chinese translation; {\it i.e.}, check whether the
 candidate %Chinese translation is a substring of the Bing
-% Tao2: Naijia, please check
+% Tao2: revised
 Bing translation is a substring of the Chinese translation. 
 If more than one candidate matches, we use the longest
 string match heuristic and pick the one with the longest match as the
@@ -119,7 +119,7 @@ To this end, we must know the extent of the words in the translation.
 We first segment the obtained Bing translation with the Stanford
 Chinese Word Segmenter, and then use string matching to find a Chinese
 translation $c$.  
-% Tao2: added this. Naijia, please check
+% Tao2: added this. 
 If more than one candidate matches, we heuristically 
 use the last matched candidate. 
 This technique significantly augments the
@@ -136,7 +136,7 @@ translation range of our extension beyond the reach of our lexicon.
 the target English $e$'s Chinese prospective translations (from our
 lexicon) may generate several possible matches.  
 
-% Tao2: Naijia, please check
+% Tao2: revised
 Consider Example 6 in Table~\ref{table:wsd_1}.  The target English
 word ``state'' has corresponding Chinese entries ``发言'' and ``国家的''.
 For this reason, both ``国家" (``country'', correct) and ``发言人" (``spokeswoman'', incorrect) are relaxed matched.  As relaexed approach always picks up the last candidate,  ``发言人" is yielded as a final output.
