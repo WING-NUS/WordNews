@@ -30,6 +30,15 @@ Dekang Lin.
 \newblock 1998.
 \newblock An information-theoretic definition of similarity.
 
+\bibitem[\protect\citename{Meurers \bgroup et al.\egroup }2010]{meurers2010}
+Detmar Meurers, Ramon Ziai, Luiz Amaral, Adriane Boyd, Aleksandar Dimitrov,
+  Vanessa Metcalf, and Niels Ott.
+\newblock 2010.
+\newblock Enhancing authentic web pages for language learners.
+\newblock In {\em Proceedings of the NAACL HLT 2010 Fifth Workshop on
+  Innovative Use of NLP for Building Educational Applications}, pages 10--18.
+  Association for Computational Linguistics.
+
 \bibitem[\protect\citename{Miller}1995]{Miller1995}
 George~A. Miller.
 \newblock 1995.

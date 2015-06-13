@@ -44,6 +44,8 @@ language learners:
 *http://gramtrans.com/webpainter (a prototype tool)
 
 >>Tao: add citation
+>>Muthu: added one paper: Meurers et al., 2010, NAACL. The rest 
+have pretty much the same idea. 
 
 Zooming into system description, I am a bit confused by section 2.1: Why do you
 need the list of Chinese news sites? And why would you need to perform Chinese

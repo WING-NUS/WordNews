@@ -59,10 +59,16 @@ Our system also adapts to the learner's skill during assessment.
 %Perhaps, this justifies the poor adoption of current second language learning 
 %systems. 
 
-We propose a system to enable online news readers to efficiently learn
-a new language.  Our prototype targets Chinese language learning while
-reading English language news. Learners are provided translations of
-open-domain words for learning from an English news page. In the same
+Earlier \cite{meurers2010} had proposed a user-driven system that modifies 
+any web page in the target language to highlight or remove certain words 
+from patterns that are believed to be difficult to learn in English. These 
+patterns are specific syntactic structures in English. Their focus thus was 
+to teach parts of difficult to learn English grammar.
+
+Differently we propose a system to enable online news readers to efficiently 
+learn a new language's vocabulary. Our prototype targets Chinese language 
+learning while reading English language news. Learners are provided translations 
+of open-domain words for learning from an English news page. In the same
 environment -- for words that the system deems mastered by the learner
 -- learners are assessed by replacing the original English text in the
 article with their Chinese translations and asked to translate them
@@ -83,6 +89,13 @@ developments here. In specific, we propose improved algorithms for
 two components: \textbf{(i)} for translating English words to Chinese
 from news articles, \textbf{(ii)} for generating distractors 
 for learner assessment.
+
+Much research exists on distractor generation for vocabulary assessment. 
+Most recently \cite{pho2014multiple} studied homegenity characteristics among 
+distractors from multiple MCQ corpora and tried to generate new distractors over 
+a test corpus. They validated the hypothesis of syntactic and semantic homogenity 
+among distractors.
+
 %The system even adapts to the user's current knowledge level during assessment.
 %The service is available as desktop / mobile / web software including a chrome extension. 
 %We mainly compare our system  with the aforementioned two software.
