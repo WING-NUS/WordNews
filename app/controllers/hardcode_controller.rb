@@ -51,6 +51,7 @@ class HardcodeController < ApplicationController
   end
 
   def delete
+    @hardcoded_word = HardCodedWord.find(params[:id])
     @hardcoded_word.destroy
   end
   
@@ -60,6 +61,7 @@ class HardcodeController < ApplicationController
   end
 
   def deletequiz
+    @hardcoded_quiz = HardCodedQuiz.find(params[:id])
     @hardcoded_quiz.destroy
   end
 end
