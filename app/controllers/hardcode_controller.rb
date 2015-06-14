@@ -45,15 +45,21 @@ class HardcodeController < ApplicationController
     end
   end
 
+
   def view
+    @hardcoded_words = HardCodedWord.all
   end
 
   def delete
+    @hardcoded_word.destroy
   end
   
   def viewquiz
+    @hardcoded_quizzes = HardCodedQuiz.all
+    
   end
 
   def deletequiz
+    @hardcoded_quiz.destroy
   end
 end
