@@ -53,6 +53,8 @@ class HardcodeController < ApplicationController
   def delete
     @hardcoded_word = HardCodedWord.find(params[:id])
     @hardcoded_word.destroy
+
+    redirect_to "/hardcode/view"
   end
   
   def viewquiz
@@ -63,5 +65,6 @@ class HardcodeController < ApplicationController
   def deletequiz
     @hardcoded_quiz = HardCodedQuiz.find(params[:id])
     @hardcoded_quiz.destroy
+    redirect_to "/hardcode/viewquiz"
   end
 end

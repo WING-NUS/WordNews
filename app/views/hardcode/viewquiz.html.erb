@@ -1,5 +1,6 @@
-<h1>Hardcoded words view</h1>
+<h1>Hardcoded quiz view</h1>
 
+<a href="/hardcode/newquiz">Add a new quiz</a>
 <table>
       <thead>
         <tr>
@@ -11,7 +12,7 @@
         </tr>
       </thead>
 
-      <% @hardcoded_quiz.each do |quiz| %>
+      <% @hardcoded_quizzes.each do |quiz| %>
             <tr>
           <td><%= quiz.url %></td>
           <td><%= quiz.word %></td>
