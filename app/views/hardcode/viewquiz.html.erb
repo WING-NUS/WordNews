@@ -18,8 +18,7 @@
           <td><%= quiz.option1%></td>
           <td><%= quiz.option2%></td>
           <td><%= quiz.option3%></td>
-          <td><%= link_to 'Destroy', word, method: :delete,
-                                           data: { confirm: 'Are you sure?' } %></td>
+          <td><a href="/hardcode/deletequiz/<%= quiz.id%>">Delete</a></td>
         </tr>
     <% end %>
 </table>
