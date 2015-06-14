@@ -27,7 +27,7 @@ class TranslatesController < ApplicationController
 
     user = User.where(:user_name => @user_name).first
     if user.nil?
-      user = make_user @user_name
+      user = make_user @user_naml
     end
     user_id = user.id
     category_list = user.translate_categories.split(",")
@@ -67,6 +67,7 @@ class TranslatesController < ApplicationController
         if hard_coded_word.first.translation?
           @text[word]['chinese'] = hard_coded_word.first.translation
         else
+          @text.delete(word)
           next
         end
       end
