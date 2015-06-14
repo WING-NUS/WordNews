@@ -25,6 +25,12 @@ Susanne Knoop and Sabrina Wilske.
 \newblock In {\em Proceedings of Second Workshop NLP Computer-Assisted Language
   Learning}, pages 39--47.
 
+\bibitem[\protect\citename{Lee and Seneff}2007]{lee2007}
+John Lee and Stephanie Seneff.
+\newblock 2007.
+\newblock Automatic generation of cloze items for prepositions.
+\newblock In {\em INTERSPEECH}, pages 2173--2176.
+
 \bibitem[\protect\citename{Lin}1998]{Lin1998}
 Dekang Lin.
 \newblock 1998.
@@ -51,11 +57,27 @@ Neil Naiman.
 \newblock {\em {The Good Language Learner}}, volume~4.
 \newblock Multilingual Matters.
 
+\bibitem[\protect\citename{Pho \bgroup et al.\egroup }2014]{pho2014multiple}
+Van-Minh Pho, Thibault Andr{\'e}, Anne-Laure Ligozat, B~Grau, G~Illouz, Thomas
+  Fran{\c{c}}ois, et~al.
+\newblock 2014.
+\newblock Multiple choice question corpus analysis for distractor
+  characterization.
+\newblock In {\em 9th International Conference on Language Resources and
+  Evaluation (LREC 2014)}.
+
 \bibitem[\protect\citename{Rubin}1975]{Rubin1975}
 Joan Rubin.
 \newblock 1975.
 \newblock What the "good language learner" can teach us.
 \newblock {\em TESOL quarterly}, pages 41--51.
+
+\bibitem[\protect\citename{Susanti \bgroup et al.\egroup }2015]{susanti2015}
+Yuni Susanti, Ryu Iida, and Takenobu Tokunaga.
+\newblock 2015.
+\newblock Automatic generation of english vocabulary tests.
+\newblock In {\em Proceedings of the 7th International Conference on Computer
+  Supported Education (CSEDU 2015)}, pages 77--78.
 
 \bibitem[\protect\citename{Toutanova \bgroup et al.\egroup
   }2002]{Toutanova2002}
@@ -82,6 +104,14 @@ Nicola Ueffing and Hermann Ney.
   Morphologically Rich Languages}.
 \newblock In {\em Proceedings of the 10th Conference on European Chapter of the
   Association for Computational Linguistics}, EACL'03, pages 347--354.
+
+\bibitem[\protect\citename{Volodina \bgroup et al.\egroup }2014]{volodina2014}
+Elena Volodina, Ildik{\'o} Pil{\'a}n, Lars Borin, and Therese~Lindstr{\"o}m
+  Tiedemann.
+\newblock 2014.
+\newblock A flexible language learning platform based on language resources and
+  web services.
+\newblock {\em Proceedings of LREC 2014}.
 
 \bibitem[\protect\citename{Wilks and Stevenson}1998]{Wilks1998}
 Yorick Wilks and Mark Stevenson.

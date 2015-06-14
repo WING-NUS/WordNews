@@ -63,7 +63,7 @@ Earlier \cite{meurers2010} had proposed a user-driven system that modifies
 any web page in the target language to highlight or remove certain words 
 from patterns that are believed to be difficult to learn in English. These 
 patterns are specific syntactic structures in English. Their focus thus was 
-to teach parts of difficult to learn English grammar.
+to teach parts of difficult to learn English grammar. 
 
 Differently we propose a system to enable online news readers to efficiently 
 learn a new language's vocabulary. Our prototype targets Chinese language 
@@ -90,11 +90,24 @@ two components: \textbf{(i)} for translating English words to Chinese
 from news articles, \textbf{(ii)} for generating distractors 
 for learner assessment.
 
-Much research exists on distractor generation for vocabulary assessment. 
-Most recently \cite{pho2014multiple} studied homegenity characteristics among 
-distractors from multiple MCQ corpora and tried to generate new distractors over 
-a test corpus. They validated the hypothesis of syntactic and semantic homogenity 
-among distractors.
+Much research exists on distractor generation for Multiple Choice Questions (MCQ).
+However, distractor generation for factoid questions are different from those 
+for vocabulary assessment. Semantic and syntactic properties of the target word 
+need to be considered while generating their distractors. 
+For instance, distractor generation for English prepositions \cite{lee2007} 
+used a corpora collected non-native English speakers that would capture their
+idiosyncratic incorrect usages. Recently \cite{pho2014multiple} studied homogeneity 
+characteristics among distractors from multiple MCQ corpora and tried to generate 
+new distractors over a test corpus. They validated the hypothesis of syntactic 
+and semantic homogeneity among distractors. \cite{susanti2015} generate distractors 
+using wordnet and word sense disambiguation given a target word. Unlike our system 
+that generates distractors for cloze questions for several target words from a
+single news article, they retrieve separate passages from the web for each 
+target word they choose to test on. While their approach serves in testing 
+mastery it doesn't provide for learning new vocabulary in context. 
+L{\"a}rka \cite{volodina2014} a Swedish language learning system generates 
+vocabulary assessment exercises using a corpus. They also have different modes of 
+exercise generation to allow learning and testing via the same interface.
 
 %The system even adapts to the user's current knowledge level during assessment.
 %The service is available as desktop / mobile / web software including a chrome extension. 
