@@ -50,13 +50,11 @@ class TranslatesController < ApplicationController
       elsif english_meaning_row.length == 1 #has one meaning
         english_meaning = english_meaning_row.first
       else
-        #### temporarily not translate tokens with multiple possible chinese substitutions ###
-        #number_of_meanings.times do |index|
-        #  if chinese_sentence.to_s.include? ChineseWords.find(meanings[index].chinese_words_id).chinese_meaning
-        #    english_meaning = meanings[index]
-        #  end
-        #end
-        next
+        number_of_meanings.times do |index|
+          if chinese_sentence.to_s.include? ChineseWords.find(meanings[index].chinese_words_id).chinese_meaning
+            english_meaning = meanings[index]
+          end
+        end
       end
 
       @text[word] = Hash.new
