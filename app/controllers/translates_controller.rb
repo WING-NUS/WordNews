@@ -50,9 +50,13 @@ class TranslatesController < ApplicationController
       elsif english_meaning_row.length == 1 #has one meaning
         english_meaning = english_meaning_row.first
       else
+        # multiple matching meanings
+        english_meaning = english_meaning_row.first # take the first meaning by default, unless a sentence matches
+
         english_meaning_row.length.times do |index|
           if chinese_sentence.to_s.include? ChineseWords.find(english_meaning_row[index].chinese_words_id).chinese_meaning
             english_meaning = english_meaning_row[index]
+            break
           end
         end
       end
