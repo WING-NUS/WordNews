@@ -36,6 +36,15 @@ Dekang Lin.
 \newblock 1998.
 \newblock An information-theoretic definition of similarity.
 
+\bibitem[\protect\citename{Metcalf and
+  Meurers}2006]{metcalf06:_gener_web_based_englis_prepos}
+Vanessa Metcalf and Detmar Meurers.
+\newblock 2006.
+\newblock Generating web-based english preposition exercises from real-world
+  texts.
+\newblock Presentation at EUROCALL, September.
+\newblock http://purl.org/dm/handouts/eurocall06-metcalf-meurers.pdf.
+
 \bibitem[\protect\citename{Meurers \bgroup et al.\egroup }2010]{meurers2010}
 Detmar Meurers, Ramon Ziai, Luiz Amaral, Adriane Boyd, Aleksandar Dimitrov,
   Vanessa Metcalf, and Niels Ott.

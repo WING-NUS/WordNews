@@ -20,26 +20,35 @@
 \label{fig:chrome_extension_1}
 \end{figure*}
 
-\section{The {\tt WordNews} Chrome Extension}
+\section{The WordNews Chrome Extension}
+
+Our method to directly enhance the web browser is inspired by earlier
+work in the computer-aided language learning community that also uses
+the web browser as the delivery vehicle for language learning.  WERTi
+\cite{metcalf06:_gener_web_based_englis_prepos,meurers2010} was a
+monolingual, user-driven system that modified web pages in the target
+language to highlight or remove certain words from specific syntactic
+patterns to teach difficult-to-learn English grammar.
 
 \begin{CJK}{UTF8}{gbsn}
-We give a running scenario to illustrate the use of our language
-learning platform, {\tt WordNews}.  When a learner browses to an
-English webpage on a news website, our extension selectively replaces
-certain original English words with their Chinese translation 
+Our focus is to help build Chinese vocabulary for second language
+learners fluent in English.  We give a running scenario to illustrate
+the use of WordNews.  When a learner browses to an English webpage on
+a news website, our extension either selectively replaces certain
+original English words with their Chinese translation
 % Tao2: added 
-or underlines the English words\footnote{Replace or underline is configurable
-in software setting.} (Figure~\ref{fig:chrome_extension_1}, middle).  
-While the meaning of
+or underlines the English words, based on user configuration
+(Figure~\ref{fig:chrome_extension_1}, middle).  While the meaning of
 the Chinese word is often apparent in context, the learner can choose
-to learn more about the replaced/underlined word, by mousing over the word
-to reveal a definition tooltip (Figure~\ref{fig:chrome_extension_1},
-left) to aid mastery of the Chinese word.  Once the learner has
-encountered the replaced/underlined word a few times, {\tt WordNews} will assess
-the learner's mastery by generating a multiple choice translation test
-on the target word (Figure~\ref{fig:chrome_extension_1}, right). Our
-learning platform thus can be viewed as three logical use cases:
-{\it translating}, {\it learning} and {\it testing}. \\
+to learn more about the replaced/underlined word, by mousing over the
+word to reveal a definition tooltip
+(Figure~\ref{fig:chrome_extension_1}, left) to aid mastery of the
+Chinese word.  Once the learner has encountered the target word a few
+times, WordNews assesses learner's mastery by generating a multiple
+choice translation test on the target word
+(Figure~\ref{fig:chrome_extension_1}, right). Our learning platform
+thus can be viewed as three logical use cases: {\it translating}, {\it
+  learning} and {\it testing}. \\
 
 {\bf Translating.}  We pass the main content of the webpage from the
 extension client to our server for candidate selection and
@@ -53,7 +62,6 @@ Microsoft Bing Translation API\footnote{\url{https://www.bing.com/translator/}}
 deemed as correct translations and are pushed back to the Chrome
 client for rendering.
 
-
 {\bf Learning.} Hovering the mouse over the replacement Chinese word
 causes a tooltip to appear, which gives the translation,
 pronunciation, and simplified written form, and a {\tt
@@ -66,18 +74,18 @@ activations, logging the enclosing webpage URL, the target word and
 the user identity.
 
 {\bf Testing.}  After the learner encounters the same word a
-pre-defined number $t=3$ times, {\tt WordNews} generates a multiple choice questions (MCQ) test
-to assess mastery.  When the learner hovers over the replaced word,
-the test is shown for the learner to select the correct answer. When
-an option is clicked, the server logs the selection, and the correct
-answer is revealed by the client extension.  Statistics on the user's
-test history are also updated.
+pre-defined number $t=3$ times, WordNews generates a multiple choice
+question (MCQ) test to assess mastery.  When the learner hovers over
+the replaced word, the test is shown for the learner to select the
+correct answer. When an option is clicked, the server logs the
+selection and updates the user's test history, and the client reveals
+the correct answer.
 
 \subsection{News Categories}
 \label{subsec:category}
 As our learning platform is active only on certain news websites, we
 model the news category of both individual words and webpages. Of
-particular importance to {\tt WordNews} is the association of words to a
+particular importance to WordNews is the association of words to a
 news category, which is used downstream in both word sense
 disambiguation (Section~\ref{sec:wsd}) and the generation of
 distractors in the interactive tests (Section~\ref{sec:distractor}).

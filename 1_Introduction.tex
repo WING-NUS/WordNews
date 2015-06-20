@@ -1,11 +1,10 @@
 \section{Introduction}
-Learning a new language from language learning websites is 
-time consuming. Research shows that regular practice, guessing, 
-memorization~\cite{Rubin1975} as well as immersion into real 
-scenarios~\cite{Naiman1978} hastens language learning process. 
-To make second language learning 
-attractive and efficient, we seek to interleave language learning 
-with a popular daily activity: online news reading.
+Learning a new language from language learning websites is time
+consuming. Research shows that regular practice, guessing,
+memorization~\cite{Rubin1975} as well as immersion into real
+scenarios~\cite{Naiman1978} hastens the language learning process.  To
+make second language learning attractive and efficient, we interleave
+language learning with the daily activity of online news reading.
 % Min: not needed. 
 %% Further recent increase in the popularity of 
 %% portable devices and computers has made online news reading 
@@ -42,15 +41,15 @@ basis and are limited by learning materials as lesson curation is
 often labor-intensive.
 
 In contrast, many people informally use Google
-Translate\footnote{\url{https://translate.google.com/}} to learn
-vocabulary, making it a prominent example of a user-driven system.
+Translate\footnote{\url{https://translate.google.com/}} or Amazon Kindle's Vocabulary Builder\footnote{\url{http://www.amazon.com/gp/help/customer/display.html?nodeId=201733850}} to learn
+vocabulary, making these prominent examples of user-driven systems.
 % Tao: It is better to  postpone mentioning the specific two languages. Perhpas mention it 
 % at the end of this paragraph. Too many Chinese (English) makes reading a little bit hard. 
 % In addition, our current system is to help a English speaker to learn Chinese, not suitable 
 % for a Chinese speaker to learn English.
 % Muthu: okay. I thought, I saw screenshots for both ways.
 % Anway, we will stick with Eng -> Chinese throughout.
-Google Translate, however, lacks the rigor of a learning platform as it lacks
+These systems, however, lack the rigor of a learning platform as they omit
 tests to allow learners to demonstrate mastery.  In our work, we merge
 learning and assessment within the single activity of news reading.
 %Learners are tested while they learn. 
@@ -59,28 +58,23 @@ Our system also adapts to the learner's skill during assessment.
 %Perhaps, this justifies the poor adoption of current second language learning 
 %systems. 
 
-Earlier \cite{meurers2010} had proposed a user-driven system that modifies 
-any web page in the target language to highlight or remove certain words 
-from patterns that are believed to be difficult to learn in English. These 
-patterns are specific syntactic structures in English. Their focus thus was 
-to teach parts of difficult to learn English grammar. 
+We propose a system to enable online news readers to efficiently learn
+a new language's vocabulary. Our prototype targets Chinese language
+learning while reading English language news. Learners are provided
+translations of open-domain words for learning from an English news
+page. In the same environment -- for words that the system deems
+mastered by the learner -- learners are assessed by replacing the
+original English text in the article with their Chinese translations
+and asked to translate them back given a choice of possible
+translations.  The system, {\bf WordNews}, deployed as a Chrome web
+browser extension, is triggered when readers visit a preconfigured
+list of news websites ({\it e.g.}, CNN, BBC).
 
-Differently we propose a system to enable online news readers to efficiently 
-learn a new language's vocabulary. Our prototype targets Chinese language 
-learning while reading English language news. Learners are provided translations 
-of open-domain words for learning from an English news page. In the same
-environment -- for words that the system deems mastered by the learner
--- learners are assessed by replacing the original English text in the
-article with their Chinese translations and asked to translate them
-back given a choice of possible translations.  The system, {\tt WordNews}, 
-deployed as a Chrome web browser extension, is triggered when readers visit a
-preconfigured list of news websites ({\it e.g.}, CNN, BBC).
-
-A key design property of our {\tt WordNews} language learning extension  is that it is only
-active on certain news websites.  This is important as news articles
-typically are classified with respect to a news category, such as {\it
-  finance}, {\it world news}, and {\it sports}. If we know which
-category of news the learner is viewing, we can leverage this
+A key design property of our WordNews web browser extension is that it
+is only active on certain news websites.  This is important as news
+articles typically are classified with respect to a news category,
+such as {\it finance}, {\it world news}, and {\it sports}. If we know
+which category of news the learner is viewing, we can leverage this
 contextual knowledge to improve the learning experience.
 
 In the development of the system, we discovered two key components
