@@ -38,7 +38,7 @@ translated and the enclosing sentence.
 
 \subsection{Bilingual Dictionary and Baseline}
 % Tao2: revised
-{\tt SystemA}'s server component includes a bilingual lexicon of
+{\tt WordNews}'s server component includes a bilingual lexicon of
 English words with possible Chinese senses. The English words in our 
 dictionary is based on the publicly-available College
 English Test (CET 4) list, which has a breadth of about 4,000 words.
@@ -107,7 +107,7 @@ final output. If none matches, the system does not output a translation
 for the word.  
 
 {\bf Relaxed Match.} The final rule in the substring match method
-unfortunately fires often, as the coverage of {\tt SystemA}'s lexicon
+unfortunately fires often, as the coverage of {\tt WordNews}'s lexicon
 is limited.  As we wish to offer correct translations that are not
 limited by our lexicon, we relax our substring condition, allowing the
 Bing translation to be a superset of a candidate translation in our
@@ -138,8 +138,8 @@ lexicon) may generate several possible matches.
 
 % Tao2: revised
 Consider Example 6 in Table~\ref{table:wsd_1}.  The target English
-word ``state'' has corresponding Chinese entries ``发言'' and ``国家的''.
-For this reason, both ``国家" (``country'', correct) and ``发言人" (``spokeswoman'', incorrect) are relaxed matched.  As relaexed approach always picks up the last candidate,  ``发言人" is yielded as a final output.
+word ``state'' has corresponding Chinese entries ``发言'' and ``国家的'' in our dictionary.
+For this reason, both ``国家" (``country'', correct) and ``发言人" (``spokeswoman'', incorrect) are relaxed matched.  As relaxed approach always picks up the last candidate,  ``发言人" is yielded as the final output, which is unfortunately an incorrect translation.
 
 To address this, we use the Bing Word Alignment
 API\footnote{\url{https://msdn.microsoft.com/en-us/library/dn198370.aspx}}

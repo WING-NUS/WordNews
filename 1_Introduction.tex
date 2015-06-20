@@ -72,11 +72,11 @@ of open-domain words for learning from an English news page. In the same
 environment -- for words that the system deems mastered by the learner
 -- learners are assessed by replacing the original English text in the
 article with their Chinese translations and asked to translate them
-back given a choice of possible translations.  The system, deployed as
-a Chrome web browser extension, is triggered when readers visit a
+back given a choice of possible translations.  The system, {\tt WordNews}, 
+deployed as a Chrome web browser extension, is triggered when readers visit a
 preconfigured list of news websites ({\it e.g.}, CNN, BBC).
 
-A key design property of our language learning extension is that it is only
+A key design property of our {\tt WordNews} language learning extension  is that it is only
 active on certain news websites.  This is important as news articles
 typically are classified with respect to a news category, such as {\it
   finance}, {\it world news}, and {\it sports}. If we know which
@@ -90,24 +90,27 @@ two components: \textbf{(i)} for translating English words to Chinese
 from news articles, \textbf{(ii)} for generating distractors 
 for learner assessment.
 
-Much research exists on distractor generation for Multiple Choice Questions (MCQ).
-However, distractor generation for factoid questions are different from those 
-for vocabulary assessment. Semantic and syntactic properties of the target word 
-need to be considered while generating their distractors. 
-For instance, distractor generation for English prepositions \cite{lee2007} 
-used a corpora collected non-native English speakers that would capture their
-idiosyncratic incorrect usages. Recently \cite{pho2014multiple} studied homogeneity 
-characteristics among distractors from multiple MCQ corpora and tried to generate 
-new distractors over a test corpus. They validated the hypothesis of syntactic 
-and semantic homogeneity among distractors. \cite{susanti2015} generate distractors 
-using wordnet and word sense disambiguation given a target word. Unlike our system 
-that generates distractors for cloze questions for several target words from a
-single news article, they retrieve separate passages from the web for each 
-target word they choose to test on. While their approach serves in testing 
-mastery it doesn't provide for learning new vocabulary in context. 
-L{\"a}rka \cite{volodina2014} a Swedish language learning system generates 
-vocabulary assessment exercises using a corpus. They also have different modes of 
-exercise generation to allow learning and testing via the same interface.
+% Tao2: moved this to 5_Distractor
+%Much research exists on distractor generation for Multiple Choice Questions (MCQ).
+%However, distractor generation for factoid questions are different from those 
+%for vocabulary assessment. Semantic and syntactic properties of the target word 
+%need to be considered while generating their distractors. 
+%For instance, distractor generation for English prepositions \cite{lee2007} 
+%used a corpora collected non-native English speakers that would capture their
+%idiosyncratic incorrect usages. Recently \cite{pho2014multiple} studied homogeneity 
+%characteristics among distractors from multiple MCQ corpora and tried to generate 
+%new distractors over a test corpus. They validated the hypothesis of syntactic 
+%and semantic homogeneity among distractors. \cite{susanti2015} generate distractors 
+%using wordnet and word sense disambiguation given a target word. Unlike our system 
+%that generates distractors for cloze questions for several target words from a
+%single news article, they retrieve separate passages from the web for each 
+%target word they choose to test on. While their approach serves in testing 
+%mastery it doesn't provide for learning new vocabulary in context. 
+%L{\"a}rka \cite{volodina2014} a Swedish language learning system generates 
+%vocabulary assessment exercises using a corpus. They also have different modes of 
+%exercise generation to allow learning and testing via the same interface.
+
+
 
 %The system even adapts to the user's current knowledge level during assessment.
 %The service is available as desktop / mobile / web software including a chrome extension. 
