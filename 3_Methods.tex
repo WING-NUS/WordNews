@@ -84,59 +84,54 @@ the correct answer.
 \subsection{News Categories}
 \label{subsec:category}
 As our learning platform is active only on certain news websites, we
-model the news category of both individual words and webpages. Of
-particular importance to WordNews is the association of words to a
-news category, which is used downstream in both word sense
-disambiguation (Section~\ref{sec:wsd}) and the generation of
-distractors in the interactive tests (Section~\ref{sec:distractor}).
-Here, our goal is to automatically find highly relevant words to a
-particular news category -- {\it e.g.}, ``what are typical {\it finance}
-words?''.  
+can model the news category (for individual words and whole webpages)
+as additional evidence to help with tasks.  Of particular importance
+to WordNews is the association of words to a news category, which is
+used downstream in both word sense disambiguation
+(Section~\ref{sec:wsd}) and the generation of distractors in the
+interactive tests (Section~\ref{sec:distractor}).  Here, our goal is
+to automatically find highly relevant words to a particular news
+category -- {\it e.g.}, ``what are typical {\it finance} words?''.
 
 We first obtain a large sample of categorized English news webpages,
-by creating custom crawlers for specific news websites~({\it e.g.} CNN).  We use a seed
-list of words that are matched against a target webpage's URL.  If any
-match, the webpage is deemed to be of that category.  For example, a
-webpage that has the seed word ``football'' in its URL is deemed of
-category ``Sports''.  
-%Tao2: added
-Since news category is  also required for Chinese words (used in word sense disambiguation), we perform similar procedure to crawl news articles from 
-Chinese news websites ({\it e.g.}, BaiduNews\footnote{\url{http://news.baidu.com}})
-However, Chinese news sites have a
-different categorization scheme, and as such, we first have to manually
-align the different categories based on our observation (See
-Table~\ref{table:cat}).  After a survey of a number of English and
-Chinese news websites, we decided on seven categories: namely,
-``World'', ``Technology'', ``Sports'', ``Entertainment'', ``Finance'',
+by creating custom crawlers for specific news websites~({\it e.g.}
+CNN).  We use a seed list of words that are matched against a target
+webpage's URL.  If any match, the webpage is deemed to be of that
+category.  For example, a webpage that has the seed word ``football''
+in its URL is deemed of category ``Sports''.  Since the news category
+is also required for Chinese words for word sense disambiguation, we
+must perform a similar procedure to crawl Chinese news ({\it e.g.},
+BaiduNews\footnote{\url{http://news.baidu.com}}) However, Chinese news
+sites follow a different categorization scheme, so we first manually
+align the categories based on observation (see Table~\ref{table:cat}),
+creating seven bilingual categories: namely, ``World'',
+``Technology'', ``Sports'', ``Entertainment'', ``Finance'',
 ``Fashion'' and ``Travel''.
- 
 
 % Tao: please check the example words.
-\begin{table}[ht]
+\begin{table}[t]
 \centering
   \caption{News category alignment between English and Chinese.}
   \label{table:cat}
-  \begin{tabular}{| p{2.2cm} | p{2.2cm} | p{1.8cm} |}
+  \begin{tabular}{| p{2.4cm} | p{2.2cm} | p{1.9cm} |}
     \hline
     {\bf English \qquad Category} & {\bf Chinese \qquad Category} & {\bf Example Words}\\
     \hline
-    Entertainment & Entertainment & ``superstar", ``明星"\\
+    1. Entertainment & Entertainment & ``superstar", ``明星"\\
     \hline
-     World &  Military, \qquad International, Social & ``attacks'', ``军事"  \\
+    2. World &  Military, \qquad International, Social & ``attacks'', ``军事"  \\
     \hline
-    Finance & Finance & ``investment", ``财富"\\
+    3. Finance & Finance & ``investment", ``财富"\\
     \hline
-    Sports & Sports & ``score'', ``比赛" \\
+    4. Sports & Sports & ``score'', ``比赛" \\
     \hline
-    Fashion &  Beauty \& Health & ``jewelry", ``时髦"\\
+    5. Fashion &  Beauty \& Health & ``jewelry", ``时髦"\\
     \hline
-    Technology & Technology  & ``cyber", ``互联网"\\ \hline
-    Travel  &  & ``natural'' \\
+    6. Technology & Technology  & ``cyber", ``互联网"\\ \hline
+    7. Travel  &  & ``natural'' \\
     \hline
   \end{tabular}
 \end{table}
-
-
 
 %\begin{table}[ht]
 %\centering
@@ -163,20 +158,17 @@ Chinese news websites, we decided on seven categories: namely,
 %  \end{tabular}
 %\end{table}
 
-
 We tokenize and part-of-speech tag the main body text of the
 categorized articles, discarding punctuation and stopwords.  For
-Chinese, we additionally carry out Chinese word segmentation using
-the Stanford Chinese word segmenter~\cite{Chang2008}. The remaining
-words are classified to a news category based on document frequency. A
-word $w$ is classified to a category $c$ if it appears  more often 
-(a tunable threshold $\delta$\footnote{We empricially set $\delta$ to $10$.}) than its average category document
-frequency.  Note that a word can be categorized to multiple categories
-under this scheme.
-
+Chinese, we segment words using the Stanford Chinese word
+segmenter~\cite{Chang2008}. The remaining words are classified to a
+news category based on document frequency. A word $w$ is classified to
+a category $c$ if it appears more often (a tunable threshold
+$\delta$\footnote{We empricially set $\delta$ to $10$.}) than its
+average category document frequency.  Note that a word can be
+categorized to multiple categories under this scheme.
 
 %% A word w is classified into category C(i) if it satisfies Equation~\ref{equation:Distractor_3}::
-
 %% \begin{equation}
 %% f (w, C(i)) - sw(w)/n >= \delta
 %% \label{equation:Distractor_3} 
@@ -185,8 +177,6 @@ under this scheme.
 %% The confidence factor $\delta$ can be a positive integer between 0 and the average number of articles in each category. It means on average, the word w must appear in a specific category C(i) $\delta$ times more than it appear in other category before it can be classified into category C(i).
 
 %% It is obvious that a higher confidence factor value will result in less number words getting classified, but it will result in getting words that are more accurate. A suitable confident value is selected to generating category-related words in the later section.
-
-
 
 \end{CJK}
 
