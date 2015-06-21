@@ -5,45 +5,44 @@ Assesing mastery over vocabulary is the other key functionality of our
 prototype learning platform.  The generation of the multiple choice
 selection test requires the selection of alternative choices aside
 from the correct answer of the target word.  In this section, we
-investigate a way to automatically generate such choices (called
-``distractors'') (in English form) for a target word. 
-
-
+investigate a way to automatically generate such choices (called {\it
+  distractors} in the literature) in English, given a target word.
 
 \subsection{Related Work}
 %Tao2: moved from sec1
-Much research exists on distractor generation for Multiple Choice Questions (MCQ).
-However, distractor generation for factoid questions are different from those 
-for vocabulary assessment. Semantic and syntactic properties of the target word 
-need to be considered while generating their distractors. 
-For instance, distractor generation for English prepositions \cite{lee2007} 
-used a corpora collected non-native English speakers that would capture their
-idiosyncratic incorrect usages. Recently \cite{pho2014multiple} studied homogeneity 
-characteristics among distractors from multiple MCQ corpora and tried to generate 
-new distractors over a test corpus. They validated the hypothesis of syntactic 
-and semantic homogeneity among distractors. \cite{susanti2015} generate distractors 
-using WordNet and word sense disambiguation given a target word. Unlike our system 
-that generates distractors for cloze questions for several target words from a
-single news article, they retrieve separate passages from the web for each 
-target word they choose to test on. While their approach serves in testing 
-mastery it doesn't provide for learning new vocabulary in context. 
-L{\"a}rka \cite{volodina2014} a Swedish language learning system generates 
-vocabulary assessment exercises using a corpus. They also have different modes of 
-exercise generation to allow learning and testing via the same interface.
-
+Much research exists on distractor generation for Multiple Choice
+Questions (MCQ).  However, distractor generation for factoid questions
+are different from those for vocabulary assessment. Semantic and
+syntactic properties of the target word need to be considered while
+generating their distractors.  For instance, distractor generation for
+English prepositions \cite{lee2007} used a corpus collected from
+non-native English speakers that captured their idiosyncratic
+incorrect usage. Recently, \cite{pho2014multiple} studied homogeneity
+characteristics among distractors from multiple MCQ corpora,
+generating new distractors over a test corpus. They validated their
+hypothesis of syntactic and semantic homogeneity among
+distractors. \cite{susanti2015} generate distractors using WordNet and
+word sense disambiguation given a target word.  Unlike our system that
+generates distractors for cloze questions for target words from a
+single news article, they retrieve separate passages from the web for
+each target word they choose to test on. While their approach serves
+in testing mastery, it does not provide the capability for learning
+new vocabulary in context.  Finally, L{\"a}rka \cite{volodina2014} --
+a Swedish language learning system -- generates vocabulary assessment
+exercises using a corpus. They also have different modes of exercise
+generation to allow learning and testing via the same interface.
 
 \subsection{Approach}
-We postulate ``a
-set of suitable distractors'' as: 1) having the same form as the
-target word, 2) fitting the sentence's context, and 3) having proper
-difficulty level according to user's level of mastery.
+WordNews postulates ``a set of suitable distractors'' as: 1) having
+the same form as the target word, 2) fitting the sentence's context,
+and 3) having proper difficulty level according to user's level of
+mastery.
 %By applying a part-of-speech tagger, we obtain the POS tag for the target word, and then restrict the  %candidate distractors to be selected from the same word class.
 As input to the distractor generation algorithm, we provide the target
 word, its part-of-speech (obtained by tagging the input sentence
 first) and the enclosing webpage's news category. We restrict the
 algorithm to produce distractors matching the input POS, and which
 match the news category of the page.
-
 
 %To generate good category-related distractors, it is essential to gather enough words that are more related in a certain category to serve as distractors candidates. By using the approach discussed in Section~\ref{subsec:category}, we crawled more than 1400 articles for seven categories, with around 200 articles in each category. The confidence factor is selected to be 10, which is suitable to classify enough words into different categories. After this step, there should be sufficient “Category-Related" words in each category.
 
@@ -150,7 +149,7 @@ We conducted a human subject evaluation of distractor generation to
 assess its fitness for use.  The subjects were asked to rank the
 feasibility of a distractor (inclusive of the actual answer) from a
 given sentential context.  The contexts were sentences retrieved from
-actual news webpages, identical to {\tt WordNews}'s use case.
+actual news webpages, identical to WordNews's use case.
 
 We randomly selected 50 sentences from recent news articles, choosing
 a noun or adjective from the sentence as the target word. We show the
@@ -226,7 +225,7 @@ in each evaluation.
 \end{table}
 
 \begin{table}[th]
-    \caption{WordGap vs. {\tt WordNews} Hard.  Lower scores are better.}
+    \caption{WordGap vs. WordNews Hard.  Lower scores are better.}
     \label{table:distractor_2}
     \begin{center}
     \begin{tabular}{| p{2.5cm} | p{1.5cm} | p{1.8cm} |}
@@ -235,7 +234,7 @@ in each evaluation.
         \hline
         WordGap & 21 & 4.16\\
         \hline
-        {\tt WordNews} Hard & 29 & 3.49\\
+        WordNews Hard & 29 & 3.49\\
         \hline
     \end{tabular}
     \end{center}
@@ -243,7 +242,7 @@ in each evaluation.
 
 
 \begin{table*}[ht]
-\caption{Distractors generated by WordGap and {\tt WordNews} Hard for example question in Figure~\ref{fig:distractor_1}.} 
+\caption{Distractors generated by WordGap and WordNews Hard for example question in Figure~\ref{fig:distractor_1}.} 
 \label{table:example_distractors}
 \centering
 \begin{tabular}{|l|l|l|l|l|}
@@ -253,7 +252,7 @@ Target Word                   & lark       &               &              & 1.33
 \multirow{3}{*}{WordGap}      & frolic     &               &              & 3.33       \\ \cline{2-5} 
                               & runaround  &               &              & 5.67       \\ \cline{2-5} 
                               & cavort     &               &              & 4.17       \\ \hline
-\multirow{3}{*}{{\tt WordNews} Hard} & art        & Entertainment & 0.154        & 1.67       \\ \cline{2-5} 
+\multirow{3}{*}{WordNews Hard} & art        & Entertainment & 0.154        & 1.67       \\ \cline{2-5} 
                               & film       & Entertainment & 0.147        & 3.33       \\ \cline{2-5} 
                               & actress    & Entertainment & 0.217        & 4.83       \\ \hline
 \end{tabular}
