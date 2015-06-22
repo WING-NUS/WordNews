@@ -9,28 +9,63 @@ investigate a way to automatically generate such choices (called {\it
   distractors} in the literature) in English, given a target word.
 
 \subsection{Related Work}
-%Tao2: moved from sec1
-Much research exists on distractor generation for Multiple Choice
-Questions (MCQ).  However, distractor generation for factoid questions
-are different from those for vocabulary assessment. Semantic and
-syntactic properties of the target word need to be considered while
-generating their distractors.  For instance, distractor generation for
-English prepositions \cite{lee2007} used a corpus collected from
-non-native English speakers that captured their idiosyncratic
-incorrect usage. Recently, \cite{pho2014multiple} studied homogeneity
-characteristics among distractors from multiple MCQ corpora,
-generating new distractors over a test corpus. They validated their
-hypothesis of syntactic and semantic homogeneity among
-distractors. \cite{susanti2015} generate distractors using WordNet and
-word sense disambiguation given a target word.  Unlike our system that
-generates distractors for cloze questions for target words from a
-single news article, they retrieve separate passages from the web for
-each target word they choose to test on. While their approach serves
-in testing mastery, it does not provide the capability for learning
-new vocabulary in context.  Finally, L{\"a}rka \cite{volodina2014} --
+%Tao2: moved from sec1 and edited
+%Much research exists on distractor generation for Multiple Choice
+%Question (MCQ).  However, distractor generation for factoid questions
+%are different from those for vocabulary assessment. Semantic and
+%syntactic properties of the target word need to be considered while
+%generating their distractors.  For instance, distractor generation for
+%English prepositions \cite{lee2007} used a corpus collected from
+%non-native English speakers that captured their idiosyncratic
+%incorrect usage. Recently, \cite{pho2014multiple} studied homogeneity
+%characteristics among distractors from multiple MCQ corpora,
+%generating new distractors over a test corpus. They validated their
+%hypothesis of syntactic and semantic homogeneity among
+%distractors. \cite{susanti2015} generate distractors using WordNet and
+%word sense disambiguation given a target word.  Unlike our system that
+%generates distractors for cloze questions for target words from a
+%single news article, they retrieve separate passages from the web for
+%each target word they choose to test on. While their approach serves
+%in testing mastery, it does not provide the capability for learning
+%new vocabulary in context.  Finally, L{\"a}rka \cite{volodina2014} --
+%a Swedish language learning system -- generates vocabulary assessment
+%exercises using a corpus. They also have different modes of exercise
+%generation to allow learning and testing via the same interface.
+
+
+Multiple choice question (MCQ) is a widely used test in vocabulary learning.
+%However, distractor generation for factoid questions
+%are different from those for vocabulary assessment. 
+Semantic and syntactic properties of the target word need to be considered while
+generating their distractors.  In particular, \cite{pho2014multiple} 
+did an analysis on real-life MCQ corpus, and validated the
+syntactic and semantic homogeneity do exist among distractors.
+Based on this, automatic distractor generation algorithms have been proposed.
+
+For instance, \cite{lee2007} generate distractors for English prepositions
+based on collocations, and idiosyncratic incorrect usage learned from non-native English corpora.   L{\"a}rka \cite{volodina2014} --
 a Swedish language learning system -- generates vocabulary assessment
 exercises using a corpus. They also have different modes of exercise
 generation to allow learning and testing via the same interface.
+\cite{susanti2015} generate distractors for TOEFL vocabulary test 
+using WordNet and
+word sense disambiguation given a target word.  
+%Unlike our system that
+%generates distractors for cloze questions 
+%for target words from a
+%single news article, they retrieve separate passages from the web for
+%each target word they choose to test on.
+While these approaches serve
+in testing mastery, it does not provide the capability for learning
+new vocabulary in context.
+The most related prior work is WordGap system~\cite{Knoop2013}, a mobile
+application that generates MCQ tests based on the text selected by users. 
+WordGap customizes the reading context, however, the generation of distractors -- based on syntactic and semantic homogeneity -- is not contextualized.
+%Moreover, WordGap is not a real language learning tool, {\it e.g.}, unable to track user's learning history.
+ 
+
+
+
 
 \subsection{Approach}
 WordNews postulates ``a set of suitable distractors'' as: 1) having
