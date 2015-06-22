@@ -27,7 +27,7 @@ class TranslatesController < ApplicationController
 
     user = User.where(:user_name => @user_name).first
     if user.nil?
-      user = make_user @user_naml
+      user = make_user @user_name
     end
     user_id = user.id
     category_list = user.translate_categories.split(",")
@@ -41,7 +41,7 @@ class TranslatesController < ApplicationController
       #this is to add downcase and singularize support
       original_word = word.downcase.singularize
       english_meaning_row = EnglishWords.joins(:meanings)
-                                        .select('english_meaning, meanings.id, meanings.chinese_words_id')
+                                        .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
                                         .where("english_meaning = ?", original_word)
 
       english_meaning = nil
@@ -54,6 +54,7 @@ class TranslatesController < ApplicationController
         english_meaning = english_meaning_row.first # take the first meaning by default, unless a sentence matches
 
         english_meaning_row.length.times do |index|
+          # checks if the bing-translated chinese sentence contains the chinese word retrieved
           if chinese_sentence.to_s.include? ChineseWords.find(english_meaning_row[index].chinese_words_id).chinese_meaning
             english_meaning = english_meaning_row[index]
             break
@@ -109,7 +110,7 @@ class TranslatesController < ApplicationController
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
 
-        choices = Meaning.where(:word_category_id => category_list).where("english_words_id != ?", @original_word_id).random(3)
+        choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", @original_word_id).random(3)
         choices.each_with_index { |val, idx|   
           @text[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
@@ -129,7 +130,7 @@ class TranslatesController < ApplicationController
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
 
-        choices = Meaning.where(:word_category_id => category_list).where("chinese_words_id != ?", @original_word_chinese_id).random(3)
+        choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("chinese_words_id != ?", @original_word_chinese_id).random(3)
         choices.each_with_index { |val, idx|   
           @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
@@ -202,6 +203,7 @@ class TranslatesController < ApplicationController
     @token = params[:word]
     @category = params[:category]
     @knowledge_level = params[:level]
+    @sentence = params[:sentence]
     
     # use a doubly-nested structure for now, as so to support receiving multiple tokens in future
     @result = Hash.new  
