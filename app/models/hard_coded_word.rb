@@ -1,7 +1,8 @@
 class HardCodedWord < ActiveRecord::Base
-  before_save lstrip_slash
+  before_save :rstrip_slash
   attr_accessible :translation, :url, :word
-  def lstrip_slash
-    self.url = self.url.chomp '/'
-  end
+  protected
+    def rstrip_slash
+      self.url = self.url.chomp '/'
+    end
 end
