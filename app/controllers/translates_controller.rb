@@ -22,7 +22,7 @@ class TranslatesController < ApplicationController
     word_list = params[:text].split(" ")
     chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
     @user_name = params[:name]
-    @url = params[:url]
+    @url = params[:url].chomp '/'
     @num_words = params[:num_words].to_i || 2
 
     user = User.where(:user_name => @user_name).first
