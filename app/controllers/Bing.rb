@@ -1,7 +1,7 @@
 module Bing
 	# Specify all arguments
 	def Bing.translate(text, from, to)
-		translator = BingTranslator.new(ENV["bingid"], ENV["bingkey"], ENV["bingaccount"])
+		translator = BingTranslator.new(ENV["bingid"], ENV["bingkey"], false, ENV["bingaccount"])
         #puts ENV["bingid"]
         #puts ENV["bingkey"]
 		# Or... Specify only required arguments
