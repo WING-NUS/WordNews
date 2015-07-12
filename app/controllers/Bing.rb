@@ -1,9 +1,11 @@
 module Bing
 	# Specify all arguments
 	def Bing.translate(text, from, to)
-		translator = BingTranslator.new(ENV["bingid"], ENV["bingkey"])
+		#translator = BingTranslator.new(ENV["bingid"], ENV["bingkey"])
+        puts ENV["bingid"]
+        puts ENV["bingkey"]
 		# Or... Specify only required arguments
-		#translator = BingTranslator.new('LearnNews', 'jvdytVMvoC+DNOHQUBk2UbMBv3kydl8/hPFGUtxlod0=')
+		translator = BingTranslator.new('LearnNews', 'jvdytVMvoC+DNOHQUBk2UbMBv3kydl8/hPFGUtxlod0=')
 
 		chinese = translator.translate text, :from => from, :to => to #'zh-CHS'
 		# without :from for auto language detection
