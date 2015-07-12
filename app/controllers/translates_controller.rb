@@ -20,7 +20,8 @@ class TranslatesController < ApplicationController
     
     @text = Hash.new
     word_list = params[:text].split(" ")
-    chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
+    #chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
+    chinese_sentence = ''
     @user_name = params[:name]
     @url = params[:url].chomp '/'
     @num_words = params[:num_words].to_i || 2
@@ -242,13 +243,13 @@ class TranslatesController < ApplicationController
 
   def remember 
     @user_name = params[:name]
-    @ifRemember = params[:isRemembered].to_i
+    @isRemember = params[:isRemembered].to_i
     @url = params[:url]
     @meaning_id = params[:wordID]
     @user_id = User.where(:user_name => @user_name).first.id
     testEntry = History.where(:meaning_id => @meaning_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
-      if @ifRemember == 0
+      if @isRemember == 0
         testEntry.frequency = 0
       else
         testEntry.frequency= testEntry.frequency+1 
@@ -260,7 +261,7 @@ class TranslatesController < ApplicationController
       understand.user_id = @user_id
       understand.meaning_id = @meaning_id
       understand.url = @url
-      understand.frequency = @ifRemember
+      understand.frequency = @isRemember
       understand.save
     end
     respond_to do |format|
