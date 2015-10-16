@@ -388,7 +388,21 @@ class TranslatesController < ApplicationController
       format.json { render json: @translate }
     end
   end
+  
+  def parse_alignment_string(alignments)
+    aligned_positions = Hash.new
+    for mapping in alignments.split(" ")
+        lhs = mapping.split('-')[0]
+        start_of_lhs = lhs.split(':')[0]
 
+        rhs = mapping.split('-')[1]
+        start_of_rhs = rhs.split(':')[0]
+        end_of_rhs = rhs.split(':')[1]
+
+        aligned_positions[start_of_lhs.to_i] = [start_of_rhs.to_i, end_of_rhs.to_i]
+    end
+    aligned_positions
+  end
 
 
 end
