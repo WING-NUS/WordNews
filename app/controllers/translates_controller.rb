@@ -35,6 +35,7 @@ class TranslatesController < ApplicationController
 
     words_retrieved = 0
     for word in word_list
+      word = word.gsub(/[^a-zA-Z]/, "") 
       if words_retrieved >= @num_words
         break  # no need to continue as @num_words is the number of words requested by the client
       end      
@@ -160,7 +161,6 @@ class TranslatesController < ApplicationController
         #  @text[word]['choices'][idx.to_s] = val.strip
         #}
         @text[word]['isChoicesProvided'] = false
-
       end
 
     end # end of for word in word_list
@@ -187,6 +187,7 @@ class TranslatesController < ApplicationController
 
     words_retrieved = 0
     for word in word_list
+      word = word.gsub(/[^a-zA-Z]/, "") 
       if words_retrieved >= @num_words
         break  # no need to continue as @num_words is the number of words requested by the client
       end      
@@ -206,7 +207,7 @@ class TranslatesController < ApplicationController
 
         chinese_alignment_pos_start, pos_end = alignment[word_index]
 
-        zh_word = chinese_sentence[chinese_alignment_pos_start..pos_end]
+        zh_word = chinese_sentence[chinese_alignment_pos_start..pos_end + 1]
       end
 
       @text[word] = Hash.new
@@ -306,7 +307,7 @@ class TranslatesController < ApplicationController
       @result[word_under_test]['choices'][idx.to_s] = val.strip
     }
         
-    hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word )
+    hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => @token )
     if hard_coded_quiz.length > 0
           
       @text[word]['choices']['0'] = hard_coded_word.first.option1
