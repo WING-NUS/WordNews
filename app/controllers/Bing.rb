@@ -7,7 +7,7 @@ module Bing
 		# Or... Specify only required arguments
 		#translator = BingTranslator.new('LearnNews', 'jvdytVMvoC+DNOHQUBk2UbMBv3kydl8/hPFGUtxlod0=', false, )
 
-		chinese = translator.translate_array2 [text], :from => from, :to => to #'zh-CHS'
+		chinese = translator.translate text, :from => from, :to => to #'zh-CHS'
 		# without :from for auto language detection
 		# spanish = translator.translate 'Hello. This will be translated!', :to => 'es'
 		#puts chinese
@@ -16,7 +16,7 @@ module Bing
 		# puts audio
 		# Account balance
 		translator.balance # => 20000
-		return chinese[0]
+		return chinese
 	end
 
 	def speak(text, language)
@@ -37,5 +37,4 @@ module Bing
 	  end
 	  token
 	end
-
 end
