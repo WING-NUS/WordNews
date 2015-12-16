@@ -182,6 +182,12 @@ class TranslatesController < ApplicationController
     @url = params[:url].chomp '/'
     @num_words = params[:num_words].to_i || 2
 
+    user = User.where(:user_name => @user_name).first
+    if user.nil?
+      user = make_user @user_name
+    end
+    user_id = user.id
+
     words_retrieved = 0
     index_offset = 0
     for word in word_list
@@ -197,7 +203,7 @@ class TranslatesController < ApplicationController
                                         .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
                                         .where("english_meaning = ?", normalised_word)
 
-      english_meaning = nil
+      english_meaning = english_meaning_row.first
       zh_word = ''
       if english_meaning_row.length == 0
         # no such english word in our dictionary
@@ -218,30 +224,77 @@ class TranslatesController < ApplicationController
 
       @text[word] = Hash.new
 
-      # check if a hard-coded translation is specified for this word
-      hard_coded_word = HardCodedWord.where(:url => @url, :word => normalised_word )
-      if hard_coded_word.length > 0
-        if hard_coded_word.first.translation?
-          @text[word]['chinese'] = hard_coded_word.first.translation
-        else
-          @text.delete(word)
-          next
+
+      testEntry = Meaning.joins(:histories)
+                         .select('meaning_id, frequency')
+                         .where("user_id = ? AND meaning_id = ?", user_id, english_meaning_row.first.id).first
+
+	  if testEntry.blank? or testEntry.frequency.to_i <= 3  #just translate the word
+	      # check if a hard-coded translation is specified for this word
+	      hard_coded_word = HardCodedWord.where(:url => @url, :word => normalised_word )
+	      if hard_coded_word.length > 0
+	        if hard_coded_word.first.translation?
+	          @text[word]['chinese'] = hard_coded_word.first.translation
+	        else
+	          @text.delete(word)
+	          next
+	        end
+	      end
+
+	      @original_word_id = english_meaning_row.first.id
+
+	      # if this point is reached, then the word and related information is sent back
+	      words_retrieved = words_retrieved + 1
+
+	      @text[word]['wordID'] = @original_word_id # pass meaningId to client
+	      if hard_coded_word.length == 0
+	        @text[word]['chinese'] = zh_word
+	      end
+	      @text[word]['pronunciation'] = '' # bing can return words not in our dictionary, so we don't bother trying to find the pronunciation
+
+	      @text[word]['isTest'] = 0
+	      @text[word]['position'] = word_index
+
+	  elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 6 # quiz 
+        @text[word]['isTest'] = 1
+        @text[word]['choices'] = Hash.new
+        @text[word]['isChoicesProvided'] = true
+
+        choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", @original_word_id).random(3)
+        choices.each_with_index { |val, idx|   
+          @text[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
+        }
+
+        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word )
+        # if there is a hard coded quiz, replace the words with the hard-coded values
+        if hard_coded_quiz.length > 0
+          
+          @text[word]['choices']['0'] = hard_coded_quiz.first.option1
+          @text[word]['choices']['1'] = hard_coded_quiz.first.option2
+          @text[word]['choices']['2'] = hard_coded_quiz.first.option3
+          @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
+        end
+
+      elsif testEntry.frequency.to_i > 6
+        @text[word]['isTest'] = 2
+        @text[word]['choices'] = Hash.new
+        @text[word]['isChoicesProvided'] = true
+
+        choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("chinese_words_id != ?", @original_word_chinese_id).random(3)
+        choices.each_with_index { |val, idx|   
+          @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
+        }
+
+        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word )
+        # if there is a hard coded quiz, replace the words with the hard-coded values
+        if hard_coded_quiz.length > 0 
+          
+          @text[word]['choices']['0'] = hard_coded_quiz.first.option1
+          @text[word]['choices']['1'] = hard_coded_quiz.first.option2
+          @text[word]['choices']['2'] = hard_coded_quiz.first.option3
+          @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
         end
       end
-
-      @original_word_id = english_meaning_row.first.id
-
-      # if this point is reached, then the word and related information is sent back
-      words_retrieved = words_retrieved + 1
-
-      @text[word]['wordID'] = @original_word_id # pass meaningId to client
-      if hard_coded_word.length == 0
-        @text[word]['chinese'] = zh_word
-      end
-      @text[word]['pronunciation'] = '' # bing can return words not in our dictionary, so we don't bother trying to find the pronunciation
-
-      @text[word]['isTest'] = 0
-      @text[word]['position'] = word_index
 
     end # end of for word in word_list
 
