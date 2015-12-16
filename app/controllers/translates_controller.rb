@@ -17,7 +17,7 @@ class TranslatesController < ApplicationController
   # GET /translates/1
   # GET /translates/1.json
   def show
-    
+
     @text = Hash.new
     word_list = params[:text].split(" ")
     #chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
@@ -35,16 +35,16 @@ class TranslatesController < ApplicationController
 
     words_retrieved = 0
     for word in word_list
-      word = word.gsub(/[^a-zA-Z]/, "") 
+      word = word.gsub(/[^a-zA-Z]/, "")
       if words_retrieved >= @num_words
-        break  # no need to continue as @num_words is the number of words requested by the client
-      end      
+        break # no need to continue as @num_words is the number of words requested by the client
+      end
 
       #this is to add downcase and singularize support
       original_word = word.downcase.singularize
       english_meaning_row = EnglishWords.joins(:meanings)
-                                        .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
-                                        .where("english_meaning = ?", original_word)
+                                .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
+                                .where("english_meaning = ?", original_word)
 
       english_meaning = nil
       if english_meaning_row.length == 0
@@ -67,7 +67,7 @@ class TranslatesController < ApplicationController
       @text[word] = Hash.new
 
       # check if a hard-coded translation is specified for this word
-      hard_coded_word = HardCodedWord.where(:url => @url, :word => original_word )
+      hard_coded_word = HardCodedWord.where(:url => @url, :word => original_word)
       if hard_coded_word.length > 0
         if hard_coded_word.first.translation?
           @text[word]['chinese'] = hard_coded_word.first.translation
@@ -78,7 +78,7 @@ class TranslatesController < ApplicationController
       end
 
       @original_word_id = english_meaning_row.first.id
-      
+
 
       #if temp.chinese_words_id.nil?
       #  english_meaning = meanings[0]
@@ -96,15 +96,15 @@ class TranslatesController < ApplicationController
         @text[word]['chinese'] = chinese_word.chinese_meaning
       end
       @text[word]['pronunciation'] = chinese_word.pronunciation
-      
-      
+
+
       #@user_id = User.where(:user_name => @user_name).first.id
       testEntry = Meaning.joins(:histories)
-                         .select('meaning_id, frequency')
-                         .where("user_id = ? AND meaning_id = ?", user_id, english_meaning.id).first
+                      .select('meaning_id, frequency')
+                      .where("user_id = ? AND meaning_id = ?", user_id, english_meaning.id).first
 
 
-      if testEntry.blank? or testEntry.frequency.to_i <= 3  #just translate the word
+      if testEntry.blank? or testEntry.frequency.to_i <= 3 #just translate the word
         @text[word]['isTest'] = 0
 
       elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 6 # quiz 
@@ -113,14 +113,14 @@ class TranslatesController < ApplicationController
         @text[word]['isChoicesProvided'] = true
 
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", @original_word_id).random(3)
-        choices.each_with_index { |val, idx|   
+        choices.each_with_index { |val, idx|
           @text[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
 
-        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word )
+        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
         # if there is a hard coded quiz, replace the words with the hard-coded values
         if hard_coded_quiz.length > 0
-          
+
           @text[word]['choices']['0'] = hard_coded_quiz.first.option1
           @text[word]['choices']['1'] = hard_coded_quiz.first.option2
           @text[word]['choices']['2'] = hard_coded_quiz.first.option3
@@ -133,14 +133,14 @@ class TranslatesController < ApplicationController
         @text[word]['isChoicesProvided'] = true
 
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("chinese_words_id != ?", @original_word_chinese_id).random(3)
-        choices.each_with_index { |val, idx|   
+        choices.each_with_index { |val, idx|
           @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
 
-        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word )
+        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
         # if there is a hard coded quiz, replace the words with the hard-coded values
-        if hard_coded_quiz.length > 0 
-          
+        if hard_coded_quiz.length > 0
+
           @text[word]['choices']['0'] = hard_coded_quiz.first.option1
           @text[word]['choices']['1'] = hard_coded_quiz.first.option2
           @text[word]['choices']['2'] = hard_coded_quiz.first.option3
@@ -149,14 +149,14 @@ class TranslatesController < ApplicationController
       elsif testEntry.frequency.to_i >= 11
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
-        
+
         category = 'Technology' # TODO extract category
         level = 3
         word_under_test = original_word
 
         #distractors_str = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
         #distractors = distractors_str.split(',')
-        
+
         #distractors.each_with_index { |val, idx|   
         #  @text[word]['choices'][idx.to_s] = val.strip
         #}
@@ -174,10 +174,10 @@ class TranslatesController < ApplicationController
   def showbybing
     @text = Hash.new
     word_list = params[:text].split(" ")
-    chinese_sentence, alignment = Bing.translate(params[:text].to_s, "en", "zh-CHS")
+    chinese_sentence, alignment = Bing.translate(params[:text].to_s, 'en', 'zh-CHS')
 
     alignment = parse_alignment_string(alignment)
-    
+
     @user_name = params[:name]
     @url = params[:url].chomp '/'
     @num_words = params[:num_words].to_i || 2
@@ -192,16 +192,16 @@ class TranslatesController < ApplicationController
     index_offset = 0
     for word in word_list
       orig_word = word
-      word = word.gsub(/[^a-zA-Z]/, "") 
+      word = word.gsub(/[^a-zA-Z]/, '')
       if words_retrieved >= @num_words
-        break  # no need to continue as @num_words is the number of words requested by the client
-      end      
+        break # no need to continue as @num_words is the number of words requested by the client
+      end
 
       #this is to add downcase and singularize support
       normalised_word = word.downcase.singularize
       english_meaning_row = EnglishWords.joins(:meanings)
-                                        .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
-                                        .where("english_meaning = ?", normalised_word)
+                                .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
+                                .where("english_meaning = ?", normalised_word)
 
       english_meaning = english_meaning_row.first
       zh_word = ''
@@ -209,16 +209,16 @@ class TranslatesController < ApplicationController
         # no such english word in our dictionary
         next
       elsif english_meaning_row.length >= 1 # is in our dictionary
-		word_index = params[:text].index(orig_word, index_offset)
+        word_index = params[:text].index(orig_word, index_offset)
         index_offset = word_index || index_offset # this is to handle multiple occurences of the same word in the text
-                                                  # don't change index_offset if word_index is nil, which should not happen
+        # don't change index_offset if word_index is nil, which should not happen
 
         chinese_alignment_pos_start, pos_end = alignment[word_index]
 
-		if pos_end.nil?
+        if pos_end.nil?
           # bing thinks that the word is part of a longer phrase, so we do not translate
           next
-		end
+        end
         zh_word = chinese_sentence[chinese_alignment_pos_start..pos_end]
       end
 
@@ -226,49 +226,49 @@ class TranslatesController < ApplicationController
 
 
       testEntry = Meaning.joins(:histories)
-                         .select('meaning_id, frequency')
-                         .where("user_id = ? AND meaning_id = ?", user_id, english_meaning_row.first.id).first
+                      .select('meaning_id, frequency')
+                      .where("user_id = ? AND meaning_id = ?", user_id, english_meaning_row.first.id).first
 
-	  if testEntry.blank? or testEntry.frequency.to_i <= 3  #just translate the word
-	      # check if a hard-coded translation is specified for this word
-	      hard_coded_word = HardCodedWord.where(:url => @url, :word => normalised_word )
-	      if hard_coded_word.length > 0
-	        if hard_coded_word.first.translation?
-	          @text[word]['chinese'] = hard_coded_word.first.translation
-	        else
-	          @text.delete(word)
-	          next
-	        end
-	      end
+      if testEntry.blank? or testEntry.frequency.to_i <= 3 #just translate the word
+        # check if a hard-coded translation is specified for this word
+        hard_coded_word = HardCodedWord.where(:url => @url, :word => normalised_word)
+        if hard_coded_word.length > 0
+          if hard_coded_word.first.translation?
+            @text[word]['chinese'] = hard_coded_word.first.translation
+          else
+            @text.delete(word)
+            next
+          end
+        end
 
-	      @original_word_id = english_meaning_row.first.id
+        @original_word_id = english_meaning_row.first.id
 
-	      # if this point is reached, then the word and related information is sent back
-	      words_retrieved = words_retrieved + 1
+        # if this point is reached, then the word and related information is sent back
+        words_retrieved = words_retrieved + 1
 
-	      @text[word]['wordID'] = @original_word_id # pass meaningId to client
-	      if hard_coded_word.length == 0
-	        @text[word]['chinese'] = zh_word
-	      end
-	      @text[word]['pronunciation'] = '' # bing can return words not in our dictionary, so we don't bother trying to find the pronunciation
+        @text[word]['wordID'] = @original_word_id # pass meaningId to client
+        if hard_coded_word.length == 0
+          @text[word]['chinese'] = zh_word
+        end
+        @text[word]['pronunciation'] = '' # bing can return words not in our dictionary, so we don't bother trying to find the pronunciation
 
-	      @text[word]['isTest'] = 0
-	      @text[word]['position'] = word_index
+        @text[word]['isTest'] = 0
+        @text[word]['position'] = word_index
 
-	  elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 6 # quiz 
+      elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 6 # quiz
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
 
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", @original_word_id).random(3)
-        choices.each_with_index { |val, idx|   
+        choices.each_with_index { |val, idx|
           @text[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
 
-        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word )
+        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
         # if there is a hard coded quiz, replace the words with the hard-coded values
         if hard_coded_quiz.length > 0
-          
+
           @text[word]['choices']['0'] = hard_coded_quiz.first.option1
           @text[word]['choices']['1'] = hard_coded_quiz.first.option2
           @text[word]['choices']['2'] = hard_coded_quiz.first.option3
@@ -281,14 +281,14 @@ class TranslatesController < ApplicationController
         @text[word]['isChoicesProvided'] = true
 
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("chinese_words_id != ?", @original_word_chinese_id).random(3)
-        choices.each_with_index { |val, idx|   
+        choices.each_with_index { |val, idx|
           @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
 
-        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word )
+        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
         # if there is a hard coded quiz, replace the words with the hard-coded values
-        if hard_coded_quiz.length > 0 
-          
+        if hard_coded_quiz.length > 0
+
           @text[word]['choices']['0'] = hard_coded_quiz.first.option1
           @text[word]['choices']['1'] = hard_coded_quiz.first.option2
           @text[word]['choices']['2'] = hard_coded_quiz.first.option3
@@ -321,13 +321,13 @@ class TranslatesController < ApplicationController
     @text = Hash.new
     @text['chineseSentence'] = Hash.new
     @text['englishSentence'] = Hash.new
-    sentence_list.each_with_index{ |val, idx|
+    sentence_list.each_with_index { |val, idx|
       @text['chineseSentence'][idx.to_s] = ExampleSentence.find(val.example_sentences_id).chinese_sentence
       @text['englishSentence'][idx.to_s] = ExampleSentence.find(val.example_sentences_id).english_sentence
     }
 
     respond_to do |format|
-      format.html { render :layout => false }# new.html.erb
+      format.html { render :layout => false } # new.html.erb
       format.json { render json: @translate }
     end
   end
@@ -338,11 +338,11 @@ class TranslatesController < ApplicationController
     @category = params[:category]
     @knowledge_level = params[:level]
     @sentence = params[:sentence]
-    
+
     # use a doubly-nested structure for now, as so to support receiving multiple tokens in future
-    @result = Hash.new  
+    @result = Hash.new
     @result[@token] = Hash.new
-    @result[@token]['isTest'] = 1    # TODO rename isTest to testType
+    @result[@token]['isTest'] = 1 # TODO rename isTest to testType
     @result[@token]['choices'] = Hash.new
 
     category = @category
@@ -354,27 +354,27 @@ class TranslatesController < ApplicationController
     distractor_size = distractors.size
     puts "#{word_under_test} has  #{distractors.size} distractors"
 
-    distractors.each_with_index { |val, idx|   
+    distractors.each_with_index { |val, idx|
       @result[word_under_test]['choices'][idx.to_s] = val.strip
     }
-        
-    hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => @token )
+
+    hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => @token)
     if hard_coded_quiz.length > 0
-          
+
       @text[word]['choices']['0'] = hard_coded_word.first.option1
       @text[word]['choices']['1'] = hard_coded_word.first.option2
       @text[word]['choices']['2'] = hard_coded_word.first.option3
     end
-    
+
     respond_to do |format|
-      format.json { render json: @result}
-    end 
+      format.json { render json: @result }
+    end
   end
 
   # GET /translates/new
   # GET /translates/new.json
 
-  def remember 
+  def remember
     @user_name = params[:name]
     @isRemember = params[:isRemembered].to_i
     @url = params[:url]
@@ -385,7 +385,7 @@ class TranslatesController < ApplicationController
       if @isRemember == 0
         testEntry.frequency = 0
       else
-        testEntry.frequency= testEntry.frequency+1 
+        testEntry.frequency= testEntry.frequency+1
       end
       testEntry.url = @url
       testEntry.save
@@ -398,7 +398,7 @@ class TranslatesController < ApplicationController
       understand.save
     end
     respond_to do |format|
-      format.html { render :layout => false }# new.html.erb
+      format.html { render :layout => false } # new.html.erb
       format.json { render json: @translate }
     end
   end
@@ -436,22 +436,22 @@ class TranslatesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :layout => false }# new.html.erb
+      format.html { render :layout => false } # new.html.erb
       format.json { render json: @translate }
     end
   end
-  
+
   def parse_alignment_string(alignments)
     aligned_positions = Hash.new
     for mapping in alignments.split(" ")
-        lhs = mapping.split('-')[0]
-        start_of_lhs = lhs.split(':')[0]
+      lhs = mapping.split('-')[0]
+      start_of_lhs = lhs.split(':')[0]
 
-        rhs = mapping.split('-')[1]
-        start_of_rhs = rhs.split(':')[0]
-        end_of_rhs = rhs.split(':')[1]
+      rhs = mapping.split('-')[1]
+      start_of_rhs = rhs.split(':')[0]
+      end_of_rhs = rhs.split(':')[1]
 
-        aligned_positions[start_of_lhs.to_i] = [start_of_rhs.to_i, end_of_rhs.to_i]
+      aligned_positions[start_of_lhs.to_i] = [start_of_rhs.to_i, end_of_rhs.to_i]
     end
     aligned_positions
   end
