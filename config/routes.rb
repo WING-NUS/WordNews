@@ -13,7 +13,7 @@ TranslateApp::Application.routes.draw do
   
   
   root to: 'translates#index'
-  match '/show', to: 'translates#show', via: :post
+  match '/show', to: 'translates#showbybing', via: :post
   match '/showbybing', to: 'translates#showbybing', via: :post
   match '/remember', to: 'translates#remember', via: :get
   match '/getQuiz', to: 'translates#quiz', via: :get
