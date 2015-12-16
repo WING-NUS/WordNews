@@ -174,46 +174,52 @@ class TranslatesController < ApplicationController
   def showbybing
     @text = Hash.new
     word_list = params[:text].split(" ")
-    chinese_sentence, alignment = Bing.translate(params[:text].to_s,"en","zh-CHS")
+    chinese_sentence, alignment = Bing.translate(params[:text].to_s, "en", "zh-CHS")
 
     alignment = parse_alignment_string(alignment)
     
-
-    #chinese_sentence = ''
     @user_name = params[:name]
     @url = params[:url].chomp '/'
     @num_words = params[:num_words].to_i || 2
 
-
     words_retrieved = 0
+    index_offset = 0
     for word in word_list
+      orig_word = word
       word = word.gsub(/[^a-zA-Z]/, "") 
       if words_retrieved >= @num_words
         break  # no need to continue as @num_words is the number of words requested by the client
       end      
 
       #this is to add downcase and singularize support
-      original_word = word.downcase.singularize
+      normalised_word = word.downcase.singularize
       english_meaning_row = EnglishWords.joins(:meanings)
                                         .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
-                                        .where("english_meaning = ?", original_word)
+                                        .where("english_meaning = ?", normalised_word)
 
       english_meaning = nil
       zh_word = ''
       if english_meaning_row.length == 0
+        # no such english word in our dictionary
         next
       elsif english_meaning_row.length >= 1 # is in our dictionary
-        word_index = params[:text].index(word)  # get index of word
+		word_index = params[:text].index(orig_word, index_offset)
+        index_offset = word_index || index_offset # this is to handle multiple occurences of the same word in the text
+                                                  # don't change index_offset if word_index is nil, which should not happen
 
         chinese_alignment_pos_start, pos_end = alignment[word_index]
 
-        zh_word = chinese_sentence[chinese_alignment_pos_start..pos_end + 1]
+		if pos_end.nil?
+          # bing thinks that the word is part of a longer phrase, so we do not translate
+          next
+		end
+        zh_word = chinese_sentence[chinese_alignment_pos_start..pos_end]
       end
 
       @text[word] = Hash.new
 
       # check if a hard-coded translation is specified for this word
-      hard_coded_word = HardCodedWord.where(:url => @url, :word => original_word )
+      hard_coded_word = HardCodedWord.where(:url => @url, :word => normalised_word )
       if hard_coded_word.length > 0
         if hard_coded_word.first.translation?
           @text[word]['chinese'] = hard_coded_word.first.translation
@@ -224,26 +230,18 @@ class TranslatesController < ApplicationController
       end
 
       @original_word_id = english_meaning_row.first.id
-      
-
-      #if temp.chinese_words_id.nil?
-      #  english_meaning = meanings[0]
-      #end
 
       # if this point is reached, then the word and related information is sent back
       words_retrieved = words_retrieved + 1
 
-      #@original_word_chinese_id = english_meaning.chinese_words_id
-
       @text[word]['wordID'] = @original_word_id # pass meaningId to client
-      #chinese_word = ChineseWords.find(english_meaning.chinese_words_id)
       if hard_coded_word.length == 0
         @text[word]['chinese'] = zh_word
       end
-      @text[word]['pronunciation'] = '' # bing can return words not in our dictionary
-      
+      @text[word]['pronunciation'] = '' # bing can return words not in our dictionary, so we don't bother trying to find the pronunciation
 
       @text[word]['isTest'] = 0
+      @text[word]['position'] = word_index
 
     end # end of for word in word_list
 
