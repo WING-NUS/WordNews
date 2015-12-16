@@ -220,6 +220,13 @@ class TranslatesController < ApplicationController
           next
         end
         zh_word = chinese_sentence[chinese_alignment_pos_start..pos_end]
+
+        # find meaning using the chinese word given by bing
+        actual_meaning = EnglishWords.joins(:meanings).joins(:chinese_words)
+                                     .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
+                                     .where('english_meaning = ?', normalised_word)
+                                     .where('chinese_meaning = ?', zh_word).first
+
       end
 
       @text[word] = Hash.new
@@ -241,7 +248,7 @@ class TranslatesController < ApplicationController
           end
         end
 
-        @original_word_id = english_meaning_row.first.id
+        @original_word_id = actual_meaning.nil? ? english_meaning_row.first.id : actual_meaning.id
 
         # if this point is reached, then the word and related information is sent back
         words_retrieved = words_retrieved + 1
