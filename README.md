@@ -1,1 +1,2 @@
 # WordNews
+# Comment from Naijia
