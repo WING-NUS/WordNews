@@ -147,12 +147,13 @@ class TranslatesController < ApplicationController
           @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
         end
       elsif testEntry.frequency.to_i >= 11
-        @text[word]['isTest'] = 1
-        @text[word]['choices'] = Hash.new
+        next
+        #@text[word]['isTest'] = 1
+        #@text[word]['choices'] = Hash.new
 
-        category = 'Technology' # TODO extract category
-        level = 3
-        word_under_test = original_word
+        #category = 'Technology' # TODO extract category
+        #level = 3
+        #word_under_test = original_word
 
         #distractors_str = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
         #distractors = distractors_str.split(',')
@@ -160,7 +161,7 @@ class TranslatesController < ApplicationController
         #distractors.each_with_index { |val, idx|   
         #  @text[word]['choices'][idx.to_s] = val.strip
         #}
-        @text[word]['isChoicesProvided'] = false
+        #@text[word]['isChoicesProvided'] = false
       end
 
     end # end of for word in word_list
@@ -262,7 +263,7 @@ class TranslatesController < ApplicationController
         @text[word]['isTest'] = 0
         @text[word]['position'] = word_index
 
-      elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 6 # quiz
+      elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 5 # quiz
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
@@ -282,7 +283,11 @@ class TranslatesController < ApplicationController
           @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
         end
 
-      elsif testEntry.frequency.to_i > 6
+      elsif testEntry.frequency.to_i > 5
+        @text.delete(word)
+        next
+
+        # don't need to compute
         @text[word]['isTest'] = 2
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
