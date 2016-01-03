@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.example.naijia.wordnews.APIRequest;
+import com.example.naijia.wordnews.IndexListViewUpdate;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -35,7 +36,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class MainActivity extends AppCompatActivity {
     private PostData[] listData;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,69 +43,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        try{
-            String url = "http://rss.cnn.com/rss/edition.rss";
-            //String xmlRecords = "<data><terminal_id>1000099999</terminal_id><merchant_id>10004444</merchant_id><merchant_info>Mc Donald's - Abdoun</merchant_info></data>";
-            String response = "";
-            try {
-                response = new APIRequest().execute(url).get();
-            } catch (ExecutionException | InterruptedException e) {
-                //DO something
-            }
-
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            XmlPullParser xpp = factory.newPullParser();
-            xpp.setInput(new StringReader(response));
-            int eventType = xpp.getEventType();
-            PostData data = null;
-            listData = new PostData[100];
-            int count = 0;
-            data = new PostData();
-            data.postDate = "";
-            data.postTitle = "";
-            data.postThumbUrl = null;
-            String nameTag = "";
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-
-                if (eventType == XmlPullParser.START_DOCUMENT) {
-                    //do something
-                } else if (eventType == XmlPullParser.START_TAG) {
-                    nameTag = xpp.getName();
-                } else if (eventType == XmlPullParser.END_TAG) {
-                    if(xpp.getName().equals("item")) {
-                        Log.d("LOG",data.postTitle);
-                        listData[count] = data;
-                        count++;
-                        if(count>10) break;
-                        data = new PostData();
-                        data.postDate = "";
-                        data.postTitle = "";
-                        data.postThumbUrl = null;
-                    }
-                } else if (eventType == XmlPullParser.TEXT) {
-                    if(nameTag.equals("title")){
-                        data.postTitle = xpp.getText();
-                    } else if (nameTag.equals("pubDate")){
-                        data.postDate = xpp.getText();
-                    }
-                }
-                eventType = xpp.next();
-            }
-            for(int i=0;i<10;i++){
-                Log.d("LOG_FINAL", listData[i].postTitle);
-            }
-            ListView listView = (ListView) this.findViewById(R.id.postListView);
-            PostItemAdapter itemAdapter = new PostItemAdapter(this,
-                    R.layout.postitem, listData);
-            listView.setAdapter(itemAdapter);
-//        } catch (ParserConfigurationException | IOException | SAXException | XmlPullParserException e){
-        } catch (IOException | XmlPullParserException e){
-            this.generateDummyData();
-            ListView listView = (ListView) this.findViewById(R.id.postListView);
-            PostItemAdapter itemAdapter = new PostItemAdapter(this,
-                    R.layout.postitem, listData);
-            listView.setAdapter(itemAdapter);
-        }
+        listData = new PostData[20];
+        ListView listView = (ListView) this.findViewById(R.id.postListView);
+        IndexListViewUpdate indexListView = new IndexListViewUpdate();
+        indexListView.updateData(listData);
+        PostItemAdapter itemAdapter = new PostItemAdapter(this, R.layout.postitem, listData);
+        listView.setAdapter(itemAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -120,12 +63,11 @@ public class MainActivity extends AppCompatActivity {
                 } catch (ExecutionException | InterruptedException e) {
                     //DO something
                 }
-                Log.d("API",response);
+                Log.d("API", response);
                 Snackbar.make(view, response, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
-
     }
 
     @Override
@@ -133,18 +75,6 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    private void generateDummyData() {
-        PostData data = null;
-        listData = new PostData[10];
-        for (int i = 0; i < 10; i++) { //please ignore this comment :>
-            data = new PostData();
-            data.postDate = "May 20, 2013";
-            data.postTitle = "Post " + (i + 1) + " Title: This is the Post Title from RSS Feed";
-            data.postThumbUrl = null;
-            listData[i] = data;
-        }
     }
 
     @Override
