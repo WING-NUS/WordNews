@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/postThumb"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/postthumb_loading"
         android:scaleType="centerCrop"
         android:layout_marginRight="5dp"/>

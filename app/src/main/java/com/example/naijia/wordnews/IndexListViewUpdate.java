@@ -18,7 +18,7 @@ public class IndexListViewUpdate {
 
     public void updateData(PostData[] listData){
         try{
-            String url = "http://rss.cnn.com/rss/edition.rss";
+            String url = "http://www.forbes.com/most-popular/feed/";
             //String xmlRecords = "<data><terminal_id>1000099999</terminal_id><merchant_id>10004444</merchant_id><merchant_info>Mc Donald's - Abdoun</merchant_info></data>";
             String response = "";
             try {
@@ -44,11 +44,18 @@ public class IndexListViewUpdate {
                 if (eventType == XmlPullParser.START_DOCUMENT) {
                     //do something
                 } else if (eventType == XmlPullParser.START_TAG) {
-                    Log.d("START_TAG", xpp.getName());
+                    if (nameTag.equals("media:content") | nameTag.equals("media:thumbnail")){
+//                        Log.d("LOG_TEXT",xpp.getText()+" "+xpp.getText().length());
+//                        Log.d("LOG_TEXT",xpp.getText()+" "+xpp.getAttributeName(0)+" "+xpp.getAttributeNamespace(0));
+                        if(xpp.getAttributeValue(null,"url") != null){
+//                            Log.d("LOG_TEXT",xpp.getAttributeValue(null,"url"));
+                            data.postThumbUrl = xpp.getAttributeValue(null, "url");
+                        }
+                    }
                     nameTag = xpp.getName();
                 } else if (eventType == XmlPullParser.END_TAG) {
                     if(xpp.getName().equals("item")) {
-                        Log.d("LOG",data.postTitle);
+                        Log.d("LOG",data.postTitle+"|"+data.postThumbUrl);
                         listData[count] = data;
                         count++;
                         if(count>=20) break;
@@ -59,13 +66,17 @@ public class IndexListViewUpdate {
                         data.postThumbUrl = null;
                     }
                 } else if (eventType == XmlPullParser.TEXT) {
-                    if(nameTag.equals("title")){
+//                    Log.d("LOG_TAG",nameTag);
+                    if(nameTag.equals("title") && xpp.getText().length() > 6){
                         data.postTitle = xpp.getText();
-                    } else if (nameTag.equals("pubDate")){
+                    } else if (nameTag.equals("pubDate") && xpp.getText().length() > 6){
                         data.postDate = xpp.getText();
-                    } else if (nameTag.equals("link")){
+                    } else if (nameTag.equals("link") && xpp.getText().length() > 6){
                         data.postLink = xpp.getText();
                     }
+                } else {
+                    Log.d("LOG_UNKNOWN_DATA","LOG_UNKNOWN_DATA");
+                    Log.d("LOG_UNKNOWN_DATA",xpp.getText());
                 }
                 eventType = xpp.next();
             }

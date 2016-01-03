@@ -34,8 +34,11 @@ public class PostItemAdapter extends ArrayAdapter<PostData> {
         View rowView = inflater.inflate(R.layout.postitem, null);
         ImageView thumbImageView = (ImageView) rowView
                 .findViewById(R.id.postThumb);
+
         if (datas[position].postThumbUrl == null) {
             thumbImageView.setImageResource(R.drawable.postthumb_loading);
+        } else {
+            new ImageDownloader(thumbImageView).execute(datas[position].postThumbUrl);
         }
 
         TextView postTitleView = (TextView) rowView
