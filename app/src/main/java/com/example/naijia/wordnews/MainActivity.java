@@ -9,12 +9,15 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
 import com.example.naijia.wordnews.APIRequest;
 
 import java.io.InterruptedIOException;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
+    private PostData[] listData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +26,19 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //String url = "http://wordnews-mobile.herokuapp.com/show?text=\"A car bomb attack on a military convoy in south-eastern Turkey has killed two soldiers and injured four others, Turkish officials say.\"&url=http://www.bbc.com/news/world-europe-33667427&name=id1450520015716_1&num_words=2";
+
+        this.generateDummyData();
+        ListView listView = (ListView) this.findViewById(R.id.postListView);
+        PostItemAdapter itemAdapter = new PostItemAdapter(this,
+                R.layout.postitem, listData);
+        listView.setAdapter(itemAdapter);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //String url = "http://wordnews-mobile.herokuapp.com/show?text=\"A car bomb attack on a military convoy in south-eastern Turkey has killed two soldiers and injured four others, Turkish officials say.\"&url=http://www.bbc.com/news/world-europe-33667427&name=id1450520015716_1&num_words=2";
                 //String url = "http://wordnews-mobile.herokuapp.com/remember?name=id1450520015716_1&wordID=16381&isRemembered=1&url=http://www.bbc.com/news/world-europe-33667427";
                 String url = "http://wordnews-mobile.herokuapp.com/getNumber?name=id1450520015716_1";
                 String response = "";
@@ -50,6 +60,18 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    private void generateDummyData() {
+        PostData data = null;
+        listData = new PostData[10];
+        for (int i = 0; i < 10; i++) { //please ignore this comment :>
+            data = new PostData();
+            data.postDate = "May 20, 2013";
+            data.postTitle = "Post " + (i + 1) + " Title: This is the Post Title from RSS Feed";
+            data.postThumbUrl = null;
+            listData[i] = data;
+        }
     }
 
     @Override

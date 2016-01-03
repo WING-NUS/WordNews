@@ -12,8 +12,8 @@
     tools:context="com.example.naijia.wordnews.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="厚里蟹" />
+    <ListView
+        android:id="@+id/postListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 </RelativeLayout>
