@@ -1,16 +1,22 @@
 package com.example.naijia.wordnews;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.EventLogTags;
 import android.util.Log;
 import android.util.Xml;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.content.Intent;
 
 import com.example.naijia.wordnews.APIRequest;
 import com.example.naijia.wordnews.IndexListViewUpdate;
@@ -66,6 +72,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("API", response);
                 Snackbar.make(view, response, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Uri uri = Uri.parse(listData[(int) id].postLink);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                Log.d("DisplayNewsLink", listData[(int)id].postLink);
             }
         });
     }
