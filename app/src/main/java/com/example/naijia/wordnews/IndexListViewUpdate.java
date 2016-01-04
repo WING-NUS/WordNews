@@ -14,9 +14,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by lzznj on 2016/1/3.
- */
 public class IndexListViewUpdate {
 
     public void updateData(PostData[] listData){

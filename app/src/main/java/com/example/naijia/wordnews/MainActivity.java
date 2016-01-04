@@ -65,11 +65,7 @@ public class MainActivity extends AppCompatActivity {
         List<PostData> list = new ArrayList<PostData>();
         for(PostData s : listData) {if(s != null) {list.add(s);}}
         listData = list.toArray(new PostData[list.size()]);
-//        Log.d("LOG_DATA_LENGTH", String.valueOf(listData.length));
-//        for(int i=0;i<listData.length;i++) {
-//            Log.d("LOG_LISTDATA",String.valueOf(i));
-//            Log.d("LOG_LISTDATA",String.valueOf(i) +" "+ listData[i].postLink);
-//        }
+
         PostItemAdapter itemAdapter = new PostItemAdapter(this, R.layout.postitem, listData);
         listView.setAdapter(itemAdapter);
         final Activity activity = this;
@@ -107,19 +103,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
