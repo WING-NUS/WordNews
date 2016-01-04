@@ -1,6 +1,9 @@
 package com.example.naijia.wordnews;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.EventLogTags;
 import android.util.Log;
 import android.util.Xml;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +22,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -76,16 +81,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //String url = "http://wordnews-mobile.herokuapp.com/show?text=\"A car bomb attack on a military convoy in south-eastern Turkey has killed two soldiers and injured four others, Turkish officials say.\"&url=http://www.bbc.com/news/world-europe-33667427&name=id1450520015716_1&num_words=2";
                 //String url = "http://wordnews-mobile.herokuapp.com/remember?name=id1450520015716_1&wordID=16381&isRemembered=1&url=http://www.bbc.com/news/world-europe-33667427";
-                String url = "http://wordnews-mobile.herokuapp.com/getNumber?name=id1450520015716_1";
-                String response = "";
-                try {
-                    response = new APIRequest().execute(url).get();
-                } catch (ExecutionException | InterruptedException e) {
-                    //DO something
-                }
-                Log.d("API", response);
-                Snackbar.make(view, response, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                String url = "http://wordnews-mobile.herokuapp.com/getNumber?name=id1450520015716_1";
+//                String response = "";
+//                try {
+//                    response = new APIRequest().execute(url).get();
+//                } catch (ExecutionException | InterruptedException e) {
+//                    //DO something
+//                }
+//                Log.d("API", response);
+//                Snackbar.make(view, response, Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+                Intent intent = new Intent(MainActivity.this, TranslateDialogActivity.class);
+                Bundle b = new Bundle();
+                intent.putExtras(b);
+                startActivity(intent);
+
             }
         });
 
