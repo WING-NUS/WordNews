@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -31,6 +32,7 @@ public class TranslateActivity extends AppCompatActivity {
         webview.setHorizontalScrollBarEnabled(true);
         setContentView(webview);
         webview.getSettings().setJavaScriptEnabled(true);
+
         webview.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, int progress) {
                 activity.setProgress(progress * 1000);
@@ -43,6 +45,12 @@ public class TranslateActivity extends AppCompatActivity {
         });
         webview.loadUrl(passedURL);
         Log.d("DisplayNewsLink", passedURL);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 }
 
