@@ -28,9 +28,16 @@ public class TranslateActivity extends AppCompatActivity {
         String passedURL = b.getString("key");
 
         webView = (WebView) findViewById(R.id.activity_main_webview);
-//        webView.setVerticalScrollBarEnabled(true);
-//        webView.setHorizontalScrollBarEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
+        webView.setVerticalScrollBarEnabled(true);
+        webView.setHorizontalScrollBarEnabled(true);
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                String javascript = "javascript: "+js;
+                view.loadUrl(javascript);
+                Log.d("PAGE_LOADED", "PAGE_LOADED");
+            }
+        });
         webView.getSettings().setJavaScriptEnabled(true);
 
 //        webView.setWebChromeClient(new WebChromeClient() {
@@ -52,5 +59,7 @@ public class TranslateActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+    private String js = "";
+
 }
 
