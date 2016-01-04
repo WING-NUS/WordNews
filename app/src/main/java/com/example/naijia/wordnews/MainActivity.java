@@ -107,10 +107,11 @@ public class MainActivity extends AppCompatActivity {
 
                 // set values for custom dialog components - text, image and button
                 TextView text = (TextView) dialog.findViewById(R.id.textDialog);
-                text.setText("n. 故事；小说；新闻报道；来历；假话\n" +
-                            "vt. 用历史故事画装饰\n" +
-                            "vi. 说谎\n" +
-                            "n. (Story)人名；(英)斯托里");
+                String tmpString="n. 故事；小说；新闻报道；来历；假话\n" +
+                        "vt. 用历史故事画装饰\n" +
+                        "vi. 说谎\n" +
+                        "n. (Story)人名；(英)斯托里";
+                text.setText(tmpString);
                 dialog.show();
 
 //                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);

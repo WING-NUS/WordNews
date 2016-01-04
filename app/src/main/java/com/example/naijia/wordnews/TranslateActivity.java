@@ -13,7 +13,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 public class TranslateActivity extends AppCompatActivity {
-
+    private WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -27,23 +27,23 @@ public class TranslateActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String passedURL = b.getString("key");
 
-        WebView webview = new WebView(activity);
-        webview.setVerticalScrollBarEnabled(true);
-        webview.setHorizontalScrollBarEnabled(true);
-        setContentView(webview);
-        webview.getSettings().setJavaScriptEnabled(true);
+        webView = (WebView) findViewById(R.id.activity_main_webview);
+//        webView.setVerticalScrollBarEnabled(true);
+//        webView.setHorizontalScrollBarEnabled(true);
+        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setJavaScriptEnabled(true);
 
-        webview.setWebChromeClient(new WebChromeClient() {
-            public void onProgressChanged(WebView view, int progress) {
-                activity.setProgress(progress * 1000);
-            }
-        });
-        webview.setWebViewClient(new WebViewClient() {
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
-            }
-        });
-        webview.loadUrl(passedURL);
+//        webView.setWebChromeClient(new WebChromeClient() {
+//            public void onProgressChanged(WebView view, int progress) {
+//                activity.setProgress(progress * 1000);
+//            }
+//        });
+//        webView.setWebViewClient(new WebViewClient() {
+//            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+//                Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        webView.loadUrl(passedURL);
         Log.d("DisplayNewsLink", passedURL);
     }
 
