@@ -1,5 +1,6 @@
 package com.example.naijia.wordnews;
 
+import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,10 @@ import android.util.Xml;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private PostData[] listData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().requestFeature(Window.FEATURE_PROGRESS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -55,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         indexListView.updateData(listData);
         PostItemAdapter itemAdapter = new PostItemAdapter(this, R.layout.postitem, listData);
         listView.setAdapter(itemAdapter);
+        final Activity activity = this;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,10 +85,23 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Uri uri = Uri.parse(listData[(int) id].postLink);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-                Log.d("DisplayNewsLink", listData[(int)id].postLink);
+                WebView webview = new WebView(activity);
+                webview.setVerticalScrollBarEnabled(true);
+                webview.setHorizontalScrollBarEnabled(true);
+                setContentView(webview);
+                webview.getSettings().setJavaScriptEnabled(true);
+                webview.setWebChromeClient(new WebChromeClient() {
+                    public void onProgressChanged(WebView view, int progress) {
+                        activity.setProgress(progress * 1000);
+                    }
+                });
+                webview.setWebViewClient(new WebViewClient() {
+                    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                        Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                webview.loadUrl(listData[(int) id].postLink);
+                Log.d("DisplayNewsLink", listData[(int) id].postLink);
             }
         });
     }
