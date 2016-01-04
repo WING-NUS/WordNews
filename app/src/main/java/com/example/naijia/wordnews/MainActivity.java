@@ -34,6 +34,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InterruptedIOException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -53,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) this.findViewById(R.id.postListView);
         IndexListViewUpdate indexListView = new IndexListViewUpdate();
         indexListView.updateData(listData);
+        List<PostData> list = new ArrayList<PostData>();
+        for(PostData s : listData) {if(s != null) {list.add(s);}}
+        listData = list.toArray(new PostData[list.size()]);
+//        Log.d("LOG_DATA_LENGTH", String.valueOf(listData.length));
+//        for(int i=0;i<listData.length;i++) {
+//            Log.d("LOG_LISTDATA",String.valueOf(i));
+//            Log.d("LOG_LISTDATA",String.valueOf(i) +" "+ listData[i].postLink);
+//        }
         PostItemAdapter itemAdapter = new PostItemAdapter(this, R.layout.postitem, listData);
         listView.setAdapter(itemAdapter);
 
@@ -81,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 Uri uri = Uri.parse(listData[(int) id].postLink);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
-                Log.d("DisplayNewsLink", listData[(int)id].postLink);
+                Log.d("DisplayNewsLink", listData[(int) id].postLink);
             }
         });
     }

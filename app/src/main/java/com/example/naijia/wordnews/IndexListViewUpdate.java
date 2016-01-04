@@ -9,6 +9,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -58,7 +61,7 @@ public class IndexListViewUpdate {
                         Log.d("LOG",data.postTitle+"|"+data.postThumbUrl);
                         listData[count] = data;
                         count++;
-                        if(count>=20) break;
+                        if(count>=listData.length) break;
                         data = new PostData();
                         data.postDate = "";
                         data.postTitle = "";
@@ -80,17 +83,20 @@ public class IndexListViewUpdate {
                 }
                 eventType = xpp.next();
             }
-            for(int i=0;i<10;i++){
-                Log.d("LOG_FINAL", listData[i].postTitle);
+            List<PostData> list = new ArrayList<PostData>();
+            for(PostData s : listData) {
+                if(s != null) {
+                    list.add(s);
+                }
             }
+            listData = list.toArray(new PostData[list.size()]);
         } catch (IOException | XmlPullParserException e){
             this.generateDummyData(listData);
         }
     }
     private void generateDummyData(PostData[] listData) {
         PostData data = null;
-        listData = new PostData[10];
-        for (int i = 0; i < 10; i++) { //please ignore this comment :>
+        for (int i = 0; i < listData.length; i++) { //please ignore this comment :>
             data = new PostData();
             data.postDate = "May 20, 2013";
             data.postTitle = "Post " + (i + 1) + " Title: This is the Post Title from RSS Feed";

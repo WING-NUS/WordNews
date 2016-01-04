@@ -10,6 +10,7 @@ import com.example.naijia.wordnews.PostData;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class PostItemAdapter extends ArrayAdapter<PostData> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = myContext.getLayoutInflater();
-        View rowView = inflater.inflate(R.layout.postitem, null);
+        View rowView = inflater.inflate(R.layout.postitem, parent, false);
         ImageView thumbImageView = (ImageView) rowView
                 .findViewById(R.id.postThumb);
 
@@ -50,5 +51,11 @@ public class PostItemAdapter extends ArrayAdapter<PostData> {
         postDateView.setText(datas[position].postDate);
 
         return rowView;
+    }
+
+    @Override
+    public int getCount() {
+        Log.d("LOG_LENGTH",String.valueOf(datas.length));
+        return datas.length;
     }
 }
