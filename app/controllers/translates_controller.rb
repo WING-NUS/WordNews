@@ -273,15 +273,15 @@ class TranslatesController < ApplicationController
           @text[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
 
-        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
+        #hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
         # if there is a hard coded quiz, replace the words with the hard-coded values
-        if hard_coded_quiz.length > 0
+        #if hard_coded_quiz.length > 0
 
-          @text[word]['choices']['0'] = hard_coded_quiz.first.option1
-          @text[word]['choices']['1'] = hard_coded_quiz.first.option2
-          @text[word]['choices']['2'] = hard_coded_quiz.first.option3
-          @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
-        end
+        #  @text[word]['choices']['0'] = hard_coded_quiz.first.option1
+        #  @text[word]['choices']['1'] = hard_coded_quiz.first.option2
+         # @text[word]['choices']['2'] = hard_coded_quiz.first.option3
+        #  @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
+        #end
 
       elsif testEntry.frequency.to_i > 5
         @text.delete(word)
@@ -297,15 +297,15 @@ class TranslatesController < ApplicationController
           @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
 
-        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
+        #hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
         # if there is a hard coded quiz, replace the words with the hard-coded values
-        if hard_coded_quiz.length > 0
+        #if hard_coded_quiz.length > 0
 
-          @text[word]['choices']['0'] = hard_coded_quiz.first.option1
-          @text[word]['choices']['1'] = hard_coded_quiz.first.option2
-          @text[word]['choices']['2'] = hard_coded_quiz.first.option3
-          @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
-        end
+        #  @text[word]['choices']['0'] = hard_coded_quiz.first.option1
+        #  @text[word]['choices']['1'] = hard_coded_quiz.first.option2
+        #  @text[word]['choices']['2'] = hard_coded_quiz.first.option3
+        #  @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
+        #end
       end
 
     end # end of for word in word_list
