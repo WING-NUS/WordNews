@@ -264,7 +264,7 @@ class TranslatesController < ApplicationController
         @text[word]['position'] = word_index
 
       elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 5 # quiz
-        @text[word]['isTest'] = 1
+        @text[word]['isTest'] = 2
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
 
