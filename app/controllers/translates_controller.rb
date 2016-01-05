@@ -266,13 +266,13 @@ class TranslatesController < ApplicationController
       elsif testEntry.frequency.to_i.between?(4,5)
         @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
-        @text[word]['isChoicesProvided'] = true
         @text[word]['chinese'] = zh_word
 
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", @original_word_id).random(3)
         choices.each_with_index { |val, idx|
           @text[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
+        @text[word]['isChoicesProvided'] = not choices.empty?
 
         #hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
         # if there is a hard coded quiz, replace the words with the hard-coded values
