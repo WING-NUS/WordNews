@@ -263,10 +263,11 @@ class TranslatesController < ApplicationController
         @text[word]['isTest'] = 0
         @text[word]['position'] = word_index
 
-      elsif testEntry.frequency.to_i > 3 and testEntry.frequency.to_i <= 5 # quiz
-        @text[word]['isTest'] = 2
+      elsif testEntry.frequency.to_i.between?(4,5)
+        @text[word]['isTest'] = 1
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
+        @text[word]['chinese'] = zh_word
 
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", @original_word_id).random(3)
         choices.each_with_index { |val, idx|
@@ -283,14 +284,13 @@ class TranslatesController < ApplicationController
         #  @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
         #end
 
-      elsif testEntry.frequency.to_i > 5
-        @text.delete(word)
-        next
+      elsif testEntry.frequency.to_i.between?(6,8)
 
         # don't need to compute
         @text[word]['isTest'] = 2
         @text[word]['choices'] = Hash.new
         @text[word]['isChoicesProvided'] = true
+        @text[word]['chinese'] = zh_word
 
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("chinese_words_id != ?", @original_word_chinese_id).random(3)
         choices.each_with_index { |val, idx|
