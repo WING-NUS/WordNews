@@ -284,7 +284,7 @@ class TranslatesController < ApplicationController
         #  @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
         #end
 
-      elsif testEntry.frequency.to_i.between?(6,8)
+      elsif testEntry.frequency.to_i > 6
 
         # don't need to compute
         @text[word]['isTest'] = 2
