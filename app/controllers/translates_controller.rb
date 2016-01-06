@@ -272,7 +272,7 @@ class TranslatesController < ApplicationController
         choices.each_with_index { |val, idx|
           @text[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
-        @text[word]['isChoicesProvided'] = not choices.empty?
+        @text[word]['isChoicesProvided'] = !(choices.empty?)
 
         #hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
         # if there is a hard coded quiz, replace the words with the hard-coded values
