@@ -98,21 +98,25 @@ public class MainActivity extends AppCompatActivity {
 //                intent.putExtras(b);
 //                startActivity(intent);
 
-                // Create custom dialog object
-                final Dialog dialog = new Dialog(MainActivity.this);
-                // Include dialog.xml file
-                dialog.setContentView(R.layout.test_dialog);
-                // Set dialog title
-                dialog.setTitle("story");
-
-                // set values for custom dialog components - text, image and button
-                TextView text = (TextView) dialog.findViewById(R.id.textDialog);
-                String tmpString="n. 故事；小说；新闻报道；来历；假话\n" +
+                ViewDialog alert = new ViewDialog();
+                String text_msg="n. 故事；小说；新闻报道；来历；假话\n" +
                         "vt. 用历史故事画装饰\n" +
                         "vi. 说谎\n" +
                         "n. (Story)人名；(英)斯托里";
-                text.setText(tmpString);
-                dialog.show();
+                String text_title = "Story";
+                alert.showDialog(MainActivity.this, text_title, text_msg);
+
+//                // Create custom dialog object
+//                final Dialog dialog = new Dialog(MainActivity.this);
+//                // Include dialog.xml file
+//                dialog.setContentView(R.layout.test_dialog);
+//                // Set dialog title
+//                dialog.setTitle("story");
+//
+//                // set values for custom dialog components - text, image and button
+//                TextView text = (TextView) dialog.findViewById(R.id.textDialog);
+
+//                dialog.show();
 
 //                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 //                // Get the layout inflater
@@ -139,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, TranslateActivity.class);
+                Intent intent = new Intent(MainActivity.this, TranslateBuildInActivity.class);
                 Bundle b = new Bundle();
                 b.putString("key", listData[(int) id].postLink);
                 intent.putExtras(b);

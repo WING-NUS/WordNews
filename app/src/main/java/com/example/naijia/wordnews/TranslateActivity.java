@@ -40,16 +40,6 @@ public class TranslateActivity extends AppCompatActivity {
         });
         webView.getSettings().setJavaScriptEnabled(true);
 
-//        webView.setWebChromeClient(new WebChromeClient() {
-//            public void onProgressChanged(WebView view, int progress) {
-//                activity.setProgress(progress * 1000);
-//            }
-//        });
-//        webView.setWebViewClient(new WebViewClient() {
-//            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-//                Toast.makeText(activity, "Oh no! " + description, Toast.LENGTH_SHORT).show();
-//            }
-//        });
         webView.loadUrl(passedURL);
         Log.d("DisplayNewsLink", passedURL);
     }
