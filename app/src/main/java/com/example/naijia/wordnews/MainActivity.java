@@ -89,14 +89,6 @@ public class MainActivity extends AppCompatActivity {
 //                } catch (ExecutionException | InterruptedException e) {
 //                    //DO something
 //                }
-//                Log.d("API", response);
-//                Snackbar.make(view, response, Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-
-//                Intent intent = new Intent(MainActivity.this, TranslateDialogActivity.class);
-//                Bundle b = new Bundle();
-//                intent.putExtras(b);
-//                startActivity(intent);
 
                 ViewDialog alert = new ViewDialog();
                 String text_msg="n. 故事；小说；新闻报道；来历；假话\n" +
@@ -106,37 +98,6 @@ public class MainActivity extends AppCompatActivity {
                 String text_title = "Story";
                 alert.showDialog(MainActivity.this, text_title, text_msg);
 
-//                // Create custom dialog object
-//                final Dialog dialog = new Dialog(MainActivity.this);
-//                // Include dialog.xml file
-//                dialog.setContentView(R.layout.test_dialog);
-//                // Set dialog title
-//                dialog.setTitle("story");
-//
-//                // set values for custom dialog components - text, image and button
-//                TextView text = (TextView) dialog.findViewById(R.id.textDialog);
-
-//                dialog.show();
-
-//                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//                // Get the layout inflater
-//                LayoutInflater inflater = MainActivity.this.getLayoutInflater();
-//
-//                // Inflate and set the layout for the dialog
-//                // Pass null as the parent view because its going in the dialog layout
-//                builder.setView(inflater.inflate(R.layout.dialog_translate, null))
-//                        // Add action buttons
-//                        .setPositiveButton("Sign in", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                // sign in the user ...
-//                            }
-//                        })
-//                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                            }
-//                        });
-//                builder.create();
             }
         });
 
