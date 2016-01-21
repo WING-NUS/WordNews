@@ -231,7 +231,7 @@ include UserHandler
         # actual meanings contains the set of possible english-meaning-chinese words
         for possible_actual_meaning in actual_meanings
             possible_chinese_match = ChineseWords.find(possible_actual_meaning.chinese_words_id).chinese_meaning
-            if possible_chinese_match.include? zh_word or zh.include? possible_chinese_match
+            if possible_chinese_match.include? zh_word or zh_word.include? possible_chinese_match
                 actual_meaning = possible_actual_meaning
                 break
             end
