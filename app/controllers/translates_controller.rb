@@ -210,7 +210,7 @@ include UserHandler
       if english_meaning_row.length == 0
         # no such english word in our dictionary
         next
-      elsif english_meaning_row.length >= 1 # is in our dictionary
+      elsif english_meaning_row.length >= 1 # english word is in our dictionary
         word_index = params[:text].index(orig_word, index_offset)
         index_offset = word_index || index_offset # this is to handle multiple occurences of the same word in the text
         # don't change index_offset if word_index is nil, which should not happen
@@ -221,20 +221,29 @@ include UserHandler
           # bing thinks that the word is part of a longer phrase, so we do not translate
           next
         end
-        zh_word = chinese_sentence[chinese_alignment_pos_start..(pos_end + 1)]
+        zh_word = chinese_sentence[chinese_alignment_pos_start.. pos_end]
 
         # find meaning using the chinese word given by bing
         actual_meanings = EnglishWords.joins(:meanings).joins(:chinese_words)
                                      .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
                                      .where('english_meaning = ?', normalised_word)
-                                     .where('chinese_meaning = ?', zh_word)
+        actual_meaning = actual_meanings.first
+        # actual meanings contains the set of possible english-meaning-chinese words
+        for possible_actual_meaning in actual_meanings
+            possible_chinese_match = ChineseWords.find(possible_actual_meaning.chinese_words_id).chinese_meaning
+            if possible_chinese_match.include? zh_word or zh.include? possible_chinese_match
+                actual_meaning = possible_actual_meaning
+                break
+            end
+
+        end
 
       end
 
 
 
 
-      actual_meaning = actual_meanings.first
+      
 
       @text[word] = Hash.new
 
