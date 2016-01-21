@@ -2,6 +2,7 @@
 #encoding: utf-8
 
 class TranslatesController < ApplicationController
+include UserHandler
   # GET /translates
   # GET /translates.json
   include Bing
@@ -316,15 +317,6 @@ class TranslatesController < ApplicationController
     end
   end
 
-  # TODO put this in another module
-  def make_user(user_name)
-    newUser = User.new
-    newUser.user_name = user_name
-    newUser.if_translate = 1
-    newUser.translate_categories = "1,2,3,4" # the default will be translate all
-    newUser.save
-    newUser
-  end
 
   def getExampleSentences
     @meaning_id = params[:wordID]
