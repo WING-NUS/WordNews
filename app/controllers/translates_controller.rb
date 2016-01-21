@@ -307,7 +307,7 @@ include UserHandler
         @text[word]['isChoicesProvided'] = true
         @text[word]['chinese'] = zh_word
 
-        choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("chinese_words_id != ?", @original_word_chinese_id).random(3)
+        choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("chinese_words_id != ?", actual_meaning.chinese_words_id).random(3)
         choices.each_with_index { |val, idx|
           @text[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
