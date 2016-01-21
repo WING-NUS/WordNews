@@ -221,15 +221,20 @@ include UserHandler
           # bing thinks that the word is part of a longer phrase, so we do not translate
           next
         end
-        zh_word = chinese_sentence[chinese_alignment_pos_start..pos_end]
+        zh_word = chinese_sentence[chinese_alignment_pos_start..(pos_end + 1)]
 
         # find meaning using the chinese word given by bing
-        actual_meaning = EnglishWords.joins(:meanings).joins(:chinese_words)
+        actual_meanings = EnglishWords.joins(:meanings).joins(:chinese_words)
                                      .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
                                      .where('english_meaning = ?', normalised_word)
-                                     .where('chinese_meaning = ?', zh_word).first
+                                     .where('chinese_meaning = ?', zh_word)
 
       end
+
+
+
+
+      actual_meaning = actual_meanings.first
 
       @text[word] = Hash.new
 
