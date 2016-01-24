@@ -38,7 +38,7 @@ include UserHandler
   def show
 
     @result = Hash.new
-    word_list = params[:result].split(" ")
+    word_list = params[:text].split(" ")
     #chinese_sentence = Bing.translate(params[:text].to_s,"en","zh-CHS")
     chinese_sentence = ''
     @user_name = params[:name]
@@ -193,7 +193,7 @@ include UserHandler
 
   def show_by_bing
     @result = Hash.new
-    word_list = params[:result].split(" ")
+    word_list = params[:text].split(" ")
     chinese_sentence, alignment = Bing.translate(params[:result].to_s, 'en', 'zh-CHS')
 
     alignment = parse_alignment_string(alignment)
