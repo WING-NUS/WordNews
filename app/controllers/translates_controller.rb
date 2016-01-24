@@ -229,7 +229,7 @@ include UserHandler
         # no such english word in our dictionary
         next
       elsif english_meaning_row.length >= 1 # english word is in our dictionary
-        word_index = params[:result].index(orig_word, index_offset)
+        word_index = params[:text].index(orig_word, index_offset)
         index_offset = word_index || index_offset # this is to handle multiple occurences of the same word in the text
         # don't change index_offset if word_index is nil, which should not happen
 
