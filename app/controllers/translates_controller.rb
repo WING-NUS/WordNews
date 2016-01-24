@@ -21,7 +21,7 @@ include UserHandler
     url_of_article = params[:url]
     doc = Nokogiri::HTML(open(url_of_article, "User-Agent" => "translatenews"))
 
-    paragraphs = doc.css('p')
+    paragraphs = doc.css('p').select {|x| (!x.next.nil && x.next.name == 'p') || (!x.previous.nil && x.previous.name == 'p')}
 
     @result = Hash.new
     paragraphs.each_with_index { |paragraph, index |
