@@ -26,7 +26,7 @@ include UserHandler
     @result = Hash.new
     paragraphs.each_with_index { |paragraph, index |
       paragraph_data = Hash.new
-      paragraph_data['text'] = paragraph
+      paragraph_data['text'] = paragraph.text
 
       @result[index] = paragraph_data
     }
