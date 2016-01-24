@@ -32,6 +32,9 @@ gem 'hirb', '~> 0.7.2'
 #end
 gem 'pg', '0.16.0'
 
+# for scraping
+gem 'nokogiri' 
+
 gem 'rb-readline'
 gem 'test-unit'
 
