@@ -31,7 +31,7 @@ include UserHandler
       @result[index] = paragraph_data
     }
 
-    format.json { render json: @result }
+    render json: @result
   end
 
 
