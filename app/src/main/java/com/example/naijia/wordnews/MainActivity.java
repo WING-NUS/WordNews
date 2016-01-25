@@ -76,31 +76,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(itemAdapter);
         final Activity activity = this;
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //String url = "http://wordnews-mobile.herokuapp.com/show?text=\"A car bomb attack on a military convoy in south-eastern Turkey has killed two soldiers and injured four others, Turkish officials say.\"&url=http://www.bbc.com/news/world-europe-33667427&name=id1450520015716_1&num_words=2";
-                //String url = "http://wordnews-mobile.herokuapp.com/remember?name=id1450520015716_1&wordID=16381&isRemembered=1&url=http://www.bbc.com/news/world-europe-33667427";
-//                String url = "http://wordnews-mobile.herokuapp.com/getNumber?name=id1450520015716_1";
-//                String response = "";
-//                try {
-//                    response = new APIRequest().execute(url).get();
-//                } catch (ExecutionException | InterruptedException e) {
-//                    //DO something
-//                }
-
-                ViewDialog alert = new ViewDialog();
-                String text_msg="n. 故事；小说；新闻报道；来历；假话\n" +
-                        "vt. 用历史故事画装饰\n" +
-                        "vi. 说谎\n" +
-                        "n. (Story)人名；(英)斯托里";
-                String text_title = "Story";
-                alert.showDialog(MainActivity.this, text_title, text_msg);
-
-            }
-        });
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

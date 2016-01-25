@@ -55,7 +55,6 @@ public class PostItemAdapter extends ArrayAdapter<PostData> {
 
     @Override
     public int getCount() {
-        Log.d("LOG_LENGTH",String.valueOf(datas.length));
         return datas.length;
     }
 }
