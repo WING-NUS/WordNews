@@ -1,7 +1,9 @@
-package com.example.naijia.wordnews;
+package com.example.naijia.wordnews.api;
 
 import android.util.Log;
-import android.widget.ListView;
+
+import com.example.naijia.wordnews.api.APIRequest;
+import com.example.naijia.wordnews.models.PostData;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -10,7 +12,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 

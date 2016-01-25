@@ -1,4 +1,4 @@
-package com.example.naijia.wordnews;
+package com.example.naijia.wordnews.Utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

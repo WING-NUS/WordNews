@@ -1,4 +1,4 @@
-package com.example.naijia.wordnews;
+package com.example.naijia.wordnews.api;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -17,7 +17,7 @@ import java.io.IOException;
 
 import javax.net.ssl.HttpsURLConnection;
 
-class APIRequest extends AsyncTask<String, String, String>{
+public class APIRequest extends AsyncTask<String, String, String>{
 
     String TAG = "API";
 

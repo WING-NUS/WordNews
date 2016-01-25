@@ -3,7 +3,7 @@
  *
  * Value Object
  */
-package com.example.naijia.wordnews;
+package com.example.naijia.wordnews.models;
 
 public class PostData {
     public String postThumbUrl;
