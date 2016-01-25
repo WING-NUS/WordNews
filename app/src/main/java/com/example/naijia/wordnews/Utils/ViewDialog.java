@@ -1,4 +1,4 @@
-package com.example.naijia.wordnews;
+package com.example.naijia.wordnews.Utils;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.naijia.wordnews.R;
 
 
 public class ViewDialog {

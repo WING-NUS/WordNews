@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Word News</string>
     <string name="action_settings">Settings</string>
+    <string name="action_sound">Prounciation</string>
+    <string name="quiz_question">And supppose you misjudge the 场合?</string>
+    <string name="quiz_question_cn">假如你们错误地估计了场合呢?</string>
 </resources>
