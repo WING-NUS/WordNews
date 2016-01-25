@@ -60,6 +60,8 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     String paragraph = innerJObject.getString("text");
                     Log.d("JSON STRING", paragraph);
 
+                    String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
+
                     TextView textView = new TextView(this);
                     textView.setTextSize(18);
                     textView.setTextColor(Color.parseColor("#ff000000"));
