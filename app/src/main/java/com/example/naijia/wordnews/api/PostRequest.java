@@ -1,32 +1,42 @@
-package com.example.naijia.wordnews;
+package com.example.naijia.wordnews.api;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.InterruptedIOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLDecoder;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 import javax.net.ssl.HttpsURLConnection;
 
-class APIRequest extends AsyncTask<String, String, String>{
-
+/**
+ * Created by wuweilun on 25/1/16.
+ */
+public class PostRequest extends AsyncTask<String, String, String> {
     String TAG = "API";
 
     @Override
-    protected String doInBackground(String... uri) {
+    protected String doInBackground(String... argv) {
         String responseString = null;
         try {
-            URL url = new URL(uri[0]);
+            URL url = new URL(argv[0]);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            // add request header
+            conn.setRequestMethod("POST");
+            String urlParameters = argv[1];
+
+            conn.setDoOutput(true);
+            DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+            wr.writeBytes(urlParameters);
+            wr.flush();
+            wr.close();
+
             if(conn.getResponseCode() == HttpsURLConnection.HTTP_OK){
                 // Do normal input or output stream reading
                 responseString = readInputStreamToString(conn);

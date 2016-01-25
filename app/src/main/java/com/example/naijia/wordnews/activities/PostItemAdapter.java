@@ -1,4 +1,4 @@
-package com.example.naijia.wordnews;
+package com.example.naijia.wordnews.activities;
 
 /**
  * PostItemAdapter.java
@@ -6,11 +6,12 @@ package com.example.naijia.wordnews;
  * Adapter Class which configs and returns the View for ListView
  *
  */
-import com.example.naijia.wordnews.PostData;
+import com.example.naijia.wordnews.Utils.ImageDownloader;
+import com.example.naijia.wordnews.R;
+import com.example.naijia.wordnews.models.PostData;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,6 @@ public class PostItemAdapter extends ArrayAdapter<PostData> {
 
     @Override
     public int getCount() {
-        Log.d("LOG_LENGTH",String.valueOf(datas.length));
         return datas.length;
     }
 }

@@ -1,9 +1,11 @@
-package com.example.naijia.wordnews;
+package com.example.naijia.wordnews.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.naijia.wordnews.R;
 
 
 public class SettingActivity extends ActionBarActivity {
