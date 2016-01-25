@@ -22,6 +22,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.naijia.wordnews.api.PostRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,7 +62,9 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     String paragraph = innerJObject.getString("text");
                     Log.d("JSON STRING", paragraph);
 
-                    String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
+                    String urlParameters = "text="+paragraph+"&url="+passedURL+"&name="+"zhengnaijia_19920112"+"&num_words="+"3";
+                    String translate_words = new PostRequest().execute(url,urlParameters).get();
+                    Log.d("TRANSLATE WORDS", translate_words);
 
                     TextView textView = new TextView(this);
                     textView.setTextSize(18);
