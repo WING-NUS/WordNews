@@ -59,7 +59,8 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     Log.d("JSON STRING", paragraph);
 
                     String urlParameters = "text="+paragraph+"&url="+passedURL+"&name="+"zhengnaijia_19920112"+"&num_words="+"3";
-                    String translate_words = new PostRequest().execute(url,urlParameters).get();
+                    String translateUrl = "http://wordnews-mobile.herokuapp.com/show/";
+                    String translate_words = new PostRequest().execute(translateUrl,urlParameters).get();
                     Log.d("TRANSLATE WORDS", translate_words);
 
                     TextView textView = new TextView(this);
