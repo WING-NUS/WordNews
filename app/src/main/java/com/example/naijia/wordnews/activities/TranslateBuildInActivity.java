@@ -23,6 +23,8 @@ import com.example.naijia.wordnews.api.PostRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.ExecutionException;
 
 public class TranslateBuildInActivity extends AppCompatActivity {
@@ -39,8 +41,11 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         String passedURL = b.getString("key");
 
         String url = "http://wordnews-mobile.herokuapp.com/articleContents?url=";
+
+        //TODO: unable to make GET request to the passed in URL
         url += passedURL;
-        url = "http://wordnews-mobile.herokuapp.com/articleContents?url=http://edition.cnn.com/2015/08/27/sport/world-athletics-championship-200m-final/index.html";
+
+        //url = "http://wordnews-mobile.herokuapp.com/articleContents?url=http://edition.cnn.com/2015/08/27/sport/world-athletics-championship-200m-final/index.html";
         Log.d("URL", url);
         String response = "";
         try {
@@ -63,13 +68,24 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     String translate_words = new PostRequest().execute(translateUrl,urlParameters).get();
                     Log.d("TRANSLATE WORDS", translate_words);
 
+                    // parse the returned JSON
+                    ArrayList<String> words = new ArrayList<String>();
+                    Iterator<String> keys = jObject.keys();
+                    while(keys.hasNext()){
+                        String word = (String)keys.next();
+                        words.add(word);
+
+                        // TODO: Use this result for check isTest and pronunciation etc
+                        JSONObject result = new JSONObject(jObject.getString(word));
+                    }
+
                     TextView textView = new TextView(this);
                     textView.setTextSize(18);
                     textView.setTextColor(Color.parseColor("#ff000000"));
                     linearLayout.addView(textView);
 
                     SpannableString ss = new SpannableString(paragraph);
-                    String[] words = paragraph.split(" ");
+                    //String[] words = paragraph.split(" ");
 
                     for(final String word : words){
                         ClickableSpan clickableSpan = new ClickableSpan() {
