@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Word News</string>
     <string name="action_settings">Settings</string>
-    <string name="action_sound">Prounciation</string>
-    <string name="quiz_question">And supppose you misjudge the 场合?</string>
-    <string name="quiz_question_cn">假如你们错误地估计了场合呢?</string>
+    <string name="action_sound">Prounce</string>
+    <string name="quiz_question">And supppose you misjudge the 场合? </string>
+    <string name="quiz_question_trans">假如你们错误地估计了场合呢?</string>
+    <string name="answer_1">1. Occasion</string>
+    <string name="answer_2">2. Situation</string>
+    <string name="answer_3">3. Workspace</string>
+    <string name="answer_4">4. Playground</string>
+
 </resources>
