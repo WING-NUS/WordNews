@@ -19,6 +19,7 @@ import com.example.naijia.wordnews.R;
 import com.example.naijia.wordnews.Utils.ViewDialog;
 
 import com.example.naijia.wordnews.api.PostRequest;
+import com.example.naijia.wordnews.models.Word;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +46,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         //TODO: unable to make GET request to the passed in URL
         url += passedURL;
 
-        //url = "http://wordnews-mobile.herokuapp.com/articleContents?url=http://edition.cnn.com/2015/08/27/sport/world-athletics-championship-200m-final/index.html";
+        url = "http://wordnews-mobile.herokuapp.com/articleContents?url=http://edition.cnn.com/2015/08/27/sport/world-athletics-championship-200m-final/index.html";
         Log.d("URL", url);
         String response = "";
         try {
@@ -66,37 +67,54 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     String urlParameters = "text="+paragraph+"&url="+passedURL+"&name="+"zhengnaijia_19920112"+"&num_words="+"3";
                     String translateUrl = "http://wordnews-mobile.herokuapp.com/show/";
                     String translate_words = new PostRequest().execute(translateUrl,urlParameters).get();
+                    Log.d("TRANSLATE PARAGRAPH", paragraph);
                     Log.d("TRANSLATE WORDS", translate_words);
 
-                    // parse the returned JSON
-                    ArrayList<String> words = new ArrayList<String>();
-                    Iterator<String> keys = jObject.keys();
-                    while(keys.hasNext()){
-                        String word = (String)keys.next();
-                        words.add(word);
-
-                        // TODO: Use this result for check isTest and pronunciation etc
-                        JSONObject result = new JSONObject(jObject.getString(word));
+                    if(translate_words=="FAILED"){
+                        i++;
+                        continue;
                     }
 
+                    SpannableString ss = new SpannableString(paragraph);
                     TextView textView = new TextView(this);
                     textView.setTextSize(18);
                     textView.setTextColor(Color.parseColor("#ff000000"));
                     linearLayout.addView(textView);
 
-                    SpannableString ss = new SpannableString(paragraph);
-                    //String[] words = paragraph.split(" ");
+                    // parse the returned JSON
+                    JSONObject translateJSONObject = new JSONObject(translate_words);
+                    ArrayList<Word> words = new ArrayList<Word>();
+                    Iterator<String> keys = translateJSONObject.keys();
+                    while(keys.hasNext()) {
+                        String english = (String) keys.next();
+                        JSONObject wordJson = new JSONObject(translateJSONObject.getString(english));
+                        Log.d("TRANSLATE WORDSssssss", english);
+                        Word word = new Word();
+                        word.english = english;
+                        word.chinese = wordJson.getString("chinese");
+                        word.wordID = wordJson.getString("wordID");
+                        word.position = wordJson.getInt("position");
+                        word.pronunciation = wordJson.getString("pronunciation");
+//                        word.chineseSentence = wordJson.getString("chineseSentence");
+//                        word.englishSentence = wordJson.getString("englishSentence");
+                        Integer isTest = wordJson.getInt("isTest");
+                        if(isTest==0)
+                            word.isTest = Boolean.FALSE;
+                        else
+                            word.isTest = Boolean.TRUE;
+                        words.add(word);
+                        // TODO: Use this result for check isTest and pronunciation etc
 
-                    for(final String word : words){
+                    }
+
+
+                    for (final Word word : words) {
                         ClickableSpan clickableSpan = new ClickableSpan() {
                             @Override
                             public void onClick(View view) {
                                 ViewDialog alert = new ViewDialog();
                                 TextView tmpView = (TextView) view;
-                                String text_msg="n. 故事；小说；新闻报道；来历；假话\n" +
-                                        "vt. 用历史故事画装饰\n" +
-                                        "vi. 说谎\n" +
-                                        "n. (Story)人名；(英)斯托里";
+                                String text_msg = word.chinese;
                                 Spanned s = (Spanned) tmpView.getText();
                                 int start = s.getSpanStart(this);
                                 int end = s.getSpanEnd(this);
@@ -104,8 +122,11 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg);
                             }
                         };
-                        ss.setSpan(clickableSpan, paragraph.indexOf(word), paragraph.indexOf(word) + word.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
+
+
+                    //String[] words = paragraph.split(" ");
 
                     textView.setText(ss);
                     textView.setMovementMethod(LinkMovementMethod.getInstance());
