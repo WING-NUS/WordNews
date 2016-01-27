@@ -1,10 +1,14 @@
 package com.example.naijia.wordnews.activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -22,12 +26,15 @@ public class QuizActivity extends AppCompatActivity {
     private SharedPreferences savedValues;
     private TextView questionView;
     private TextView questionTransView;
-    private List<RadioButton> optionButtons;
+    private List<RadioButton> optionButtons = new ArrayList<RadioButton>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_main);
+        getSupportActionBar().setIcon(R.drawable.sound);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         getViews();
         Intent intent = getIntent();
         QuizModel quiz = (QuizModel) intent.getParcelableExtra("quiz");
@@ -57,10 +64,28 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.quiz_menu, menu);
-
+    public boolean onPrepareOptionsMenu(Menu menu){
+        menu.findItem(R.id.quiz_sound).setVisible(true);
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.quiz_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.home) {
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
