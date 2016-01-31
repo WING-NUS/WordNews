@@ -37,5 +37,6 @@ For Developers
 
 for scraping: setup https://github.com/edelpero/watir-examples/blob/master/watir_on_heroku.md 
 
+https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app
 
 
