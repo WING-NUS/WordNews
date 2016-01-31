@@ -21,10 +21,7 @@ include UserHandler
   def paragraphs_in_article
     url_of_article = params[:url]
 
-    capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs("phantomjs.page.settings.userAgent" => "translatenews")
-    driver = Selenium::WebDriver.for :phantomjs, :desired_capabilities => capabilities
-
-    browser = Watir::Browser.new driver
+    browser = Watir::Browser.new :phantomjs
     browser.goto url_of_article 
 
     if !browser.url.include? url_of_article
