@@ -3,6 +3,7 @@
 
 require 'nokogiri'
 require 'open-uri'
+require 'watir-webdriver'
 
 class TranslatesController < ApplicationController
 include UserHandler
@@ -19,9 +20,22 @@ include UserHandler
 
   def paragraphs_in_article
     url_of_article = params[:url]
-    doc = Nokogiri::HTML(open(url_of_article, "User-Agent" => "translatenews"))
 
-    paragraphs = doc.css('p').select {|x| (!x.next.nil? && x.next.name == 'p') || (!x.previous.nil? && x.previous.name == 'p')}
+    capabilities = Selenium::WebDriver::Remote::Capabilities.phantomjs("phantomjs.page.settings.userAgent" => "translatenews")
+    driver = Selenium::WebDriver.for :phantomjs, :desired_capabilities => capabilities
+
+    browser = Watir::Browser.new driver
+    browser.goto url_of_article 
+
+    if !browser.url.include? url_of_article
+      browser.goto url_of_article # try again
+    end
+    if !browser.url.include? url_of_article
+      puts "unable to reach the required website"
+      raise RuntimeError, "unable to reach the required website"
+    end
+
+    paragraphs = browser.elements(:css => 'p')
 
     @result = Hash.new
     paragraphs.each_with_index { |paragraph, index |

@@ -34,6 +34,7 @@ gem 'pg', '0.16.0'
 
 # for scraping
 gem 'nokogiri' 
+gem "watir", "~>4.0"
 
 gem 'rb-readline'
 gem 'test-unit'
