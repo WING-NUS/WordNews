@@ -9,4 +9,6 @@ public class Word {
     public String chineseSentence;
     public String englishSentence;
     public Boolean isTest;
+    public String paragraph;
+    public Integer paragraphID;
 }
