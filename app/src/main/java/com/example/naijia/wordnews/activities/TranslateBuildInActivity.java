@@ -22,17 +22,36 @@ import com.example.naijia.wordnews.R;
 import com.example.naijia.wordnews.Utils.ViewDialog;
 
 import com.example.naijia.wordnews.api.PostRequest;
+import com.example.naijia.wordnews.models.PostData;
 import com.example.naijia.wordnews.models.Word;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class TranslateBuildInActivity extends AppCompatActivity {
     private String url;
@@ -62,41 +81,107 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         fetchParagraph();
     }
 
+    private void parseXMLResponse(String mainContent) {
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser xpp = factory.newPullParser();
+            xpp.setInput(new StringReader(mainContent));
+            int eventType = xpp.getEventType();
+            String nameTag = "";
+            boolean isParagraph = false;
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+
+                if (eventType == XmlPullParser.START_DOCUMENT) {
+                    //do something
+                } else if (eventType == XmlPullParser.START_TAG) {
+                    if (nameTag.equals("p")){
+                        isParagraph = true;
+                    }
+                    nameTag = xpp.getName();
+                } else if (eventType == XmlPullParser.END_TAG) {
+                    if(nameTag.equals("p")) {
+                        isParagraph = false;
+                    }
+                } else if (eventType == XmlPullParser.TEXT) {
+                    if(isParagraph){
+                        Log.d("ONE PARAGRAPH",xpp.getText());
+                    }
+                } else {
+                    Log.d("LOG_UNKNOWN_DATA","LOG_UNKNOWN_DATA");
+                    Log.d("LOG_UNKNOWN_DATA",xpp.getText());
+                }
+                eventType = xpp.next();
+            }
+        } catch (IOException | XmlPullParserException e){
+            Log.d("ERROR:", e.toString());
+        }
+    }
+
     private void fetchParagraph() {
         try{
-
-            String response = "";
-            response = new APIRequest().execute(url).get();
-            Log.d("WindowFocus URL", url);
-            Log.d("WindowFocus RESPONSE", response);
-            JSONObject jObject = new JSONObject(response);
-            int i = 0;
             paragraphs = new LinkedHashMap<Integer, String>();
-            while(true)
-            {
-                String key = new Integer(i).toString();
-                if(jObject.has(key)) {
-                    TextView textView = new TextView(getApplicationContext());
-                    textView.setTextSize(18);
-                    textView.setId(i);
-                    textView.setTextColor(Color.parseColor("#ff000000"));
-                    linearLayout.addView(textView);
+            int i = 0;
+            String mainContent = "";
+            mainContent = new APIRequest().execute(passedURL).get();
+            Log.d("WindowFocus URL", passedURL);
+            Log.d("WindowFocus RESPONSE", mainContent);
+            int index1 = mainContent.indexOf("<p>");
+            int index2 = mainContent.indexOf("</p>");
+            while (index1 >= 0 && index2 >= 0) {
+                Log.d("PARAGRAPH", mainContent.substring(index1 + 3, index2));
+                index1 = mainContent.indexOf("<p>", index1 + 1);
+                index2 = mainContent.indexOf("</p>", index2 + 1);
+                TextView textView = new TextView(getApplicationContext());
+                textView.setTextSize(18);
+                textView.setId(i);
+                textView.setTextColor(Color.parseColor("#ff000000"));
+                linearLayout.addView(textView);
 
-                    String aJsonString = jObject.getString(key);
-                    JSONObject innerJObject = new JSONObject(aJsonString);
-                    String paragraph = innerJObject.getString("text");
+                if(index1+3 < mainContent.length() && index2 < mainContent.length() && index2>index1+3) {
+                    String paragraph = mainContent.substring(index1+3,index2);
                     paragraphs.put(i, paragraph);
                     textView.setText(paragraph);
 
                     Log.d("PARAGRAPH", paragraph);
+                    i++;
                 }
-                else {
+                else{
                     break;
                 }
-                i++;
             }
+
+//            String response = "";
+//            response = new APIRequest().execute(url).get();
+//            Log.d("WindowFocus URL", url);
+//            Log.d("WindowFocus RESPONSE", response);
+//            JSONObject jObject = new JSONObject(response);
+//
+//
+//            while(true)
+//            {
+//                String key = new Integer(i).toString();
+//                if(jObject.has(key)) {
+//                    TextView textView = new TextView(getApplicationContext());
+//                    textView.setTextSize(18);
+//                    textView.setId(i);
+//                    textView.setTextColor(Color.parseColor("#ff000000"));
+//                    linearLayout.addView(textView);
+//
+//                    String aJsonString = jObject.getString(key);
+//                    JSONObject innerJObject = new JSONObject(aJsonString);
+//                    String paragraph = innerJObject.getString("text");
+//                    paragraphs.put(i, paragraph);
+//                    textView.setText(paragraph);
+//
+//                    Log.d("PARAGRAPH", paragraph);
+//                }
+//                else {
+//                    break;
+//                }
+//                i++;
+//            }
         }
-        catch (ExecutionException | JSONException | InterruptedException e) {
+        catch (ExecutionException | InterruptedException e) {
             Log.d("ERROR", e.toString());
         }
     }
