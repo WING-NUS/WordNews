@@ -81,42 +81,6 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         fetchParagraph();
     }
 
-    private void parseXMLResponse(String mainContent) {
-        try {
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            XmlPullParser xpp = factory.newPullParser();
-            xpp.setInput(new StringReader(mainContent));
-            int eventType = xpp.getEventType();
-            String nameTag = "";
-            boolean isParagraph = false;
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-
-                if (eventType == XmlPullParser.START_DOCUMENT) {
-                    //do something
-                } else if (eventType == XmlPullParser.START_TAG) {
-                    if (nameTag.equals("p")){
-                        isParagraph = true;
-                    }
-                    nameTag = xpp.getName();
-                } else if (eventType == XmlPullParser.END_TAG) {
-                    if(nameTag.equals("p")) {
-                        isParagraph = false;
-                    }
-                } else if (eventType == XmlPullParser.TEXT) {
-                    if(isParagraph){
-                        Log.d("ONE PARAGRAPH",xpp.getText());
-                    }
-                } else {
-                    Log.d("LOG_UNKNOWN_DATA","LOG_UNKNOWN_DATA");
-                    Log.d("LOG_UNKNOWN_DATA",xpp.getText());
-                }
-                eventType = xpp.next();
-            }
-        } catch (IOException | XmlPullParserException e){
-            Log.d("ERROR:", e.toString());
-        }
-    }
-
     private void fetchParagraph() {
         try{
             paragraphs = new LinkedHashMap<Integer, String>();
@@ -128,26 +92,60 @@ public class TranslateBuildInActivity extends AppCompatActivity {
             int index1 = mainContent.indexOf("<p>");
             int index2 = mainContent.indexOf("</p>");
             while (index1 >= 0 && index2 >= 0) {
-                Log.d("PARAGRAPH", mainContent.substring(index1 + 3, index2));
-                index1 = mainContent.indexOf("<p>", index1 + 1);
-                index2 = mainContent.indexOf("</p>", index2 + 1);
-                TextView textView = new TextView(getApplicationContext());
-                textView.setTextSize(18);
-                textView.setId(i);
-                textView.setTextColor(Color.parseColor("#ff000000"));
-                linearLayout.addView(textView);
-
                 if(index1+3 < mainContent.length() && index2 < mainContent.length() && index2>index1+3) {
-                    String paragraph = mainContent.substring(index1+3,index2);
-                    paragraphs.put(i, paragraph);
-                    textView.setText(paragraph);
+                    String paragraph = mainContent.substring(index1+3, index2);
+                    Log.d("PARAGRAPH BEFORE", paragraph);
+                    int pair1, pair2;
+                    while(true) {
+                        pair1 = paragraph.indexOf('<');
+                        pair2 = paragraph.indexOf('>');
+                        if(pair1 < pair2) {
+                            Log.d("EXTRA STRING", paragraph.substring(pair1, pair2+1));
+                            paragraph = paragraph.substring(0,pair1) + paragraph.substring(pair2+1);
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    while(true) {
+                        pair1 = paragraph.indexOf('[');
+                        pair2 = paragraph.indexOf(']');
+                        if(pair1 < pair2) {
+                            Log.d("EXTRA STRING", paragraph.substring(pair1, pair2+1));
+                            paragraph = paragraph.substring(0,pair1) + paragraph.substring(pair2+1);
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    ArrayList<String> patterns = new ArrayList<String>();
+                    patterns.add("\\r");
+                    patterns.add("\\n");
+                    patterns.add("&nbsp");
+                    patterns.add("\\");
+                    for(int index=0;index<patterns.size();index++) {
+                        String pattern = patterns.get(index);
+                        while(true){
+                            pair1 = paragraph.indexOf(pattern);
+                            if(pair1>=0)
+                                paragraph = paragraph.substring(0,pair1) + paragraph.substring(pair1+pattern.length());
+                            else
+                                break;
+                        }
+                    }
 
-                    Log.d("PARAGRAPH", paragraph);
+                    Log.d("PARAGRAPH AFTER", paragraph);
+                    TextView textView = new TextView(getApplicationContext());
+                    textView.setTextSize(18);
+                    textView.setId(i);
+                    textView.setTextColor(Color.parseColor("#ff000000"));
+                    linearLayout.addView(textView);
+
+                    textView.setText(paragraph);
                     i++;
                 }
-                else{
-                    break;
-                }
+                index1 = mainContent.indexOf("<p>", index1 + 1);
+                index2 = mainContent.indexOf("</p>", index2 + 1);
             }
 
 //            String response = "";
