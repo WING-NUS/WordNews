@@ -1,6 +1,7 @@
 package com.example.naijia.wordnews.activities;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -56,6 +58,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class TranslateBuildInActivity extends AppCompatActivity {
     private String url;
     private String passedURL;
+    private String title;
     private static final int UPDATE_UI = 1;
     Map<Integer, String> paragraphs;
     LinearLayout linearLayout;
@@ -70,14 +73,18 @@ public class TranslateBuildInActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         passedURL = b.getString("key");
+        title = b.getString("title");
 
-        url = "http://wordnews-mobile.herokuapp.com/articleContents?url=";
+        TextView textView = new TextView(getApplicationContext());
+        textView.setTextSize(20);
+        int id = 2015;
+        textView.setId(id);
+        textView.setTextColor(Color.parseColor("#ff000000"));
+        textView.setText(title);
+        textView.setGravity(Gravity.CENTER);
+        textView.setTypeface(null, Typeface.BOLD);
+        linearLayout.addView(textView);
 
-        //TODO: unable to make GET request to the passed in URL
-        url += passedURL;
-
-        //url = "http://wordnews-mobile.herokuapp.com/articleContents?url=http://edition.cnn.com/2015/08/27/sport/world-athletics-championship-200m-final/index.html";
-        Log.d("URL", url);
         fetchParagraph();
     }
 
@@ -89,6 +96,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
             mainContent = new APIRequest().execute(passedURL).get();
             Log.d("WindowFocus URL", passedURL);
             Log.d("WindowFocus RESPONSE", mainContent);
+
             int index1 = mainContent.indexOf("<p>");
             int index2 = mainContent.indexOf("</p>");
             while (index1 >= 0 && index2 >= 0) {
@@ -122,6 +130,13 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     patterns.add("\\r");
                     patterns.add("\\n");
                     patterns.add("&nbsp");
+                    patterns.add("&rdquo");
+                    patterns.add("&rsquo");
+                    patterns.add("&ldquo");
+                    patterns.add("&amp");
+                    patterns.add("&ndash");
+                    patterns.add("&pound");
+                    patterns.add("&mdash");
                     patterns.add("\\");
                     for(int index=0;index<patterns.size();index++) {
                         String pattern = patterns.get(index);
@@ -142,6 +157,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     linearLayout.addView(textView);
 
                     textView.setText(paragraph);
+                    paragraphs.put(i, paragraph);
                     i++;
                 }
                 index1 = mainContent.indexOf("<p>", index1 + 1);

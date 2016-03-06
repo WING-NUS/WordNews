@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, TranslateBuildInActivity.class);
                 Bundle b = new Bundle();
                 b.putString("key", listData[(int) id].postLink);
+                b.putString("title", listData[(int) id].postTitle);
                 intent.putExtras(b);
                 startActivity(intent);
             }
