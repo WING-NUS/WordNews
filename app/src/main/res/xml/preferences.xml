@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference android:title="Translate"
+        android:defaultValue="true"
+        android:summary="This option if selected will show translation in passage."
+        android:key="isTranslate" />
+    <ListPreference     android:title="Language"
+        android:summary="Select the language you would like to display"
+        android:key="language"
+        android:defaultValue="1"
+        android:entries="@array/listArray"
+        android:entryValues="@array/listValues" />
+    <EditTextPreference android:title="Translate Word Frequency"
+        android:key="username"
+        android:summary="Adjust number of translated words per paragraph"/>
+</PreferenceScreen>

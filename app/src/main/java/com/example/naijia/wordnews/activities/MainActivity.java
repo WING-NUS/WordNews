@@ -1,24 +1,22 @@
 package com.example.naijia.wordnews.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.content.Intent;
 
-import com.example.naijia.wordnews.api.IndexListViewUpdate;
 import com.example.naijia.wordnews.R;
+import com.example.naijia.wordnews.api.IndexListViewUpdate;
 import com.example.naijia.wordnews.models.PostData;
-import com.example.naijia.wordnews.models.QuizModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -74,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            return true;
+            Intent i = new Intent(this, SettingActivity.class);
+            startActivity(i);
+            //return true;
         }
 
         return super.onOptionsItemSelected(item);
