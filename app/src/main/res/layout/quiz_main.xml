@@ -7,12 +7,21 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingTop="5dip"
         android:paddingBottom="5dip"
         android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/questionTextView"
+            android:layout_width = "fill_parent"
+            android:layout_height = "wrap_content"
+            android:layout_margin="20sp"
+            android:text="@string/quiz_question"
+            android:textStyle="bold"
+            android:textSize="30sp"/>
 
         <RadioGroup
             android:layout_width="fill_parent"
@@ -40,24 +49,6 @@
                 android:layout_margin="20sp"
                 android:checked="false" android:id="@+id/option4" />
 
-            <TextView
-                android:id="@+id/questionTextView"
-                android:layout_width = "fill_parent"
-                android:layout_height = "wrap_content"
-                android:layout_margin="20sp"
-                android:text="@string/quiz_question"
-                android:textStyle="bold"
-                android:textSize="30sp"/>
-
-            <TextView
-                android:id="@+id/questionTextViewTrans"
-                android:layout_width = "fill_parent"
-                android:layout_height = "wrap_content"
-                android:layout_marginLeft="20sp"
-                android:layout_marginRight="20sp"
-                android:text="@string/quiz_question_trans"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
         </RadioGroup>
 
     </LinearLayout>
