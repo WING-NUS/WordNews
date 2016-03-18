@@ -295,7 +295,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                         Log.d("ERROR", e.toString());
                                     }
 
-                                    alert.showDialog(, text_title, text_msg);
+                                    alert.showDialog(translateActivity, text_title, text_msg);
                                 }
                             };
                             ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
