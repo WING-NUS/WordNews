@@ -163,82 +163,11 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                 index1 = mainContent.indexOf("<p>", index1 + 1);
                 index2 = mainContent.indexOf("</p>", index2 + 1);
             }
-
-//            String response = "";
-//            response = new APIRequest().execute(url).get();
-//            Log.d("WindowFocus URL", url);
-//            Log.d("WindowFocus RESPONSE", response);
-//            JSONObject jObject = new JSONObject(response);
-//
-//
-//            while(true)
-//            {
-//                String key = new Integer(i).toString();
-//                if(jObject.has(key)) {
-//                    TextView textView = new TextView(getApplicationContext());
-//                    textView.setTextSize(18);
-//                    textView.setId(i);
-//                    textView.setTextColor(Color.parseColor("#ff000000"));
-//                    linearLayout.addView(textView);
-//
-//                    String aJsonString = jObject.getString(key);
-//                    JSONObject innerJObject = new JSONObject(aJsonString);
-//                    String paragraph = innerJObject.getString("text");
-//                    paragraphs.put(i, paragraph);
-//                    textView.setText(paragraph);
-//
-//                    Log.d("PARAGRAPH", paragraph);
-//                }
-//                else {
-//                    break;
-//                }
-//                i++;
-//            }
         }
         catch (ExecutionException | InterruptedException e) {
             Log.d("ERROR", e.toString());
         }
     }
-
-    private Handler handler_ = new Handler(){
-        @Override
-        public void handleMessage(Message msg){
-            switch(msg.what){
-                case UPDATE_UI:
-                    ArrayList<Word> words = (ArrayList<Word>)msg.obj;
-                    //do what you need to with the InputStream
-                    if(words.size()>0)
-                    {
-                        String paragraph = words.get(0).paragraph;
-                        Integer paragraphID = words.get(0).paragraphID;
-                        SpannableString ss = new SpannableString(paragraph);
-                        TextView textView = (TextView)findViewById(paragraphID);
-
-                        for (int i=1;i<words.size();i++) {
-                            final Word word = words.get(i);
-                            ClickableSpan clickableSpan = new ClickableSpan() {
-                                @Override
-                                public void onClick(View view) {
-                                    ViewDialog alert = new ViewDialog();
-                                    TextView tmpView = (TextView) view;
-                                    String text_msg = word.chinese;
-                                    Spanned s = (Spanned) tmpView.getText();
-                                    int start = s.getSpanStart(this);
-                                    int end = s.getSpanEnd(this);
-                                    String text_title = s.subSequence(start, end).toString();
-                                    alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg);
-                                }
-                            };
-                            ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        }
-
-                        textView.setText(ss);
-                        textView.setMovementMethod(LinkMovementMethod.getInstance());
-                    }
-                    break;
-            }
-        }
-    };
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -283,7 +212,8 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                         words.add(word);
                                         // TODO: Use this result for check isTest and pronunciation etc
                                     }
-                                    handler_.sendMessage(Message.obtain(handler_, UPDATE_UI, words));
+                                    WordOnClickHandler handler = new WordOnClickHandler(TranslateBuildInActivity.this);
+                                    handler.sendMessage(Message.obtain(handler, UPDATE_UI, words));
                                 }
 
                             } catch (ExecutionException | JSONException | InterruptedException e) {
@@ -293,70 +223,6 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     });
                     thread.start();
                 }
-
-//            try {
-//                for(final String paragraph : paragraphs) {
-//                    String urlParameters = "text="+paragraph+"&url="+passedURL+"&name="+"zhengnaijia_19920112"+"&num_words="+"3";
-//                    String translateUrl = "http://wordnews-mobile.herokuapp.com/show/";
-//                    String translate_words = new PostRequest().execute(translateUrl,urlParameters).get();
-//
-//                    if(translate_words=="FAILED"){
-//                        continue;
-//                    }
-//
-//                    // parse the returned JSON
-//                    JSONObject translateJSONObject = new JSONObject(translate_words);
-//                    ArrayList<Word> words = new ArrayList<Word>();
-//                    Iterator<String> keys = translateJSONObject.keys();
-//                    while(keys.hasNext()) {
-//                        String english = (String) keys.next();
-//                        JSONObject wordJson = new JSONObject(translateJSONObject.getString(english));
-//                        Log.d("TRANSLATE WORDSssssss", english);
-//                        Word word = new Word();
-//                        word.english = english;
-//                        word.chinese = wordJson.getString("chinese");
-//                        word.wordID = wordJson.getString("wordID");
-//                        word.position = wordJson.getInt("position");
-//                        word.pronunciation = wordJson.getString("pronunciation");
-//                        Integer isTest = wordJson.getInt("isTest");
-//                        if(isTest==0)
-//                            word.isTest = Boolean.FALSE;
-//                        else
-//                            word.isTest = Boolean.TRUE;
-//                        words.add(word);
-//                        // TODO: Use this result for check isTest and pronunciation etc
-//                    }
-//
-//                    SpannableString ss = new SpannableString(paragraph);
-//                    TextView textView = new TextView(getApplicationContext());
-//                    textView.setTextSize(18);
-//                    textView.setTextColor(Color.parseColor("#ff000000"));
-//                    linearLayout.addView(textView);
-//
-//                    for (final Word word : words) {
-//                        ClickableSpan clickableSpan = new ClickableSpan() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                ViewDialog alert = new ViewDialog();
-//                                TextView tmpView = (TextView) view;
-//                                String text_msg = word.chinese;
-//                                Spanned s = (Spanned) tmpView.getText();
-//                                int start = s.getSpanStart(this);
-//                                int end = s.getSpanEnd(this);
-//                                String text_title = s.subSequence(start, end).toString();
-//                                alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg);
-//                            }
-//                        };
-//                        ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                    }
-//
-//                    textView.setText(ss);
-//                    textView.setMovementMethod(LinkMovementMethod.getInstance());
-//                }
-//            } catch (ExecutionException | JSONException | InterruptedException e) {
-//                Log.d("ERROR", e.toString());
-//            }
-
         }
     }
     class loadComments extends AsyncTask<String, String, String> {
@@ -386,6 +252,62 @@ public class TranslateBuildInActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    private final class WordOnClickHandler extends Handler {
+        final TranslateBuildInActivity translateActivity;
+
+        public WordOnClickHandler(TranslateBuildInActivity translateBuildInActivity) {
+            this.translateActivity = translateBuildInActivity;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case UPDATE_UI:
+                    ArrayList<Word> words = (ArrayList<Word>) msg.obj;
+                    final String baseUrl = "http://wordnews-mobile.herokuapp.com/remember/";
+                    final String passedUrl = this.translateActivity.passedURL;
+                    //do what you need to with the InputStream
+                    if (words.size() > 0) {
+                        String paragraph = words.get(0).paragraph;
+                        Integer paragraphID = words.get(0).paragraphID;
+                        SpannableString ss = new SpannableString(paragraph);
+                        TextView textView = (TextView) this.translateActivity.findViewById(paragraphID);
+
+                        for (int i = 1; i < words.size(); i++) {
+                            final Word word = words.get(i);
+                            ClickableSpan clickableSpan = new ClickableSpan() {
+                                @Override
+                                public void onClick(View view) {
+                                    ViewDialog alert = new ViewDialog();
+                                    TextView tmpView = (TextView) view;
+                                    String text_msg = word.chinese;
+                                    Spanned s = (Spanned) tmpView.getText();
+                                    int start = s.getSpanStart(this);
+                                    int end = s.getSpanEnd(this);
+                                    String text_title = s.subSequence(start, end).toString();
+                                    String urlParameters = "wordId=" + word.wordID + "&url=" + passedUrl + "&name=" + "zhengnaijia_19920112" + "&isRemembered=1";
+
+                                    try {
+                                        new PostRequest().execute(baseUrl, urlParameters).get();
+                                    } catch (ExecutionException | InterruptedException e) {
+                                        Log.d("ERROR", e.toString());
+                                    }
+
+                                    alert.showDialog(, text_title, text_msg);
+                                }
+                            };
+                            ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        }
+
+                        textView.setText(ss);
+                        textView.setMovementMethod(LinkMovementMethod.getInstance());
+                    }
+                    break;
+            }
+        }
+
     }
 }
 

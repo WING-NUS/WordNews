@@ -15,10 +15,8 @@ import android.widget.ListView;
 import com.example.naijia.wordnews.R;
 import com.example.naijia.wordnews.api.IndexListViewUpdate;
 import com.example.naijia.wordnews.models.PostData;
-import com.example.naijia.wordnews.models.QuizModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,19 +44,19 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-                List<String> list = Arrays.asList("1.Ocassion", "2.Situation", "3.Time", "4.Playground");
-                QuizModel quiz = new QuizModel(getString(R.string.quiz_question),getString(R.string.quiz_question_trans),list,"Ocassion","Ocassion","n.");
-                Bundle mBundle = new Bundle();
-                mBundle.putParcelable("quiz",quiz);
-                intent.putExtras(mBundle);
-                startActivity(intent);
-//                Intent intent = new Intent(MainActivity.this, TranslateBuildInActivity.class);
-//                Bundle b = new Bundle();
-//                b.putString("key", listData[(int) id].postLink);
-//                b.putString("title", listData[(int) id].postTitle);
-//                intent.putExtras(b);
+//                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+//                List<String> list = Arrays.asList("1.Ocassion", "2.Situation", "3.Time", "4.Playground");
+//                QuizModel quiz = new QuizModel(getString(R.string.quiz_question),getString(R.string.quiz_question_trans),list,"Ocassion","Ocassion","n.");
+//                Bundle mBundle = new Bundle();
+//                mBundle.putParcelable("quiz",quiz);
+//                intent.putExtras(mBundle);
 //                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, TranslateBuildInActivity.class);
+                Bundle b = new Bundle();
+                b.putString("key", listData[(int) id].postLink);
+                b.putString("title", listData[(int) id].postTitle);
+                intent.putExtras(b);
+                startActivity(intent);
             }
         });
     }

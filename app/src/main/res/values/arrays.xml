@@ -2,7 +2,7 @@
 <resources>
     <string-array name="listArray">
         <item>English</item>
-        <item>Chines</item>\
+        <item>Chinese</item>\
     </string-array>
     <string-array name="listValues">
         <item>1</item>

@@ -11,6 +11,6 @@
         android:entries="@array/listArray"
         android:entryValues="@array/listValues" />
     <EditTextPreference android:title="Translate Word Frequency"
-        android:key="username"
+        android:key="wordcount"
         android:summary="Adjust number of translated words per paragraph"/>
 </PreferenceScreen>
