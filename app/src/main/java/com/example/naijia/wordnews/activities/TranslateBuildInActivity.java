@@ -77,8 +77,6 @@ public class TranslateBuildInActivity extends AppCompatActivity {
 
         TextView textView = new TextView(getApplicationContext());
         textView.setTextSize(20);
-        int id = 2015;
-        textView.setId(id);
         textView.setTextColor(Color.parseColor("#ff000000"));
         textView.setText(title);
         textView.setGravity(Gravity.CENTER);
