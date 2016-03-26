@@ -148,15 +148,18 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     }
 
                     Log.d("PARAGRAPH AFTER", paragraph);
-                    TextView textView = new TextView(getApplicationContext());
-                    textView.setTextSize(18);
-                    textView.setId(i);
-                    textView.setTextColor(Color.parseColor("#ff000000"));
-                    linearLayout.addView(textView);
-
-                    textView.setText(paragraph);
-                    paragraphs.put(i, paragraph);
-                    i++;
+                    Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
+                    Matcher reMatcher = re.matcher(paragraph);
+                    while (reMatcher.find()) {
+                        String newParagraph = reMatcher.group();
+                        TextView textView = new TextView(getApplicationContext());
+                        textView.setTextSize(18);
+                        textView.setId(i);
+                        textView.setTextColor(Color.parseColor("#ff000000"));
+                        linearLayout.addView(textView);
+                        textView.setText(newParagraph);
+                        paragraphs.put(i++, newParagraph);
+                    }
                 }
                 index1 = mainContent.indexOf("<p>", index1 + 1);
                 index2 = mainContent.indexOf("</p>", index2 + 1);

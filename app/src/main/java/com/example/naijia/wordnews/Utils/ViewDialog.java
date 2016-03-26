@@ -18,15 +18,16 @@ public class ViewDialog {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.test_dialog);
         txt_help_gest = (TextView) dialog.findViewById(R.id.txt_help_gest);
-        txt_help_gest.setText("Example Sentence\n" +
-                "Example Sentence\n" +
-                "Example Sentence\n" +
-                "Example Sentence\n" +
-                "Example Sentence\n" +
-                "Example Sentence\n" +
-                "Example Sentence\n" +
-                "Example Sentence\n" +
-                "Example Sentence\n");
+//        txt_help_gest.setText("Example Sentence\n" +
+//                "Example Sentence\n" +
+//                "Example Sentence\n" +
+//                "Example Sentence\n" +
+//                "Example Sentence\n" +
+//                "Example Sentence\n" +
+//                "Example Sentence\n" +
+//                "Example Sentence\n" +
+//                "Example Sentence\n");
+        txt_help_gest.setText("Example Sentnce");
         txt_help_gest.setVisibility(View.GONE);
 
         TextView message = (TextView) dialog.findViewById(R.id.text_dialog);
