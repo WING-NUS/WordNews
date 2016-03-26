@@ -213,7 +213,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                     words.add(word);
                                     // TODO: Use this result for check isTest and pronunciation etc
                                 }
-                                WordOnClickHandler handler = new WordOnClickHandler(TranslateBuildInActivity.this);
+                                 handler = new WordOnClickHandler(TranslateBuildInActivity.this);
                                 handler.sendMessage(Message.obtain(handler, UPDATE_UI, words));
                             }
 
@@ -255,26 +255,20 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         return true;
     }
 
-    private final class WordOnClickHandler extends Handler {
-        final TranslateBuildInActivity translateActivity;
-
-        public WordOnClickHandler(TranslateBuildInActivity translateBuildInActivity) {
-            this.translateActivity = translateBuildInActivity;
-        }
-
+    private Handler handler_ = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case UPDATE_UI:
                     ArrayList<Word> words = (ArrayList<Word>) msg.obj;
                     final String baseUrl = "http://wordnews-mobile.herokuapp.com/remember/";
-                    final String passedUrl = this.translateActivity.passedURL;
+                    final String passedUrl = passedURL;
                     //do what you need to with the InputStream
                     if (words.size() > 0) {
                         String paragraph = words.get(0).paragraph;
                         Integer paragraphID = words.get(0).paragraphID;
                         SpannableString ss = new SpannableString(paragraph);
-                        TextView textView = (TextView) this.translateActivity.findViewById(paragraphID);
+                        TextView textView = (TextView)findViewById(paragraphID);
 
                         for (int i = 1; i < words.size(); i++) {
                             final Word word = words.get(i);
@@ -296,7 +290,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                     Log.d("ERROR", e.toString());
                                 }
 
-                                alert.showDialog(translateActivity, text_title, text_msg);
+                                alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg);
                                 }
                             };
                             ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
