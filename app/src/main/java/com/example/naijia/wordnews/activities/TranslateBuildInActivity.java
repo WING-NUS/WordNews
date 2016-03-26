@@ -60,6 +60,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
     private String passedURL;
     private String title;
     private static final int UPDATE_UI = 1;
+    private boolean notTranslated = true;
     Map<Integer, String> paragraphs;
     LinearLayout linearLayout;
     @Override
@@ -151,7 +152,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
                     Matcher reMatcher = re.matcher(paragraph);
                     while (reMatcher.find()) {
-                        String newParagraph = reMatcher.group();
+                        String newParagraph = "\t\t" + reMatcher.group();
                         TextView textView = new TextView(getApplicationContext());
                         textView.setTextSize(18);
                         textView.setId(i);
@@ -172,7 +173,8 @@ public class TranslateBuildInActivity extends AppCompatActivity {
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        if(hasFocus){
+        if(hasFocus && notTranslated){
+            notTranslated = false;
             Log.d("Windows Focused", "Windows Focused");
             if(paragraphs!=null)
                 for(final Integer key : paragraphs.keySet()) {
@@ -213,8 +215,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                     words.add(word);
                                     // TODO: Use this result for check isTest and pronunciation etc
                                 }
-                                 handler = new WordOnClickHandler(TranslateBuildInActivity.this);
-                                handler.sendMessage(Message.obtain(handler, UPDATE_UI, words));
+                                handler_.sendMessage(Message.obtain(handler_, UPDATE_UI, words));
                             }
 
                         } catch (ExecutionException | JSONException | InterruptedException e) {
@@ -226,28 +227,6 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                 }
         }
     }
-    class loadComments extends AsyncTask<String, String, String> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onProgressUpdate(String... values) {
-            super.onProgressUpdate(values);
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -255,42 +234,33 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         return true;
     }
 
-    private Handler handler_ = new Handler() {
+    private Handler handler_ = new Handler(){
         @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
+        public void handleMessage(Message msg){
+            switch(msg.what){
                 case UPDATE_UI:
-                    ArrayList<Word> words = (ArrayList<Word>) msg.obj;
-                    final String baseUrl = "http://wordnews-mobile.herokuapp.com/remember/";
-                    final String passedUrl = passedURL;
+                    ArrayList<Word> words = (ArrayList<Word>)msg.obj;
                     //do what you need to with the InputStream
-                    if (words.size() > 0) {
+                    if(words.size()>0)
+                    {
                         String paragraph = words.get(0).paragraph;
                         Integer paragraphID = words.get(0).paragraphID;
                         SpannableString ss = new SpannableString(paragraph);
                         TextView textView = (TextView)findViewById(paragraphID);
 
-                        for (int i = 1; i < words.size(); i++) {
+                        for (int i=1;i<words.size();i++) {
                             final Word word = words.get(i);
                             ClickableSpan clickableSpan = new ClickableSpan() {
                                 @Override
                                 public void onClick(View view) {
-                                ViewDialog alert = new ViewDialog();
-                                TextView tmpView = (TextView) view;
-                                String text_msg = word.chinese;
-                                Spanned s = (Spanned) tmpView.getText();
-                                int start = s.getSpanStart(this);
-                                int end = s.getSpanEnd(this);
-                                String text_title = s.subSequence(start, end).toString();
-                                String urlParameters = "wordId=" + word.wordID + "&url=" + passedUrl + "&name=" + "zhengnaijia_19920112" + "&isRemembered=1";
-
-                                try {
-                                    new PostRequest().execute(baseUrl, urlParameters).get();
-                                } catch (ExecutionException | InterruptedException e) {
-                                    Log.d("ERROR", e.toString());
-                                }
-
-                                alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg);
+                                    ViewDialog alert = new ViewDialog();
+                                    TextView tmpView = (TextView) view;
+                                    String text_msg = word.chinese;
+                                    Spanned s = (Spanned) tmpView.getText();
+                                    int start = s.getSpanStart(this);
+                                    int end = s.getSpanEnd(this);
+                                    String text_title = s.subSequence(start, end).toString();
+                                    alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg);
                                 }
                             };
                             ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -302,7 +272,6 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     break;
             }
         }
-
-    }
+    };
 }
 
