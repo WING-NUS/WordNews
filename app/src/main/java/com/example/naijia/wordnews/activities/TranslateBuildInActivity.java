@@ -179,46 +179,46 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     Thread thread = new Thread(new Runnable(){
                         @Override
                         public void run(){
-                            try {
-                                Log.d("In a new Thread", "In a new Thread");
-                                String urlParameters = "text="+paragraph+"&url="+passedURL+"&name="+"zhengnaijia_19920112"+"&num_words="+"3";
-                                String translateUrl = "http://wordnews-mobile.herokuapp.com/show/";
-                                String translate_words = new PostRequest().execute(translateUrl,urlParameters).get();
+                        try {
+                            Log.d("In a new Thread", "In a new Thread");
+                            String urlParameters = "text="+paragraph+"&url="+passedURL+"&name="+"zhengnaijia_19920112"+"&num_words="+"3";
+                            String translateUrl = "http://wordnews-mobile.herokuapp.com/show/";
+                            String translate_words = new PostRequest().execute(translateUrl,urlParameters).get();
 
-                                if(!translate_words.equals("FAILED")){
-                                    // parse the returned JSON
-                                    JSONObject translateJSONObject = new JSONObject(translate_words);
-                                    ArrayList<Word> words = new ArrayList<Word>();
-                                    Iterator<String> keys = translateJSONObject.keys();
-                                    Word initialWord = new Word();
-                                    initialWord.paragraph = paragraph;
-                                    initialWord.paragraphID = key;
-                                    words.add(initialWord);
-                                    while(keys.hasNext()) {
-                                        String english = (String) keys.next();
-                                        JSONObject wordJson = new JSONObject(translateJSONObject.getString(english));
-                                        Log.d("TRANSLATE WORDS", english);
-                                        Word word = new Word();
-                                        word.english = english;
-                                        word.chinese = wordJson.getString("chinese");
-                                        word.wordID = wordJson.getString("wordID");
-                                        word.position = wordJson.getInt("position");
-                                        word.pronunciation = wordJson.getString("pronunciation");
-                                        Integer isTest = wordJson.getInt("isTest");
-                                        if(isTest==0)
-                                            word.isTest = Boolean.FALSE;
-                                        else
-                                            word.isTest = Boolean.TRUE;
-                                        words.add(word);
-                                        // TODO: Use this result for check isTest and pronunciation etc
-                                    }
-                                    WordOnClickHandler handler = new WordOnClickHandler(TranslateBuildInActivity.this);
-                                    handler.sendMessage(Message.obtain(handler, UPDATE_UI, words));
+                            if(!translate_words.equals("FAILED")){
+                                // parse the returned JSON
+                                JSONObject translateJSONObject = new JSONObject(translate_words);
+                                ArrayList<Word> words = new ArrayList<Word>();
+                                Iterator<String> keys = translateJSONObject.keys();
+                                Word initialWord = new Word();
+                                initialWord.paragraph = paragraph;
+                                initialWord.paragraphID = key;
+                                words.add(initialWord);
+                                while(keys.hasNext()) {
+                                    String english = (String) keys.next();
+                                    JSONObject wordJson = new JSONObject(translateJSONObject.getString(english));
+                                    Log.d("TRANSLATE WORDS", english);
+                                    Word word = new Word();
+                                    word.english = english;
+                                    word.chinese = wordJson.getString("chinese");
+                                    word.wordID = wordJson.getString("wordID");
+                                    word.position = wordJson.getInt("position");
+                                    word.pronunciation = wordJson.getString("pronunciation");
+                                    Integer isTest = wordJson.getInt("isTest");
+                                    if(isTest==0)
+                                        word.isTest = Boolean.FALSE;
+                                    else
+                                        word.isTest = Boolean.TRUE;
+                                    words.add(word);
+                                    // TODO: Use this result for check isTest and pronunciation etc
                                 }
-
-                            } catch (ExecutionException | JSONException | InterruptedException e) {
-                                Log.d("ERROR", e.toString());
+                                WordOnClickHandler handler = new WordOnClickHandler(TranslateBuildInActivity.this);
+                                handler.sendMessage(Message.obtain(handler, UPDATE_UI, words));
                             }
+
+                        } catch (ExecutionException | JSONException | InterruptedException e) {
+                            Log.d("ERROR", e.toString());
+                        }
                         }
                     });
                     thread.start();
@@ -280,22 +280,22 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                             ClickableSpan clickableSpan = new ClickableSpan() {
                                 @Override
                                 public void onClick(View view) {
-                                    ViewDialog alert = new ViewDialog();
-                                    TextView tmpView = (TextView) view;
-                                    String text_msg = word.chinese;
-                                    Spanned s = (Spanned) tmpView.getText();
-                                    int start = s.getSpanStart(this);
-                                    int end = s.getSpanEnd(this);
-                                    String text_title = s.subSequence(start, end).toString();
-                                    String urlParameters = "wordId=" + word.wordID + "&url=" + passedUrl + "&name=" + "zhengnaijia_19920112" + "&isRemembered=1";
+                                ViewDialog alert = new ViewDialog();
+                                TextView tmpView = (TextView) view;
+                                String text_msg = word.chinese;
+                                Spanned s = (Spanned) tmpView.getText();
+                                int start = s.getSpanStart(this);
+                                int end = s.getSpanEnd(this);
+                                String text_title = s.subSequence(start, end).toString();
+                                String urlParameters = "wordId=" + word.wordID + "&url=" + passedUrl + "&name=" + "zhengnaijia_19920112" + "&isRemembered=1";
 
-                                    try {
-                                        new PostRequest().execute(baseUrl, urlParameters).get();
-                                    } catch (ExecutionException | InterruptedException e) {
-                                        Log.d("ERROR", e.toString());
-                                    }
+                                try {
+                                    new PostRequest().execute(baseUrl, urlParameters).get();
+                                } catch (ExecutionException | InterruptedException e) {
+                                    Log.d("ERROR", e.toString());
+                                }
 
-                                    alert.showDialog(translateActivity, text_title, text_msg);
+                                alert.showDialog(translateActivity, text_title, text_msg);
                                 }
                             };
                             ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
