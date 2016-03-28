@@ -1,7 +1,6 @@
 #!bin/env ruby
 #encoding: utf-8
 
-require 'nokogiri'
 require 'open-uri'
 require 'watir-webdriver'
 
@@ -44,6 +43,7 @@ include UserHandler
 
     render json: @result
   end
+
 
 
   def show
@@ -253,19 +253,7 @@ include UserHandler
         zh_word = chinese_sentence[chinese_alignment_pos_start.. pos_end]
 
         # find meaning using the chinese word given by bing
-        actual_meanings = EnglishWords.joins(:meanings).joins(:chinese_words)
-                                     .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
-                                     .where('english_meaning = ?', normalised_word)
-        actual_meaning = actual_meanings.first
-        # actual meanings contains the set of possible english-meaning-chinese words
-        for possible_actual_meaning in actual_meanings
-            possible_chinese_match = ChineseWords.find(possible_actual_meaning.chinese_words_id).chinese_meaning
-            if possible_chinese_match.include? zh_word or zh_word.include? possible_chinese_match
-                actual_meaning = possible_actual_meaning
-                break
-            end
-
-        end
+        actual_meaning = chinese_meaning(normalised_word, zh_word)
 
       end
 
@@ -302,7 +290,13 @@ include UserHandler
         if hard_coded_word.length == 0
           @result[word]['chinese'] = zh_word
         end
-        @result[word]['pronunciation'] = '' # bing can return words not in our dictionary, so we don't bother trying to find the pronunciation
+
+        @result[word]['pronunciation'] = '' # bing may return words not in our dictionary, so default to empty
+
+        possible_pronunciation = ChineseWords.where("chinese_meaning = ?", zh_word)
+        if possible_pronunciation.length > 0
+          @result[word]['pronunciation'] = possible_pronunciation.first.pronunciation
+        end
 
         @result[word]['isTest'] = 0
         @result[word]['position'] = word_index
@@ -360,8 +354,25 @@ include UserHandler
     end
   end
 
+def chinese_meaning(normalised_word, zh_word)
+  actual_meanings = EnglishWords.joins(:meanings).joins(:chinese_words)
+                        .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
+                        .where('english_meaning = ?', normalised_word)
+  actual_meaning = actual_meanings.first
+  # actual meanings contains the set of possible english-meaning-chinese words
+  for possible_actual_meaning in actual_meanings
+    possible_chinese_match = ChineseWords.find(possible_actual_meaning.chinese_words_id).chinese_meaning
+    if possible_chinese_match.include? zh_word or zh_word.include? possible_chinese_match
+      actual_meaning = possible_actual_meaning
+      break
+    end
 
-  def getExampleSentences
+  end
+  actual_meaning
+end
+
+
+def getExampleSentences
     @meaning_id = params[:wordID]
     sentence_list = MeaningsExampleSentence.where(:meaning_id => @meaning_id)
 
