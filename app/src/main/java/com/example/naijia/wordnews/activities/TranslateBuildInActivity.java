@@ -154,7 +154,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     while (reMatcher.find()) {
                         String newParagraph = "\t\t" + reMatcher.group();
                         TextView textView = new TextView(getApplicationContext());
-                        textView.setTextSize(18);
+                        textView.setTextSize(16);
                         textView.setId(i);
                         textView.setTextColor(Color.parseColor("#ff000000"));
                         linearLayout.addView(textView);
@@ -237,40 +237,40 @@ public class TranslateBuildInActivity extends AppCompatActivity {
     private Handler handler_ = new Handler(){
         @Override
         public void handleMessage(Message msg){
-            switch(msg.what){
-                case UPDATE_UI:
-                    ArrayList<Word> words = (ArrayList<Word>)msg.obj;
-                    //do what you need to with the InputStream
-                    if(words.size()>0)
-                    {
-                        String paragraph = words.get(0).paragraph;
-                        Integer paragraphID = words.get(0).paragraphID;
-                        SpannableString ss = new SpannableString(paragraph);
-                        TextView textView = (TextView)findViewById(paragraphID);
+        switch(msg.what){
+            case UPDATE_UI:
+                ArrayList<Word> words = (ArrayList<Word>)msg.obj;
+                //do what you need to with the InputStream
+                if(words.size()>0)
+                {
+                    String paragraph = words.get(0).paragraph;
+                    Integer paragraphID = words.get(0).paragraphID;
+                    SpannableString ss = new SpannableString(paragraph);
+                    TextView textView = (TextView)findViewById(paragraphID);
 
-                        for (int i=1;i<words.size();i++) {
-                            final Word word = words.get(i);
-                            ClickableSpan clickableSpan = new ClickableSpan() {
-                                @Override
-                                public void onClick(View view) {
-                                    ViewDialog alert = new ViewDialog();
-                                    TextView tmpView = (TextView) view;
-                                    String text_msg = word.chinese;
-                                    Spanned s = (Spanned) tmpView.getText();
-                                    int start = s.getSpanStart(this);
-                                    int end = s.getSpanEnd(this);
-                                    String text_title = s.subSequence(start, end).toString();
-                                    alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg);
-                                }
-                            };
-                            ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        }
-
-                        textView.setText(ss);
-                        textView.setMovementMethod(LinkMovementMethod.getInstance());
+                    for (int i=1;i<words.size();i++) {
+                        final Word word = words.get(i);
+                        ClickableSpan clickableSpan = new ClickableSpan() {
+                            @Override
+                            public void onClick(View view) {
+                                ViewDialog alert = new ViewDialog();
+                                TextView tmpView = (TextView) view;
+                                String text_msg = word.chinese;
+                                Spanned s = (Spanned) tmpView.getText();
+                                int start = s.getSpanStart(this);
+                                int end = s.getSpanEnd(this);
+                                String text_title = s.subSequence(start, end).toString();
+                                alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg);
+                            }
+                        };
+                        ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
-                    break;
-            }
+
+                    textView.setText(ss);
+                    textView.setMovementMethod(LinkMovementMethod.getInstance());
+                }
+                break;
+        }
         }
     };
 }
