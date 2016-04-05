@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
@@ -72,6 +73,7 @@ public class ViewDialog {
         }
 
         pinyin.setText(ss);
+        pinyin.setMovementMethod(LinkMovementMethod.getInstance());
 
         TextView title = (TextView) dialog.findViewById(R.id.title_dialog);
         title.setText(title_msg);
