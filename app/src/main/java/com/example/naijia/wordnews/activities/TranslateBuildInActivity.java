@@ -200,13 +200,13 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 while(keys.hasNext()) {
                                     String english = (String) keys.next();
                                     JSONObject wordJson = new JSONObject(translateJSONObject.getString(english));
-                                    Log.d("TRANSLATE WORDS", english);
+                                    Log.d("TRANSLATE WORDS", wordJson.toString());
                                     Word word = new Word();
                                     word.english = english;
                                     word.chinese = wordJson.getString("chinese");
                                     word.wordID = wordJson.getString("wordID");
                                     word.position = wordJson.getInt("position");
-                                    word.pronunciation = wordJson.getString("pronunciation");
+                                    word.pronunciation = wordJson.getString("pronunciation").replace("\\n","");
                                     Integer isTest = wordJson.getInt("isTest");
                                     if(isTest==0)
                                         word.isTest = Boolean.FALSE;
@@ -260,7 +260,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 int start = s.getSpanStart(this);
                                 int end = s.getSpanEnd(this);
                                 String text_title = s.subSequence(start, end).toString();
-                                alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg);
+                                alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg, word);
                             }
                         };
                         ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
