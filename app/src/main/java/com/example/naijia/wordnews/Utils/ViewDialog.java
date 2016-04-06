@@ -52,23 +52,19 @@ public class ViewDialog {
             ClickableSpan clickableSpan = new ClickableSpan() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("Before", "start");
                     TextView tmpView = (TextView) view;
                     Spanned s = (Spanned) tmpView.getText();
                     int start = s.getSpanStart(this);
                     int end = s.getSpanEnd(this);
                     String pinyin = s.subSequence(start, end).toString();
-                    Log.d("Before", pinyin);
                     String url = "http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/"+pinyin+".mp3";
                     MediaPlayer mediaPlayer = MediaPlayer.create(myActivity, Uri.parse(url));
-                    Log.d("Middle", pinyin);
                     mediaPlayer.start();
-                    Log.d("After", pinyin);
                 }
             };
-            Log.d("index and length", "" + index + " " + splitString[i].length() + " "+ splitString[i]);
-            if(splitString[i].length() > 0)
-                ss.setSpan(clickableSpan, index, index + splitString[i].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            Log.d("index and length", "" + index + " " + splitString[i].length() + " " + splitString[i]);
+            ss.setSpan(clickableSpan, index, index + splitString[i].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
             index += splitString[i].length() + 1;
         }
 
@@ -77,15 +73,6 @@ public class ViewDialog {
 
         TextView title = (TextView) dialog.findViewById(R.id.title_dialog);
         title.setText(title_msg);
-
-//        ImageButton clickButton = (ImageButton) dialog.findViewById(R.id.sound_btn);
-//        clickButton.setOnClickListener(new View.OnClickListener() {
-//               @Override
-//               public void onClick(View v) {
-//                   MediaPlayer mediaPlayer = MediaPlayer.create(activity, Uri.parse("http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/pin1.mp3"));
-//                   mediaPlayer.start();
-//               }
-//        });
 
         dialog.show();
 
