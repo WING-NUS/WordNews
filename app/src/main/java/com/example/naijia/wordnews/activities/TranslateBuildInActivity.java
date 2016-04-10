@@ -126,17 +126,8 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                         }
                     }
                     ArrayList<String> patterns = new ArrayList<String>();
-                    patterns.add("\\r");
-                    patterns.add("\\n");
-                    patterns.add("&nbsp");
-                    patterns.add("&rdquo");
-                    patterns.add("&rsquo");
-                    patterns.add("&ldquo");
-                    patterns.add("&amp");
-                    patterns.add("&ndash");
-                    patterns.add("&pound");
-                    patterns.add("&mdash");
-                    patterns.add("\\");
+                    patterns.add("&nbsp;");
+                    patterns.add("&pound;");
                     for(int index=0;index<patterns.size();index++) {
                         String pattern = patterns.get(index);
                         while(true){
@@ -147,12 +138,20 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 break;
                         }
                     }
-
-                    Log.d("PARAGRAPH AFTER", paragraph);
-                    Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
-                    Matcher reMatcher = re.matcher(paragraph);
-                    while (reMatcher.find()) {
-                        String newParagraph = "\t\t" + reMatcher.group();
+                    paragraph = paragraph.replaceAll("&rsquo;","'");
+                    paragraph = paragraph.replaceAll("&rdquo;","\"");
+                    paragraph = paragraph.replaceAll("&ldquo;","\"");
+                    paragraph = paragraph.replaceAll("&amp;","&");
+                    paragraph = paragraph.replaceAll("&ndash;","–");
+                    paragraph = paragraph.replaceAll("&mdash;","—");
+//                    paragraph = paragraph.replaceAll("\\\"","\"");
+                    paragraph = paragraph.replaceAll("\\\\r\\\\n\\\\r\\\\n","\\\\r\\\\n");
+                    paragraph = paragraph.replaceAll("\\\\r\\\\n\\\\r\\\\n","\\\\r\\\\n");
+                    paragraph = paragraph.replaceAll("\\\\r\\\\n\\\\r\\\\n","\\\\r\\\\n");
+                    paragraph = paragraph.replaceAll("\\\\r\\\\n\\\\r\\\\n","\\\\r\\\\n");
+                    String[] splitParagraph = paragraph.split("\\\\r\\\\n");
+                    for(int j=0;j<splitParagraph.length;j++) {
+                        String newParagraph = "\n" + splitParagraph[j];
                         TextView textView = new TextView(getApplicationContext());
                         textView.setTextSize(16);
                         textView.setId(i);
@@ -188,7 +187,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                             String translateUrl = "http://wordnews-mobile.herokuapp.com/show/";
                             String translate_words = new PostRequest().execute(translateUrl,urlParameters).get();
 
-                            if(!translate_words.equals("FAILED")){
+                            if(translate_words!=null && !translate_words.equals("FAILED")){
                                 // parse the returned JSON
                                 JSONObject translateJSONObject = new JSONObject(translate_words);
                                 ArrayList<Word> words = new ArrayList<Word>();
