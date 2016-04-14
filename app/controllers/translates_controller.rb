@@ -17,6 +17,9 @@ include UserHandler
   end
 
 
+  # Obtains the paragraphs contained in the page of the url given
+  # 
+  #
   def paragraphs_in_article
     url_of_article = params[:url]
 
@@ -268,12 +271,7 @@ include UserHandler
       end
 
 
-
-
-      
-
       @result[word] = Hash.new
-
 
       testEntry = Meaning.joins(:histories)
                       .select('meaning_id, frequency')
@@ -439,8 +437,6 @@ def getExampleSentences
     end
   end
 
-  # GET /translates/new
-  # GET /translates/new.json
 
   def remember
     @user_name = params[:name]
@@ -508,6 +504,7 @@ def getExampleSentences
       format.json { render json: @translate }
     end
   end
+
 
   def parse_alignment_string(alignments)
     aligned_positions = Hash.new
