@@ -207,6 +207,16 @@ include UserHandler
     word_list = params[:text].split(" ")
     chinese_sentence, alignment = Bing.translate(params[:text].to_s, 'en', 'zh-CHS')
 
+    if alignment.nil?
+      # log 
+      puts "bing failed"
+      puts chinese_sentence
+      puts alignment
+
+      # try again
+      chinese_sentence, alignment = Bing.translate(params[:text].to_s, 'en', 'zh-CHS')
+    end
+
     alignment = parse_alignment_string(alignment)
 
     @user_name = params[:name]
