@@ -1,5 +1,14 @@
 package com.example.naijia.wordnews.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Builder;
+
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(suppressConstructorProperties = true)
+@Data
 public class Word {
     public String english;
     public String chinese;
@@ -11,4 +20,6 @@ public class Word {
     public Boolean isTest;
     public String paragraph;
     public Integer paragraphID;
+
+    private String passedUrl;
 }

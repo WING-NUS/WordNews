@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.naijia.wordnews.Utils.NetworkUtils;
 import com.example.naijia.wordnews.api.APIRequest;
 import com.example.naijia.wordnews.R;
 import com.example.naijia.wordnews.Utils.ViewDialog;
@@ -192,25 +193,18 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 JSONObject translateJSONObject = new JSONObject(translate_words);
                                 ArrayList<Word> words = new ArrayList<Word>();
                                 Iterator<String> keys = translateJSONObject.keys();
-                                Word initialWord = new Word();
-                                initialWord.paragraph = paragraph;
-                                initialWord.paragraphID = key;
-                                words.add(initialWord);
+                                //Intial word
+                                words.add(Word.builder().paragraph(paragraph).paragraphID(key).build());
                                 while(keys.hasNext()) {
                                     String english = (String) keys.next();
                                     JSONObject wordJson = new JSONObject(translateJSONObject.getString(english));
                                     Log.d("TRANSLATE WORDS", wordJson.toString());
-                                    Word word = new Word();
-                                    word.english = english;
-                                    word.chinese = wordJson.getString("chinese");
-                                    word.wordID = wordJson.getString("wordID");
-                                    word.position = wordJson.getInt("position");
-                                    word.pronunciation = wordJson.getString("pronunciation").replace("\\n","");
-                                    Integer isTest = wordJson.getInt("isTest");
-                                    if(isTest==0)
-                                        word.isTest = Boolean.FALSE;
-                                    else
-                                        word.isTest = Boolean.TRUE;
+                                    Word word = Word.builder().english(english).chinese(wordJson.getString("chinese"))
+                                            .wordID(wordJson.getString("wordID"))
+                                            .pronunciation(wordJson.getString("pronunciation").replace("\\n",""))
+                                            .position(wordJson.getInt("position"))
+                                            .passedUrl(passedURL)
+                                            .isTest( wordJson.getInt("isTest")==0?Boolean.FALSE:Boolean.TRUE).build();
                                     words.add(word);
                                     // TODO: Use this result for check isTest and pronunciation etc
                                 }
@@ -259,7 +253,20 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 int start = s.getSpanStart(this);
                                 int end = s.getSpanEnd(this);
                                 String text_title = s.subSequence(start, end).toString();
-                                alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg, word);
+                                String urlParameters = "wordId=" + word.wordID + "&url=" + word.getPassedUrl() + "&name=" + "zhengnaijia_19920112" + "&isRemembered=1";
+                                try{
+                                    new PostRequest().execute(NetworkUtils.BASE_URL, urlParameters).get();
+                                } catch (ExecutionException | InterruptedException e) {
+                                    Log.d("ERROR", e.toString());
+                                }
+                                if(word.isTest){
+                                    //a quiz
+
+                                }else{
+                                    //example sentence
+                                    alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg, word);
+                                }
+
                             }
                         };
                         ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
