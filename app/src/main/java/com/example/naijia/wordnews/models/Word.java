@@ -17,7 +17,7 @@ public class Word {
     public String pronunciation;
     public String chineseSentence;
     public String englishSentence;
-    public Boolean isTest;
+    public Integer testType;
     public String paragraph;
     public Integer paragraphID;
 

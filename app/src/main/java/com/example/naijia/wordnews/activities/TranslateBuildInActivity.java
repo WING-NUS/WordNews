@@ -205,7 +205,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                             .pronunciation(wordJson.getString("pronunciation").replace("\\n",""))
                                             .position(wordJson.getInt("position"))
                                             .passedUrl(passedURL)
-                                            .isTest( wordJson.getInt("isTest")==0?Boolean.FALSE:Boolean.TRUE).build();
+                                            .testType(wordJson.getInt("isTest")).build();
                                     words.add(word);
                                     // TODO: Use this result for check isTest and pronunciation etc
                                 }
@@ -261,15 +261,18 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 } catch (InterruptedException | ExecutionException e) {
                                     e.printStackTrace();
                                 }
-
-                                if(word.isTest){
-                                    //a quiz
-
-                                }else{
-                                    //example sentence
-                                    alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg, word);
+                                switch (word.getTestType()){
+                                    //show translate & prounciation
+                                    case 0:
+                                        alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg, word);
+                                        break;
+                                    //show quiz
+                                    case 1:
+                                        break;
+                                    //show quiz (chinese)
+                                    case 2:
+                                        break;
                                 }
-
                             }
                         };
                         ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
