@@ -160,7 +160,7 @@ include UserHandler
           @result[word]['isTest'] = hard_coded_quiz.first.quiz_type
         end
 
-      elsif testEntry.frequency.to_i > 6 and testEntry.frequency.to_i <= 10
+      elsif testEntry.frequency.to_i > 6
         @result[word]['isTest'] = 2
         @result[word]['choices'] = Hash.new
         @result[word]['isChoicesProvided'] = true
@@ -179,22 +179,7 @@ include UserHandler
           @result[word]['choices']['2'] = hard_coded_quiz.first.option3
           @result[word]['isTest'] = hard_coded_quiz.first.quiz_type
         end
-      elsif testEntry.frequency.to_i >= 11
-        next
-        #@text[word]['isTest'] = 1
-        #@text[word]['choices'] = Hash.new
-
-        #category = 'Technology' # TODO extract category
-        #level = 3
-        #word_under_test = original_word
-
-        #distractors_str = `python "public/MCQ Generation/MCQGenerator.py" #{category} #{level} #{word_under_test}`
-        #distractors = distractors_str.split(',')
-
-        #distractors.each_with_index { |val, idx|   
-        #  @text[word]['choices'][idx.to_s] = val.strip
-        #}
-        #@text[word]['isChoicesProvided'] = false
+      
       end
 
     end # end of for word in word_list
@@ -241,10 +226,10 @@ include UserHandler
         break # no need to continue as @num_words is the number of words requested by the client
       end
 
-      #this is to add downcase and singularize support
+      # this is to add downcase and singularize support
       normalised_word = word.downcase.singularize
       english_meaning_row = EnglishWords.joins(:meanings)
-                                .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
+                                .select('english_meaning, english_word_id, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
                                 .where("english_meaning = ?", normalised_word)
 
       english_meaning = english_meaning_row.first
@@ -314,7 +299,7 @@ include UserHandler
         @result[word]['choices'] = Hash.new
         @result[word]['chinese'] = zh_word
 
-        choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", @original_word_id).random(3)
+        choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", actual_meaning.english_word_id).random(3)
         choices.each_with_index { |val, idx|
           @result[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
@@ -364,7 +349,7 @@ include UserHandler
 
 def chinese_meaning(normalised_word, zh_word)
   actual_meanings = EnglishWords.joins(:meanings).joins(:chinese_words)
-                        .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
+                        .select('english_meaning, meanings.id, english_words_id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
                         .where('english_meaning = ?', normalised_word)
   actual_meaning = actual_meanings.first
   # actual meanings contains the set of possible english-meaning-chinese words
