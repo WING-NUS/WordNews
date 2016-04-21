@@ -25,6 +25,7 @@ import com.example.naijia.wordnews.R;
 import com.example.naijia.wordnews.Utils.ViewDialog;
 
 import com.example.naijia.wordnews.api.PostRequest;
+import com.example.naijia.wordnews.api.GetRequest;
 import com.example.naijia.wordnews.models.PostData;
 import com.example.naijia.wordnews.models.Word;
 
@@ -254,11 +255,13 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 int end = s.getSpanEnd(this);
                                 String text_title = s.subSequence(start, end).toString();
                                 String urlParameters = "wordId=" + word.wordID + "&url=" + word.getPassedUrl() + "&name=" + "zhengnaijia_19920112" + "&isRemembered=1";
-                                try{
-                                    new PostRequest().execute(NetworkUtils.BASE_URL, urlParameters).get();
-                                } catch (ExecutionException | InterruptedException e) {
-                                    Log.d("ERROR", e.toString());
+
+                                try {
+                                    String test =  new GetRequest().execute(NetworkUtils.BASE_URL,urlParameters).get();
+                                } catch (InterruptedException | ExecutionException e) {
+                                    e.printStackTrace();
                                 }
+
                                 if(word.isTest){
                                     //a quiz
 

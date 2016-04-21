@@ -17,7 +17,7 @@ import java.io.IOException;
 
 import javax.net.ssl.HttpsURLConnection;
 
-class GetRequest extends AsyncTask<String, String, String>{
+public class GetRequest extends AsyncTask<String, String, String>{
 
     String TAG = "API";
 
