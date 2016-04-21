@@ -17,7 +17,7 @@ TranslateApp::Application.routes.draw do
   match '/show', to: 'translates#show_by_bing', via: :post
   match '/showold', to: 'translates#show', via: :post
   match '/showbybing', to: 'translates#show_by_bing', via: :post
-  match '/remember', to: 'translates#remember', via: :get
+  match '/remember', to: 'translates#remember', via: [:get, :post]
   match '/getQuiz', to: 'translates#quiz', via: :get
   match '/getNumber', to: 'translates#calculate', via: :get
   match '/displayHistory', to: 'users#displayHistory', via: :get

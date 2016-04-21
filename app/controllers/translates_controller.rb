@@ -74,10 +74,10 @@ include UserHandler
       end
 
       #this is to add downcase and singularize support
-      original_word = word.downcase.singularize
+      original_english_word = word.downcase.singularize
       english_meaning_row = EnglishWords.joins(:meanings)
                                 .select('english_meaning, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
-                                .where("english_meaning = ?", original_word)
+                                .where("english_meaning = ?", original_english_word)
 
       english_meaning = nil
       if english_meaning_row.length == 0
@@ -100,7 +100,7 @@ include UserHandler
       @result[word] = Hash.new
 
       # check if a hard-coded translation is specified for this word
-      hard_coded_word = HardCodedWord.where(:url => @url, :word => original_word)
+      hard_coded_word = HardCodedWord.where(:url => @url, :word => original_english_word)
       if hard_coded_word.length > 0
         if hard_coded_word.first.translation?
           @result[word]['chinese'] = hard_coded_word.first.translation
@@ -122,8 +122,8 @@ include UserHandler
 
       @original_word_chinese_id = english_meaning.chinese_words_id
 
-      # see if the user understands this word before
-      @result[word]['wordID'] = english_meaning.id # pass meaningId to client
+
+      @result[word]['wordID'] = english_meaning.id # always pass meaningId to client
       chinese_word = ChineseWords.find(english_meaning.chinese_words_id)
       if hard_coded_word.length == 0
         @result[word]['chinese'] = chinese_word.chinese_meaning
@@ -131,6 +131,7 @@ include UserHandler
       @result[word]['pronunciation'] = chinese_word.pronunciation
 
 
+      # see if the user understands this word before
       #@user_id = User.where(:user_name => @user_name).first.id
       testEntry = Meaning.joins(:histories)
                       .select('meaning_id, frequency')
@@ -150,7 +151,7 @@ include UserHandler
           @result[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
 
-        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
+        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_english_word)
         # if there is a hard coded quiz, replace the words with the hard-coded values
         if hard_coded_quiz.length > 0
 
@@ -170,7 +171,7 @@ include UserHandler
           @result[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
 
-        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
+        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_english_word)
         # if there is a hard coded quiz, replace the words with the hard-coded values
         if hard_coded_quiz.length > 0
 
@@ -189,6 +190,7 @@ include UserHandler
       format.json { render json: @translate }
     end
   end
+
 
   def show_by_bing
     @result = Hash.new
@@ -256,14 +258,18 @@ include UserHandler
 
       end
 
+      @original_word_id = actual_meaning.nil? ? english_meaning.id : actual_meaning.id
 
       @result[word] = Hash.new
 
+
+
       testEntry = Meaning.joins(:histories)
-                      .select('meaning_id, frequency')
-                      .where("user_id = ? AND meaning_id = ?", user_id, english_meaning_row.first.id).first
+                         .select('meaning_id, frequency')
+                         .where("user_id = ? AND meaning_id = ?", user_id, english_meaning.id).first
 
 
+      @result[word]['wordID'] = @original_word_id # pass meaningId to client
 
       if testEntry.blank? or testEntry.frequency.to_i <= 3 #just translate the word
         # check if a hard-coded translation is specified for this word
@@ -277,12 +283,13 @@ include UserHandler
           end
         end
 
-        @original_word_id = actual_meaning.nil? ? english_meaning_row.first.id : actual_meaning.id
+        @original_word_id = actual_meaning.nil? ? english_meaning.id : actual_meaning.id
+
+        @result[word]['wordID'] = @original_word_id # pass meaningId to client
 
         # if this point is reached, then the word and related information is sent back
         words_retrieved = words_retrieved + 1
 
-        @result[word]['wordID'] = @original_word_id # pass meaningId to client
         if hard_coded_word.length == 0
           @result[word]['chinese'] = zh_word
         end
@@ -297,7 +304,7 @@ include UserHandler
         @result[word]['isTest'] = 0
         @result[word]['position'] = word_index
 
-      elsif testEntry.frequency.to_i.between?(3, 5)
+      elsif testEntry.frequency.to_i.between?(4, 5)
         @result[word]['isTest'] = 1
         @result[word]['choices'] = Hash.new
         @result[word]['chinese'] = zh_word
@@ -329,6 +336,7 @@ include UserHandler
         choices.each_with_index { |val, idx|
           @result[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
           puts @result[word]['choices'][idx.to_s].encoding
+          puts "^ quiz choice encoding ^"
         }
 
         #hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
@@ -350,15 +358,16 @@ include UserHandler
     end
   end
 
-def chinese_meaning(normalised_word, zh_word)
+def chinese_meaning(english, chinese)
   actual_meanings = EnglishWords.joins(:meanings).joins(:chinese_words)
                         .select('english_meaning, meanings.id, english_words.id as english_word_id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
-                        .where('english_meaning = ?', normalised_word)
+                        .where('english_meaning = ?', english)
   actual_meaning = actual_meanings.first
   # actual meanings contains the set of possible english-meaning-chinese words
   for possible_actual_meaning in actual_meanings
     possible_chinese_match = ChineseWords.find(possible_actual_meaning.chinese_words_id).chinese_meaning
-    if possible_chinese_match.include? zh_word or zh_word.include? possible_chinese_match
+    puts possible_chinese_match.encoding
+    if possible_chinese_match.include? chinese or chinese.include? possible_chinese_match
       actual_meaning = possible_actual_meaning
       break
     end
