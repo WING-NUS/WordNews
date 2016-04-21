@@ -229,7 +229,7 @@ include UserHandler
       # this is to add downcase and singularize support
       normalised_word = word.downcase.singularize
       english_meaning_row = EnglishWords.joins(:meanings)
-                                .select('english_meaning, english_words.id, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
+                                .select('english_meaning, english_words.id as english_word_id, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
                                 .where("english_meaning = ?", normalised_word)
 
       english_meaning = english_meaning_row.first
@@ -302,7 +302,7 @@ include UserHandler
         @result[word]['choices'] = Hash.new
         @result[word]['chinese'] = zh_word
 
-        choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", actual_meaning.id).random(3)
+        choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", actual_meaning.english_word_id).random(3)
         choices.each_with_index { |val, idx|
           @result[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
@@ -352,7 +352,7 @@ include UserHandler
 
 def chinese_meaning(normalised_word, zh_word)
   actual_meanings = EnglishWords.joins(:meanings).joins(:chinese_words)
-                        .select('english_meaning, meanings.id, english_words.id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
+                        .select('english_meaning, meanings.id, english_words.id as english_word_id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
                         .where('english_meaning = ?', normalised_word)
   actual_meaning = actual_meanings.first
   # actual meanings contains the set of possible english-meaning-chinese words
