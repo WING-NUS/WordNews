@@ -239,16 +239,17 @@ include UserHandler
         next
       elsif english_meaning_row.length >= 1 # english word is in our dictionary
         word_index = params[:text].index(orig_word, index_offset)
-        index_offset = word_index || index_offset # this is to handle multiple occurences of the same word in the text
+        index_offset = word_index || index_offset # this is to handle multiple occurrences of the same word in the text
         # don't change index_offset if word_index is nil, which should not happen
 
         chinese_alignment_pos_start, pos_end = alignment[word_index]
 
         if pos_end.nil?
-          # bing thinks that the word is part of a longer phrase, so we do not translate
           next
         end
         zh_word = chinese_sentence[chinese_alignment_pos_start.. pos_end]
+
+        puts zh_word.encoding
 
         # find meaning using the chinese word given by bing
         actual_meaning = chinese_meaning(normalised_word, zh_word)
@@ -261,6 +262,8 @@ include UserHandler
       testEntry = Meaning.joins(:histories)
                       .select('meaning_id, frequency')
                       .where("user_id = ? AND meaning_id = ?", user_id, english_meaning_row.first.id).first
+
+
 
       if testEntry.blank? or testEntry.frequency.to_i <= 3 #just translate the word
         # check if a hard-coded translation is specified for this word
@@ -294,7 +297,7 @@ include UserHandler
         @result[word]['isTest'] = 0
         @result[word]['position'] = word_index
 
-      elsif testEntry.frequency.to_i.between?(4,5)
+      elsif testEntry.frequency.to_i.between?(3, 5)
         @result[word]['isTest'] = 1
         @result[word]['choices'] = Hash.new
         @result[word]['chinese'] = zh_word
@@ -315,9 +318,8 @@ include UserHandler
         #  @text[word]['isTest'] = hard_coded_quiz.first.quiz_type
         #end
 
-      elsif testEntry.frequency.to_i > 6
+      else
 
-        # don't need to compute
         @result[word]['isTest'] = 2
         @result[word]['choices'] = Hash.new
         @result[word]['isChoicesProvided'] = true
@@ -326,6 +328,7 @@ include UserHandler
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("chinese_words_id != ?", actual_meaning.chinese_words_id).random(3)
         choices.each_with_index { |val, idx|
           @result[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
+          puts @result[word]['choices'][idx.to_s].encoding
         }
 
         #hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
@@ -425,13 +428,13 @@ def getExampleSentences
 
   def remember
     @user_name = params[:name]
-    @isRemember = params[:isRemembered].to_i
+    @is_remember = params[:isRemembered].to_i
     @url = params[:url]
     @meaning_id = params[:wordID]
     @user_id = User.where(:user_name => @user_name).first.id
     testEntry = History.where(:meaning_id => @meaning_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
-      if @isRemember == 0
+      if @is_remember == 0
         testEntry.frequency = 0
       else
         testEntry.frequency= testEntry.frequency+1
@@ -443,7 +446,7 @@ def getExampleSentences
       understand.user_id = @user_id
       understand.meaning_id = @meaning_id
       understand.url = @url
-      understand.frequency = @isRemember
+      understand.frequency = @is_remember
       understand.save
     end
     respond_to do |format|
