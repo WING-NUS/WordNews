@@ -15,7 +15,9 @@
         android:layout_height="100dp"
         android:src="@drawable/postthumb_loading"
         android:scaleType="centerCrop"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="7dp" />
 
     <TextView
         android:id="@+id/postTitleLabel"

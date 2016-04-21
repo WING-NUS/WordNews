@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.naijia.wordnews.Utils.NetworkUtils;
@@ -61,6 +62,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
     private String url;
     private String passedURL;
     private String title;
+    private String date;
     private static final int UPDATE_UI = 1;
     private boolean notTranslated = true;
     Map<Integer, String> paragraphs;
@@ -77,14 +79,22 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         passedURL = b.getString("key");
         title = b.getString("title");
+        date = b.getString("date");
 
-        TextView textView = new TextView(getApplicationContext());
-        textView.setTextSize(20);
+        TextView textView = (TextView)findViewById(R.id.translate_title);
+        textView.setTextSize(22);
         textView.setTextColor(Color.parseColor("#ff000000"));
         textView.setText(title);
         textView.setGravity(Gravity.CENTER);
-        textView.setTypeface(null, Typeface.BOLD);
-        linearLayout.addView(textView);
+        textView.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+        textView.setLineSpacing((float) 1.3, (float) 1.3);
+
+        textView = (TextView)findViewById(R.id.translate_date);
+        textView.setTextSize(16);
+        textView.setTextColor(Color.parseColor("#ff000000"));
+        textView.setText(date);
+        textView.setTypeface(Typeface.SANS_SERIF);
+        textView.setLineSpacing((float) 1, (float) 1);
 
         fetchParagraph();
     }
@@ -146,7 +156,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     paragraph = paragraph.replaceAll("&amp;","&");
                     paragraph = paragraph.replaceAll("&ndash;","–");
                     paragraph = paragraph.replaceAll("&mdash;","—");
-//                    paragraph = paragraph.replaceAll("\\\"","\"");
+                    paragraph = paragraph.replaceAll("\\\\\"","\"");
                     paragraph = paragraph.replaceAll("\\\\r\\\\n\\\\r\\\\n","\\\\r\\\\n");
                     paragraph = paragraph.replaceAll("\\\\r\\\\n\\\\r\\\\n","\\\\r\\\\n");
                     paragraph = paragraph.replaceAll("\\\\r\\\\n\\\\r\\\\n","\\\\r\\\\n");
@@ -155,9 +165,11 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     for(int j=0;j<splitParagraph.length;j++) {
                         String newParagraph = "\n" + splitParagraph[j];
                         TextView textView = new TextView(getApplicationContext());
-                        textView.setTextSize(16);
+                        textView.setTextSize(18);
                         textView.setId(i);
                         textView.setTextColor(Color.parseColor("#ff000000"));
+                        textView.setTypeface(Typeface.SANS_SERIF);
+                        textView.setLineSpacing((float)1.3,(float)1.3);
                         linearLayout.addView(textView);
                         textView.setText(newParagraph);
                         paragraphs.put(i++, newParagraph);

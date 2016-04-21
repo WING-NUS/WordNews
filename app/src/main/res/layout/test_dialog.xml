@@ -3,48 +3,59 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="220dp"
         android:layout_height="80dp"
         android:id="@+id/title_dialog"
         android:text="TITLE"
-        android:textSize="20pt"
+        android:textSize="16pt"
         android:textColor="#FFFFFF"
         android:gravity="center"
-        android:background="#DA5F6A"
-        android:scaleType="fitCenter" />
+        android:background="#40E0D0"
+        android:scaleType="fitCenter"
+        android:layout_above="@+id/text_pinyin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/imageView1"
+        android:layout_alignEnd="@+id/imageView1" />
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:src="@drawable/audio512x512"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="pin yin"
         android:id="@+id/text_pinyin"
-        android:layout_below="@+id/title_dialog"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="20dp"
         android:textSize="12pt"
         android:textColor="#ff000000"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal" />
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TEXTO"
         android:id="@+id/text_dialog"
-        android:layout_below="@+id/title_dialog"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="20dp"
         android:textSize="12pt"
         android:textColor="#ff000000"
-        android:layout_centerHorizontal="true"
         android:clickable="true"
         android:onClick="toggle_contents"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/text_pinyin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-30dp"
+        android:layout_marginBottom="20dp" />
 
     <!--<TextView   android:id="@+id/txt_help_gest"-->
         <!--android:layout_width="wrap_content"-->
