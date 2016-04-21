@@ -17,14 +17,16 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-# randome database support in database
+
+# randome database support in database (?)
 gem 'randumb'
 gem 'jquery-rails'
 gem "bing_translator", "~> 4.4.0"
+
 # beautify rails console database table view
 gem 'hirb', '~> 0.7.2'
 #group :development do
-#	gem 'sqlite3', '1.3.5'
+#gem 'sqlite3', '1.3.5'
 #end
 
 #group :production do

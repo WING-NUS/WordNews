@@ -251,10 +251,12 @@ include UserHandler
         end
         zh_word = chinese_sentence[chinese_alignment_pos_start.. pos_end]
 
-        puts zh_word.encoding
-
         # find meaning using the chinese word given by bing
         actual_meaning = chinese_meaning(normalised_word, zh_word)
+
+        if actual_meaning.nil?
+          next
+        end
 
       end
 
@@ -270,6 +272,12 @@ include UserHandler
 
 
       @result[word]['wordID'] = @original_word_id # pass meaningId to client
+
+      if testEntry.blank?
+        puts "is blank"
+        puts normalised_word
+        puts english_meaning.id
+      end
 
       if testEntry.blank? or testEntry.frequency.to_i <= 3 #just translate the word
         # check if a hard-coded translation is specified for this word
@@ -291,14 +299,14 @@ include UserHandler
         words_retrieved = words_retrieved + 1
 
         if hard_coded_word.length == 0
-          @result[word]['chinese'] = zh_word
+          @result[word]['chinese'] = actual_meaning.chinese_meaning
         end
 
-        @result[word]['pronunciation'] = '' # bing may return words not in our dictionary, so default to empty
+        @result[word]['pronunciation'] = ''
 
-        possible_pronunciation = ChineseWords.where("chinese_meaning = ?", zh_word)
+        possible_pronunciation = ChineseWords.where("chinese_meaning = ?", actual_meaning.chinese_meaning)
         if possible_pronunciation.length > 0
-          @result[word]['pronunciation'] = possible_pronunciation.first.pronunciation
+          @result[word]['pronunciation'] = possible_pronunciation.first.pronunciation.strip
         end
 
         @result[word]['isTest'] = 0
@@ -306,9 +314,10 @@ include UserHandler
 
       elsif testEntry.frequency.to_i.between?(4, 5)
         @result[word]['isTest'] = 1
-        @result[word]['choices'] = Hash.new
-        @result[word]['chinese'] = zh_word
+        @result[word]['testType'] = 1
+        @result[word]['chinese'] = actual_meaning.chinese_meaning
 
+        @result[word]['choices'] = Hash.new
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("english_words_id != ?", actual_meaning.english_word_id).random(3)
         choices.each_with_index { |val, idx|
           @result[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
@@ -328,15 +337,14 @@ include UserHandler
       else
 
         @result[word]['isTest'] = 2
-        @result[word]['choices'] = Hash.new
+        @result[word]['testType'] = 2
         @result[word]['isChoicesProvided'] = true
-        @result[word]['chinese'] = zh_word
+        @result[word]['chinese'] = actual_meaning.chinese_meaning
 
+        @result[word]['choices'] = Hash.new
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id).where("chinese_words_id != ?", actual_meaning.chinese_words_id).random(3)
         choices.each_with_index { |val, idx|
           @result[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
-          puts @result[word]['choices'][idx.to_s].encoding
-          puts "^ quiz choice encoding ^"
         }
 
         #hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_word)
@@ -360,13 +368,12 @@ include UserHandler
 
 def chinese_meaning(english, chinese)
   actual_meanings = EnglishWords.joins(:meanings).joins(:chinese_words)
-                        .select('english_meaning, meanings.id, english_words.id as english_word_id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning')
+                        .select('english_meaning, meanings.id, english_words.id as english_word_id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning, pronunciation')
                         .where('english_meaning = ?', english)
-  actual_meaning = actual_meanings.first
+  actual_meaning = nil
   # actual meanings contains the set of possible english-meaning-chinese words
   for possible_actual_meaning in actual_meanings
     possible_chinese_match = ChineseWords.find(possible_actual_meaning.chinese_words_id).chinese_meaning
-    puts possible_chinese_match.encoding
     if possible_chinese_match.include? chinese or chinese.include? possible_chinese_match
       actual_meaning = possible_actual_meaning
       break
@@ -448,6 +455,10 @@ def getExampleSentences
       else
         testEntry.frequency= testEntry.frequency+1
       end
+      puts "frequency of word with id = "
+      puts @user_id 
+      puts testEntry.frequency
+
       testEntry.url = @url
       testEntry.save
     else # this is a new word the user has some operations on
