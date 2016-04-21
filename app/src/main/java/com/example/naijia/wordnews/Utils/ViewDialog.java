@@ -40,7 +40,7 @@ public class ViewDialog {
         image.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 MediaPlayer mediaPlayer;
-                if(word.pronunciation != "") {
+                if(!word.pronunciation.equals("")) {
                     String[] splitString = word.pronunciation.split("\\s+");
                     for (int i=0;i<splitString.length;i++) {
                         String pinyin = splitString[i];
