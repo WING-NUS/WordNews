@@ -19,7 +19,6 @@
             android:layout_width = "fill_parent"
             android:layout_height = "wrap_content"
             android:layout_margin="20sp"
-            android:text="@string/quiz_question"
             android:textStyle="bold"
             android:textSize="30sp"/>
 
@@ -27,7 +26,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/group1">
+            android:id="@+id/radioGroup1">
 
             <RadioButton android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
