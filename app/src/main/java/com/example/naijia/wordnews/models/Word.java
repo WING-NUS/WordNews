@@ -1,5 +1,7 @@
 package com.example.naijia.wordnews.models;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,6 @@ public class Word {
     public Integer testType;
     public String paragraph;
     public Integer paragraphID;
-
+    private List<String> choices;
     private String passedUrl;
 }

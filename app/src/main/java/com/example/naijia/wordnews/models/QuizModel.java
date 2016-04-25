@@ -18,8 +18,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(suppressConstructorProperties = true)
 @NoArgsConstructor
 public class QuizModel implements Parcelable {
-    private String question;
-    private String question_trans;
     private List<String> options;
     private String answer;
     private String word;
@@ -27,14 +25,11 @@ public class QuizModel implements Parcelable {
 
     public static final Creator<QuizModel> CREATOR = new Creator<QuizModel>() {
         public QuizModel createFromParcel(Parcel in) { return new QuizModel(in);}
-
         public QuizModel[] newArray(int size) { return new QuizModel[size]; }
     };
 
     public QuizModel(Parcel parcel) {
         this.options = new ArrayList<String>();
-        this.question = parcel.readString();
-        this.question_trans = parcel.readString();
         parcel.readStringList(this.options);
         this.answer = parcel.readString();
         this.word = parcel.readString();
@@ -48,8 +43,6 @@ public class QuizModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(question);
-        dest.writeString(question_trans);
         dest.writeStringList(options);
         dest.writeString(answer);
         dest.writeString(word);

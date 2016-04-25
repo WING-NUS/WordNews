@@ -1,5 +1,6 @@
 package com.example.naijia.wordnews.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -28,8 +29,10 @@ import com.example.naijia.wordnews.Utils.ViewDialog;
 import com.example.naijia.wordnews.api.PostRequest;
 import com.example.naijia.wordnews.api.GetRequest;
 import com.example.naijia.wordnews.models.PostData;
+import com.example.naijia.wordnews.models.QuizModel;
 import com.example.naijia.wordnews.models.Word;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
@@ -49,8 +52,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
@@ -169,7 +174,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                         textView.setId(i);
                         textView.setTextColor(Color.parseColor("#ff000000"));
                         textView.setTypeface(Typeface.SANS_SERIF);
-                        textView.setLineSpacing((float)1.3,(float)1.3);
+                        textView.setLineSpacing((float) 1.3, (float) 1.3);
                         linearLayout.addView(textView);
                         textView.setText(newParagraph);
                         paragraphs.put(i++, newParagraph);
@@ -214,10 +219,20 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                     Log.d("TRANSLATE WORDS", wordJson.toString());
                                     Word word = Word.builder().english(english).chinese(wordJson.getString("chinese"))
                                             .wordID(wordJson.getString("wordID"))
-                                            .pronunciation(wordJson.getString("pronunciation").replace("\\n",""))
-                                            .position(wordJson.getInt("position"))
                                             .passedUrl(passedURL)
                                             .testType(wordJson.getInt("isTest")).build();
+                                    if(word.getTestType()==0){
+                                        word.setPronunciation(wordJson.getString("pronunciation").replace("\\n",""));
+                                        word.setPosition(wordJson.getInt("position"));
+                                    }else {
+                                        List<String> choices = new ArrayList<String>();
+                                        JSONObject choicesJson = wordJson.getJSONObject("choices");
+                                        Iterator x = choicesJson.keys();
+                                        while(x.hasNext()){
+                                            choices.add((String)choicesJson.get((String)x.next()));
+                                        }
+                                        word.setChoices(choices);
+                                    }
                                     words.add(word);
                                     // TODO: Use this result for check isTest and pronunciation etc
                                 }
@@ -278,8 +293,14 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                     case 0:
                                         alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg, word);
                                         break;
-                                    //show quiz
+                                    //show quiz (english)
                                     case 1:
+                                        Intent intent = new Intent(TranslateBuildInActivity.this, QuizActivity.class);
+                                        QuizModel quiz = new QuizModel(word.getChoices(),word.getEnglish(),word.getChinese(),"verb");
+                                        Bundle mBundle = new Bundle();
+                                        mBundle.putParcelable("quiz",quiz);
+                                        intent.putExtras(mBundle);
+                                        startActivity(intent);
                                         break;
                                     //show quiz (chinese)
                                     case 2:
@@ -287,9 +308,9 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 }
                             }
                         };
-                        ss.setSpan(clickableSpan, word.position, word.position + word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        int position = word.getTestType()==0?word.position:paragraph.indexOf(word.english);
+                        ss.setSpan(clickableSpan, position, position +  word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
-
                     textView.setText(ss);
                     textView.setMovementMethod(LinkMovementMethod.getInstance());
                 }

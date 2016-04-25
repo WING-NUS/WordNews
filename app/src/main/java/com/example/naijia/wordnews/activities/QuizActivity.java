@@ -44,7 +44,6 @@ public class QuizActivity extends AppCompatActivity {
 
     private void getViews(){
         this.questionView = (TextView) findViewById(R.id.questionTextView);
-//        this.questionTransView = (TextView) findViewById(R.id.questionTextViewTrans);
         RadioButton option1 = (RadioButton) findViewById(R.id.option1);
         RadioButton option2 = (RadioButton) findViewById(R.id.option2);
         RadioButton option3 = (RadioButton) findViewById(R.id.option3);
@@ -57,10 +56,10 @@ public class QuizActivity extends AppCompatActivity {
 
     private void mapIntentData(QuizModel quiz){
         for (int i=0;i<quiz.getOptions().size();i++){
-            this.optionButtons.get(i).setText(quiz.getOptions().get(i));
+                this.optionButtons.get(i).setText(quiz.getOptions().get(i));
         }
-        this.questionView.setText(quiz.getQuestion());
-//        this.questionTransView.setText(quiz.getQuestion_trans());
+        this.optionButtons.get(3).setText(quiz.getAnswer());
+        this.questionView.setText(quiz.getWord());
     }
 
     @Override
