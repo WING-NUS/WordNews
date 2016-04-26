@@ -293,9 +293,6 @@ include UserHandler
         end
 
 
-
-        @result[word]['wordID'] = @original_word_id # pass meaningId to client
-
         # if this point is reached, then the word and related information is sent back
         words_retrieved = words_retrieved + 1
 
@@ -447,7 +444,7 @@ def getExampleSentences
     @user_name = params[:name]
     @is_remember = params[:isRemembered].to_i
     @url = params[:url]
-    @meaning_id = params[:wordID]
+    @meaning_id = params[:wordID] || params[:wordId]
     @user_id = User.where(:user_name => @user_name).first.id
     testEntry = History.where(:meaning_id => @meaning_id, :user_id => @user_id).first
     if not testEntry.blank? # the user has seen this word before, just change the if_understand field
