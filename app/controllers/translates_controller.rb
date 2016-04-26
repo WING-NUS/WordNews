@@ -268,15 +268,16 @@ include UserHandler
 
       testEntry = Meaning.joins(:histories)
                          .select('meaning_id, frequency')
-                         .where("user_id = ? AND meaning_id = ?", user_id, english_meaning.id).first
+                         .where("user_id = ? AND meaning_id = ?", user_id, @original_word_id).first
 
 
       @result[word]['wordID'] = @original_word_id # pass meaningId to client
 
       if testEntry.blank?
         puts "is blank"
+        puts user_id
         puts normalised_word
-        puts english_meaning.id
+        puts @original_word_id
       end
 
       if testEntry.blank? or testEntry.frequency.to_i <= 3 #just translate the word
@@ -291,7 +292,7 @@ include UserHandler
           end
         end
 
-        @original_word_id = actual_meaning.nil? ? english_meaning.id : actual_meaning.id
+
 
         @result[word]['wordID'] = @original_word_id # pass meaningId to client
 
@@ -457,6 +458,8 @@ def getExampleSentences
       end
       puts "frequency of word with id = "
       puts @user_id 
+      puts "wordID"
+      puts @meaning_id
       puts testEntry.frequency
 
       testEntry.url = @url
