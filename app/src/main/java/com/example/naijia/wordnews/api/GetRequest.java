@@ -22,10 +22,11 @@ public class GetRequest extends AsyncTask<String, String, String>{
     String TAG = "API";
 
     @Override
-    protected String doInBackground(String... uri) {
+    protected String doInBackground(String... params) {
         String responseString = null;
         try {
-            URL url = new URL(uri[0]);
+            URL url = new URL(params[0] + "?" + params[1]);
+
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             if(conn.getResponseCode() == HttpsURLConnection.HTTP_OK){
                 // Do normal input or output stream reading
