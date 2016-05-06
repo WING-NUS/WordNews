@@ -304,6 +304,12 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                         break;
                                     //show quiz (chinese)
                                     case 2:
+                                        Bundle mBundleChinese = new Bundle();
+                                        mBundleChinese.putParcelable("quiz",
+                                                new QuizModel(word.getChoices(), word.getChinese(), word.getEnglish(), "verb"));
+                                        Intent intentChinese =
+                                                new Intent(TranslateBuildInActivity.this, QuizActivity.class).putExtras(mBundleChinese);
+                                        startActivity(intentChinese);
                                         break;
                                 }
                             }
