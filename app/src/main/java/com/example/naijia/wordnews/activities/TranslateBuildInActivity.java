@@ -16,7 +16,9 @@ import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ import com.example.naijia.wordnews.api.GetRequest;
 import com.example.naijia.wordnews.models.PostData;
 import com.example.naijia.wordnews.models.QuizModel;
 import com.example.naijia.wordnews.models.Word;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -113,6 +116,9 @@ public class TranslateBuildInActivity extends AppCompatActivity {
             Log.d("WindowFocus URL", passedURL);
             Log.d("WindowFocus RESPONSE", mainContent);
 
+            ArrayList<Integer> imageIndex = new ArrayList<Integer>();
+            ArrayList<String> imageURL = new ArrayList<String>();
+
             int index1 = mainContent.indexOf("<p>");
             int index2 = mainContent.indexOf("</p>");
             while (index1 >= 0 && index2 >= 0) {
@@ -124,7 +130,18 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                         pair1 = paragraph.indexOf('<');
                         pair2 = paragraph.indexOf('>');
                         if(pair1 < pair2) {
-                            Log.d("EXTRA STRING", paragraph.substring(pair1, pair2+1));
+                            String outString = paragraph.substring(pair1, pair2 + 1);
+                            Log.d("EXTRA STRING", outString);
+                            if(outString.startsWith("<img")) {
+                                String splits[] = outString.split("\\\\\"");
+                                for(int j=0;j<splits.length;j++) {
+                                    if(splits[j].startsWith("http:")) {
+                                        Log.d("EXTRA STRING!!!!!!!!!!!", splits[j]);
+                                        imageIndex.add(paragraphs.size());
+                                        imageURL.add(splits[j]);
+                                    }
+                                }
+                            }
                             paragraph = paragraph.substring(0,pair1) + paragraph.substring(pair2+1);
                         }
                         else{
@@ -156,6 +173,8 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                         }
                     }
                     paragraph = paragraph.replaceAll("&rsquo;","'");
+                    paragraph = paragraph.replaceAll("&quot;","'");
+                    paragraph = paragraph.replaceAll("&#39;","'");
                     paragraph = paragraph.replaceAll("&rdquo;","\"");
                     paragraph = paragraph.replaceAll("&ldquo;","\"");
                     paragraph = paragraph.replaceAll("&amp;","&");
@@ -167,6 +186,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                     paragraph = paragraph.replaceAll("\\\\r\\\\n\\\\r\\\\n","\\\\r\\\\n");
                     paragraph = paragraph.replaceAll("\\\\r\\\\n\\\\r\\\\n","\\\\r\\\\n");
                     String[] splitParagraph = paragraph.split("\\\\r\\\\n");
+                    int index = 0;
                     for(int j=0;j<splitParagraph.length;j++) {
                         String newParagraph = "\n" + splitParagraph[j];
                         TextView textView = new TextView(getApplicationContext());
@@ -178,6 +198,17 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                         linearLayout.addView(textView);
                         textView.setText(newParagraph);
                         paragraphs.put(i++, newParagraph);
+                        if(imageIndex.size()>index && index == j) {
+                            ImageView myImage = new ImageView(this);
+                            Picasso.with(getApplicationContext()).load(imageURL.get(index)).into(myImage);
+                            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                            lp.setMargins(5, 40, 0, -15);
+                            myImage.setLayoutParams(lp);
+//                            myImage.setImageResource(R.drawable.ic_launcher);
+                            linearLayout.addView(myImage);
+//                            setContentView(linearLayout);
+                            index++;
+                        }
                     }
                 }
                 index1 = mainContent.indexOf("<p>", index1 + 1);
@@ -249,12 +280,6 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
     private Handler handler_ = new Handler(){
         @Override
         public void handleMessage(Message msg){
@@ -324,5 +349,27 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         }
         }
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            Intent i = new Intent(this, SettingActivity.class);
+            startActivity(i);
+            //return true;
+        }
+        if (id == R.id.action_learning_history) {
+            Intent i = new Intent(this, WordsHistoryList.class);
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 

@@ -3,5 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.naijia.wordnews.activities.SettingActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="2" app:showAsAction="always" />
+    <item android:id="@+id/action_learning_history" android:title="@string/action_learning_history"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

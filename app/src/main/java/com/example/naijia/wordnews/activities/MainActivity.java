@@ -70,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
             //return true;
         }
-
+        if (id == R.id.action_learning_history) {
+            Intent i = new Intent(this, WordsHistoryList.class);
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }
