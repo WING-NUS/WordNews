@@ -1,51 +1,10 @@
 #!bin/env ruby
 #encoding: utf-8
 
-require 'open-uri'
-require 'watir-webdriver'
-
 class TranslatesController < ApplicationController
 include UserHandler
   include Bing
 
-  def index
-    @translates = Translate.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @translates }
-    end
-  end
-
-
-  # Obtains the paragraphs contained in the page of the url given
-  # 
-  #
-  def paragraphs_in_article
-    url_of_article = params[:url]
-
-    browser = Watir::Browser.new :phantomjs
-    browser.goto url_of_article 
-
-    if !browser.url.include? url_of_article
-      browser.goto url_of_article # try again
-    end
-    if !browser.url.include? url_of_article
-      puts "unable to reach the required website"
-      raise RuntimeError, "unable to reach the required website"
-    end
-
-    paragraphs = browser.elements(:css => 'p')
-
-    @result = Hash.new
-    paragraphs.each_with_index { |paragraph, index |
-      paragraph_data = Hash.new
-      paragraph_data['text'] = paragraph.text
-
-      @result[index] = paragraph_data
-    }
-
-    render json: @result
-  end
 
 
   def show_by_bing

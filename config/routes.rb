@@ -11,9 +11,6 @@ TranslateApp::Application.routes.draw do
   resources :users
   resources :dictionaries
   
-  
-  root to: 'translates#index'
-  #match '/articleContents', to: 'translates#paragraphs_in_article', via: :get
   match '/show', to: 'translates#show_by_bing', via: :post
   match '/remember', to: 'translates#remember', via: [:get, :post]
   match '/getQuiz', to: 'translates#quiz', via: :get
