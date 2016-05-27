@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20150607104945) do
     t.datetime "updated_at",      :null => false
   end
 
+  add_index "english_words", ["english_meaning"], :name => "english_meanings"
+
   create_table "example_sentences", :force => true do |t|
     t.string   "english_sentence"
     t.string   "chinese_sentence"
@@ -86,6 +88,9 @@ ActiveRecord::Schema.define(:version => 20150607104945) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "hard_coded_words", ["url"], :name => "hard_code_words_url"
+  add_index "hard_coded_words", ["word"], :name => "hard_code_words_english"
+
   create_table "histories", :force => true do |t|
     t.integer  "user_id"
     t.integer  "meaning_id"
@@ -95,6 +100,9 @@ ActiveRecord::Schema.define(:version => 20150607104945) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "histories", ["meaning_id"], :name => "histories_meaning"
+  add_index "histories", ["user_id"], :name => "histories_user"
+
   create_table "meanings", :force => true do |t|
     t.integer  "chinese_words_id"
     t.integer  "english_words_id"
@@ -103,6 +111,8 @@ ActiveRecord::Schema.define(:version => 20150607104945) do
     t.datetime "updated_at",       :null => false
     t.integer  "word_category_id"
   end
+
+  add_index "meanings", ["english_words_id"], :name => "meaning_english_id"
 
   create_table "meanings_example_sentences", :force => true do |t|
     t.integer  "meaning_id"
