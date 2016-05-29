@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def getIfTranslate
+  def get_if_translate
     @user_name = params[:name]
     
     @user = User.where(:user_name => @user_name).first
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
 
-  def getSuggestURL
+  def get_suggest_url
     @result = Hash.new
     @result['url'] = "http://zhaoyue.com/cn"
     respond_to do |format|
@@ -49,32 +49,34 @@ class UsersController < ApplicationController
     end
   end
 
-  def displayHistory
+  def display_history
     @user_name = params[:name]
     @user = User.where(:user_name => @user_name).first
-    @find_to_learn_query = "user_id = " + @user.id.to_s + " and frequency = 0"
-    @find_learnt_query = "user_id = " + @user.id.to_s + " and frequency > 0"
-    @MeaningToLearnIdList = History.find(:all, :select => "meaning_id",:conditions => [@find_to_learn_query] )
-    @wordsToLearn=[]
-    if @MeaningToLearnIdList.length !=0
-      for id in @MeaningToLearnIdList
-        @temp = Meaning.find(id.meaning_id)
-        @wordsToLearn.push(@temp)
+    find_to_learn_query = "user_id = " + @user.id.to_s + " and frequency = 0"
+    find_learnt_query = "user_id = " + @user.id.to_s + " and frequency > 0"
+    meaning_to_learn_List = History.all(:select => "meaning_id", :conditions => [find_to_learn_query])
+    @words_to_learn = []
+    if meaning_to_learn_List.length !=0
+      for meaning in meaning_to_learn_List
+        temp = Meaning.find(meaning.meaning_id)
+        @words_to_learn.push(temp)
       end
     end
 
-    @MeaningLearntIdList = History.find(:all, :select => "meaning_id",:conditions => [@find_learnt_query] )
-    @wordsLearnt = []
-    if @MeaningLearntIdList.length !=0 
-      for id in @MeaningLearntIdList
-        @temp = Meaning.find(id.meaning_id)
-        @wordsLearnt.push(@temp)
+    meaning_learnt_list = History.all(:select => "meaning_id", :conditions => [find_learnt_query])
+    @words_learnt = []
+    if meaning_learnt_list.length !=0
+      meaning_learnt_list.each do |meaning|
+        temp = ChineseWords.joins(:meanings)
+                .select('chinese_meaning, meanings.id, english_words_id, chinese_words_id' )
+        .where('meanings.id = ?', meaning.meaning_id).first
+        @words_learnt.push(temp)
       end
     end
 
     respond_to do |format|
       format.html # displayHistory.html.erb
-      format.json { render json: @user }
+      format.json { render json: @words_learnt }
     end
   end
 

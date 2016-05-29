@@ -197,7 +197,7 @@ include UserHandler
   end
 
 
-  def getExampleSentences
+  def get_example_sentences
     @meaning_id = params[:wordID]
     sentence_list = MeaningsExampleSentence.where(:meaning_id => @meaning_id)
 

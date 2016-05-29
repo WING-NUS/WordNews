@@ -10,16 +10,16 @@ TranslateApp::Application.routes.draw do
 
   resources :users
   resources :dictionaries
-  
+
   match '/show', to: 'translates#show_by_bing', via: :post
   match '/remember', to: 'translates#remember', via: [:get, :post]
   match '/getQuiz', to: 'translates#quiz', via: :get
   match '/getNumber', to: 'translates#calculate', via: :get
-  match '/displayHistory', to: 'users#displayHistory', via: :get
+  match '/displayHistory', to: 'users#display_history', via: :get
   match '/settings', to: 'users#settings', via: :get
-  match '/getIfTranslate', to: 'users#getIfTranslate', via: :get
-  match '/getSuggestURL', to: 'users#getSuggestURL', via: :get
-  match '/getExampleSentences', to: 'translates#getExampleSentences', via: :get
+  match '/getIfTranslate', to: 'users#get_if_translate', via: :get
+  match '/getSuggestURL', to: 'users#get_suggest_url', via: :get
+  match '/getExampleSentences', to: 'translates#get_example_sentences', via: :get
   match '/log', to: 'users#log', via: :post
 
   # The priority is based upon order of creation:
