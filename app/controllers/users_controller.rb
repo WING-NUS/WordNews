@@ -52,9 +52,9 @@ class UsersController < ApplicationController
   def display_history
     @user_name = params[:name]
     @user = User.where(:user_name => @user_name).first
-    find_to_learn_query = "user_id = " + @user.id.to_s + " and frequency = 0"
-    find_learnt_query = "user_id = " + @user.id.to_s + " and frequency > 0"
-    meaning_to_learn_List = History.all(:select => "meaning_id", :conditions => [find_to_learn_query])
+    find_to_learn_query = 'user_id = ' + @user.id.to_s + ' and frequency = 0'
+    find_learnt_query = 'user_id = ' + @user.id.to_s + ' and frequency > 0'
+    meaning_to_learn_List = History.all(:select => 'meaning_id', :conditions => [find_to_learn_query])
     @words_to_learn = []
     if meaning_to_learn_List.length !=0
       for meaning in meaning_to_learn_List
@@ -63,12 +63,12 @@ class UsersController < ApplicationController
       end
     end
 
-    meaning_learnt_list = History.all(:select => "meaning_id", :conditions => [find_learnt_query])
+    meaning_learnt_list = History.all(:select => 'meaning_id', :conditions => [find_learnt_query])
     @words_learnt = []
     if meaning_learnt_list.length !=0
       meaning_learnt_list.each do |meaning|
-        temp = ChineseWords.joins(:meanings)
-                .select('chinese_meaning, meanings.id, english_words_id, chinese_words_id' )
+        temp = ChineseWords.joins(:english_words)
+                .select('english_meaning, chinese_meaning, meanings.id, english_words_id, chinese_words_id' )
         .where('meanings.id = ?', meaning.meaning_id).first
         @words_learnt.push(temp)
       end
