@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,6 +35,7 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        getActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(64, 224, 208)));
         setContentView(R.layout.quiz_main);
         getSupportActionBar().setIcon(R.drawable.sound);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

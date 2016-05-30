@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
     <TextView
-        android:layout_width="220dp"
+        android:layout_width="fill_parent"
         android:layout_height="80dp"
         android:id="@+id/title_dialog"
         android:text="TITLE"
@@ -12,23 +12,17 @@
         android:gravity="center"
         android:background="#40E0D0"
         android:scaleType="fitCenter"
-        android:layout_above="@+id/text_pinyin"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageView1"
-        android:layout_alignEnd="@+id/imageView1" />
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/audio512x512"
-        android:layout_alignParentBottom="false"
-        android:layout_alignParentTop="false"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp" />
+        android:layout_below="@+id/title_dialog"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,7 +34,7 @@
         android:gravity="center_horizontal"
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="-10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,8 +48,7 @@
         android:gravity="center_horizontal"
         android:layout_below="@+id/text_pinyin"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="30dp" />
 
     <!--<TextView   android:id="@+id/txt_help_gest"-->
         <!--android:layout_width="wrap_content"-->

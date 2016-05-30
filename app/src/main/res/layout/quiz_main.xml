@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
@@ -20,6 +19,7 @@
             android:layout_height = "wrap_content"
             android:layout_margin="20sp"
             android:textStyle="bold"
+            android:text="Which one is the correct translation?"
             android:textSize="30sp"/>
 
         <RadioGroup
@@ -31,21 +31,29 @@
             <RadioButton android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 android:layout_margin="20sp"
+                android:text="option1"
+                android:textSize="20dp"
                 android:checked="false" android:id="@+id/option1" />
 
             <RadioButton android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 android:layout_margin="20sp"
+                android:text="option2"
+                android:textSize="20dp"
                 android:checked="false" android:id="@+id/option2" />
 
             <RadioButton android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 android:layout_margin="20sp"
+                android:text="option3"
+                android:textSize="20dp"
                 android:checked="false" android:id="@+id/option3" />
 
             <RadioButton android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
                 android:layout_margin="20sp"
+                android:text="option4"
+                android:textSize="20dp"
                 android:checked="false" android:id="@+id/option4" />
 
         </RadioGroup>

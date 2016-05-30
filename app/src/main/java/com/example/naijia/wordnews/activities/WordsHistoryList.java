@@ -2,12 +2,22 @@ package com.example.naijia.wordnews.activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.naijia.wordnews.R;
+import com.example.naijia.wordnews.Utils.ImageDownloader;
+import com.example.naijia.wordnews.models.PostData;
+import com.example.naijia.wordnews.models.Word;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,45 +29,57 @@ public class WordsHistoryList extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.words_history_list_listview);
 
-        final ListView listview = (ListView) findViewById(R.id.listview);
-        String[] values = new String[] { "Android\r\t-\r\t安卓", "Android\r\t-\r\t安卓",
-                "Android\r\t-\r\t安卓", "answer\r\t-\r\t回答", "apple\r\t-\r\t苹果",
-                "Android\r\t-\r\t安卓", "answer\r\t-\r\t回答", "apple\r\t-\r\t苹果",
-                "Android\r\t-\r\t安卓", "answer\r\t-\r\t回答", "apple\r\t-\r\t苹果",
-                "Android\r\t-\r\t安卓", "answer\r\t-\r\t回答", "apple\r\t-\r\t苹果",
-                "Android\r\t-\r\t安卓", "answer\r\t-\r\t回答", "apple\r\t-\r\t苹果",
-                "Android\r\t-\r\t安卓", "answer\r\t-\r\t回答", "apple\r\t-\r\t苹果",
-                "Android\r\t-\r\t安卓", "answer\r-\r回答", "apple-苹果"};
+        final ListView listview = (ListView) findViewById(R.id.history_list_listview);
 
-        final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < values.length; ++i) {
-            list.add(values[i]);
+        final ArrayList<Word> list = new ArrayList<Word>();
+        for (int i = 0; i < 100; ++i) {
+            Word w = new Word();
+            w.chinese = "中文";
+            w.english = "English";
+            list.add(w);
         }
-        final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+        final StableArrayAdapter adapter = new StableArrayAdapter(this, R.layout.words_history_list, list);
         listview.setAdapter(adapter);
     }
 
-    private class StableArrayAdapter extends ArrayAdapter<String> {
+    private class StableArrayAdapter extends ArrayAdapter<Word> {
 
-        HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
+        private Activity myContext;
+        private ArrayList<Word> datas;
 
-        public StableArrayAdapter(Context context, int textViewResourceId,
-                                  List<String> objects) {
+        public StableArrayAdapter(Context context, int textViewResourceId, ArrayList<Word> objects) {
             super(context, textViewResourceId, objects);
-            for (int i = 0; i < objects.size(); ++i) {
-                mIdMap.put(objects.get(i), i);
-            }
+            // TODO Auto-generated constructor stub
+            myContext = (Activity) context;
+            datas = objects;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = myContext.getLayoutInflater();
+            View rowView = inflater.inflate(R.layout.words_history_list, parent, false);
+
+            TextView postTitleView = (TextView) rowView
+                    .findViewById(R.id.firstLine);
+            postTitleView.setText(datas.get(position).english + "\t - \t" + datas.get(position).chinese);
+            ImageView image = (ImageView) rowView.findViewById(R.id.icon);
+            image.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    MediaPlayer mediaPlayer;
+                        String[] splitString = "pin1 yin1".split("\\s+");
+                        for (int i = 0; i < splitString.length; i++) {
+                            String pinyin = splitString[i];
+                            String url = "http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/" + pinyin + ".mp3";
+                            mediaPlayer = MediaPlayer.create(myContext, Uri.parse(url));
+                            mediaPlayer.start();
+                        }
+                }
+            });
+            return rowView;
         }
 
         @Override
-        public long getItemId(int position) {
-            String item = getItem(position);
-            return mIdMap.get(item);
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return true;
+        public int getCount() {
+            return datas.size();
         }
 
     }
