@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     if meaning_learnt_list.length !=0
       meaning_learnt_list.each do |meaning|
         temp = ChineseWords.joins(:english_words)
-                .select('english_meaning, chinese_meaning, meanings.id, english_words_id, chinese_words_id' )
+                .select('english_meaning, chinese_meaning, meanings.id, english_words_id, chinese_words_id, pronunciation')
         .where('meanings.id = ?', meaning.meaning_id).first
         @words_learnt.push(temp)
       end
