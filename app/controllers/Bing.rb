@@ -1,22 +1,11 @@
 module Bing
 	# Specify all arguments
-	def Bing.translate(text, from, to)
+	def Bing.translate(texts, from, to)
 		translator = BingTranslator.new(ENV["bingid"], ENV["bingkey"], false, ENV["bingaccount"])
-        #puts ENV["bingid"]
-        #puts ENV["bingkey"]
-		# Or... Specify only required arguments
-		#translator = BingTranslator.new('LearnNews', 'jvdytVMvoC+DNOHQUBk2UbMBv3kydl8/hPFGUtxlod0=', false, )
 
-		chinese = translator.translate_array2 [text], :from => from, :to => to #'zh-CHS'
-		# without :from for auto language detection
-		# spanish = translator.translate 'Hello. This will be translated!', :to => 'es'
-		#puts chinese
-		#audio = translator.speak '今天应该吃什么东西啊', :language => 'zh-CHS', :format => 'audio/mp3', :options => 'MaxQuality'
-		#open('file.mp3', 'wb') { |f| f.write audio }
-		# puts audio
-		# Account balance
-		translator.balance # => 20000
-		return chinese[0]
+		chinese = translator.translate_array2 texts, :from => from, :to => to #'zh-CHS'
+		puts chinese
+		return chinese
 	end
 
 	def speak(text, language)
