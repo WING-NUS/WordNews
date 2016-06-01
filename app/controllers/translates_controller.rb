@@ -109,8 +109,9 @@ include UserHandler
 
         @result[word]['choices'] = Hash.new
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id)
-                      .where("english_words_id != ?", actual_meaning.english_word_id)
-                      .random(3)
+                      .where('english_words_id != ?', actual_meaning.english_word_id)
+                      .order('RANDOM()')
+                      .first(3)
         choices.each_with_index { |val, idx|
           @result[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
@@ -125,8 +126,9 @@ include UserHandler
 
         @result[word]['choices'] = Hash.new
         choices = Meaning.where(:word_category_id => english_meaning.word_category_id)
-                      .where("chinese_words_id != ?", actual_meaning.chinese_words_id)
-                      .random(3)
+                      .where('chinese_words_id != ?', actual_meaning.chinese_words_id)
+                      .order('RANDOM()')
+                      .first(3)
         choices.each_with_index { |val, idx|
           @result[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
@@ -143,9 +145,9 @@ include UserHandler
     url = params[:url].chomp '/'
     num_words = params[:num_words].to_i || 2
 
-    user = User.where(:user_name => @user_name).first
+    user = User.where(:user_name => user_name).first
     if user.nil?
-      user = make_user @user_name
+      user = make_user user_name
     end
     user_id = user.id
 
@@ -163,7 +165,7 @@ include UserHandler
                           .where('english_meaning = ?', english)
     actual_meaning = nil
     # actual meanings contains the set of possible english-meaning-chinese words
-    for possible_actual_meaning in actual_meanings
+    actual_meanings.each do |possible_actual_meaning|
       possible_chinese_match = possible_actual_meaning.chinese_meaning
       if possible_chinese_match == chinese
         actual_meaning = possible_actual_meaning
@@ -268,15 +270,6 @@ include UserHandler
     end
   end
 
-  def new
-    @translate = Translate.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @translate }
-    end
-  end
-
-
   def calculate
     @user_name = params[:name]
     @number = Hash.new
@@ -285,7 +278,7 @@ include UserHandler
       newUser = User.new
       newUser.user_name = @user_name
       newUser.if_translate = 1
-      newUser.translate_categories = "1,2,3,4" # the default will be translate all
+      newUser.translate_categories = '1,2,3,4' # the default will be translate all # TODO what does this do?
       newUser.save
     end
 
@@ -294,8 +287,8 @@ include UserHandler
       @number['toLearn'] = 0
     else
       @user_id = user.id
-      @querylearnt = "user_id=" + @user_id.to_s+ " and frequency > 0"
-      @querytolearn = "user_id=" + @user_id.to_s+ " and frequency = 0"
+      @querylearnt = 'user_id=' + @user_id.to_s+ ' and frequency > 0'
+      @querytolearn = 'user_id=' + @user_id.to_s+ ' and frequency = 0'
       @number['learnt'] = History.count('user_id', :conditions => [@querylearnt])
       @number['toLearn'] = History.count('user_id', :conditions => [@querytolearn])
     end
@@ -309,7 +302,7 @@ include UserHandler
 
   def parse_alignment_string(alignments)
     aligned_positions = Hash.new
-    for mapping in alignments.split(" ")
+    alignments.split(' ').each do |mapping|
       lhs = mapping.split('-')[0]
       start_of_lhs = lhs.split(':')[0]
 
