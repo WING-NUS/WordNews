@@ -158,14 +158,14 @@ include UserHandler
   end
 
   def chinese_meaning(english, chinese)
-    actual_meanings = EnglishWords.joins(:meanings).joins(:chinese_words)
+    actual_meanings = EnglishWords.joins(:chinese_words)
                           .select('english_meaning, meanings.id, english_words.id as english_word_id, meanings.chinese_words_id, meanings.word_category_id, chinese_meaning, pronunciation')
                           .where('english_meaning = ?', english)
     actual_meaning = nil
     # actual meanings contains the set of possible english-meaning-chinese words
     for possible_actual_meaning in actual_meanings
-      possible_chinese_match = ChineseWords.find(possible_actual_meaning.chinese_words_id).chinese_meaning
-      if possible_chinese_match.include? chinese or chinese.include? possible_chinese_match
+      possible_chinese_match = possible_actual_meaning.chinese_meaning
+      if possible_chinese_match == chinese
         actual_meaning = possible_actual_meaning
         break
       end
