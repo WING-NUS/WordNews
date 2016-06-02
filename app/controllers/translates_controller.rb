@@ -1,15 +1,17 @@
 #!bin/env ruby
 #encoding: utf-8
+require 'json'
 
 class TranslatesController < ApplicationController
 include UserHandler
   include Bing
 
-  def translate_paragraph(user_id, num_words, paragraphs, allow_hard_coded_translation = false)
-    @result = Hash.new
+  def translate_paragraphs(user_id, num_words, paragraphs, prioritise_hardcode = false)
+    results = []
     chinese_sentences_with_alignments = Bing.translate(paragraphs, 'en', 'zh-CHS')
 
     paragraphs.zip(chinese_sentences_with_alignments).each do |paragraph, chinese_sentence_with_alignment|
+      result = Hash.new
       chinese_sentence = chinese_sentence_with_alignment[0]
       raw_alignment = chinese_sentence_with_alignment[1]
 
@@ -57,89 +59,92 @@ include UserHandler
 
         @original_word_id = actual_meaning.nil? ? english_meaning.id : actual_meaning.id
 
-        @result[word] = Hash.new
+        result[word] = Hash.new
 
         testEntry = Meaning.joins(:histories)
                         .select('meaning_id, frequency')
                         .where('user_id = ? AND meaning_id = ?', user_id, @original_word_id).first
 
 
-        @result[word]['wordID'] = @original_word_id # pass id of meaning to the client
+        result[word]['wordID'] = @original_word_id # pass id of meaning to the client
 
         if testEntry.blank? or testEntry.frequency.to_i <= 3 #just translate the word
-          if allow_hard_coded_translation
+          if prioritise_hardcode
             # check if a hard-coded translation is specified for this word
             hard_coded_word = HardCodedWord.where(:url => @url, :word => normalised_word)
             if hard_coded_word.length > 0
               if hard_coded_word.first.translation?
-                @result[word]['chinese'] = hard_coded_word.first.translation
+                result[word]['chinese'] = hard_coded_word.first.translation
               else
-                @result.delete(word)
+                result.delete(word)
                 next
               end
             end
             if hard_coded_word.length == 0
-              @result[word]['chinese'] = actual_meaning.chinese_meaning
+              result[word]['chinese'] = actual_meaning.chinese_meaning
             end
           else
-            @result[word]['chinese'] = actual_meaning.chinese_meaning
+            result[word]['chinese'] = actual_meaning.chinese_meaning
           end
 
           words_retrieved = words_retrieved + 1
 
-          @result[word]['pronunciation'] = ''
+          result[word]['pronunciation'] = ''
 
           possible_pronunciation = ChineseWords.where('chinese_meaning = ?', actual_meaning.chinese_meaning)
           if possible_pronunciation.length > 0
-            @result[word]['pronunciation'] = possible_pronunciation.first.pronunciation.strip
+            result[word]['pronunciation'] = possible_pronunciation.first.pronunciation.strip
           end
 
-          @result[word]['isTest'] = 0
-          @result[word]['position'] = word_index
+          result[word]['isTest'] = 0
+          result[word]['position'] = word_index
 
         elsif testEntry.frequency.to_i.between?(4, 5)
-          @result[word]['isTest'] = 1
-          @result[word]['testType'] = 1
-          @result[word]['chinese'] = actual_meaning.chinese_meaning
+          result[word]['isTest'] = 1
+          result[word]['testType'] = 1
+          result[word]['chinese'] = actual_meaning.chinese_meaning
 
-          @result[word]['choices'] = Hash.new
+          result[word]['choices'] = Hash.new
           choices = Meaning.where(:word_category_id => english_meaning.word_category_id)
                         .where('english_words_id != ?', actual_meaning.english_word_id)
                         .order('RANDOM()')
                         .first(3)
           choices.each_with_index { |val, idx|
-            @result[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
+            result[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
           }
-          @result[word]['isChoicesProvided'] = !(choices.empty?)
+          result[word]['isChoicesProvided'] = !(choices.empty?)
 
         else
 
-          @result[word]['isTest'] = 2
-          @result[word]['testType'] = 2
-          @result[word]['isChoicesProvided'] = true
-          @result[word]['chinese'] = actual_meaning.chinese_meaning
+          result[word]['isTest'] = 2
+          result[word]['testType'] = 2
+          result[word]['isChoicesProvided'] = true
+          result[word]['chinese'] = actual_meaning.chinese_meaning
 
-          @result[word]['choices'] = Hash.new
+          result[word]['choices'] = Hash.new
           choices = Meaning.where(:word_category_id => english_meaning.word_category_id)
                         .where('chinese_words_id != ?', actual_meaning.chinese_words_id)
                         .order('RANDOM()')
                         .first(3)
           choices.each_with_index { |val, idx|
-            @result[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
+            result[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
           }
 
         end
 
       end # end of for word in word_list
+
+      results.push(result)
     end
-    @result
+    results
   end
 
-  def show_by_bing
-
+  def replacements_by_bing
     user_name = params[:name]
-    url = params[:url].chomp '/'
-    num_words = params[:num_words].to_i || 2
+    url = params[:url] || ''
+    url = url.chomp '/'
+    num_words = params[:num_words] || 2
+    num_words = num_words.to_i
 
     user = User.where(:user_name => user_name).first
     if user.nil?
@@ -147,10 +152,31 @@ include UserHandler
     end
     user_id = user.id
 
-    @result = translate_paragraph(user_id, num_words, [params[:text]])
+    @result = translate_paragraphs(user_id, num_words, [params[:text]])[0]
 
     respond_to do |format|
-      format.html { render :layout => false } # new.html.erb
+      format.html { render json: @result }
+      format.json { render json: @result }
+    end
+  end
+
+  def replacements_multiple_paragraphs_by_bing
+    user_name = params[:name]
+    url = params[:url] || ''
+    url = url.chomp '/'
+    num_words = params[:num_words] || 2
+    num_words = num_words.to_i
+
+    user = User.where(:user_name => user_name).first
+    if user.nil?
+      user = make_user user_name
+    end
+    user_id = user.id
+
+    @result = translate_paragraphs(user_id, num_words, JSON.parse(params[:texts]))
+
+    respond_to do |format|
+      format.html { render json: @result  }
       format.json { render json: @result }
     end
   end
