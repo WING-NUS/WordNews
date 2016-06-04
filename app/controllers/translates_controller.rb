@@ -15,7 +15,7 @@ include UserHandler
       chinese_sentence = chinese_sentence_with_alignment[0]
       raw_alignment = chinese_sentence_with_alignment[1]
 
-      if !paragraph.empty?
+      if !paragraph.blank?
         alignment = parse_alignment_string(raw_alignment)
 
         words_retrieved = 0
@@ -24,7 +24,7 @@ include UserHandler
         paragraph.split(' ').each do |orig_word|
           word = orig_word.gsub(/[^a-zA-Z]/, '')
           if words_retrieved >= num_words
-            break # no need to continue as @num_words is the number of words requested by the client
+            break # no need to continue as num_words is the number of words requested by the client
           end
 
 
@@ -98,6 +98,7 @@ include UserHandler
             end
 
             result[word]['isTest'] = 0
+            result[word]['testType'] = 0
             result[word]['position'] = word_index
 
           elsif testEntry.frequency.to_i.between?(4, 5)
@@ -175,11 +176,16 @@ include UserHandler
     end
     user_id = user.id
 
-    @result = translate_paragraphs(user_id, num_words, JSON.parse(params[:texts]))
+    paragraphs = JSON.parse(params[:texts])
+
+    result = []
+    paragraphs.each_slice(5) { |slice|
+      result.push(*translate_paragraphs(user_id, num_words, slice))
+    }
 
     respond_to do |format|
-      format.html { render json: @result  }
-      format.json { render json: @result }
+      format.html { render json: result }
+      format.json { render json: result }
     end
   end
 

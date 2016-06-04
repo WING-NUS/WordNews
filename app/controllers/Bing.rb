@@ -4,7 +4,6 @@ module Bing
 		translator = BingTranslator.new(ENV["bingid"], ENV["bingkey"], false, ENV["bingaccount"])
 
 		chinese = translator.translate_array2 texts, :from => from, :to => to #'zh-CHS'
-		puts chinese
 		return chinese
 	end
 
