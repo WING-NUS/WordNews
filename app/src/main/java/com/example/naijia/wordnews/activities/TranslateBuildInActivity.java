@@ -50,10 +50,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -222,61 +224,84 @@ public class TranslateBuildInActivity extends AppCompatActivity {
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        if(hasFocus && notTranslated){
+        if (hasFocus && notTranslated){
             notTranslated = false;
             Log.d("Windows Focused", "Windows Focused");
-            if(paragraphs!=null)
-                for(final Integer key : paragraphs.keySet()) {
-                    final String paragraph = paragraphs.get(key);
-                    Thread thread = new Thread(new Runnable(){
-                        @Override
-                        public void run(){
+            if (paragraphs!=null) {
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
                         try {
                             Log.d("In a new Thread", "In a new Thread");
-                            String urlParameters = "text="+paragraph+"&url="+passedURL+"&name="+"zhengnaijia_19920112"+"&num_words="+"3";
-                            String translateUrl = "http://wordnews-mobile.herokuapp.com/show/";
-                            String translate_words = new PostRequest().execute(translateUrl,urlParameters).get();
+                            JSONArray paragraphsParam = new JSONArray(paragraphs.values());
 
-                            if(translate_words!=null && !translate_words.equals("FAILED")){
-                                // parse the returned JSON
-                                JSONObject translateJSONObject = new JSONObject(translate_words);
-                                ArrayList<Word> words = new ArrayList<Word>();
-                                Iterator<String> keys = translateJSONObject.keys();
-                                //Intial word
-                                words.add(Word.builder().paragraph(paragraph).paragraphID(key).build());
-                                while(keys.hasNext()) {
-                                    String english = (String) keys.next();
-                                    JSONObject wordJson = new JSONObject(translateJSONObject.getString(english));
-                                    Log.d("TRANSLATE WORDS", wordJson.toString());
-                                    Word word = Word.builder().english(english).chinese(wordJson.getString("chinese"))
-                                            .wordID(wordJson.getString("wordID"))
-                                            .passedUrl(passedURL)
-                                            .testType(wordJson.getInt("isTest")).build();
-                                    if(word.getTestType()==0){
-                                        word.setPronunciation(wordJson.getString("pronunciation").replace("\\n",""));
-                                        word.setPosition(wordJson.getInt("position"));
-                                    }else {
-                                        List<String> choices = new ArrayList<String>();
-                                        JSONObject choicesJson = wordJson.getJSONObject("choices");
-                                        Iterator x = choicesJson.keys();
-                                        while(x.hasNext()){
-                                            choices.add((String)choicesJson.get((String)x.next()));
+                            String parameters = null;
+                            try {
+                                parameters = "texts=" + URLEncoder.encode(paragraphsParam.toString(), "UTF-8") + "&url="
+                                                       + passedURL + "&name=" + "zhengnaijia_19920112"
+                                                       + "&num_words=" + "3";
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                                Log.e("Encoding", "Failed");
+                                return;
+                            }
+
+                            String translate_words = new PostRequest().execute(
+                                    "http://wordnews-mobile.herokuapp.com/show_multiple/", parameters
+                            ).get();
+
+                            if (translate_words != null && !translate_words.equals("FAILED")) {
+
+                                JSONArray wordsToTranslateForEachParagraph =
+                                        new JSONArray(translate_words);
+
+                                for (int i = 0; i < wordsToTranslateForEachParagraph.length(); i++) {
+                                    JSONObject wordsToTranslate = wordsToTranslateForEachParagraph
+                                            .getJSONObject(i);
+
+                                    ArrayList<Word> words = new ArrayList<Word>();
+                                    Iterator<String> keys = wordsToTranslate.keys();
+
+                                    String paragraph = paragraphs.get(i);
+
+                                    // Initial word
+                                    words.add(Word.builder().paragraph(paragraph).paragraphID(i)
+                                                  .build());
+
+                                    while (keys.hasNext()) {
+                                        String english = keys.next();
+                                        JSONObject wordJson = new JSONObject(wordsToTranslate.getString(english));
+                                        Log.d("TRANSLATE WORDS", english + wordJson.toString());
+                                        Word word = Word.builder().english(english).chinese(wordJson.getString("chinese"))
+                                                .wordID(wordJson.getString("wordID"))
+                                                .passedUrl(passedURL)
+                                                .testType(wordJson.getInt("isTest")).build();
+                                        if (!word.isTest()) {
+                                            word.setPronunciation(wordJson.getString("pronunciation").replace("\\n", ""));
+                                            word.setPosition(wordJson.getInt("position"));
+                                        } else {
+                                            List<String> choices = new ArrayList<String>();
+                                            JSONObject choicesJson = wordJson.getJSONObject("choices");
+                                            Iterator x = choicesJson.keys();
+                                            while (x.hasNext()) {
+                                                choices.add((String) choicesJson.get((String) x.next()));
+                                            }
+                                            word.setChoices(choices);
                                         }
-                                        word.setChoices(choices);
+                                        words.add(word);
                                     }
-                                    words.add(word);
-                                    // TODO: Use this result for check isTest and pronunciation etc
+                                    handler_.sendMessage(Message.obtain(handler_, UPDATE_UI, words));
                                 }
-                                handler_.sendMessage(Message.obtain(handler_, UPDATE_UI, words));
                             }
 
                         } catch (ExecutionException | JSONException | InterruptedException e) {
                             Log.d("ERROR", e.toString());
                         }
-                        }
-                    });
-                    thread.start();
-                }
+                    }
+                }).start();
+
+            }
         }
     }
 
@@ -286,15 +311,15 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         switch(msg.what){
             case UPDATE_UI:
                 ArrayList<Word> words = (ArrayList<Word>)msg.obj;
-                //do what you need to with the InputStream
-                if(words.size()>0)
-                {
+
+                if (words.size() > 0) {
                     String paragraph = words.get(0).paragraph;
                     Integer paragraphID = words.get(0).paragraphID;
+
                     SpannableString ss = new SpannableString(paragraph);
                     TextView textView = (TextView)findViewById(paragraphID);
 
-                    for (int i=1;i<words.size();i++) {
+                    for (int i=1; i<words.size(); i++) {
                         final Word word = words.get(i);
                         ClickableSpan clickableSpan = new ClickableSpan() {
                             @Override
@@ -303,18 +328,20 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 TextView tmpView = (TextView) view;
                                 String text_msg = word.chinese;
                                 Spanned s = (Spanned) tmpView.getText();
+
                                 int start = s.getSpanStart(this);
                                 int end = s.getSpanEnd(this);
+
                                 String text_title = s.subSequence(start, end).toString();
                                 String urlParameters = "wordId=" + word.wordID + "&url=" + word.getPassedUrl() + "&name=" + "zhengnaijia_19920112" + "&isRemembered=1";
 
                                 try {
-                                    String test =  new GetRequest().execute(NetworkUtils.BASE_URL,urlParameters).get();
+                                    new GetRequest().execute(NetworkUtils.BASE_URL,urlParameters).get();
                                 } catch (InterruptedException | ExecutionException e) {
                                     e.printStackTrace();
                                 }
                                 switch (word.getTestType()){
-                                    //show translate & prounciation
+                                    //show translate & pronunciation
                                     case 0:
                                         alert.showDialog(TranslateBuildInActivity.this, text_title, text_msg, word);
                                         break;
@@ -339,7 +366,8 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 }
                             }
                         };
-                        int position = word.getTestType()==0?word.position:paragraph.indexOf(word.english);
+                        int position = !word.isTest() ? word.position : paragraph.indexOf(word.english);
+
                         ss.setSpan(clickableSpan, position, position +  word.english.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
                     textView.setText(ss);

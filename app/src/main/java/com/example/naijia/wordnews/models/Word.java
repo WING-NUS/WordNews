@@ -24,4 +24,8 @@ public class Word {
     public Integer paragraphID;
     private List<String> choices;
     private String passedUrl;
+
+    public boolean isTest() {
+        return testType != 0;
+    }
 }
