@@ -15,124 +15,126 @@ include UserHandler
       chinese_sentence = chinese_sentence_with_alignment[0]
       raw_alignment = chinese_sentence_with_alignment[1]
 
-      alignment = parse_alignment_string(raw_alignment)
+      if !paragraph.empty?
+        alignment = parse_alignment_string(raw_alignment)
 
-      words_retrieved = 0
-      index_offset = 0
+        words_retrieved = 0
+        index_offset = 0
 
-      paragraph.split(' ').each do |orig_word|
-        word = orig_word.gsub(/[^a-zA-Z]/, '')
-        if words_retrieved >= num_words
-          break # no need to continue as @num_words is the number of words requested by the client
-        end
-
-
-        normalised_word = word.downcase.singularize
-        english_meaning = EnglishWords.joins(:meanings)
-                              .select('english_meaning, english_words.id as english_word_id, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
-                              .where('english_meaning = ?', normalised_word).first
-
-        zh_word = ''
-        if english_meaning.nil?
-          # no such english word in our dictionary
-          next
-        else
-          word_index = paragraph.index(orig_word, index_offset)
-          index_offset = word_index || index_offset # this is to handle multiple occurrences of the same word in the text
-          # don't change index_offset if word_index is nil, which should not happen
-
-          chinese_alignment_pos_start, pos_end = alignment[word_index]
-
-          if pos_end.nil?
-            next
-          end
-          zh_word = chinese_sentence[chinese_alignment_pos_start.. pos_end]
-
-          # find meaning using the chinese word given by bing
-          actual_meaning = chinese_meaning(normalised_word, zh_word)
-
-          if actual_meaning.nil?
-            next
+        paragraph.split(' ').each do |orig_word|
+          word = orig_word.gsub(/[^a-zA-Z]/, '')
+          if words_retrieved >= num_words
+            break # no need to continue as @num_words is the number of words requested by the client
           end
 
-        end
 
-        @original_word_id = actual_meaning.nil? ? english_meaning.id : actual_meaning.id
+          normalised_word = word.downcase.singularize
+          english_meaning = EnglishWords.joins(:meanings)
+                                .select('english_meaning, english_words.id as english_word_id, meanings.id, meanings.chinese_words_id, meanings.word_category_id')
+                                .where('english_meaning = ?', normalised_word).first
 
-        result[word] = Hash.new
+          zh_word = ''
+          if english_meaning.nil?
+            # no such english word in our dictionary
+            next
+          else
+            word_index = paragraph.index(orig_word, index_offset)
+            index_offset = word_index || index_offset # this is to handle multiple occurrences of the same word in the text
+            # don't change index_offset if word_index is nil, which should not happen
 
-        testEntry = Meaning.joins(:histories)
-                        .select('meaning_id, frequency')
-                        .where('user_id = ? AND meaning_id = ?', user_id, @original_word_id).first
+            chinese_alignment_pos_start, pos_end = alignment[word_index]
 
-
-        result[word]['wordID'] = @original_word_id # pass id of meaning to the client
-
-        if testEntry.blank? or testEntry.frequency.to_i <= 3 #just translate the word
-          if prioritise_hardcode
-            # check if a hard-coded translation is specified for this word
-            hard_coded_word = HardCodedWord.where(:url => @url, :word => normalised_word)
-            if hard_coded_word.length > 0
-              if hard_coded_word.first.translation?
-                result[word]['chinese'] = hard_coded_word.first.translation
-              else
-                result.delete(word)
-                next
-              end
+            if pos_end.nil?
+              next
             end
-            if hard_coded_word.length == 0
+            zh_word = chinese_sentence[chinese_alignment_pos_start.. pos_end]
+
+            # find meaning using the chinese word given by bing
+            actual_meaning = chinese_meaning(normalised_word, zh_word)
+
+            if actual_meaning.nil?
+              next
+            end
+
+          end
+
+          @original_word_id = actual_meaning.nil? ? english_meaning.id : actual_meaning.id
+
+          result[word] = Hash.new
+
+          testEntry = Meaning.joins(:histories)
+                          .select('meaning_id, frequency')
+                          .where('user_id = ? AND meaning_id = ?', user_id, @original_word_id).first
+
+
+          result[word]['wordID'] = @original_word_id # pass id of meaning to the client
+
+          if testEntry.blank? or testEntry.frequency.to_i <= 3 #just translate the word
+            if prioritise_hardcode
+              # check if a hard-coded translation is specified for this word
+              hard_coded_word = HardCodedWord.where(:url => @url, :word => normalised_word)
+              if hard_coded_word.length > 0
+                if hard_coded_word.first.translation?
+                  result[word]['chinese'] = hard_coded_word.first.translation
+                else
+                  result.delete(word)
+                  next
+                end
+              end
+              if hard_coded_word.length == 0
+                result[word]['chinese'] = actual_meaning.chinese_meaning
+              end
+            else
               result[word]['chinese'] = actual_meaning.chinese_meaning
             end
-          else
+
+            words_retrieved = words_retrieved + 1
+
+            result[word]['pronunciation'] = ''
+
+            possible_pronunciation = ChineseWords.where('chinese_meaning = ?', actual_meaning.chinese_meaning)
+            if possible_pronunciation.length > 0
+              result[word]['pronunciation'] = possible_pronunciation.first.pronunciation.strip
+            end
+
+            result[word]['isTest'] = 0
+            result[word]['position'] = word_index
+
+          elsif testEntry.frequency.to_i.between?(4, 5)
+            result[word]['isTest'] = 1
+            result[word]['testType'] = 1
             result[word]['chinese'] = actual_meaning.chinese_meaning
+
+            result[word]['choices'] = Hash.new
+            choices = Meaning.where(:word_category_id => english_meaning.word_category_id)
+                          .where('english_words_id != ?', actual_meaning.english_word_id)
+                          .order('RANDOM()')
+                          .first(3)
+            choices.each_with_index { |val, idx|
+              result[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
+            }
+            result[word]['isChoicesProvided'] = !(choices.empty?)
+
+          else
+
+            result[word]['isTest'] = 2
+            result[word]['testType'] = 2
+            result[word]['isChoicesProvided'] = true
+            result[word]['chinese'] = actual_meaning.chinese_meaning
+
+            result[word]['choices'] = Hash.new
+            choices = Meaning.where(:word_category_id => english_meaning.word_category_id)
+                          .where('chinese_words_id != ?', actual_meaning.chinese_words_id)
+                          .order('RANDOM()')
+                          .first(3)
+            choices.each_with_index { |val, idx|
+              result[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
+            }
+
           end
 
-          words_retrieved = words_retrieved + 1
-
-          result[word]['pronunciation'] = ''
-
-          possible_pronunciation = ChineseWords.where('chinese_meaning = ?', actual_meaning.chinese_meaning)
-          if possible_pronunciation.length > 0
-            result[word]['pronunciation'] = possible_pronunciation.first.pronunciation.strip
-          end
-
-          result[word]['isTest'] = 0
-          result[word]['position'] = word_index
-
-        elsif testEntry.frequency.to_i.between?(4, 5)
-          result[word]['isTest'] = 1
-          result[word]['testType'] = 1
-          result[word]['chinese'] = actual_meaning.chinese_meaning
-
-          result[word]['choices'] = Hash.new
-          choices = Meaning.where(:word_category_id => english_meaning.word_category_id)
-                        .where('english_words_id != ?', actual_meaning.english_word_id)
-                        .order('RANDOM()')
-                        .first(3)
-          choices.each_with_index { |val, idx|
-            result[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
-          }
-          result[word]['isChoicesProvided'] = !(choices.empty?)
-
-        else
-
-          result[word]['isTest'] = 2
-          result[word]['testType'] = 2
-          result[word]['isChoicesProvided'] = true
-          result[word]['chinese'] = actual_meaning.chinese_meaning
-
-          result[word]['choices'] = Hash.new
-          choices = Meaning.where(:word_category_id => english_meaning.word_category_id)
-                        .where('chinese_words_id != ?', actual_meaning.chinese_words_id)
-                        .order('RANDOM()')
-                        .first(3)
-          choices.each_with_index { |val, idx|
-            result[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
-          }
-
-        end
-
-      end # end of for word in word_list
+        end # end of for word in word_list
+      end
 
       results.push(result)
     end
