@@ -3,7 +3,6 @@ package com.example.naijia.wordnews.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.naijia.wordnews.Utils.NetworkUtils;
@@ -30,7 +28,6 @@ import com.example.naijia.wordnews.Utils.ViewDialog;
 
 import com.example.naijia.wordnews.api.PostRequest;
 import com.example.naijia.wordnews.api.GetRequest;
-import com.example.naijia.wordnews.models.PostData;
 import com.example.naijia.wordnews.models.QuizModel;
 import com.example.naijia.wordnews.models.Word;
 import com.squareup.picasso.Picasso;
@@ -38,35 +35,17 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class TranslateBuildInActivity extends AppCompatActivity {
     private String url;
