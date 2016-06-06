@@ -45,6 +45,7 @@ public class PostRequest extends AsyncTask<String, String, String> {
                 responseString = "FAILED"; // See documentation for more info on response handling
             }
         } catch (IOException e) {
+            Log.e("Failed PostRequest", e.toString());
             //TODO Handle problems..
         }
         return responseString;
