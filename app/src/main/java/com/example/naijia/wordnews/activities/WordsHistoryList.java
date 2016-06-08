@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.naijia.wordnews.R;
 import com.example.naijia.wordnews.Utils.ImageDownloader;
+import com.example.naijia.wordnews.Utils.NetworkUtils;
 import com.example.naijia.wordnews.api.GetRequest;
 import com.example.naijia.wordnews.api.PostRequest;
 import com.example.naijia.wordnews.models.PostData;
@@ -98,7 +99,7 @@ public class WordsHistoryList extends Activity {
                     String[] splitString = datas.get((int) image.getTag()).pronunciation.trim().split("\\s+");
                     for (int i = 0; i < splitString.length; i++) {
                         String pinyin = splitString[i];
-                        String url = "http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/" + pinyin + ".mp3";
+                        String url = NetworkUtils.pronunciationUrl(pinyin);
                         mediaPlayer = MediaPlayer.create(myContext, Uri.parse(url));
                         mediaPlayer.start();
                     }
