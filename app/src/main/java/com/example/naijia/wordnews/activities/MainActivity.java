@@ -65,14 +65,25 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(this, SettingActivity.class);
-            startActivity(i);
-            //return true;
-        }
-        if (id == R.id.action_learning_history) {
-            Intent i = new Intent(this, WordsHistoryList.class);
-            startActivity(i);
+        switch (id) {
+            case R.id.action_settings:
+                startActivity(
+                        new Intent(this, SettingActivity.class)
+                );
+                break;
+
+            case R.id.action_learning_history:
+                startActivity(
+                        new Intent(this, WordsHistoryList.class)
+                );
+                break;
+            case R.id.action_signin:
+                startActivity(
+                        new Intent(this, SignInActivity.class)
+                );
+                break;
+            default:
+                throw new RuntimeException("Invalid menu item selected");
         }
         return super.onOptionsItemSelected(item);
     }

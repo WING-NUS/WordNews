@@ -10,4 +10,9 @@
         android:title="@string/action_learning_history"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_signin"
+        android:title="@string/signin_activity"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>
