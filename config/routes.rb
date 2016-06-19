@@ -22,6 +22,8 @@ TranslateApp::Application.routes.draw do
   match '/getSuggestURL', to: 'users#get_suggest_url', via: :get
   match '/getExampleSentences', to: 'translates#get_example_sentences', via: :get
   match '/log', to: 'users#log', via: :post
+  match '/validate_google_id_token', to: 'users#validate_google_id_token', via: [:get, :post]
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

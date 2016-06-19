@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include UserHandler
+  
   # GET /users
   # GET /users.json
   def index
@@ -151,6 +152,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # TODO think about deprecating this.
   def log
     @user = User.where(:user_name => params[:id]).first
     @time_elapsed = params[:time]
@@ -161,4 +163,26 @@ class UsersController < ApplicationController
       format.html { render :nothing => true, :status =>200 }
     end
   end
+
+  def validate_google_id_token
+    
+    require 'net/http'
+
+    response = Net::HTTP.get_response(URI('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + params[:id_token]))
+    json = JSON.parse(response.body)
+
+    audience = ENV["google_client_id"]
+
+    valid = audience == json['aud']
+
+    if valid
+      render status: 200, nothing: true
+    else
+      logger.info('No valid identity token present')
+      render status: 401, nothing: true
+
+    end
+  end
+
+
 end
