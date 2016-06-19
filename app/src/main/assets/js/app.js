@@ -562,9 +562,7 @@ function documentClickOnInlineRadioButton() {
 }
 
 function appendPopUp(event) {
-  console.log('appending popup');
   var id = $(this).attr('id');
-  console.log('id: ' + id);
   var element = document.getElementById(id);
   var rect = cumulativeOffset(element);
 
@@ -573,16 +571,16 @@ function appendPopUp(event) {
   if (myElem != null) {
     document.body.removeChild(myElem);
   }
-  console.log('appending');
-  console.log(contentToPopupForDisplayId[id + '_popup']);
   $('body').append(contentToPopupForDisplayId[id + '_popup']);
-  console.log('appended element');
-  console.log(document.getElementById(id + '_popup'));
   document.getElementById(id + '_popup').style.left = (rect.left - 100) + 'px';
+  // Fix left overflow out of screen
+  if(rect.left - 100 < 0) {
+    document.getElementById(id + '_popup').style.left = '0';
+  }
+  // TODO: Fix right overflow out of screen
   document.getElementById(id + '_popup').style.top = (rect.top + 30) + 'px';
   console.log('left: ' + document.getElementById(id + '_popup').style.left);
   console.log('top: ' + document.getElementById(id + '_popup').style.top);
-  console.log('style: ' + JSON.stringify(document.getElementById(id + '_popup').style));
 }
 
 
@@ -621,7 +619,8 @@ var HttpClient = function() {
   }
 }
 
-function init() {
+function init(screenWidth) {
+  console.log('screenWidth: ' + screenWidth);
   var result = {};
   var allKeys = Object.keys(result);
 
