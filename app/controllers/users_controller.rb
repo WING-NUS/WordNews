@@ -172,9 +172,9 @@ class UsersController < ApplicationController
     json = JSON.parse(response.body)
 
     audience = ENV["google_client_id"]
-
-    valid = audience == json['aud']
-
+	alternate_audience = ENV["google_chrome_extension_client_id"]
+	
+    valid = audience.strip == json['aud'] || alternate_audience.strip == json['aud']
     if valid
       render status: 200, nothing: true
     else
