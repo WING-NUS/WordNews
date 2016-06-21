@@ -166,15 +166,7 @@ class UsersController < ApplicationController
 
   def validate_google_id_token
     
-    require 'net/http'
-
-    response = Net::HTTP.get_response(URI('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + params[:id_token]))
-    json = JSON.parse(response.body)
-
-    audience = ENV["google_client_id"]
-	alternate_audience = ENV["google_chrome_extension_client_id"]
-	
-    valid = audience.strip == json['aud'] || alternate_audience.strip == json['aud']
+    valid = is_google_id_valid(params[:id_token])
     if valid
       render status: 200, nothing: true
     else
@@ -183,6 +175,8 @@ class UsersController < ApplicationController
 
     end
   end
+
+
 
 
 end
