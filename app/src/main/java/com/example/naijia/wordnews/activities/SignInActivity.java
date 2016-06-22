@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.example.naijia.wordnews.R;
 
+import com.example.naijia.wordnews.Utils.NetworkUtils;
 import com.example.naijia.wordnews.api.PostRequest;
+import com.example.naijia.wordnews.models.GoogleIdUser;
+import com.example.naijia.wordnews.models.TemporaryUser;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -21,6 +24,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -53,25 +59,20 @@ public class SignInActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
 
-        // [START configure_signin]
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .requestIdToken(getString(R.string.server_client_id))
                 .build();
-        // [END configure_signin]
 
-        // [START build_client]
         // Build a GoogleApiClient with access to the Google Sign-In API and the
         // options specified by gso.
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        // [END build_client]
 
-        // [START customize_button]
         // Customize sign-in button. The sign-in button can be displayed in
         // multiple sizes and color schemes. It can also be contextually
         // rendered based on the requested scopes. For example. a red button may
@@ -82,7 +83,6 @@ public class SignInActivity extends AppCompatActivity implements
         SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setScopes(gso.getScopeArray());
-        // [END customize_button]
     }
 
     @Override
@@ -109,7 +109,6 @@ public class SignInActivity extends AppCompatActivity implements
         }
     }
 
-    // [START onActivityResult]
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -120,11 +119,9 @@ public class SignInActivity extends AppCompatActivity implements
             handleSignInResult(result);
         }
     }
-    // [END onActivityResult]
 
-    // [START handleSignInResult]
     private void handleSignInResult(GoogleSignInResult result) {
-        Log.d(TAG, "handleSignInResult:" + result.isSuccess());
+        Log.d(TAG, "handleSignInResult: " + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
@@ -133,12 +130,18 @@ public class SignInActivity extends AppCompatActivity implements
             mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
 
             try {
-                String response = sendIdTokenToBackend(idToken);
-            } catch (InterruptedException|ExecutionException e) {
+                String userEmail = userEmailFromBackend(idToken);
+                NetworkUtils.user = new GoogleIdUser(userEmail);
+                Log.d(TAG, "handleSignInResult: succeeded. Persisting user as " + NetworkUtils.user.name());
+
+            } catch (InterruptedException | ExecutionException e) {
                 Log.d(TAG, "handleSignInResult: succeeded on google, but failed on wordnews " + e);
                 e.printStackTrace();
             } catch (UnsupportedEncodingException e) {
                 Log.d(TAG, "handleSignInResult: succeeded on google, but encoding error " + e);
+                e.printStackTrace();
+            } catch (JSONException e) {
+                Log.d(TAG, "handleSignInResult: json parsing error from wordnews" + e);
                 e.printStackTrace();
             }
             // TODO: handle ui in case of wordnews failure to verify token.
@@ -152,7 +155,7 @@ public class SignInActivity extends AppCompatActivity implements
         }
     }
 
-    private String sendIdTokenToBackend(String idToken) throws ExecutionException, InterruptedException, UnsupportedEncodingException {
+    private String userEmailFromBackend(String idToken) throws ExecutionException, InterruptedException, UnsupportedEncodingException, JSONException {
 
         String parameters = null;
         try {
@@ -163,53 +166,44 @@ public class SignInActivity extends AppCompatActivity implements
             throw e;
         }
 
-        String response = new PostRequest().execute(
+        String responseText = new PostRequest().execute(
                 "http://wordnews-mobile.herokuapp.com/validate_google_id_token/", parameters
         ).get();
 
-        if (response.equals("FAILED")) { // TODO make PostRequest throw instead......
+
+        if (responseText.equals("FAILED")) { // TODO make PostRequest throw exception instead......
             throw new RuntimeException("Couldn't authenticate with wordnews backend");
         }
 
-        Log.e(TAG, "::::" + response);
-        return response;
+        JSONObject response = new JSONObject(responseText);
+        return response.getString("email");
     }
-    // [END handleSignInResult]
 
-    // [START signIn]
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-    // [END signIn]
 
-    // [START signOut]
     private void signOut() {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
                     @Override
                     public void onResult(Status status) {
-                        // [START_EXCLUDE]
                         updateUI(false);
-                        // [END_EXCLUDE]
                     }
                 });
+        NetworkUtils.user = new TemporaryUser();
     }
-    // [END signOut]
 
-    // [START revokeAccess]
     private void revokeAccess() {
         Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
                     @Override
                     public void onResult(Status status) {
-                        // [START_EXCLUDE]
                         updateUI(false);
-                        // [END_EXCLUDE]
                     }
                 });
     }
-    // [END revokeAccess]
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {

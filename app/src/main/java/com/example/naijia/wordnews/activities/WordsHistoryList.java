@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.naijia.wordnews.R;
 import com.example.naijia.wordnews.Utils.ImageDownloader;
+import com.example.naijia.wordnews.Utils.NetworkUtils;
 import com.example.naijia.wordnews.api.GetRequest;
 import com.example.naijia.wordnews.api.PostRequest;
 import com.example.naijia.wordnews.models.PostData;
@@ -42,7 +43,7 @@ public class WordsHistoryList extends Activity {
         String translateWords = null;
         try {
             translateWords = new GetRequest()
-                    .execute("http://wordnews-mobile.herokuapp.com/displayHistory.json", "name=zhengnaijia_19920112")
+                    .execute("http://wordnews-mobile.herokuapp.com/displayHistory.json", "name=" + NetworkUtils.user.name())
                     .get();
         } catch (InterruptedException e) {
             e.printStackTrace();
