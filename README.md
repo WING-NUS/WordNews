@@ -7,7 +7,7 @@ For Users
 the url “chrome://extensions” and dragging a cloned version of this repository onto the
 page. Enable the extension if its not enabled.
 
-    1b. An alternative would be to install the extension through the [webstore](https://chrome.google.com/webstore/detail/learning-a-second-languag/hbellpimdlanffbgemakfohcbaepogoh)
+    1b. An alternative would be to install the extension through the [webstore](https://chrome.google.com/webstore/detail/learning-a-second-languag/hbellpimdlanffbgemakfohcbaepogoh). The latest version can be found [here](https://chrome.google.com/webstore/detail/wordnewsdemo/lnimeflooanadlbhohbmgigggmepebfc)
 
 2. Configure settings. Turn on the extension by toggling the setting "Translate:".
 
