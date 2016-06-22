@@ -166,13 +166,14 @@ class UsersController < ApplicationController
 
   def validate_google_id_token
     
-    valid = is_google_id_valid(params[:id_token])
-    if valid
-      render status: 200, nothing: true
-    else
+    email = email_if_google_id_valid(params[:id_token])
+    if email.blank?
       logger.info('No valid identity token present')
       render status: 401, nothing: true
-
+    else
+	  result = Hash.new
+	  result['email'] = email
+      render status: 200, json: result
     end
   end
 

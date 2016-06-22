@@ -8,7 +8,17 @@ module UserHandler
     newUser
   end
 
-  def is_google_id_valid(id_token)
+  def make_user_with_google_check(id_token)
+    google_email = email_if_google_id_valid(id_token)
+
+    if google_email.blank?
+      raise ArgumentError.new('Unable to validate google id token')
+    else
+      make_user google_email
+    end
+  end
+
+  def email_if_google_id_valid(id_token)
     require 'net/http'
 
     response = Net::HTTP.get_response(URI('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + id_token))
@@ -17,6 +27,12 @@ module UserHandler
     audience = ENV["google_client_id"]
     alternate_audience = ENV["google_chrome_extension_client_id"]
 
-    audience.strip == json['aud'] || alternate_audience.strip == json['aud']
+    valid = audience.strip == json['aud'] || alternate_audience.strip == json['aud']
+    if valid
+      json['email']
+    else
+      ''
+    end
+
   end
 end
