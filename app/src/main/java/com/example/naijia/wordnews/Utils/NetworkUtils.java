@@ -11,4 +11,9 @@ public class NetworkUtils {
     public static final String REMEMBER_URL = BASE_URL + "remember";
 
     public static User user = new TemporaryUser();
+
+    public static String pronunciationUrl(String singlePinyin) {
+        return String.format("http://wordnews-mobile.herokuapp.com/pinyin/%s.mp3", singlePinyin);
+    }
+
 }

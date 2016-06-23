@@ -99,7 +99,7 @@ public class WordsHistoryList extends Activity {
                     String[] splitString = datas.get((int) image.getTag()).pronunciation.trim().split("\\s+");
                     for (int i = 0; i < splitString.length; i++) {
                         String pinyin = splitString[i];
-                        String url = "http://www.chinese-tools.com/jdd/public/ct/pinyinaudio/" + pinyin + ".mp3";
+                        String url = NetworkUtils.pronunciationUrl(pinyin);
                         mediaPlayer = MediaPlayer.create(myContext, Uri.parse(url));
                         mediaPlayer.start();
                     }
