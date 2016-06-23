@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "<BLANK>",
+    "project_id": "<BLANK>"
+  },
+  "client": [
+    
+    {
+      "client_info": {
+        "mobilesdk_app_id": "<BLANK>",
+        "android_client_info": {
+          "package_name": "com.example.naijia.wordnews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373169587674-o37a2ljni6kqbpnqc16o15bqaqd735d1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.naijia.wordnews",
+            "certificate_hash": "<BLANK>"
+          }
+        },
+        {
+          "client_id": "373169587674-d58c7abeq546k5or1kd76umcni8jbd7r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "<BLANK>"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
