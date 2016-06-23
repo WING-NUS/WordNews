@@ -3,4 +3,18 @@
     <string name="action_settings">Settings</string>
     <string name="action_sound">Pronounce</string>
     <string name="action_learning_history">Learning History</string>
+
+
+    <string name="loading">Loading…</string>
+    <string name="signin_activity">Sign In to Google</string>
+    <string name="signin_title_text">Google Sign-In</string>
+
+    <string name="signed_out">Signed out</string>
+    <string name="signed_in_fmt">Signed in as: %s</string>
+
+    <string name="sign_out">Sign Out</string>
+
+    <string name="signin_desc_google_icon">Google Logo</string>
+    <string name="server_client_id">373169587674-d58c7abeq546k5or1kd76umcni8jbd7r.apps.googleusercontent.com</string>
+
 </resources>

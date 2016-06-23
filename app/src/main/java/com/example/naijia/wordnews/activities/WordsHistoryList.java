@@ -43,7 +43,7 @@ public class WordsHistoryList extends Activity {
         String translateWords = null;
         try {
             translateWords = new GetRequest()
-                    .execute("http://wordnews-mobile.herokuapp.com/displayHistory.json", "name=zhengnaijia_19920112")
+                    .execute("http://wordnews-mobile.herokuapp.com/displayHistory.json", "name=" + NetworkUtils.user.name())
                     .get();
         } catch (InterruptedException e) {
             e.printStackTrace();

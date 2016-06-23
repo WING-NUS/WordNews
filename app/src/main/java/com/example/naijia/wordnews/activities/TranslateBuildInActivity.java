@@ -218,7 +218,7 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                             String parameters = null;
                             try {
                                 parameters = "texts=" + URLEncoder.encode(paragraphsParam.toString(), "UTF-8") + "&url="
-                                                       + passedURL + "&name=" + "zhengnaijia_19920112"
+                                                       + passedURL + "&name=" + NetworkUtils.user.name()
                                                        + "&num_words=" + "3";
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
@@ -312,10 +312,10 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                                 int end = s.getSpanEnd(this);
 
                                 String text_title = s.subSequence(start, end).toString();
-                                String urlParameters = "wordId=" + word.wordID + "&url=" + word.getPassedUrl() + "&name=" + "zhengnaijia_19920112" + "&isRemembered=1";
+                                String urlParameters = "wordId=" + word.wordID + "&url=" + word.getPassedUrl() + "&name=" + NetworkUtils.user.name() + "&isRemembered=1";
 
                                 try {
-                                    new GetRequest().execute(NetworkUtils.BASE_URL,urlParameters).get();
+                                    new GetRequest().execute(NetworkUtils.REMEMBER_URL,urlParameters).get();
                                 } catch (InterruptedException | ExecutionException e) {
                                     e.printStackTrace();
                                 }
@@ -367,15 +367,28 @@ public class TranslateBuildInActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(this, SettingActivity.class);
-            startActivity(i);
-            //return true;
+        switch (id) {
+            case R.id.action_settings:
+                startActivity(
+                        new Intent(this, SettingActivity.class)
+                );
+                break;
+
+            case R.id.action_learning_history:
+                startActivity(
+                        new Intent(this, WordsHistoryList.class)
+                );
+                break;
+
+            case R.id.action_signin:
+                startActivity(
+                        new Intent(this, SignInActivity.class)
+                );
+                break;
+            default:
+                throw new RuntimeException("Invalid menu item selected");
         }
-        if (id == R.id.action_learning_history) {
-            Intent i = new Intent(this, WordsHistoryList.class);
-            startActivity(i);
-        }
+
         return super.onOptionsItemSelected(item);
     }
 }
