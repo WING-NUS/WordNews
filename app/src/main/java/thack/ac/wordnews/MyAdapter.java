@@ -104,7 +104,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         NewsItem item = mDataset.get(position);
-        Log.e("onBindViewHolder:", " pos: " + position + ", profile: " + item.getProfileDrawable());
+        Log.d("onBindViewHolder:", " pos: " + position + ", profile: " + item.getProfileDrawable());
         // - replace the contents of the view with that element
 
         //Differentiate different sources

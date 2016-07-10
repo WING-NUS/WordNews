@@ -4,12 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -24,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private      Activity self = this;
     public final String   TAG  = ((Object) this).getClass().getSimpleName();
 
@@ -41,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            String title = getString(R.string.app_name);
+            actionBar.setTitle(title);
+        }
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         // improve performance if you know that changes in content
@@ -80,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
     class RetrieveRSSTask extends AsyncTask<String, Void, Void> {
 
         protected Void doInBackground(String... urls) {
+            Log.d(TAG, "retrieving RSS...");
             try {
                 URL url = new URL(urls[0]);
 
@@ -116,22 +131,22 @@ public class MainActivity extends AppCompatActivity {
                         } else if (xpp.getName().equalsIgnoreCase("title")) {
                             if (insideItem) {
                                 headline = xpp.nextText();
-                                Log.e(TAG, "headline: " + headline);
+//                                Log.e(TAG, "headline: " + headline);
                             }
                         } else if (xpp.getName().equalsIgnoreCase("link")) {
                             if (insideItem) {
                                 link = xpp.nextText();
-                                Log.e(TAG, "link: " + link);
+//                                Log.e(TAG, "link: " + link);
                             }
                         } else if (xpp.getName().equalsIgnoreCase("media:thumbnail")) {
                             if (insideItem) {
                                 pictureUrl = xpp.getAttributeValue(null, "url");
-                                Log.e(TAG, "media:thumbnail: " + pictureUrl); //extract the link of article picture
+//                                Log.e(TAG, "media:thumbnail: " + pictureUrl); //extract the link of article picture
                             }
                         } else if (xpp.getName().equalsIgnoreCase("pubDate")) {
                             if (insideItem) {
                                 dateStr = xpp.nextText();
-                                Log.e(TAG, "pubDate: " + dateStr);
+//                                Log.e(TAG, "pubDate: " + dateStr);
                                 try {
                                     date = format_BBC.parse(dateStr);
                                 } catch (Exception e) {
@@ -139,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         } else {
-                            Log.e(TAG, "others" + xpp.getName());
+//                            Log.e(TAG, "others" + xpp.getName());
                         }
                     } else if (eventType==XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
                         insideItem = false;
@@ -164,19 +179,22 @@ public class MainActivity extends AppCompatActivity {
             try {
                 return url.openConnection().getInputStream();
             } catch (IOException e) {
+                e.printStackTrace();
+                Log.e(TAG, "getInputStream error");
                 return null;
             }
         }
 
-        protected void onPostExecute() {
+        protected void onPostExecute(Void param) {
             //Notify the adapter
             for (NewsItem item : dataset) {
-                Log.e(TAG, item.toString());
+                //                Log.e(TAG, item.toString());
             }
+            Log.d(TAG, "RSS retrieved.");
             mAdapter.notifyDataSetChanged();
-//            myWebView.loadData(html, "text/html", "UTF-8");
-//            myWebView.loadUrl("http://www.bbc.com/news/world-middle-east-36410982");
-//            myWebView.loadUrl("http://edition.cnn.com/2016/05/30/middleeast/iraq-operation-falluja/index.html");
+            //            myWebView.loadData(html, "text/html", "UTF-8");
+            //            myWebView.loadUrl("http://www.bbc.com/news/world-middle-east-36410982");
+            //            myWebView.loadUrl("http://edition.cnn.com/2016/05/30/middleeast/iraq-operation-falluja/index.html");
         }
     }
 }

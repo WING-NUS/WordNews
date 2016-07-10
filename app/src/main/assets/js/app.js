@@ -523,7 +523,6 @@ function replaceWords(sourceWords, targetWords, testType, pronunciation, wordID,
   });
 
   $(".fypSpecialClass").off('click.wordnews').on('click.wordnews', appendPopUp);
-
   $('.fypSpecialClass').mouseover(function() {
     $(this).css("color", "#FF9900");
     $(this).css("cursor", "pointer");
@@ -603,26 +602,32 @@ var HttpClient = function() {
     anHttpRequest.onreadystatechange = function() {
       if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
         aCallback(anHttpRequest.responseText);
-    }
+    };
     anHttpRequest.open("GET", aUrl, true);
     anHttpRequest.send(null);
-  }
+  };
   this.post = function(url, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
       if (httpRequest.readyState == 4 && httpRequest.status == 200)
         callback(httpRequest.responseText);
-    }
+    };
     httpRequest.open("POST", url, true);
     httpRequest.send(null);
 
-  }
-}
+  };
+};
 
-function init(screenWidth) {
+function init(screenWidth, androidId) {
   console.log('screenWidth: ' + screenWidth);
+  console.log('androidId: ' + androidId);
   var result = {};
   var allKeys = Object.keys(result);
+
+  if(androidId) {
+    userAccount = androidId;
+    console.log('set userAccount to androidId');
+  }
 
   userAccount = result.userAccount || undefined;
   isWorking = result.isWorking || undefined;
@@ -694,22 +699,22 @@ function init(screenWidth) {
     // request at the start
     //Notification.requestPermission();
     //spawnNotification(null, null, 'WordNews is replacing some words in this article');
-    $(window).scroll(function() {
-      // if the user scrolls to the button of the page, display the list of words learned
-      if ($(window).scrollTop() + $(window).height() === $(document).height() - 300) {
-        var wordList = [];
+    // $(window).scroll(function() {
+    //   // if the user scrolls to the button of the page, display the list of words learned
+    //   if ($(window).scrollTop() + $(window).height() === $(document).height() - 300) {
+    //     var wordList = [];
 
-        for (var key of pageWordsLearned) {
-          var value = idToOriginalWordDictionary[key];
-          wordList.push(value.toLowerCase());
-        }
+    //     for (var key of pageWordsLearned) {
+    //       var value = idToOriginalWordDictionary[key];
+    //       wordList.push(value.toLowerCase());
+    //     }
 
-        var titleOfNotification = 'Words looked at in this article:';
-        //if (wordList) {
-        //    spawnNotification(wordList.join(', '), null, titleOfNotification);
-        //}
-      }
-    });
+    //     var titleOfNotification = 'Words looked at in this article:';
+    //     //if (wordList) {
+    //     //    spawnNotification(wordList.join(', '), null, titleOfNotification);
+    //     //}
+    //   }
+    // });
 
     var paragraphs = paragraphsInArticle();
 
@@ -748,7 +753,7 @@ function init(screenWidth) {
     }
   }
 
-};
+}
 
 init();
 
