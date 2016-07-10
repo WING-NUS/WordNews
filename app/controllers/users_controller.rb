@@ -29,9 +29,9 @@ class UsersController < ApplicationController
     @user = User.where(:user_name => @user_name).first
     if @user.blank? #no user
       make_user @user_name
+      @user = User.where(:user_name => @user_name).first
     end
-
-    @user = User.where(:user_name => @user_name).first
+    
     @ifTranslate = @user.if_translate
     @result = Hash.new
     @result['if_translate'] = @ifTranslate
@@ -53,6 +53,11 @@ class UsersController < ApplicationController
   def display_history
     @user_name = params[:name]
     @user = User.where(:user_name => @user_name).first
+    if @user.blank? #no user
+      make_user @user_name
+      @user = User.where(:user_name => @user_name).first
+    end
+
     find_to_learn_query = 'user_id = ' + @user.id.to_s + ' and frequency = 0'
     find_learnt_query = 'user_id = ' + @user.id.to_s + ' and frequency > 0'
     meaning_to_learn_List = History.all(:select => 'meaning_id', :conditions => [find_to_learn_query])
