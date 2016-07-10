@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -32,7 +33,8 @@ public class HistoryActivity extends BaseActivity {
 
         Log.d(TAG, android_id);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        View toolbarInclude = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar) toolbarInclude.findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

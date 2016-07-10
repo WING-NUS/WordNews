@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -37,7 +38,8 @@ public class NewsItemActivity extends BaseActivity {
         url = getIntent().getExtras().getString("url");
         source = getIntent().getExtras().getString("source");
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        View toolbarInclude = findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar) toolbarInclude.findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
