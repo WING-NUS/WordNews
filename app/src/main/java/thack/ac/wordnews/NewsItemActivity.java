@@ -73,7 +73,7 @@ public class NewsItemActivity extends BaseActivity {
 
                 Log.d(TAG, "Android ID: " + android_id);
                 Log.d(TAG, "Display width in px is " + screenWidth);
-                String jsScript = "javascript:setTimeout(init('" + screenWidth + "', '" + android_id + "'), 0)";
+                String jsScript = "javascript:setTimeout(initFromAndroid('" + android_id + "', '" + screenWidth + "'), 0)";
                 // init JavaScript
                 view.loadUrl(jsScript);
             }
