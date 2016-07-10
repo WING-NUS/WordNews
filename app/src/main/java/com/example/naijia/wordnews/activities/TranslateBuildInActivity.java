@@ -1,11 +1,13 @@
 package com.example.naijia.wordnews.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
@@ -216,10 +218,11 @@ public class TranslateBuildInActivity extends AppCompatActivity {
                             JSONArray paragraphsParam = new JSONArray(paragraphs.values());
 
                             String parameters = null;
+                            int numWords = preferredNumberOfWordsToTranslate();
                             try {
                                 parameters = "texts=" + URLEncoder.encode(paragraphsParam.toString(), "UTF-8") + "&url="
                                                        + passedURL + "&name=" + NetworkUtils.user.name()
-                                                       + "&num_words=" + "3";
+                                                       + "&num_words=" + numWords;
                             } catch (UnsupportedEncodingException e) {
                                 e.printStackTrace();
                                 Log.e("Encoding", "Failed");
@@ -356,6 +359,11 @@ public class TranslateBuildInActivity extends AppCompatActivity {
         }
         }
     };
+
+    private int preferredNumberOfWordsToTranslate() {
+        SharedPreferences appPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return Integer.parseInt(appPreferences.getString("wordcount", "2"));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
