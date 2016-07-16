@@ -11,6 +11,7 @@ TranslateApp::Application.routes.draw do
   resources :users
   resources :dictionaries
 
+  match '/show_by_dictionary', to: 'translates#replacements_by_dictionary', via: :post
   match '/show', to: 'translates#replacements_by_bing', via: :post
   match '/show_multiple', to: 'translates#replacements_multiple_paragraphs_by_bing', via: :post
   match '/remember', to: 'translates#remember', via: [:get, :post]
@@ -22,6 +23,7 @@ TranslateApp::Application.routes.draw do
   match '/getSuggestURL', to: 'users#get_suggest_url', via: :get
   match '/getExampleSentences', to: 'translates#get_example_sentences', via: :get
   match '/log', to: 'users#log', via: :post
+  # TODO change this url
   match '/validate_google_id_token', to: 'users#validate_google_id_token', via: [:get, :post]
 
 
