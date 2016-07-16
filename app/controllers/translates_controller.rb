@@ -57,17 +57,6 @@ include UserHandler
 
       @result[word] = Hash.new
 
-      # check if a hard-coded translation is specified for this word
-      hard_coded_word = HardCodedWord.where(:url => @url, :word => original_english_word)
-      if hard_coded_word.length > 0
-        if hard_coded_word.first.translation?
-          @result[word]['chinese'] = hard_coded_word.first.translation
-        else
-          @result.delete(word)
-          next
-        end
-      end
-
       @original_word_id = english_meaning_row.first.id
 
 
@@ -83,14 +72,13 @@ include UserHandler
 
       @result[word]['wordID'] = english_meaning.id # always pass meaningId to client
       chinese_word = ChineseWords.find(english_meaning.chinese_words_id)
-      if hard_coded_word.length == 0
-        @result[word]['chinese'] = chinese_word.chinese_meaning
-      end
+      
+      @result[word]['chinese'] = chinese_word.chinese_meaning
+      
       @result[word]['pronunciation'] = chinese_word.pronunciation
 
 
       # see if the user understands this word before
-      #@user_id = User.where(:user_name => @user_name).first.id
       testEntry = Meaning.joins(:histories)
                       .select('meaning_id, frequency')
                       .where("user_id = ? AND meaning_id = ?", user_id, english_meaning.id).first
@@ -109,15 +97,6 @@ include UserHandler
           @result[word]['choices'][idx.to_s] = EnglishWords.find(val.english_words_id).english_meaning
         }
 
-        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_english_word)
-        # if there is a hard coded quiz, replace the words with the hard-coded values
-        if hard_coded_quiz.length > 0
-
-          @result[word]['choices']['0'] = hard_coded_quiz.first.option1
-          @result[word]['choices']['1'] = hard_coded_quiz.first.option2
-          @result[word]['choices']['2'] = hard_coded_quiz.first.option3
-          @result[word]['isTest'] = hard_coded_quiz.first.quiz_type
-        end
 
       elsif testEntry.frequency.to_i > 6
         @result[word]['isTest'] = 2
@@ -128,16 +107,6 @@ include UserHandler
         choices.each_with_index { |val, idx|
           @result[word]['choices'][idx.to_s] = ChineseWords.find(val.chinese_words_id).chinese_meaning
         }
-
-        hard_coded_quiz = HardCodedQuiz.where(:url => @url, :word => original_english_word)
-        # if there is a hard coded quiz, replace the words with the hard-coded values
-        if hard_coded_quiz.length > 0
-
-          @result[word]['choices']['0'] = hard_coded_quiz.first.option1
-          @result[word]['choices']['1'] = hard_coded_quiz.first.option2
-          @result[word]['choices']['2'] = hard_coded_quiz.first.option3
-          @result[word]['isTest'] = hard_coded_quiz.first.quiz_type
-        end
       
       end
 
