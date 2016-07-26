@@ -48,9 +48,11 @@ to make use of word embeddings.
 We evaluate our approach on the Lexical Sample and All Words tasks in SemEval-2007, Senseval-2, and Senseval-3. We found that word embeddings improves the performance of the existing WSD system. 
   To evaluate our chosen WSD system on Cross-Lingual WSD, we constructed a publicly available human-annotated English-Chinese evaluation dataset from
 %Muthu: is there an unreal variant of new articles?
-real-world news articles. 
+% Hong JIn: removed
+news articles, and evaluated our system on it.
 %Muthu: Did you evaluate the integrated system. If so, mention that result 
 %also here
+% Hong Jin: mentioned that we evaluated on the CLWSD dataset
 Finally, we integrated the system into WordNews.
 \end{abstract}
 
@@ -313,7 +315,7 @@ Apart from the Lexical Sample tasks, we evaluated our systems on the All Words t
 
 It can be seen in Table \ref{table:top-LS} and \ref{table:All-AW} that our enhancements improves the existing IMS system, and we get performance comparable to or better than top approaches in both Lexical Sample tasks and All Words tasks. 
 
-\iffalse
+%\iffalse
 \section{LSTM Network}
 
 A Long Short Term Memory (LSTM) network is a type of Recurrent Neural Network, that has been shown to have good performance on many NLP classification tasks. Unlike normal Neural Networks which can only accept a fixed size vector as an input, Recurrent neural networks accept variable sized inputs. As such, recurrent neural networks can operate over sequences of word vectors and perform operations on them sequentially. The potential benefit of this approach over our existing approach in IMS is this is that the neural network is able to use information about the sequence of words in classification. Examples of using a neural network to perform classification are \cite{socher2011parsing}, and \cite{socher2013recursive}. 
@@ -373,7 +375,7 @@ One problem we encountered with this approach was that there is very little trai
 
 The performance of the neural network is poor in every task, as we can see in both Tables \ref{table:NN-LS} and \ref{table:NN_AW}. The models converge to just using the most common sense. The reason for this is that WSD suffers from the problem of data sparsity. Although there are many training instances in total, the average amount of training examples for each individual sense is low. 
 
-\fi
+%\fi
 
 \section{English-Chinese Cross-Lingual Word Sense Disambiguation}
 \label{section:CLWSD}
