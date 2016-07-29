@@ -72,10 +72,10 @@
 Word Embeddings have been used a lot, popular in NLP. 
 There have been applications of Word Embeddings for monolingual WSD in English, but no comparison.
 This paper attempts to bridge that gap by examining popular embeddings for the task of monolingual English WSD. 
-Our simplified method leads to comparable state of the art performance without expensive retraining. 
+Our simplified method leads to comparable state-of-the-art performance without expensive retraining. 
 
 
-Cross Lingual WSD can also assist in language learning, for example, when providing translations of target vocabulary for learners. 
+Cross-Lingual WSD can also assist in language learning, for example, when providing translations of target vocabulary for learners. 
 Thus we have also applied word embeddings to the novel task of Cross-Lingual Word sense disambiguation for Chinese and provide a public dataset for further benchmarking.
 %We have also experimented Long Short-term memory neural networks with the same embeddings.
 We have also experimented with using word embeddings for LSTM networks and found surprisingly that they do not work well.
@@ -122,13 +122,13 @@ Educational applications
 }
 \fi
 
-Formally learning a new language is time-consuming and requires learners to invest a significant
-amount of effort. A Chrome Extension, {\it WordNews}, was developed by \cite{tao2014} to allow users to pick up Chinese vocabulary while reading online news articles. WordNews makes language learning efficient and attractive by interleaving language
-learning with the daily activity of online news reading. 
+%Formally learning a new language is time-consuming and requires learners to invest a significant
+%amount of effort. A Chrome Extension, {\it WordNews}, was developed by \cite{tao2014} to allow users to pick up Chinese vocabulary while reading online news articles. WordNews makes language learning efficient and attractive by interleaving language
+%learning with the daily activity of online news reading. 
 %WordNews allows users to learn from real-world examples, and to learn words in context, which is required for effective learning of vocabulary \cite{Hirsch03readingcomprehension}.
 
 	
-When we translate a single English word to the target language, we have to select the most appropriate translation out of several possible translations given the context of the word. This task is related to the task of Word Sense Disambiguation (WSD), which is the task to identify the correct sense/meaning of a word out of possible senses defined in the sense inventory. More precisely, this task is Cross-Lingual Word Sense Disambiguation, in which the sense inventory consists of translations of the word.
+The task of Word Sense Disambiguation (WSD) is the task of identifying the correct sense/meaning of a word out of possible senses defined in a sense inventory. More precisely, this task is Cross-Lingual Word Sense Disambiguation, in which the sense inventory consists of translations of the word.
 
 % Tao: "project" is proper for your FYP report, but not research paper. Please change it to research, study or work.
 % Hong Jin: changed
@@ -139,11 +139,8 @@ using word embeddings has been shown in
 % Tao: cite a few more papers
 several NLP tasks \cite{Turian10wordrepresentations}, therefore we explore its use in improving performance in our task. Separately, another approach is to use neural networks, which can accept word embeddings as input, for classification. Such an approach have obtained state-of-the-art performance in many NLP tasks, so we explore its potential to be used for WSD. We perform evaluation on monolingual WSD tasks from Senseval-2 (held in 2001), Senseval-3 (held in 2004), and SemEval-2007. After which, we tested our task on a Cross-Lingual WSD dataset we compiled using human annotators on recent news articles. The dataset will be made available publicly.  Finally, the backend of WordNews is updated with the improved translation system. 
 
-The structure of the report will be as follows: we  first review related work in Section \ref{ch:related}, followed by reporting the work completed in the project regarding monolingual-WSD in Chapter \ref{section:monolingual} and Cross-Lingual WSD in Chapter \ref{section:CLWSD} and outlining possible future work finally in Chapter \ref{section:conclusion}. 
+The structure of this paper will be as follows: we first review related work, followed by reporting the methods regarding monolingual-WSD in Section \ref{section:monolingual} and Cross-Lingual WSD in Section \ref{section:CLWSD} and outlining possible future work finally in the conclusion. 
 
-
-\section{Related Work}
-\label{ch:related}
 
 In this project, we built our work on top of WordNews, explore existing WSD systems, enhance an existing system with word embeddings, and evaluate it on a Cross-Lingual WSD dataset we constructed. In this chapter, we review an existing WSD system, some background about word embeddings, and the use of word embeddings for WSD. 
 
@@ -337,7 +334,7 @@ Apart from the Lexical Sample tasks, we evaluated our systems on the All Words t
 			\hline
 			IMS (original) & 0.682 & 0.676 & 0.583 & {\bf 0.826 }  \\
 			\hline
-			Top System during the task & {\bf0.69} & 0.652 & 0.591 & {\bf 0.826 } \\
+			Top System during the task & {\bf0.69} & 0.652 & 0.591 & {\bf 0.825 } \\
 			\hline
 			WordNet Sense 1 & 0.619 & 0.624 & 0.514 & 0.789\\
 			\hline
@@ -413,12 +410,12 @@ The performance of the neural network is poor in every task, as we can see in bo
 \section{English-Chinese Cross-Lingual Word Sense Disambiguation}
 \label{section:CLWSD}
 
+Educational applications allowing for learning specific words in context, such as MindTheWord and WordNews, often rely on existing translation systems to provide translations. We model this problem of finding translations of words as Cross-Lingual Word Sense Disambiguation, a variant of WSD.
 
+In the earlier section, we have validated and compared enhancements to IMS using word embeddings, and these have produced results comparable to, and in some cases, better than state-of-the-art performance on the monolingual WSD tasks. We further evaluate our approach for use in the Cross-Lingual Word Sense Disambiguation for performing contextually-appropriate translations of single words. As mentioned back in Section \ref{intro}, we can treat the translation task in WordNews as a variant of WSD known as Cross-Lingual WSD. To accomplish this, we first construct a English-Chinese Cross-Lingual WSD dataset. For our sense inventory, we work with the existing dictionary in the open-source educational application, WordNews \cite{tao2014}, which contains a dictionary of English words and their possible Chinese translations. After which, we integrate the trained system into a fork of  the WordNews project. 
 
-While we have validated that our enhancements to IMS using word embeddings have produced results comparable to, and in some cases, better than state-of-the-art performance on the monolingual WSD tasks, we further evaluate our approach for use in the translation task that the application, WordNews, requires. As mentioned back in Section \ref{intro}, we can treat the translation task in WordNews as a variant of WSD known as Cross-Lingual WSD. To accomplish this, we first construct a English-Chinese Cross-Lingual WSD dataset. After which, we integrate the trained system into a fork of the code that WordNews originally used. 
-
-% \section{Construction of Dataset}
-In order to evaluate, we then hired human annotators and constructed a English-Chinese Cross-Lingual WSD dataset using sentences from real news articles. As far as we know, there is no existing publicly available English-Chinese Cross-Lingual WSD dataset. As the dataset is constructed using recent news data, it is a good representation for the use case in WordNews. {\footnote{The dataset can be obtained at %{\url{  http://kanghj.github.io/eng_chinese_news_clwsd_dataset/}}}}
+\subsection{Construction of Dataset}
+In order to construct an evaluation dataset, we then hired human annotators and constructed a English-Chinese Cross-Lingual WSD dataset using sentences from real news articles. As far as we know, there is no existing publicly available English-Chinese Cross-Lingual WSD dataset. As the dataset is constructed using recent news data, it is a good representation for the use case in WordNews. {\footnote{The dataset can be obtained at %{\url{  http://kanghj.github.io/eng_chinese_news_clwsd_dataset/}}}}
 {\url{http://to.be.made.public/if accepted}}}
 
 To obtain the gold standard for this data set, we hired 18 annotators to select the right translations for a given word and its context. There are 697 instances in total in our dataset. There is a total of 251 target words to disambiguate. There are about 116 instances (15 annotators with 116 instances, 3 with 117) for each individual to annotate physically on hard-copy. Each instance will be annotated by 3 different annotators. The annotators are all bilingual undergraduate students, who are native Chinese speakers. 
