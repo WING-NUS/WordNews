@@ -1,5 +1,6 @@
 package thack.ac.wordnews;
 
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,11 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,6 +34,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private static final int MAX_LENGTH_CONTENT = 200;
     private ArrayList<NewsItem> mDataset;
     OnItemClickListener mItemClickListener;
+
+    ImageLoader imageLoader = ImageLoader.getInstance(); // Get singleton instance
+
+    DisplayImageOptions options = new DisplayImageOptions.Builder()
+    .cacheInMemory(true)
+    .cacheOnDisk(true)
+    .build();
 
     //The term being queried, for highlighting purposes
     private static String queried_term;
@@ -101,14 +114,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
         NewsItem item = mDataset.get(position);
-        Log.d("onBindViewHolder:", " pos: " + position + ", profile: " + item.getProfileDrawable());
-        // - replace the contents of the view with that element
 
-        //Differentiate different sources
-        //Reference: http://colour.charlottedann.com/ and http://stackoverflow.com/questions/15852122/hex-transparency-in-colors
+        //Set the profile pic
+        //Assume image is loading, show default loading progress
+        holder.mProfileProgress.setVisibility(View.VISIBLE);
+        holder.imgViewIcon.setVisibility(View.INVISIBLE);
+        //If it does not have image, hide the view
+        if(item.getPicture_url() == null || item.getPicture_url().isEmpty()){
+            holder.imgViewIcon.setVisibility(View.INVISIBLE);
+            holder.mProfileProgress.setVisibility(View.INVISIBLE);
+        } else {
+            imageLoader.loadImage(item.getPicture_url(), options, new SimpleImageLoadingListener() {
+                @Override
+                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                    holder.imgViewIcon.setImageBitmap(loadedImage);
+                    holder.imgViewIcon.setVisibility(View.VISIBLE);
+                    holder.mProfileProgress.setVisibility(View.INVISIBLE);
+                }
+            });
+        }
 
         //Set username and source
         holder.mTextViewTitle.setText(item.getHeadline());
@@ -124,19 +151,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         //Set the time
         holder.mTextViewTime.setText(item.getDisplayTime());
         holder.mTextViewSource.setText(String.format("| %1s", item.getSource()));
-
-        //Set the profile pic
-        //Assume image is loading, show default loading progress
-        //If it does not have image, hide the view
-        if(item.getPicture_url() == null || item.getPicture_url().isEmpty()){
-            holder.imgViewIcon.setVisibility(View.GONE);
-            holder.mProfileProgress.setVisibility(View.GONE);
-        }else if(item.getProfileDrawable() != null){
-            //Loaded image when ready
-            holder.imgViewIcon.setImageDrawable(item.getProfileDrawable());
-            holder.mProfileProgress.setVisibility(View.GONE);
-            holder.imgViewIcon.setVisibility(View.VISIBLE);
-        }
 
     }
 

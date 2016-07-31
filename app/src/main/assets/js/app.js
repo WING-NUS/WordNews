@@ -612,7 +612,7 @@ function initFromAndroid(androidID, andoridScreenWidth) {
   console.log('initFromAndroid: ' + androidID + ' ' + andoridScreenWidth);
   handleInitResult({
     userAccount: androidID
-  });
+  }, true);
 }
 
 function saveSetting(obj) {
@@ -624,7 +624,7 @@ function saveSetting(obj) {
   }
 }
 
-function handleInitResult(result, androidID) {
+function handleInitResult(result, isFromAndroid) {
 
   var allKeys = Object.keys(result);
 
@@ -694,6 +694,10 @@ function handleInitResult(result, androidID) {
 
   console.log('isWorking ' + isWorking + ' websiteCheck ' + isWebsiteForTranslation);
 
+  if(isFromAndroid) {
+    Android.setProgress(100);
+  }
+
   if (isWorking && isWebsiteForTranslation) {
     // request at the start
     //Notification.requestPermission();
@@ -751,7 +755,6 @@ function handleInitResult(result, androidID) {
       requestTranslatedWords(url, params, i);
     }
   }
-
 };
 
 

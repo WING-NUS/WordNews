@@ -18,6 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -90,6 +93,11 @@ public class MainActivity extends BaseActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         new RetrieveRSSTask().execute("http://feeds.bbci.co.uk/news/rss.xml");
+
+        // Create global configuration and initialize ImageLoader with this config
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+        .build();
+        ImageLoader.getInstance().init(config);
     }
 
     class RetrieveRSSTask extends AsyncTask<String, Void, Void> {

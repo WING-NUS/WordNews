@@ -19,6 +19,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -27,7 +28,8 @@ import java.io.InputStream;
 public class NewsItemActivity extends BaseActivity {
     String url = null;
     String source = null;
-    WebView myWebView;
+    WebView     myWebView;
+    ProgressBar progressBar;
     public final String TAG = ((Object) this).getClass().getSimpleName();
 
     @Override
@@ -51,6 +53,7 @@ public class NewsItemActivity extends BaseActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         final int screenWidth = metrics.widthPixels;
 
+        progressBar = (ProgressBar) findViewById(R.id.progress);
         myWebView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -145,7 +148,18 @@ public class NewsItemActivity extends BaseActivity {
             mContext = c;
         }
 
-        /** Show a toast from the web page */
+        @JavascriptInterface
+        public void setProgress(int progress) {
+            if(progress == 100) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
+            }
+        }
+
         @JavascriptInterface
         public void showToast(String toast) {
             Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
