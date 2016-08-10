@@ -404,7 +404,9 @@ include UserHandler
       understand.meaning_id = @meaning_id
       understand.url = @url
       understand.frequency = @is_remember
-      understand.save
+      unless @meaning_id.nil? or @meaning_id == 0
+        understand.save
+      end
     end
     respond_to do |format|
       format.html { render :layout => false } # new.html.erb
