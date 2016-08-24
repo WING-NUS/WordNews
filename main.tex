@@ -17,13 +17,13 @@
 % smaller than 5cm (the original size); we will check this
 % in the camera-ready version and ask you to change it back.
 
-
+\title{A Comparison of Word Embeddings for English and Cross-Lingual Chinese Word Sense Dismabiguation}
 %Muthu: changed title to title case from upper case
 %\title{Word Sense Disambiguation Using Word Embeddings}
 %Muthu: Isn't this a more accurate title?
 %\title{Cross-lingual Word Sense Disambiguation using Word Embeddings}
 %\title{A Simplified Approach to Augmenting Word Embeddings to Word Sense Disambiguation}
-\title{A Comparison of Word Embeddings for English and Cross-Lingual Chinese Word Sense Dismabiguation}
+
 
 
 % Tao: added email. @Hong Jin: is your gmail the one that you want people to contact you? 
@@ -79,7 +79,7 @@ Cross-Lingual WSD can also assist in language learning, for example, when provid
 Thus we have also applied word embeddings to the novel task of Cross-Lingual Word sense disambiguation for Chinese and provide a public dataset for further benchmarking.
 %We have also experimented Long Short-term memory neural networks with the same embeddings.
 We have also experimented with using word embeddings for LSTM networks and found surprisingly that they do not work well.
-Educational applications
+
 
 \end{abstract}
 
@@ -127,22 +127,17 @@ Educational applications
 %learning with the daily activity of online news reading. 
 %WordNews allows users to learn from real-world examples, and to learn words in context, which is required for effective learning of vocabulary \cite{Hirsch03readingcomprehension}.
 
-	
-The task of Word Sense Disambiguation (WSD) is the task of identifying the correct sense/meaning of a word out of possible senses defined in a sense inventory. More precisely, this task is Cross-Lingual Word Sense Disambiguation, in which the sense inventory consists of translations of the word.
-
 % Tao: "project" is proper for your FYP report, but not research paper. Please change it to research, study or work.
 % Hong Jin: changed
-The goal of this work is to propose a system to perform Cross-Lingual Word Sense Disambiguation with good accuracy. This system should be integrated into WordNews for real-world usage. 
-For our sense inventory, we work with the existing dictionary in WordNews, which contains a set of English words and their Chinese translations. We aim to achieve our goals by integrating word embeddings into a WSD system. 
-Word embedding is a technique of representing words as vectors in a low dimensional space. There are various methods of inducing these word vectors, such as through a neural network. The word vectors can be used as an unsupervised feature in supervised NLP systems, making them semi-supervised systems. The effectiveness of
+
+The task of Word Sense Disambiguation (WSD) is the task of identifying the correct sense/meaning of a word out of possible senses defined in a sense inventory. Word embeddings is a popular technique in NLP in recent years, and many tasks can be done using 
+word embeddings. The effectiveness of
 using word embeddings has been shown in 
 % Tao: cite a few more papers
-several NLP tasks \cite{Turian10wordrepresentations}, therefore we explore its use in improving performance in our task. Separately, another approach is to use neural networks, which can accept word embeddings as input, for classification. Such an approach have obtained state-of-the-art performance in many NLP tasks, so we explore its potential to be used for WSD. We perform evaluation on monolingual WSD tasks from Senseval-2 (held in 2001), Senseval-3 (held in 2004), and SemEval-2007. After which, we tested our task on a Cross-Lingual WSD dataset we compiled using human annotators on recent news articles. The dataset will be made available publicly.  Finally, the backend of WordNews is updated with the improved translation system. 
+several NLP tasks \cite{Turian10wordrepresentations}
+The goal of this work is to apply and compare different uses of word embeddings for WSD. We perform evaluation of the effectiveness of word embeddings on monolingual WSD tasks from Senseval-2 (held in 2001), Senseval-3 (held in 2004), and SemEval-2007. After which, we evaluate our approach on 
+English-Chinese Cross-Lingual WSD using a dataset that we constructed for the use of evaluating our approach on the translation task used in educational applications for language learning, such as MindTheWord {\footnote{\url{https://chrome.google.com/webstore/detail/mindtheword/fabjlaokbhaoehejcoblhahcekmogbom?hl=en}}} and WordNews.
 
-The structure of this paper will be as follows: we first review related work, followed by reporting the methods regarding monolingual-WSD in Section \ref{section:monolingual} and Cross-Lingual WSD in Section \ref{section:CLWSD} and outlining possible future work finally in the conclusion. 
-
-
-In this project, we built our work on top of WordNews, explore existing WSD systems, enhance an existing system with word embeddings, and evaluate it on a Cross-Lingual WSD dataset we constructed. In this chapter, we review an existing WSD system, some background about word embeddings, and the use of word embeddings for WSD. 
 
 
 A word can have different meanings depending on the context in which it is used. For example, the word ``bank" could mean ``slope beside a body of water", or a ``depository financial institution"~\footnote{\url{http://wordnetweb.princeton.edu/perl/webwn?s=bank}}. Word Sense Disambiguation is the task of identifying the contextually appropriate meaning of the word. Word Sense Disambiguation can be considered a classification task, in which the classifier predicts the sense from a possible set of senses, known as a sense inventory, given the target word and the contextual information of the target word. Existing WSD systems can be categorised into either supervised or knowledge-rich approaches. Both approaches are considered to be complementary to each other. 
@@ -151,25 +146,26 @@ A word can have different meanings depending on the context in which it is used.
 Word Sense Disambiguation is a well-studied problem and there are many different methods. Existing methods can be broadly categorised into supervised approaches, where machine learning techniques are used to learn from labeled training data, and unsupervised knowledge-rich techniques, which do not rely on labeled data. Unsupervised techniques are knowledge-rich, and rely heavily on knowledge bases and thesaurus, such as WordNet. It is noted by Navigli \shortcite{Navigli09wordsense} that supervised approaches using memory-based learning and SVM approaches have worked best. 
 %For these approaches, it is common that the only knowledge used is the first sense in WordNet, which is used as a fallback if the system is unable to disambiguate the word in the test data. 
 
-Supervised approaches involve the extraction of features and then classification using machine learning. \shortcite{Zhong2010} developed an open-source WSD system, IMS, which was state-of-the-art at the time it was developed. It is a supervised-learning based WSD system, which first has to be trained using a set of training data. IMS uses three feature types:
+Supervised approaches involve the extraction of features and then classification using machine learning. \shortcite{Zhong2010} developed an open-source WSD system, IMS, which was state-of-the-art at the time it was developed. It is a supervised-learning based WSD system, which first has to be trained using a set of training data. IMS uses three feature types, 1. individual words in the context surrounding the target word, 2. specific ordered sequences of words appearing at specified offsets from the target word, 3. Part-Of-Speech tags of the surrounding 3 words.
 
-\begin{itemize}
+% \begin{itemize}
 	
-	\item  Surrounding Words\\
-	Surrounding words include individual words in the surrounding context. Sentence boundaries can be crossed in this feature. Stopwords, punctuation, character symbols, and numbers are discarded. 
+% 	\item  Surrounding Words\\
+% 	Surrounding words include individual words in the surrounding context. Sentence boundaries can be crossed in this feature. Stopwords, punctuation, character symbols, and numbers are discarded. 
 	
-	\item Local Collocations\\
-	A collocation is an ordered sequence of words appearing in a specified offset from the target word. 11 location collocation features are used. They are $C_{-2},_{-2}$, $C_{-1},_{-1}$,
-	$C_{1},_{1}$, $C_{2},_{2}$, $C_{-2},_{-1}$, $C_{-1},_{1}$, $C_{1},_{2}$, $C_{-3},_{-1}$,
-	$C_{-2},_{1}$, $C_{-1},_{2}$, and $C_{1},_{3}$. $C_{i},_{j}$ refers to the ordered sequence of words between positions $i$ and $j$ relative to the target word. 
+% 	\item Local Collocations\\
+% 	A collocation is an ordered sequence of words appearing in a specified offset from the target word. 11 location collocation features are used. They are $C_{-2},_{-2}$, $C_{-1},_{-1}$,
+% 	$C_{1},_{1}$, $C_{2},_{2}$, $C_{-2},_{-1}$, $C_{-1},_{1}$, $C_{1},_{2}$, $C_{-3},_{-1}$,
+% 	$C_{-2},_{1}$, $C_{-1},_{2}$, and $C_{1},_{3}$. $C_{i},_{j}$ refers to the ordered sequence of words between positions $i$ and $j$ relative to the target word. 
 	
-	\item Part-Of-Speech (POS) tags of surrounding words\\
-	The POS tags of the three words to the left and right of the target word are used for disambiguation. If a word in the window is not in the same sentence, its POS tag will be assigned as null. %The default POS tagger in the OpenNLP toolkit~\footnote{\url{http://opennlp.apache.org/}} is used.
-\end{itemize} 
+% 	\item Part-Of-Speech (POS) tags of surrounding words\\
+% 	The POS tags of the three words to the left and right of the target word are used for disambiguation. If a word in the window is not in the same sentence, its POS tag will be assigned as null. %The default POS tagger in the OpenNLP toolkit~\footnote{\url{http://opennlp.apache.org/}} is used.
+% \end{itemize} 
 
-By using the above binary features, IMS trains a model for each word. IMS then uses an SVM for classification. IMS is open-source, provides state-of-the-art performance. As such, our work in this project focuses heavily on IMS. 
+Each of the features are binary features, and IMS trains a model for each word. IMS then uses an SVM for classification. IMS is open-source, provides state-of-the-art performance at the time of its publication, and is easy to extend. As such, our proposed approach focuses heavily on IMS. 
 
-An example of training data for training WSD system is the One-Million Sense-Tagged Instances \cite{taghipour2015one}. This is the largest dataset we know of for training WSD systems, and we make use of it for training our systems. 
+Training data is required to train IMS, which is a supervised system. 
+An example of training data for training WSD system is the One-Million Sense-Tagged Instances \cite{taghipour2015one}. This is the largest dataset we know of for training WSD systems, and we make use of it for training our systems for the All-Words tasks. 
 
 WSD systems can be evaluated using either fine-grained scoring or coarse-grained scoring. In fine-grained scoring, every sense is equally distinct from each other, and answers must exactly match. In coarse-grained scoring, similar senses are grouped and treated as a single sense. A main bottleneck to Word Sense Disambiguation is the granularity of senses. Since word senses are subjective, and the boundaries between each sense is not always well-defined, an important measure for any task is the inter-annotator agreement. The inter-annotator agreement is considered the upper bound of a task. 
 
@@ -186,18 +182,21 @@ In NLP, words can be represented in a vector space model. Traditionally, this ha
 
 An unsupervised approach using word embeddings for WSD is described by Chen \shortcite{chen2014}. This uses a model for finding representation of senses, rather than just for words, initialised using WordNet's glosses of senses. These sense vectors can then be used during Word Sense Disambiguation. A context vector can be computed by taking the average of the words in a sentence. For disambiguating a single word, the sense with the sense vector that gives maximum Cosine Similarity with this context vector is chosen as the result for disambiguation. Chen {\it et al.} gives an algorithm to disambiguate words starting from the words with fewer senses first. 
 
-A different approach is to work on extending existing WSD systems. Turian \shortcite{Turian10wordrepresentations} suggests that for any existing supervised NLP system, a general way of improving accuracy would be to use unsupervised word representations as additional features. Taghipour \shortcite{Taghipour15} used C\&W embeddings as a starting point and implemented word embeddings as a feature type in IMS. For a specified window, vectors for the surrounding words in the windows, excluding the target word, are obtained from the embeddings and are concatenated, producing $d * (w-1)$ features, where $d$ is the number of dimensions of the vector, and w is the window size. Each feature is a floating point number, which is the value of the vector in a dimension. We note that \cite{Taghipour15} only reported results for C\&W embeddings. 
+A different approach is to work on extending existing WSD systems. Turian \shortcite{Turian10wordrepresentations} suggests that for any existing supervised NLP system, a general way of improving accuracy would be to use unsupervised word representations as additional features. Taghipour \shortcite{Taghipour15} used C\&W embeddings as a starting point and implemented word embeddings as a feature type in IMS. For a specified window, vectors for the surrounding words in the windows, excluding the target word, are obtained from the embeddings and are concatenated, producing $d * (w-1)$ features, where $d$ is the number of dimensions of the vector, and w is the window size. Each feature is a floating point number, which is the value of the vector in a dimension. We note that \cite{Taghipour15} only reported results for C\&W embeddings, and did not experiment on other types of word embeddings.  
 
-Other supervised approaches using word embeddings include AutoExtend \cite{rothe2015autoextend}, which extended word embeddings to create embeddings for synsets and lexemes. In their work, they also extended IMS, but used their own embeddings. \\
+Other supervised approaches using word embeddings include AutoExtend \cite{rothe2015autoextend}, which extended word embeddings to create embeddings for synsets and lexemes. In their work, they also extended IMS, but used their own embeddings. Three feature types were introduced by this work, which has some similarities to how Taghipour used word embeddings, but without Taghipour's method of scaling each dimension of the word embeddings. \\
 
 
 % Apart from reviewing work on WSD, we can generalise WSD as a classification problem and look at other approaches to perform classification. We therefore experiment with the approach of using a Neural Network for classification. In Natural Language Processing, much work has been done with Recursive Neural Networks, such as Recurrent Neural Networks, and Recursive Autoencoders. These networks have shown extremely promising results in many NLP classification tasks, such as Sentiment Classification, obtaining state-of-the-art results. 
 
+The structure of this paper will be as follows: we have first reviewed related work and methods regarding WSD, next we will discuss the applications of WSD to a category of educational applications, and outlining possible future work finally in the conclusion. 
 
 
-\section{Monolingual WSD}
-\label{section:monolingual}
+
+\section{Methods}
+\label{section:methods}
 % Tao: Which classifier did you use?
+% Hong Jin: SVM?
 
 As Navigli \shortcite{Navigli09wordsense} noted that supervised approaches have performed best in WSD, we focus on work on supervised approaches. 
 %We explored two approaches for performing supervised WSD using word embeddings. Firstly, we experimented with different methods of composing word embeddings to represent the context of a word and used this in conjunction with IMS, a state-of-the-art supervised WSD system. 
@@ -345,15 +344,66 @@ Apart from the Lexical Sample tasks, we evaluated our systems on the All Words t
 
 It can be seen in Table \ref{table:top-LS} and \ref{table:All-AW} that our enhancements improves the existing IMS system, and we get performance comparable to or better than top approaches in both Lexical Sample tasks and All Words tasks. 
 
-%\iffalse
-\section{LSTM Network}
+\begin{table}
+	\caption{Accuracy of our system on Senseval-2, Senseval-3 Lexical Sample tasks and SemEval-2007 All Words task}
+	\label{table:full}
+	\begin{center}
+\begin{tabular}{|p{1cm}|p{0.5cm}|p{1cm}|p{1cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|}
+Type & Size & Scaling & Composed by& SE-2 LS Accuracy & SE-3 LS & SE-2 AW & SE-3 AW & SE-2007 Fine grained & SE-2007 Coarse grained &\\
+\hline
+Senna&50&0.1&Sum&0.671&0.738&0.678&0.673&0.6&0.819 &\\
+\hline
+Senna&50&0.15&Sum&0.666&0.732&0.675&0.672&0.598&0.817 &\\
+\hline
+Senna&50&0.05&Sum&0.666&0.734&0.679&0.673&0.594&0.818 &\\
+\hline
+CBOW&50&0.1&Sum&0.68&0.741&0.677&0.679 &0.604 & 0.826\\
+\hline
+CBOW&50&0.15&Sum&0.67&0.734&0.673&0.675&0.602&0.827\\
+\hline
+CBOW&50&0.05&Sum&0.672&0.744&0.68&0.677&0.596&0.822\\
+\hline
+Glove&50&0.1&Sum&0.679&0.741&0.678&0.68&0.594&0.819 &\\
+\hline
+Glove&50&0.15&Sum&0.674&0.731&0.68&0.678&0.591&0.819 &\\
+\hline
+Glove&50&0.05&Sum&0.675&0.738&0.676&0.678&0.596&0.819 &\\
+\hline
+CBOW&200&0.1&Sum&0.669&0.731&0.676&0.675&0.602&0.82 &\\
+\hline
+CBOW&200&0.15&Sum&0.651&0.715&0.667&0.673&0.594&0.822 &\\
+\hline
+CBOW&200&0.05&Sum&0.679&0.742&0.679&0.68&0.602&0.823 &\\
+\hline
+Glove&200&0.1&Sum&0.666&0.73&0.677&0.679&0.591&0.827 &\\
+\hline
+Glove&200&0.15&Sum&0.654&0.706&0.674&0.675&0.591&0.826 &\\
+\hline
+Glove&200&0.05&Sum&0.682&0.741&0.68&0.682&0.6&0.823 &\\
+\hline
+Senna&50&0.1&Concat&0.659&0.724&0.679&0.674&0.585&0.818 &\\
+\hline
+CBOW&50&0.1&Concat&0.66&0.725&0.678&0.672&0.581&0.816&\\
+\hline
+CBOW&200&0.1&Concat&0.667&0.729&0.675&0.67&0.591&0.819&\\
+\hline
+Glove&50&0.1&Concat&0.657&0.722&0.679&0.671&0.583&0.818&\\
+\hline
+Glove&200&0.1&Concat&0.664&0.728&0.677&0.669&0.587&0.817&\\
+\hline
+\end{tabular}
+	\end{center}
+\end{table}
 
-A Long Short Term Memory (LSTM) network is a type of Recurrent Neural Network, that has been shown to have good performance on many NLP classification tasks. Unlike normal Neural Networks which can only accept a fixed size vector as an input, Recurrent neural networks accept variable sized inputs. As such, recurrent neural networks can operate over sequences of word vectors and perform operations on them sequentially. The potential benefit of this approach over our existing approach in IMS is this is that the neural network is able to use information about the sequence of words in classification. Examples of using a neural network for classification are \cite{socher2011parsing}, and \cite{socher2013recursive}. 
+%\iffalse
+\subsection{LSTM Network}
+
+A Long Short Term Memory (LSTM) network is a type of Recurrent Neural Network, that has been shown to have good performance on many NLP classification tasks. Unlike normal Neural Networks which can only accept a fixed size vector as an input, Recurrent neural networks accept variable sized inputs. As such, recurrent neural networks can operate over sequences of word vectors and perform operations on them sequentially. The potential benefit of this approach over our existing approach in IMS is this is that the neural network is able to use information about the sequence of words in classification. Examples of using a neural network for classification are \cite{socher2011parsing}, and \cite{socher2013recursive}. Yuan \shortcite{yuan2016word} explores the use of LSTM networks, using label propagation, for WSD. In our approach, we explore a simpler naive approach instead without the use of label propagation.
 
 
 For the Lexical Sample tasks, we train the model on the training data provided for the task. For the All Words task, we trained the model on the One Million Sense-Tagged dataset. For each task, similar to IMS, we train a model for each word. 
 
-One problem we encountered with this approach was that there is very little training examples per sense. Although as a whole, the dataset had many training examples, we trained a model for each word, resulting in a fairly small number of relevant training instances for a single word. In particular, rare words had extremely little training data. We obtained the following results:
+One problem we encountered with this approach was that there is very few training examples per sense. Although as a whole, the dataset had many training examples, we trained a model for each word, resulting in a fairly small number of relevant training instances for a single word. In particular, rare words had extremely little training data. We obtained the following results:
 
 
 % For the SVM approach by IMS. Because many of our features are binary features, it's possible to generalise easily. 
@@ -410,15 +460,15 @@ The performance of the neural network is poor in every task, as we can see in bo
 \section{English-Chinese Cross-Lingual Word Sense Disambiguation}
 \label{section:CLWSD}
 
-Educational applications allowing for learning specific words in context, such as MindTheWord and WordNews, often rely on existing translation systems to provide translations. We model this problem of finding translations of words as Cross-Lingual Word Sense Disambiguation, a variant of WSD.
+Educational applications, such as MindTheWord and WordNews, allows users to learn vocabulary of a second language in context, which is required for effective acquisition of vocabulary \cite{Hirsch03readingcomprehension}. These applications often rely on translation systems to provide translations. In this work, we model this problem of finding translations of words as a variant of WSD, Cross-Lingual Word Sense Disambiguation. This approach was also taken in \cite{tao2014}.
 
-In the earlier section, we have validated and compared enhancements to IMS using word embeddings, and these have produced results comparable to, and in some cases, better than state-of-the-art performance on the monolingual WSD tasks. We further evaluate our approach for use in the Cross-Lingual Word Sense Disambiguation for performing contextually-appropriate translations of single words. As mentioned back in Section \ref{intro}, we can treat the translation task in WordNews as a variant of WSD known as Cross-Lingual WSD. To accomplish this, we first construct a English-Chinese Cross-Lingual WSD dataset. For our sense inventory, we work with the existing dictionary in the open-source educational application, WordNews \cite{tao2014}, which contains a dictionary of English words and their possible Chinese translations. After which, we integrate the trained system into a fork of  the WordNews project. 
+In the earlier section, we have validated and compared enhancements to IMS using word embeddings, and these have produced results comparable to, and in some cases, better than state-of-the-art performance on the monolingual WSD tasks. We further evaluate our approach for use in the Cross-Lingual Word Sense Disambiguation for performing contextually-appropriate translations of single words. As mentioned, we can treat the translation task in several educational apps as a variant of WSD known as Cross-Lingual WSD. To accomplish this, we first construct a English-Chinese Cross-Lingual WSD dataset. For our sense inventory, we work with the existing dictionary in the open-source educational application, WordNews \cite{tao2014}, which contains a dictionary of English words and their possible Chinese translations. After which, we integrate the trained system into a fork of WordNews. 
 
-\subsection{Construction of Dataset}
-In order to construct an evaluation dataset, we then hired human annotators and constructed a English-Chinese Cross-Lingual WSD dataset using sentences from real news articles. As far as we know, there is no existing publicly available English-Chinese Cross-Lingual WSD dataset. As the dataset is constructed using recent news data, it is a good representation for the use case in WordNews. {\footnote{The dataset can be obtained at %{\url{  http://kanghj.github.io/eng_chinese_news_clwsd_dataset/}}}}
-{\url{http://to.be.made.public/if accepted}}}
+\subsection{Dataset}
+In order to construct an evaluation dataset, we hired human annotators and constructed a English-Chinese Cross-Lingual WSD dataset using sentences from recent news articles. As far as we know, there is no existing publicly available English-Chinese Cross-Lingual WSD dataset. As the dataset is constructed using recent news data, it is a good representation for the use case in WordNews. {\footnote{The dataset can be obtained at %{\url{  https://kanghj.github.io/eng_chinese_news_clwsd_dataset/}}}}
+{\url{https://to.be.made.public/if/accepted}}}
 
-To obtain the gold standard for this data set, we hired 18 annotators to select the right translations for a given word and its context. There are 697 instances in total in our dataset. There is a total of 251 target words to disambiguate. There are about 116 instances (15 annotators with 116 instances, 3 with 117) for each individual to annotate physically on hard-copy. Each instance will be annotated by 3 different annotators. The annotators are all bilingual undergraduate students, who are native Chinese speakers. 
+To obtain the gold standard for this data set, we hired 18 annotators to select the right translations for a given word and its context. There are 697 instances in total in our dataset, with a total of 251 target words to disambiguate. There are about 116 instances (15 annotators with 116 instances, 3 with 117) for each individual to annotate physically on hard-copy spreadsheet. Each instance will be annotated by 3 different annotators. The annotators are all bilingual undergraduate students, who are native Chinese speakers. 
 
 For each instance, which contains a single English target word to disambiguate, we include the sentence it appears in and its adjacent sentences as its context. Each instance contains possible translations of the word. The candidate senses of the word are from our dictionary of English-Chinese pairs, crawled from Google Translate and Bing Translator. The annotators will select every Chinese word that has an identical meaning to the English target word. We instructed that, if the word cannot be translated appropriately, the annotators should leave it blank. The participants can provide their own translations to the word if they believe that there is a suitable translation, but was not provided. 
 
@@ -446,10 +496,10 @@ We present the probabilities that an annotator will select each of the top three
 	\end{center}
 \end{table}
 
-As we consider any overlap in annotated labels to be a match, this approach may overestimate the agreement between annotators. However, in our dataset, a significant number of annotators (5 out of 18) only selected a single translation in the dataset instead of every suitable translation. As in this annotation task, we consider the possible translations as  fine-grained, the value of agreement is likely to be underestimated in this case. Hence, we believe that clustering of similar translations in the second language is required in order to deal with the issue of sense granularity in Cross-Lingual WSD. During evaluation of our system, we used different configurations of granularity. In the most relaxed configuration, we assume that all annotations by the annotators are correct answers. On the strictest configuration, all three annotators must agree on the translation before it is considered to be the correct sense. For all configurations, we remove instances from the dataset if it does not have a correct sense. We excluded instances with out-of-vocabulary annotations (added by the annotators if they did not think any of the provided translations are suitable) were excluded from the test set.
+As we consider any overlap in annotated labels to be a match, this approach may overestimate the agreement between annotators. However, in our dataset, a significant number of annotators (5 out of 18) only selected a single translation in the dataset instead of every suitable translation. As in this annotation task, we consider the possible translations as  fine-grained, the value of agreement is likely to be underestimated in this case. Hence, we believe that clustering of similar translations during annotation is required in order to deal with the issue of sense granularity in Cross-Lingual WSD. To overcome this problem, we used different configurations of granularity during evaluation of our system. In the most relaxed configuration, we assume that all annotations by the annotators are correct answers. On the strictest configuration, all three annotators must agree on the translation before it is considered to be the correct sense. For all configurations, we remove instances from the dataset if it does not have a correct sense. We excluded instances with out-of-vocabulary annotations (added by the annotators if they did not think any of the provided translations are suitable) were excluded from the test set.
 
 
-For the first configuration, we included all instances annotated by the participants. For the second configuration, we omitted bad instances and only consider a translation to be correct if more than one participant agreed on that translation. For the third configuration, we included only answers where all three participants agreed on the answer. We also noticed that some target words were part of a proper noun, such as the word 'white' in 'White House'. So as a final parameter, we omitted instances where the target word is part of a proper noun. Statistics of the test dataset after filtering out the above cases are given in Table \ref{table:CLWSD-test-stats-no-ne}.
+For the first configuration, we included all instances annotated by the participants. For the second configuration, we omitted bad instances and only consider a translation to be correct if more than one participant agreed on that translation. For the third configuration, we included only answers where all three participants agreed on the answer. We also noticed that some target words were part of a proper noun, such as the word 'white' in 'White House'. This led to some confusion among annotators, so we omitted instances where the target word is part of a proper noun. Statistics of the test dataset after filtering out the above cases are given in Table \ref{table:CLWSD-test-stats-no-ne}.
 
 
 \begin{table}[ht]
@@ -472,7 +522,9 @@ For the first configuration, we included all instances annotated by the particip
 	\end{center}
 \end{table}
 
-As IMS is a supervised system, we need  training data before we can use it. We constructed data by processing a parallel corpus and performing word alignment. We have a dictionary from English words in CET-4, to a set of Chinese translations. At the start of the project, we expanded the dictionary to contain translations from both Bing Translator and Google Translate. In a pair of (English sentence, Chinese sentence), if the English sentence does not contain an English word in our dictionary, or if the Chinese word aligned with this English word is not a candidate translation according to our dictionary, then it is discarded and will not be included in the dataset. Otherwise, the English sentence is used as a training example for the matched English target word, with the Chinese words that word is aligned to as its training label. The sentences are tokenized and segmented before GIZA++ \cite {och03} is used for word alignment. To evaluate our system, we compare the results of the method described in \cite{tao2014}, which uses Bing Translator and word alignment to obtain translations.
+\subsection{Experiments}
+
+As IMS is a supervised system, we need  training data before we can use it. We constructed data by processing a parallel corpus, the news section of the UM-Corpus \cite{tian2014corpus}, and performing word alignment. We used the dictionary provided by \cite{tao2014}. At the start of this work, we further expanded the dictionary to contain translations from both Bing Translator and Google Translate. During the construction of the training dataset. In a pair of (English sentence, Chinese sentence), if the English sentence does not contain an English word in our dictionary, or if the Chinese word aligned with this English word is not a candidate translation according to our dictionary, then it is discarded and will not be included in the dataset. Otherwise, the English sentence is used as a training example for the matched English target word, with the Chinese words that word is aligned to as its training label. The sentences are tokenized and segmented before GIZA++ \cite {och03} is used for word alignment. To evaluate our system, we compare the results of the method described in \cite{tao2014}, which uses Bing Translator and word alignment to obtain translations.
 
 
 \begin{table}[ht]
@@ -498,17 +550,23 @@ As IMS is a supervised system, we need  training data before we can use it. We c
 
 We use the configuration where every annotation is considered to be correct as the main evaluation to determine which system is better. The reason why we choose this configuration is that the sense labels in the dataset is fine-grained, however, we should not consider each translation as independent and instead evaluate in a way that is closer to a coarse-grained evaluation. 
 
-Contrary to intuition, Bing Translator gives a poor result for our dataset as seen in Table \ref{table:CLWSD-test-results}. This could be because Bing Translator performs translation at the phrase-level. Therefore, many of the target words are not translated individual and is translated only as part of a larger unit, making it less suitable for the use case in WordNews where only the translation of the single word matters. 
 It can be seen that our word embeddings feature also improves the performance on Cross-Lingual WSD. However, the improvements from the word embeddings feature type over IMS was not statistically significant at 95\% confidence level. This could be attributed to the small size of the dataset.
+
+
+\subsection{Reason that Bing Translator is evaluated poorly in our experiments}
+Bing Translator scores poorly in our evaluation with our annotated dataset as seen in Table \ref{table:CLWSD-test-results}. This could be because Bing Translator performs translation at the phrase-level. Therefore, many of the target words are not translated individual and is translated only as part of a larger unit, making it less suitable for the use case in WordNews where only the translation of the single word matters. For example, when traslating the word `'`little'' in ``... little kids ...'', the word alignment information in Bing Translator does not give an alignment for the word `little' but instead translates the entire multi-word unit ``little kids''. 
+%Since the gold standard was produced by annotations before we ran the experiments, none of the %participants would indicate that the translation of ``little kids'' is the translation for %``little''. 
+As such, the translation would not match any of the annotations provided by our annotators. In a sense, this is an appropriate treatment since a user of an educational app requesting a translation for the word `little' should not see the translation of the entire phrase. 
+
 
 
 
 \section{Conclusion}
 \label{section:conclusion}
 
-After we have evaluated the performance of the systems on the this Cross-Lingual WSD dataset, we integrate the top-performing IMS+Context Sum system and the trained models into the code used by WordNews. We experimented and implemented with different methods of using word embeddings for supervised WSD. We tried two approaches, by enhancing an existing WSD system, IMS, and by trying a neural network approach. An evaluation of the various methods in WSD system and the existing methods was performed. An initial evaluation was done on existing test data sets from Senseval-2, Senseval-3, SemEval-2007. Adding word embeddings as a feature type to IMS resulted in the system performing competitively or better than the state-of-the-art systems on many of the tasks. This showed that existing supervised approaches can be augmented with word embeddings to give better results. After that, after completing the paperwork and obtaining IRB approval, we built a gold-standard English-Chinese Cross-Lingual WSD dataset constructed with sentences from real news articles published recently. This was used as evaluation of the task of translating English words on online news articles. This dataset is made available publicly. Word embeddings improves the performance of the WSD system on the Cross-Lingual WSD dataset. Then, we integrated the new system into the real application. 
+After we have evaluated the performance of the systems on the this Cross-Lingual WSD dataset, we integrate the top-performing system using word embeddings and the trained models into the fork of WordNews. We experimented and implemented with different methods of using word embeddings for supervised WSD. We tried two approaches, by enhancing an existing WSD system, IMS, and by trying a neural network approach. An evaluation of the various methods in WSD system and the existing methods was performed. An initial evaluation was done on existing test data sets from Senseval-2, Senseval-3, SemEval-2007. Adding word embeddings as a feature type to IMS resulted in the system performing competitively or better than the state-of-the-art systems on many of the tasks. This showed that existing supervised approaches can be augmented with word embeddings to give better results. After that, we built a gold-standard English-Chinese Cross-Lingual WSD dataset constructed with sentences from real news articles. This was used as evaluation of the task of translating English words on online news articles. This dataset is made available publicly. Word embeddings improves the performance of the WSD system on the Cross-Lingual WSD dataset. 
 
-As future work, we can look into expanding the existing dictionary with more English words of varying difficulty and including more possible Chinese translations, as we note that there were several instances in the Cross-Lingual WSD dataset where the annotators did not choose an existing translation. An extrinsic evaluation of our WSD system should be done with potential users of the WordNews application in order to validate that the quality of translations did indeed improve in real world usage. 
+As future work, we can look into expanding the existing dictionary with more English words of varying difficulty and including more possible Chinese translations, as we note that there were several instances in the Cross-Lingual WSD dataset where the annotators did not choose an existing translation. An extrinsic evaluation of the Cross-Lingual WSD system should be done with potential users of different language learning application in order to validate that the quality of translations did indeed improve in real world usage. 
 
 
 % include your own bib file like this:
