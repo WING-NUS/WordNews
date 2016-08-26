@@ -1,6 +1,17 @@
 \section{English-Chinese Cross-Lingual Word Sense Disambiguation}
 \label{section:CLWSD}
 
+% Tao: papers about CLWSD
+
+% sem-eval clwsd task: \cite{Lefever2010}, \cite{Lefever2013}
+% cross-lingual embeddings: \cite{Shi2015}, \cite{Coulmance2015}, \cite{Aldarmaki2016}
+% build word embeddings for WSD: \cite{Guo2014}
+% clwsd database: \cite{Rekabsaz2016} (English-Persian)
+
+% survey on wsd: \cite{Navigli2009}
+
+
+
 Educational applications, such as MindTheWord and WordNews, allows users to learn vocabulary of a second language in context, which is required for effective acquisition of vocabulary \cite{Hirsch03readingcomprehension}. These applications often rely on translation systems to provide translations. In this work, we model this problem of finding translations of words as a variant of WSD, Cross-Lingual Word Sense Disambiguation. This approach was also taken in \cite{tao2014}.
 
 In the earlier section, we have validated and compared enhancements to IMS using word embeddings, and these have produced results comparable to, and in some cases, better than state-of-the-art performance on the monolingual WSD tasks. We further evaluate our approach for use in the Cross-Lingual Word Sense Disambiguation for performing contextually-appropriate translations of single words. As mentioned, we can treat the translation task in several educational apps as a variant of WSD known as Cross-Lingual WSD. To accomplish this, we first construct a English-Chinese Cross-Lingual WSD dataset. For our sense inventory, we work with the existing dictionary in the open-source educational application, WordNews \cite{tao2014}, which contains a dictionary of English words and their possible Chinese translations. After which, we integrate the trained system into a fork of WordNews. 
