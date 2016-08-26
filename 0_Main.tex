@@ -1,0 +1,105 @@
+%
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt]{article}
+\usepackage{coling2016}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+
+% 8 pages + 2 pages of references
+%\setlength\titlebox{5cm}
+
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+\title{A Comparison of Word Embeddings for English and Cross-Lingual Chinese Word Sense Dismabiguation}
+%Muthu: changed title to title case from upper case
+%\title{Word Sense Disambiguation Using Word Embeddings}
+%Muthu: Isn't this a more accurate title?
+%\title{Cross-lingual Word Sense Disambiguation using Word Embeddings}
+%\title{A Simplified Approach to Augmenting Word Embeddings to Word Sense Disambiguation}
+
+
+
+% Tao: added email. @Hong Jin: is your gmail the one that you want people to contact you? 
+% Tao: Commented for now as NLP-TEA is double-blind review.
+
+% \author{
+% Hong Jin Kang$^{1}$, Tao Chen$^{1,2}$,  Muthu Kumar Chandrasekaran$^{1}$, Min-Yen Kan$^{1,2}$ \\
+% $^{1}$School of Computing, National University of Singapore\\
+% $^{2}$NUS Interactive and Digital Media Institute\\
+% {\tt kanghongjin@gmail.com }\\
+% {\tt  \{taochen,muthu.chandra,kanmy\}@comp.nus.edu.sg} \\
+% }
+
+\date{June 2016}
+
+% Tao: Note the review process is double-blind, therefore, we could not reveal our identity via self-references.
+\begin{document}
+\maketitle
+%\begin{abstract}
+  % Tao: "our" reveals who we are
+ % A key feature of the language-learning application, {\it WordNews}, is to 
+ % translate English words to Chinese. The task of Word Sense Disambiguation 
+ % (WSD) is the task of identifying the meaning of words in context. We treat 
+ % the translation task of WordNews as Cross-Lingual Word Sense Disambiguation, 
+ % a variant of WSD.
+  
+%  To perform Cross-Lingual WSD, we experiment with semi-supervised approaches using word embeddings. 
+  % Tao: is IMS state-of-the-art?
+  % Hong Jin: it was state-of-the-art just a couple of years ago. Removed mentions of IMS being state-of-the-art
+ % We modify an existing WSD system, 
+%Muthu: full exopansion when you mention it the first time. 
+%`It Makes Sense' (IMS), 
+%to make use of word embeddings. 
+%We evaluate our approach on the Lexical Sample and All Words tasks in SemEval-2007, Senseval-2, and Senseval-3. We found that word embeddings improves the performance of the existing WSD system. 
+%  To evaluate our chosen WSD system on Cross-Lingual WSD, we constructed a publicly available human-annotated English-Chinese evaluation dataset from
+%Muthu: is there an unreal variant of new articles?
+% Hong JIn: removed
+% news articles, and evaluated our system on it.
+%Muthu: Did you evaluate the integrated system. If so, mention that result 
+%also here
+% Hong Jin: mentioned that we evaluated on the CLWSD dataset. I did not carry out an evaluation for the version of WordNews using IMS for WSD
+% Finally, we integrated the system into a fork of WordNews.
+%\end{abstract}
+
+\begin{abstract}
+Word Embeddings have been used a lot, popular in NLP. 
+There have been applications of Word Embeddings for monolingual WSD in English, but no comparison.
+This paper attempts to bridge that gap by examining popular embeddings for the task of monolingual English WSD. 
+Our simplified method leads to comparable state-of-the-art performance without expensive retraining. 
+
+
+Cross-Lingual WSD can also assist in language learning, for example, when providing translations of target vocabulary for learners. 
+Thus we have also applied word embeddings to the novel task of Cross-Lingual Word sense disambiguation for Chinese and provide a public dataset for further benchmarking.
+%We have also experimented Long Short-term memory neural networks with the same embeddings.
+We have also experimented with using word embeddings for LSTM networks and found surprisingly that they do not work well.
+
+
+\end{abstract}
+
+
+\input{1_Introduction}
+\input{2_Method}
+\input{3_CLWSD}
+\input{4_Conclusion}
+
+
+
+% include your own bib file like this:
+%\bibliographystyle{acl}
+%\bibliography{coling2016}
+
+% use socreport.bst
+%\bibliographystyle{socreport}
+
+\bibliographystyle{acl}
+% socreport.bib
+\bibliography{socreport}
+
+\end{document}
