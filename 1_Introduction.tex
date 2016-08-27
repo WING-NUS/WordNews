@@ -41,10 +41,18 @@
 %learning with the daily activity of online news reading. 
 %WordNews allows users to learn from real-world examples, and to learn words in context, which is required for effective learning of vocabulary \cite{Hirsch03readingcomprehension}.
 
-% Tao: "project" is proper for your FYP report, but not research paper. Please change it to research, study or work.
-% Hong Jin: changed
+% Tao: The logic of this section does flow well: 1) some paragraphs have duplicate information, and 2) the motivation and contribution of this paper is not clear. I prefer to move the literature review to a seperate section since it is quite long (almost 1.5 pages).
+% Tao: tried to edit.
 
-The task of Word Sense Disambiguation (WSD) is the task of identifying the correct sense/meaning of a word out of possible senses defined in a sense inventory. Word embeddings is a popular technique in NLP in recent years, and many tasks can be done using 
+
+
+
+A word can have different meanings depending on the context in which it is used. For example, the word ``bank" could mean ``slope beside a body of water", or a ``depository financial institution"~\footnote{\url{http://wordnetweb.princeton.edu/perl/webwn?s=bank}}. Word Sense Disambiguation (WSD) is the task of identifying the contextually appropriate meaning of the word. WSD can be considered a classification task, in which the classifier predicts the sense from a possible set of senses, known as a sense inventory, given the target word and the contextual information of the target word. Existing WSD systems can be categorised into either supervised or knowledge-rich approaches. Both approaches are considered to be complementary to each other. 
+
+
+
+%The task of Word Sense Disambiguation (WSD) is the task of identifying the correct sense/meaning of a word out of possible senses defined in a sense inventory. 
+Word embeddings is a popular technique in NLP in recent years, and many tasks can be done using 
 word embeddings. The effectiveness of
 using word embeddings has been shown in 
 % Tao: cite a few more papers
@@ -54,53 +62,78 @@ English-Chinese Cross-Lingual WSD using a dataset that we constructed for the us
 
 
 
-A word can have different meanings depending on the context in which it is used. For example, the word ``bank" could mean ``slope beside a body of water", or a ``depository financial institution"~\footnote{\url{http://wordnetweb.princeton.edu/perl/webwn?s=bank}}. Word Sense Disambiguation is the task of identifying the contextually appropriate meaning of the word. Word Sense Disambiguation can be considered a classification task, in which the classifier predicts the sense from a possible set of senses, known as a sense inventory, given the target word and the contextual information of the target word. Existing WSD systems can be categorised into either supervised or knowledge-rich approaches. Both approaches are considered to be complementary to each other. 
 
 
-Word Sense Disambiguation is a well-studied problem and there are many different methods. Existing methods can be broadly categorised into supervised approaches, where machine learning techniques are used to learn from labeled training data, and unsupervised knowledge-rich techniques, which do not rely on labeled data. Unsupervised techniques are knowledge-rich, and rely heavily on knowledge bases and thesaurus, such as WordNet. It is noted by Navigli \shortcite{Navigli09wordsense} that supervised approaches using memory-based learning and SVM approaches have worked best. 
-%For these approaches, it is common that the only knowledge used is the first sense in WordNet, which is used as a fallback if the system is unable to disambiguate the word in the test data. 
 
-Supervised approaches involve the extraction of features and then classification using machine learning. \shortcite{Zhong2010} developed an open-source WSD system, IMS, which was state-of-the-art at the time it was developed. It is a supervised-learning based WSD system, which first has to be trained using a set of training data. IMS uses three feature types, 1. individual words in the context surrounding the target word, 2. specific ordered sequences of words appearing at specified offsets from the target word, 3. Part-Of-Speech tags of the surrounding 3 words.
-
-% \begin{itemize}
-	
-% 	\item  Surrounding Words\\
-% 	Surrounding words include individual words in the surrounding context. Sentence boundaries can be crossed in this feature. Stopwords, punctuation, character symbols, and numbers are discarded. 
-	
-% 	\item Local Collocations\\
-% 	A collocation is an ordered sequence of words appearing in a specified offset from the target word. 11 location collocation features are used. They are $C_{-2},_{-2}$, $C_{-1},_{-1}$,
-% 	$C_{1},_{1}$, $C_{2},_{2}$, $C_{-2},_{-1}$, $C_{-1},_{1}$, $C_{1},_{2}$, $C_{-3},_{-1}$,
-% 	$C_{-2},_{1}$, $C_{-1},_{2}$, and $C_{1},_{3}$. $C_{i},_{j}$ refers to the ordered sequence of words between positions $i$ and $j$ relative to the target word. 
-	
-% 	\item Part-Of-Speech (POS) tags of surrounding words\\
-% 	The POS tags of the three words to the left and right of the target word are used for disambiguation. If a word in the window is not in the same sentence, its POS tag will be assigned as null. %The default POS tagger in the OpenNLP toolkit~\footnote{\url{http://opennlp.apache.org/}} is used.
-% \end{itemize} 
-
-Each of the features are binary features, and IMS trains a model for each word. IMS then uses an SVM for classification. IMS is open-source, provides state-of-the-art performance at the time of its publication, and is easy to extend. As such, our proposed approach focuses heavily on IMS. 
-
-Training data is required to train IMS, which is a supervised system. 
-An example of training data for training WSD system is the One-Million Sense-Tagged Instances \cite{taghipour2015one}. This is the largest dataset we know of for training WSD systems, and we make use of it for training our systems for the All-Words tasks. 
-
-WSD systems can be evaluated using either fine-grained scoring or coarse-grained scoring. In fine-grained scoring, every sense is equally distinct from each other, and answers must exactly match. In coarse-grained scoring, similar senses are grouped and treated as a single sense. A main bottleneck to Word Sense Disambiguation is the granularity of senses. Since word senses are subjective, and the boundaries between each sense is not always well-defined, an important measure for any task is the inter-annotator agreement. The inter-annotator agreement is considered the upper bound of a task. 
-
-A problem of Word Sense Disambiguation is that the granularity of senses are subjective and may not be well-defined. WordNet is a fine-grained resource, and even human annotators have trouble distinguishing between different senses of a word \cite{edmonds2002introduction}. 
-%In some WSD tasks during Senseval, coarse-grained scoring was done in order to deal with this problem. In these evaluations, similar senses of a word are clustered together and are considered to be the same sense. 
-
-Cross-Lingual WSD was partially conceived as a further attempt to solve this issue. In Cross-Lingual WSD, the specificity of a sense is determined by its correct translation. The sense inventory is the possible translations of each word in another language. Two instances are said to have the same sense if they map to the same translation in that language. In SemEval-2010~\footnote{\url{http://stel.ub.edu/semeval2010-coref/}}, a task for Cross-Lingual WSD was introduced. SemEval-2013~\footnote{\url{https://www.cs.york.ac.uk/semeval-2013/}} featured the second iteration of this task. These tasks were tasks in which an English noun were the targeted words, and the word senses were the translations in Dutch, French, Italian, Spanish and German. 
-
-
-Traditional WSD approaches are used in Cross-Lingual WSD, although some approaches make use of Statistical Machine Translation methods and features from translation. Cross-Lingual WSD involves training by making use of parallel or multilingual corpora. In the Cross-Lingual WSD task in SemEval-2013, the top approaches used a classification approach or a statistical machine translation approach. 
-
-In NLP, words can be represented in a vector space model. Traditionally, this has been done with {\it one-hot} binary vectors, where there is only one non-zero value in a high-dimensional vector. In this encoding, each dimension represents the presence of a word, and the number of dimensions of the vector space is the size of the vocabulary. In one-hot encoding, all words are considered to be independent of each other. A problem with one-hot encoding is that the large number of dimensions makes machine learning vulnerable to over-fitting. There is no notion of word similarity and all words are independent of each other. A distributed representation of words, such as word embeddings, resolves these problems by encoding words into a low dimensional space. In word embeddings, information about a word is distributed across multiple dimensions, and similar words are expected to be close to each other. Examples of word embeddings are Continuous Bag of Words \cite{mikolovword2vec}, Collobert \& Weston's Embeddings \cite{collobert2008unified}, and GLoVe \cite{pennington2014glove}. We implemented and evaluated the use of word embedding features using these embeddings in IMS. 
-
-
-An unsupervised approach using word embeddings for WSD is described by Chen \shortcite{chen2014}. This uses a model for finding representation of senses, rather than just for words, initialised using WordNet's glosses of senses. These sense vectors can then be used during Word Sense Disambiguation. A context vector can be computed by taking the average of the words in a sentence. For disambiguating a single word, the sense with the sense vector that gives maximum Cosine Similarity with this context vector is chosen as the result for disambiguation. Chen {\it et al.} gives an algorithm to disambiguate words starting from the words with fewer senses first. 
-
-A different approach is to work on extending existing WSD systems. Turian \shortcite{Turian10wordrepresentations} suggests that for any existing supervised NLP system, a general way of improving accuracy would be to use unsupervised word representations as additional features. Taghipour \shortcite{Taghipour15} used C\&W embeddings as a starting point and implemented word embeddings as a feature type in IMS. For a specified window, vectors for the surrounding words in the windows, excluding the target word, are obtained from the embeddings and are concatenated, producing $d * (w-1)$ features, where $d$ is the number of dimensions of the vector, and w is the window size. Each feature is a floating point number, which is the value of the vector in a dimension. We note that \cite{Taghipour15} only reported results for C\&W embeddings, and did not experiment on other types of word embeddings.  
-
-Other supervised approaches using word embeddings include AutoExtend \cite{rothe2015autoextend}, which extended word embeddings to create embeddings for synsets and lexemes. In their work, they also extended IMS, but used their own embeddings. Three feature types were introduced by this work, which has some similarities to how Taghipour used word embeddings, but without Taghipour's method of scaling each dimension of the word embeddings. \\
-
-
-% Apart from reviewing work on WSD, we can generalise WSD as a classification problem and look at other approaches to perform classification. We therefore experiment with the approach of using a Neural Network for classification. In Natural Language Processing, much work has been done with Recursive Neural Networks, such as Recurrent Neural Networks, and Recursive Autoencoders. These networks have shown extremely promising results in many NLP classification tasks, such as Sentiment Classification, obtaining state-of-the-art results. 
 
 The structure of this paper will be as follows: we have first reviewed related work and methods regarding WSD, next we will discuss the applications of WSD to a category of educational applications, and outlining possible future work finally in the conclusion. 
+
+
+
+
+
+
+
+%The task of Word Sense Disambiguation (WSD) is the task of identifying the correct sense/meaning of a word out of possible senses defined in a sense inventory. Word embeddings is a popular technique in NLP in recent years, and many tasks can be done using 
+%word embeddings. The effectiveness of
+%using word embeddings has been shown in 
+%% Tao: cite a few more papers
+%several NLP tasks \cite{Turian10wordrepresentations}
+%The goal of this work is to apply and compare different uses of word embeddings for WSD. We perform evaluation of the effectiveness of word embeddings on monolingual WSD tasks from Senseval-2 (held in 2001), Senseval-3 (held in 2004), and SemEval-2007. After which, we evaluate our approach on 
+%English-Chinese Cross-Lingual WSD using a dataset that we constructed for the use of evaluating our approach on the translation task used in educational applications for language learning, such as MindTheWord {\footnote{\url{https://chrome.google.com/webstore/detail/mindtheword/fabjlaokbhaoehejcoblhahcekmogbom?hl=en}}} and WordNews.
+%
+%
+%
+%A word can have different meanings depending on the context in which it is used. For example, the word ``bank" could mean ``slope beside a body of water", or a ``depository financial institution"~\footnote{\url{http://wordnetweb.princeton.edu/perl/webwn?s=bank}}. Word Sense Disambiguation is the task of identifying the contextually appropriate meaning of the word. Word Sense Disambiguation can be considered a classification task, in which the classifier predicts the sense from a possible set of senses, known as a sense inventory, given the target word and the contextual information of the target word. Existing WSD systems can be categorised into either supervised or knowledge-rich approaches. Both approaches are considered to be complementary to each other. 
+%
+%
+%Word Sense Disambiguation is a well-studied problem and there are many different methods. Existing methods can be broadly categorised into supervised approaches, where machine learning techniques are used to learn from labeled training data, and unsupervised knowledge-rich techniques, which do not rely on labeled data. Unsupervised techniques are knowledge-rich, and rely heavily on knowledge bases and thesaurus, such as WordNet. It is noted by Navigli \shortcite{Navigli09wordsense} that supervised approaches using memory-based learning and SVM approaches have worked best. 
+%%For these approaches, it is common that the only knowledge used is the first sense in WordNet, which is used as a fallback if the system is unable to disambiguate the word in the test data. 
+%
+%Supervised approaches involve the extraction of features and then classification using machine learning. \shortcite{Zhong2010} developed an open-source WSD system, IMS, which was state-of-the-art at the time it was developed. It is a supervised-learning based WSD system, which first has to be trained using a set of training data. IMS uses three feature types, 1. individual words in the context surrounding the target word, 2. specific ordered sequences of words appearing at specified offsets from the target word, 3. Part-Of-Speech tags of the surrounding 3 words.
+%
+%% \begin{itemize}
+%
+%% 	\item  Surrounding Words\\
+%% 	Surrounding words include individual words in the surrounding context. Sentence boundaries can be crossed in this feature. Stopwords, punctuation, character symbols, and numbers are discarded. 
+%
+%% 	\item Local Collocations\\
+%% 	A collocation is an ordered sequence of words appearing in a specified offset from the target word. 11 location collocation features are used. They are $C_{-2},_{-2}$, $C_{-1},_{-1}$,
+%% 	$C_{1},_{1}$, $C_{2},_{2}$, $C_{-2},_{-1}$, $C_{-1},_{1}$, $C_{1},_{2}$, $C_{-3},_{-1}$,
+%% 	$C_{-2},_{1}$, $C_{-1},_{2}$, and $C_{1},_{3}$. $C_{i},_{j}$ refers to the ordered sequence of words between positions $i$ and $j$ relative to the target word. 
+%
+%% 	\item Part-Of-Speech (POS) tags of surrounding words\\
+%% 	The POS tags of the three words to the left and right of the target word are used for disambiguation. If a word in the window is not in the same sentence, its POS tag will be assigned as null. %The default POS tagger in the OpenNLP toolkit~\footnote{\url{http://opennlp.apache.org/}} is used.
+%% \end{itemize} 
+%
+%Each of the features are binary features, and IMS trains a model for each word. IMS then uses an SVM for classification. IMS is open-source, provides state-of-the-art performance at the time of its publication, and is easy to extend. As such, our proposed approach focuses heavily on IMS. 
+%
+%Training data is required to train IMS, which is a supervised system. 
+%An example of training data for training WSD system is the One-Million Sense-Tagged Instances \cite{taghipour2015one}. This is the largest dataset we know of for training WSD systems, and we make use of it for training our systems for the All-Words tasks. 
+%
+%WSD systems can be evaluated using either fine-grained scoring or coarse-grained scoring. In fine-grained scoring, every sense is equally distinct from each other, and answers must exactly match. In coarse-grained scoring, similar senses are grouped and treated as a single sense. A main bottleneck to Word Sense Disambiguation is the granularity of senses. Since word senses are subjective, and the boundaries between each sense is not always well-defined, an important measure for any task is the inter-annotator agreement. The inter-annotator agreement is considered the upper bound of a task. 
+%
+%A problem of Word Sense Disambiguation is that the granularity of senses are subjective and may not be well-defined. WordNet is a fine-grained resource, and even human annotators have trouble distinguishing between different senses of a word \cite{edmonds2002introduction}. 
+%%In some WSD tasks during Senseval, coarse-grained scoring was done in order to deal with this problem. In these evaluations, similar senses of a word are clustered together and are considered to be the same sense. 
+%
+%Cross-Lingual WSD was partially conceived as a further attempt to solve this issue. In Cross-Lingual WSD, the specificity of a sense is determined by its correct translation. The sense inventory is the possible translations of each word in another language. Two instances are said to have the same sense if they map to the same translation in that language. In SemEval-2010~\footnote{\url{http://stel.ub.edu/semeval2010-coref/}}, a task for Cross-Lingual WSD was introduced. SemEval-2013~\footnote{\url{https://www.cs.york.ac.uk/semeval-2013/}} featured the second iteration of this task. These tasks were tasks in which an English noun were the targeted words, and the word senses were the translations in Dutch, French, Italian, Spanish and German. 
+%
+%
+%Traditional WSD approaches are used in Cross-Lingual WSD, although some approaches make use of Statistical Machine Translation methods and features from translation. Cross-Lingual WSD involves training by making use of parallel or multilingual corpora. In the Cross-Lingual WSD task in SemEval-2013, the top approaches used a classification approach or a statistical machine translation approach. 
+%
+%In NLP, words can be represented in a vector space model. Traditionally, this has been done with {\it one-hot} binary vectors, where there is only one non-zero value in a high-dimensional vector. In this encoding, each dimension represents the presence of a word, and the number of dimensions of the vector space is the size of the vocabulary. In one-hot encoding, all words are considered to be independent of each other. A problem with one-hot encoding is that the large number of dimensions makes machine learning vulnerable to over-fitting. There is no notion of word similarity and all words are independent of each other. A distributed representation of words, such as word embeddings, resolves these problems by encoding words into a low dimensional space. In word embeddings, information about a word is distributed across multiple dimensions, and similar words are expected to be close to each other. Examples of word embeddings are Continuous Bag of Words \cite{mikolovword2vec}, Collobert \& Weston's Embeddings \cite{collobert2008unified}, and GLoVe \cite{pennington2014glove}. We implemented and evaluated the use of word embedding features using these embeddings in IMS. 
+%
+%
+%An unsupervised approach using word embeddings for WSD is described by Chen \shortcite{chen2014}. This uses a model for finding representation of senses, rather than just for words, initialised using WordNet's glosses of senses. These sense vectors can then be used during Word Sense Disambiguation. A context vector can be computed by taking the average of the words in a sentence. For disambiguating a single word, the sense with the sense vector that gives maximum Cosine Similarity with this context vector is chosen as the result for disambiguation. Chen {\it et al.} gives an algorithm to disambiguate words starting from the words with fewer senses first. 
+%
+%A different approach is to work on extending existing WSD systems. Turian \shortcite{Turian10wordrepresentations} suggests that for any existing supervised NLP system, a general way of improving accuracy would be to use unsupervised word representations as additional features. Taghipour \shortcite{Taghipour15} used C\&W embeddings as a starting point and implemented word embeddings as a feature type in IMS. For a specified window, vectors for the surrounding words in the windows, excluding the target word, are obtained from the embeddings and are concatenated, producing $d * (w-1)$ features, where $d$ is the number of dimensions of the vector, and w is the window size. Each feature is a floating point number, which is the value of the vector in a dimension. We note that \cite{Taghipour15} only reported results for C\&W embeddings, and did not experiment on other types of word embeddings.  
+%
+%Other supervised approaches using word embeddings include AutoExtend \cite{rothe2015autoextend}, which extended word embeddings to create embeddings for synsets and lexemes. In their work, they also extended IMS, but used their own embeddings. Three feature types were introduced by this work, which has some similarities to how Taghipour used word embeddings, but without Taghipour's method of scaling each dimension of the word embeddings. \\
+%
+%
+%% Apart from reviewing work on WSD, we can generalise WSD as a classification problem and look at other approaches to perform classification. We therefore experiment with the approach of using a Neural Network for classification. In Natural Language Processing, much work has been done with Recursive Neural Networks, such as Recurrent Neural Networks, and Recursive Autoencoders. These networks have shown extremely promising results in many NLP classification tasks, such as Sentiment Classification, obtaining state-of-the-art results. 
+%
+%The structure of this paper will be as follows: we have first reviewed related work and methods regarding WSD, next we will discuss the applications of WSD to a category of educational applications, and outlining possible future work finally in the conclusion. 
+
+
+

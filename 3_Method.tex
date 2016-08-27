@@ -3,10 +3,10 @@
 % Tao: Which classifier did you use?
 % Hong Jin: SVM?
 
-As Navigli \shortcite{Navigli09wordsense} noted that supervised approaches have performed best in WSD, we focus on work on supervised approaches. 
+As Navigli \shortcite{Navigli09wordsense} noted that supervised approaches have performed best in WSD, we focus on supervised approaches. 
 %We explored two approaches for performing supervised WSD using word embeddings. Firstly, we experimented with different methods of composing word embeddings to represent the context of a word and used this in conjunction with IMS, a state-of-the-art supervised WSD system. 
 %Secondly, we explored the use of Neural Networks, which have produced state-of-the-art performance in many NLP tasks, in performing WSD. A LSTM network, a type of Recurrent Neural Network, is evaluated. 
-We explore the use of using word embeddings in IMS. 
+We explore the use of word embeddings in IMS. 
 In our first set of evaluation, we used tasks from Senseval-2, Senseval-3 and SemEval-2007 to evaluate the performance of our classifiers on monolingual WSD. We do this to first validate that our approach is a sound approach of performing WSD, showing improved or identical scores over state-of-the-art systems in most tasks. 
 
 Similar to the work by Taghipour \shortcite{Taghipour15}, we experimented with the use of word embeddings as feature types in IMS. However, we did not just experiment using C\&W embeddings, as different word embeddings are known to vary in quality when evaluated on different tasks \cite{schnabel2015evaluation}. We performed evaluation on several tasks. For the Lexical Sample (LS) tasks of Senseval-2 \cite{senseval2-LS-kilgarriff2001} and Senseval-3 \cite{senseval3-LS-mihalcea2004}, we evaluated our system using fine-grained scoring. For the All Words (AW) tasks, fine-grained scoring is done for Senseval-2 \cite{senseval2-AW-palmer2001} and Senseval-3 \cite{senseval3-AW-snyder2004}, and both the fine \cite{semeval2007-fine-pradhan2007} and coarse-grained \cite{semeval2007-coarse-navigli2007} All Words tasks in SemEval-2007 were used. In order to evaluate our features on the All Words task, we trained IMS and the different combinations of features on the One Million Sense-Tagged corpus \cite{taghipour2015one}.
@@ -96,7 +96,7 @@ Because each dimension is a feature that is used by IMS, if there are more dimen
 			\hline
 			Method & Senseval-2 LS Accuracy & Senseval-3 LS Accuracy \\
 			\hline
-			IMS + Context Sum, CBOW $\sigma _{=0.1}$ (proposed) & {\bf0.68} & {\bf0.741} \\
+			IMS + Context Sum, CBOW $\sigma _{=0.1}$ (proposal) & {\bf0.680} & {\bf0.741} \\
 			\hline
 			
 			IMS & 0.653 & 0.726\\
@@ -115,7 +115,9 @@ Because each dimension is a feature that is used by IMS, if there are more dimen
 
 
 
-Apart from the Lexical Sample tasks, we evaluated our systems on the All Words tasks of Senseval-2, Senseval-3 and SemEval-2007, which were evaluated on by Zhong \shortcite{Zhong2010}. As seen in Table \ref{table:All-AW}, our enhancements to IMS to make use of word embeddings give better results on All Words task than the original IMS and the respective Rank 1 Systems during the task. It also outperforms recent systems developed and evaluated in recent papers. We note that although our system increased accuracy on IMS on several tasks, the difference is mostly not statistically significant. 
+Apart from the Lexical Sample tasks, we evaluated our systems on the All Words tasks of Senseval-2, Senseval-3 and SemEval-2007, which were evaluated on by Zhong \shortcite{Zhong2010}. As seen in Table \ref{table:All-AW}, our enhancements to IMS to make use of word embeddings give better results on All Words task than the original IMS and the respective Rank 1 Systems during the task. It also outperforms recent systems developed and evaluated in recent papers. We note that although our system increased accuracy on IMS on several
+% Tao: which test did you use? 
+tasks, the difference is mostly not statistically significant. 
 
 \begin{table}
 	\caption{Accuracy of our system on Senseval-2, Senseval-3, SemEval-2007 All Words task}
@@ -127,7 +129,7 @@ Apart from the Lexical Sample tasks, we evaluated our systems on the All Words t
 			\hline
 			IMS + Context Sum, 
 			
-			CBOW, $\sigma _{=0.1}$ (proposed) & 0.677 & 0.679 & {\bf0.604} & {\bf 0.826 } \\
+			CBOW, $\sigma _{=0.1}$ (proposal) & 0.677 & 0.679 & {\bf0.604} & {\bf 0.826 } \\
 			\hline
 			
 			\cite{Taghipour15} & -(unreported) & {\bf0.682} & -(unreported) & -(unreported) \\
