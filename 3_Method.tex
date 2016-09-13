@@ -1,13 +1,13 @@
-\section{Methods}
+	\section{Methods}
 \label{section:methods}
 % Tao: Which classifier did you use?
 % Hong Jin: SVM?
 
-As Navigli \shortcite{Navigli09wordsense} noted that supervised approaches have performed best in WSD, we focus on supervised approaches. 
+As Navigli \shortcite{Navigli09wordsense} noted that supervised approaches have performed best in WSD, we focus on integrating word embeddings in supervised approaches.
 %We explored two approaches for performing supervised WSD using word embeddings. Firstly, we experimented with different methods of composing word embeddings to represent the context of a word and used this in conjunction with IMS, a state-of-the-art supervised WSD system. 
 %Secondly, we explored the use of Neural Networks, which have produced state-of-the-art performance in many NLP tasks, in performing WSD. A LSTM network, a type of Recurrent Neural Network, is evaluated. 
-We explore the use of word embeddings in IMS. 
-In our first set of evaluation, we used tasks from Senseval-2, Senseval-3 and SemEval-2007 to evaluate the performance of our classifiers on monolingual WSD. We do this to first validate that our approach is a sound approach of performing WSD, showing improved or identical scores over state-of-the-art systems in most tasks. 
+We explore the use of word embeddings in IMS. We focused our work on Continuous Bag of Words (CBOW) from Word2Vec,  Global Vectors for Word Representation (GLoVe) and Collobert \& Weston's Embeddings. The CBOW embeddings were trained over Wikipedia, while the publicly available vectors from GloVe and C\&W were used. Word2Vec provides 2 architectures for learning word embeddings, Skip-gram and CBOW. In contrast to Iacobacci \shortcite{Iacobacci2016} which focused on Skip-gram, we focused our work on CBOW.
+In our first set of evaluation, we used tasks from Senseval-2, Senseval-3 and SemEval-2007 to evaluate the performance of our classifiers on monolingual WSD. We do this to first validate that our approach is a sound approach of performing WSD, showing improved or identical scores to state-of-the-art systems in most tasks. 
 
 Similar to the work by Taghipour \shortcite{Taghipour15}, we experimented with the use of word embeddings as feature types in IMS. However, we did not just experiment using C\&W embeddings, as different word embeddings are known to vary in quality when evaluated on different tasks \cite{schnabel2015evaluation}. We performed evaluation on several tasks. For the Lexical Sample (LS) tasks of Senseval-2 \cite{senseval2-LS-kilgarriff2001} and Senseval-3 \cite{senseval3-LS-mihalcea2004}, we evaluated our system using fine-grained scoring. For the All Words (AW) tasks, fine-grained scoring is done for Senseval-2 \cite{senseval2-AW-palmer2001} and Senseval-3 \cite{senseval3-AW-snyder2004}, and both the fine \cite{semeval2007-fine-pradhan2007} and coarse-grained \cite{semeval2007-coarse-navigli2007} All Words tasks in SemEval-2007 were used. In order to evaluate our features on the All Words task, we trained IMS and the different combinations of features on the One Million Sense-Tagged corpus \cite{taghipour2015one}.
 To compose word vectors, one baseline method is to sum up the word vectors of the words in the surrounding context or sentence. We primarily experimented on this method of composition, due to its good performance and short training time. For this, every word vector for every lemma in the sentence, excluding the target word, was summed into a context vector, resulting in $d$ features. Stopwords and punctuation are discarded. In Turian's \shortcite{Turian10wordrepresentations} work, two hyperparameters, the capacity (number of dimensions) and size of the word embeddings, were tuned in his experiments. We did the same in our experiments.
@@ -96,7 +96,9 @@ Because each dimension is a feature that is used by IMS, if there are more dimen
 			\hline
 			Method & Senseval-2 LS Accuracy & Senseval-3 LS Accuracy \\
 			\hline
-			IMS + Context Sum, CBOW $\sigma _{=0.1}$ (proposal) & {\bf0.680} & {\bf0.741} \\
+			IMS + Context Sum, CBOW $\sigma _{=0.1}$ (proposal) & 0.680 & 0.741 \\
+			\hline
+            IMS + CBOW $\sigma _{=0.15}$ (proposal) & 0.670 & 0.734 \\
 			\hline
 			
 			IMS & 0.653 & 0.726\\
@@ -107,6 +109,8 @@ Because each dimension is a feature that is used by IMS, if there are more dimen
 			\hline
 			\newcite{Taghipour15} & 0.662 & 0.734 \\
 			\hline
+           	IMS + Word2Vec (Skip-gram) \shortcite{Iacobacci2016}  & {\bf0.699} & {\bf0.752} \\
+			\hline
 			Most Frequent Sense (Baseline) & 0.476 & 0.552 \\
 			\hline
 		\end{tabular}
@@ -115,9 +119,10 @@ Because each dimension is a feature that is used by IMS, if there are more dimen
 
 
 
-Apart from the Lexical Sample tasks, we evaluated our systems on the All Words tasks of Senseval-2, Senseval-3 and SemEval-2007, which were evaluated on by Zhong \shortcite{Zhong2010}. As seen in Table \ref{table:All-AW}, our enhancements to IMS to make use of word embeddings give better results on All Words task than the original IMS and the respective Rank 1 Systems during the task. It also outperforms recent systems developed and evaluated in recent papers. We note that although our system increased accuracy on IMS on several
+Apart from the Lexical Sample tasks, we evaluated our systems on the All Words tasks of Senseval-2, Senseval-3 and SemEval-2007, which were evaluated on by Zhong \shortcite{Zhong2010}. As seen in Table \ref{table:All-AW}, our enhancements to IMS to make use of word embeddings give better results on All Words task than the original IMS and the respective Rank 1 Systems during the task. It also outperforms several recent systems developed and evaluated in recent papers. We note that although our system increased accuracy on IMS on several
 % Tao: which test did you use? 
-tasks, the difference is mostly not statistically significant. 
+% Hong Jin: mcnemar's test
+tasks, the differences were not statistically significant.
 
 \begin{table}
 	\caption{Accuracy of our system on Senseval-2, Senseval-3, SemEval-2007 All Words task}
@@ -127,20 +132,26 @@ tasks, the difference is mostly not statistically significant.
 			\hline
 			Method & Senseval-2 AW Accuracy & Senseval-3 AW Accuracy & SemEval-2007 Fine-Grained & SemEval-2007 Coarse-grained \\
 			\hline
-			IMS + Context Sum, 
+			IMS + CBOW, 
 			
-			CBOW, $\sigma _{=0.1}$ (proposal) & 0.677 & 0.679 & {\bf0.604} & {\bf 0.826 } \\
+			$\sigma _{=0.1}$ (proposal) & 0.677 & 0.679 & 0.604 & 0.826  \\
+			\hline
+            IMS + 
+			
+			CBOW, $\sigma _{=0.15}$ (proposal) & 0.673 & 0.675 & {\bf0.615} & {\bf 0.828 } \\
 			\hline
 			
-			\cite{Taghipour15} & -(unreported) & {\bf0.682} & -(unreported) & -(unreported) \\
+			\cite{Taghipour15} & -& {\bf0.682} & - & - \\
 			\hline
-			\cite{chen2014} & -(unreported) & -(unreported) & -(unreported) & {\bf 0.826 } \\
+			\cite{chen2014} & - & - & - & 0.826  \\
 			\hline
 			IMS (on One Million Sense-Tagged dataset) & 0.682 & 0.674 & 0.585 & 0.816 \\
+            \hline
+            IMS + Skip-gram \cite{Iacobacci2016}  & {\bf0.683} & {\bf0.682} & 0.591 & - \\
 			\hline
-			IMS (original) & 0.682 & 0.676 & 0.583 & {\bf 0.826 }  \\
+			IMS (original) & 0.682 & 0.676 & 0.583 & 0.826   \\
 			\hline
-			Top System during the task & {\bf0.69} & 0.652 & 0.591 & {\bf 0.825 } \\
+			Top System during the task & {\bf0.69} & 0.652 & 0.591 & 0.825  \\
 			\hline
 			WordNet Sense 1 & 0.619 & 0.624 & 0.514 & 0.789\\
 			\hline
@@ -149,58 +160,61 @@ tasks, the difference is mostly not statistically significant.
 \end{table}
 
 
-It can be seen in Table \ref{table:top-LS} and \ref{table:All-AW} that our enhancements improves the existing IMS system, and we get performance comparable to or better than top approaches in both Lexical Sample tasks and All Words tasks. 
+It can be seen in Table \ref{table:top-LS} and \ref{table:All-AW} that the simple enhancement of integrating word embedding using the baseline composition method, followed by the scaling step, improves the existing IMS system, and we get performance comparable to or better than top approaches in both Lexical Sample tasks and All Words tasks. 
 
 \begin{table}
-	\caption{Accuracy of our system on Senseval-2, Senseval-3 Lexical Sample tasks and SemEval-2007 All Words task}
+	\caption{Accuracy of adding word embeddings to IMS on Senseval-2, Senseval-3 Lexical Sample tasks and SemEval-2007 All Words task}
 	\label{table:full}
 	\begin{center}
-\begin{tabular}{|p{1cm}|p{0.5cm}|p{1cm}|p{1cm}|p{2cm}|p{2cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{2cm}|}
-Type & Size & Scaling & Composed by& SE-2 LS Accuracy & SE-3 LS & SE-2 AW & SE-3 AW & SE-2007 Fine grained & SE-2007 Coarse grained &\\
+\begin{tabular}{|p{1cm}|p{0.5cm}|p{1cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+Type & Size & Scaling & Compose & SE-2 LS & SE-3 LS & SE-2 AW & SE-3 AW & SE-2007 Fine grained & SE-2007 Coarse grained \\
 \hline
-Senna&50&0.1&Sum&0.671&0.738&0.678&0.673&0.6&0.819 &\\
+Senna&50&0.05&Sum&0.666&0.734&0.679&0.673&0.594&0.818 \\
 \hline
-Senna&50&0.15&Sum&0.666&0.732&0.675&0.672&0.598&0.817 &\\
+Senna&50&0.1&Sum&0.671&0.738&0.678&0.673&0.6&0.819 \\
 \hline
-Senna&50&0.05&Sum&0.666&0.734&0.679&0.673&0.594&0.818 &\\
+Senna&50&0.15&Sum&0.666&0.732&0.675&0.672&0.598&0.817 \\
 \hline
-CBOW&50&0.1&Sum&0.68&0.741&0.677&0.679 &0.604 & 0.826\\
+CBOW&50&0.05&Sum&0.672&{\bf 0.744}&{\bf 0.68}&0.677&0.604&0.824\\
 \hline
-CBOW&50&0.15&Sum&0.67&0.734&0.673&0.675&0.602&0.827\\
+CBOW&50&0.1&Sum&{\bf 0.68}&0.741&0.677&0.679 &0.604 & 0.826\\
 \hline
-CBOW&50&0.05&Sum&0.672&0.744&0.68&0.677&0.596&0.822\\
+CBOW&50&0.15&Sum&0.67&0.734&0.673&0.675&{\bf 0.615}&{\bf 0.828}\\
 \hline
-Glove&50&0.1&Sum&0.679&0.741&0.678&0.68&0.594&0.819 &\\
+Glove&50&0.05&Sum&0.675&0.738&0.676&0.678&0.596&0.819 \\
 \hline
-Glove&50&0.15&Sum&0.674&0.731&0.68&0.678&0.591&0.819 &\\
+Glove&50&0.1&Sum&0.679&0.741&0.678&0.68&0.594&0.819 \\
 \hline
-Glove&50&0.05&Sum&0.675&0.738&0.676&0.678&0.596&0.819 &\\
+Glove&50&0.15&Sum&0.674&0.731&{\bf 0.68}&0.678&0.591&0.819 \\
 \hline
-CBOW&200&0.1&Sum&0.669&0.731&0.676&0.675&0.602&0.82 &\\
+CBOW&200&0.05&Sum&0.679&0.742&0.679&0.68&0.602&0.823 \\
 \hline
-CBOW&200&0.15&Sum&0.651&0.715&0.667&0.673&0.594&0.822 &\\
+CBOW&200&0.1&Sum&0.669&0.731&0.676&0.675&0.602&0.82 \\
 \hline
-CBOW&200&0.05&Sum&0.679&0.742&0.679&0.68&0.602&0.823 &\\
+CBOW&200&0.15&Sum&0.651&0.715&0.667&0.673&0.594&0.822 \\
 \hline
-Glove&200&0.1&Sum&0.666&0.73&0.677&0.679&0.591&0.827 &\\
+Glove&200&0.05&Sum&0.682&0.741&0.68&{\bf0.682}&0.6&0.823 \\
 \hline
-Glove&200&0.15&Sum&0.654&0.706&0.674&0.675&0.591&0.826 &\\
+Glove&200&0.1&Sum&0.666&0.73&0.677&0.679&0.591&0.827 \\
 \hline
-Glove&200&0.05&Sum&0.682&0.741&0.68&0.682&0.6&0.823 &\\
+Glove&200&0.15&Sum&0.654&0.706&0.674&0.675&0.591&0.826 \\
 \hline
-Senna&50&0.1&Concat&0.659&0.724&0.679&0.674&0.585&0.818 &\\
+Senna&50&0.1&Concat&0.659&0.724&0.679&0.674&0.585&0.818 \\
 \hline
-CBOW&50&0.1&Concat&0.66&0.725&0.678&0.672&0.581&0.816&\\
+CBOW&50&0.1&Concat&0.66&0.725&0.678&0.672&0.581&0.816\\
 \hline
-CBOW&200&0.1&Concat&0.667&0.729&0.675&0.67&0.591&0.819&\\
+CBOW&200&0.1&Concat&0.667&0.729&0.675&0.67&0.591&0.819\\
 \hline
-Glove&50&0.1&Concat&0.657&0.722&0.679&0.671&0.583&0.818&\\
+Glove&50&0.1&Concat&0.657&0.722&0.679&0.671&0.583&0.818\\
 \hline
-Glove&200&0.1&Concat&0.664&0.728&0.677&0.669&0.587&0.817&\\
+Glove&200&0.1&Concat&0.664&0.728&0.677&0.669&0.587&0.817\\
 \hline
 \end{tabular}
 	\end{center}
 \end{table}
+
+We note that a smaller size of the word embeddings generally improved performance on the Lexical Sample task, however, this effect was not observed in the All Words task. We also note that relatively poorer performance in the Lexical Sample tasks may not necessarily result in poor performance on the All Words task. We see from the results that the combination of \cite{Taghipour15}'s scaling strategy and summation produced results better then \cite{Iacobacci2016}'s concatenation and average combination strategy (0.651 and 0.654), suggesting that the scaling factor is important for the integration of word embeddings for supervised WSD. 
+
 
 %\iffalse
 \subsection{LSTM Network}
@@ -210,10 +224,8 @@ A Long Short Term Memory (LSTM) network is a type of Recurrent Neural Network, t
 
 For the Lexical Sample tasks, we train the model on the training data provided for the task. For the All Words task, we trained the model on the One Million Sense-Tagged dataset. For each task, similar to IMS, we train a model for each word. 
 
-One problem we encountered with this approach was that there is very few training examples per sense. Although as a whole, the dataset had many training examples, we trained a model for each word, resulting in a fairly small number of relevant training instances for a single word. In particular, rare words had extremely little training data. We obtained the following results:
+One problem we encountered with this approach was that there is very few training examples per sense. Although as a whole, the dataset had many training examples, we trained a model for each word, resulting in a fairly small number of relevant training instances for a single word. 
 
-
-% For the SVM approach by IMS. Because many of our features are binary features, it's possible to generalise easily. 
 
 
 
