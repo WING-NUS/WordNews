@@ -33,7 +33,7 @@ extends off of this backbone.
 Training data is required to train IMS.  We make use of the
 One-Million Sense-Tagged Instances \cite{taghipour2015one} dataset,
 which is the largest dataset we know of for training WSD systems, in
-training our systems for the All-Words tasks.
+training our systems for the All Words tasks.
 
 WSD systems can be evaluated using either fine-grained scoring or
 coarse-grained scoring. Under fine-grained scoring, every sense is
@@ -75,21 +75,81 @@ classification or statistical machine translation approaches.
 
 \subsection{WSD with Word Embeddings}
 
-In NLP, words can be represented in a vector space model. Traditionally, this has been done with {\it one-hot} binary vectors, where there is only one non-zero value in a high-dimensional vector. In this encoding, each dimension represents the presence of a word, and the number of dimensions of the vector space is the size of the vocabulary. In one-hot encoding, all words are considered to be independent of each other. A problem with one-hot encoding is that the large number of dimensions makes machine learning vulnerable to over-fitting. There is no notion of word similarity and all words are independent of each other. A distributed representation of words, such as word embeddings, resolves these problems by encoding words into a low dimensional space. In word embeddings, information about a word is distributed across multiple dimensions, and similar words are expected to be close to each other. Examples of word embeddings are Continuous Bag of Words \cite{mikolovword2vec}, Collobert \& Weston's Embeddings \cite{collobert2008unified}, and GLoVe \cite{pennington2014glove}. We implemented and evaluated the use of word embedding features using these three embeddings in IMS. 
+In NLP, words can be represented in a vector space
+model. Traditionally, this has been done with {\it one-hot} binary
+vectors, where there is only one non-zero value in a high-dimensional
+vector. In this encoding, each dimension represents the presence of a
+word, and the number of dimensions of the vector space is the size of
+the vocabulary. In one-hot encoding, all words are considered to be
+independent of each other; there is no notion of word similarity and
+all words are independent of each other.  A key weakness with the
+one-hot representation is that the large number of dimensions makes
+machine learning prone to overfitting.  A distributed representation
+of words, such as word embeddings, resolves these problems by encoding
+words into a low dimensional space. In word embeddings, information
+about a word is distributed across multiple dimensions, and similar
+words are expected to be close to each other. Examples of word
+embeddings are Continuous Bag of Words \cite{mikolovword2vec},
+Collobert \& Weston's Embeddings \cite{collobert2008unified}, and
+GLoVe \cite{pennington2014glove}. We implemented and evaluated the use
+of word embedding features using these three embeddings in IMS.
 
+An unsupervised approach using word embeddings for WSD is described by
+Chen \shortcite{chen2014}. This uses a model for finding
+representation of senses, rather than just for words, initialized
+using WordNet's glosses of senses. These sense vectors can then be
+used during Word Sense Disambiguation. A context vector can be
+computed by taking the average of the words in a sentence. For
+disambiguating a single word, the sense with the sense vector that
+gives maximum Cosine Similarity with this context vector is chosen as
+the result for disambiguation. Chen {\it et al.} gives an algorithm to
+disambiguate words starting from the words with fewer senses first.
 
-An unsupervised approach using word embeddings for WSD is described by Chen \shortcite{chen2014}. This uses a model for finding representation of senses, rather than just for words, initialised using WordNet's glosses of senses. These sense vectors can then be used during Word Sense Disambiguation. A context vector can be computed by taking the average of the words in a sentence. For disambiguating a single word, the sense with the sense vector that gives maximum Cosine Similarity with this context vector is chosen as the result for disambiguation. Chen {\it et al.} gives an algorithm to disambiguate words starting from the words with fewer senses first. 
+A different approach is to work on extending existing WSD
+systems. Turian \shortcite{Turian10wordrepresentations} suggests that
+for any existing supervised NLP system, a general way of improving
+accuracy would be to use unsupervised word representations as
+additional features. Taghipour \shortcite{Taghipour15} used C\&W
+embeddings as a starting point and implemented word embeddings as a
+feature type in IMS. For a specified window, vectors for the
+surrounding words in the windows, excluding the target word, are
+obtained from the embeddings and are concatenated, producing $d *
+(w-1)$ features, where $d$ is the number of dimensions of the vector,
+and w is the window size. Each feature is a floating point number,
+which is the value of the vector in a dimension. We note that
+\cite{Taghipour15} only reported results for C\&W embeddings, and did
+not experiment on other types of word embeddings.
 
-A different approach is to work on extending existing WSD systems. Turian \shortcite{Turian10wordrepresentations} suggests that for any existing supervised NLP system, a general way of improving accuracy would be to use unsupervised word representations as additional features. Taghipour \shortcite{Taghipour15} used C\&W embeddings as a starting point and implemented word embeddings as a feature type in IMS. For a specified window, vectors for the surrounding words in the windows, excluding the target word, are obtained from the embeddings and are concatenated, producing $d * (w-1)$ features, where $d$ is the number of dimensions of the vector, and w is the window size. Each feature is a floating point number, which is the value of the vector in a dimension. We note that \cite{Taghipour15} only reported results for C\&W embeddings, and did not experiment on other types of word embeddings.  
+Other supervised approaches using word embeddings include AutoExtend
+\cite{rothe2015autoextend}, which extended word embeddings to create
+embeddings for synsets and lexemes. In their work, they also extended
+IMS, but used their own embeddings. Three feature types were
+introduced by this work, which bear similarities to how Taghipour used
+word embeddings, but without Taghipour's method of scaling each
+dimension of the word embeddings.
 
-Other supervised approaches using word embeddings include AutoExtend \cite{rothe2015autoextend}, which extended word embeddings to create embeddings for synsets and lexemes. In their work, they also extended IMS, but used their own embeddings. Three feature types were introduced by this work, which has some similarities to how Taghipour used word embeddings, but without Taghipour's method of scaling each dimension of the word embeddings. 
+% Min: BUG fix this into prose if needed. 
+% Summary:
+%  - Not many comparison works: \cite{Iacobacci2016}
 
+To conclude, word embeddings have been used in several methods to
+improve on state-of-the-art results in WSD. However, to date, there
+has been little work investigating how different word embeddings and
+parameters affect performance of baseline methods of WSD. As far as we
+know, there has only been one paper comparing the different word
+embeddings with the use of basic composition methods in WSD. Iacobacci
+\shortcite{Iacobacci2016} performed an evaluation study of different
+parameters when enhancing an existing supervised WSD system with word
+embeddings. Iacobacci noted that the integration of Word2Vec
+% Min: skip grams are different from the CBOW
+(skip-gram) with IMS was consistently helpful and provided the best
+performance. Iacobacci also noted that the composition methods of
+average and concatenation produced small gains relative to the other
+composition strategies introduced. However, Iacobacci did not
+investigate the use of \cite{Taghipour15}'s scaling strategy, which
+was crucial to improve the performance of IMS.
 
-Summary:
- - Not many comparison works: \cite{Iacobacci2016}
- 
-To conclude, word embeddings have been used in several methods to improve on state-of-the-art results in WSD. However, to date, there has been little work investigating how different word embeddings and parameters affect performance of baseline methods of WSD. As far as we know, there has only been one paper comparing the different word embeddings with the use of basic composition methods in WSD. Iacobacci \shortcite{Iacobacci2016} performed an evaluation study of different parameters when enhancing an existing supervised WSD system with word embeddings. Iacobacci noted that the integration of Word2Vec (Skip-gram) with IMS was consistently helpful and provided the best performance. Iacobacci also noted that the composition methods of average and concatenation produced small gains relative to the other composition strategies introduced. However, Iacobacci did not investigate the use of \cite{Taghipour15}'s scaling strategy, which was crucial to improve the performance of IMS.
-
-
-We also did not find any recent work attempting to integrate modern WSD systems for real-world education usage, and to evaluate the WSD system based on the requirements and suitability for education use. 
-
+We also did not find any recent work attempting to integrate modern
+WSD systems for real-world education usage, and to evaluate the WSD
+system based on the requirements and suitability for education use.
+We aim to fill this gap in applied WSD with this work.
