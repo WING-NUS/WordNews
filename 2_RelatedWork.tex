@@ -1,30 +1,77 @@
 \section{Related Work}
+% Min: don't need this header -- obvious
+% \subsection{Word Sense Disambiguation}
 
-\subsection{Word Sense Disambiguation}
-
-
-Word Sense Disambiguation is a well-studied problem and there are many different methods. Existing methods can be broadly categorised into supervised approaches, where machine learning techniques are used to learn from labeled training data, and unsupervised knowledge-rich techniques, which do not rely on labeled data. Unsupervised techniques are knowledge-rich, and rely heavily on knowledge bases and thesaurus, such as WordNet. It is noted by Navigli \shortcite{Navigli09wordsense} that supervised approaches using memory-based learning and SVM approaches have worked best. 
+Word Sense Disambiguation is a well-studied problem, in which many
+methods have been applied. Existing methods can be broadly categorised
+into supervised approaches, where machine learning techniques are used
+to learn from labeled training data; and unsupervised knowledge-rich
+techniques, which do not rely on labeled data. Unsupervised techniques
+are knowledge-rich, and rely heavily on knowledge bases and thesaurus,
+such as WordNet. It is noted by Navigli \shortcite{Navigli09wordsense}
+that supervised approaches using memory-based learning and SVM
+approaches have worked best.
 %For these approaches, it is common that the only knowledge used is the first sense in WordNet, which is used as a fallback if the system is unable to disambiguate the word in the test data. 
 
-Supervised approaches involve the extraction of features and then classification using machine learning. \shortcite{Zhong2010} developed an open-source WSD system, IMS, which was state-of-the-art at the time it was developed. It is a supervised-learning based WSD system, which first has to be trained using a set of training data. IMS uses three feature types, 1. individual words in the context surrounding the target word, 2. specific ordered sequences of words appearing at specified offsets from the target word, 3. Part-Of-Speech tags of the surrounding 3 words.
+Supervised approaches involve the extraction of features and then
+classification using machine learning. Zhong and Ng
+\shortcite{Zhong2010} developed an open-source WSD system, {\it
+  ItMakesSense} (hereafter, IMS), which was considered the
+state-of-the-art at the time it was developed.  It is a supervised WSD
+system, which had to be trained prior to use. IMS uses three feature
+types, 1. individual words in the context surrounding the target word,
+2. specific ordered sequences of words appearing at specified offsets
+from the target word, 3. Part-Of-Speech tags of the surrounding 3
+words.
 
-Each of the features are binary features, and IMS trains a model for each word. IMS then uses an SVM for classification. IMS is open-source, provides state-of-the-art performance at the time of its publication, and is easy to extend. As such, our work focuses heavily on IMS. 
+Each of the features are binary features, and IMS trains a model for
+each word. IMS then uses an support vector machine (SVM) for
+classification. IMS is open-source, provides state-of-the-art
+performance, and is easy to extend. As such, our work features IMS and
+extends off of this backbone.
 
-Training data is required to train IMS, which is a supervised system. 
-An example of training data for training WSD system is the One-Million Sense-Tagged Instances \cite{taghipour2015one}. This is the largest dataset we know of for training WSD systems, and we make use of it for training our systems for the All-Words tasks. 
+Training data is required to train IMS.  We make use of the
+One-Million Sense-Tagged Instances \cite{taghipour2015one} dataset,
+which is the largest dataset we know of for training WSD systems, in
+training our systems for the All-Words tasks.
 
-WSD systems can be evaluated using either fine-grained scoring or coarse-grained scoring. In fine-grained scoring, every sense is equally distinct from each other, and answers must exactly match. In coarse-grained scoring, similar senses are grouped and treated as a single sense. A problem of Word Sense Disambiguation is that the granularity of senses are subjective and may not be well-defined. WordNet is a fine-grained resource, and even human annotators have trouble distinguishing between different senses of a word \cite{edmonds2002introduction}. An important measure for any task is the inter-annotator agreement. The inter-annotator agreement is considered the upper bound of a task. 
-%In some WSD tasks during Senseval, coarse-grained scoring was done in order to deal with this problem. In these evaluations, similar senses of a word are clustered together and are considered to be the same sense. 
-
+WSD systems can be evaluated using either fine-grained scoring or
+coarse-grained scoring. Under fine-grained scoring, every sense is
+equally distinct from each other, and answers must exactly match. 
+% Min: need to introduce wordnet somewhere.
+WordNet is a fine-grained resource, and even human annotators have
+trouble distinguishing between different senses of a word
+\cite{edmonds2002introduction}.  In contrast, under coarse-grained
+scoring, similar senses are grouped and treated as a single sense.  In
+some WSD tasks in Senseval, coarse-grained scoring was done in order
+to deal with the problem of reliably distinguishing fine-grained
+senses. We note that WSD is somewhat subjective, in that the grouping
+and granularity of senses are debatable and may not be well-defined.
+%% Min: not yet clear where this goes
+% An important measure for any classification task is the
+% inter-annotator agreement. The inter-annotator agreement is considered
+% the upper bound of a task.
 
 \subsection{Cross-Lingual Word Sense Disambiguation}
-Cross-Lingual WSD was partially conceived as a further attempt to solve this issue. In Cross-Lingual WSD, the specificity of a sense is determined by its correct translation. The sense inventory is the possible translations of each word in another language. Two instances are said to have the same sense if they map to the same translation in that language. In SemEval-2010~\cite{Lefever2010}, %~\footnote{\url{http://stel.ub.edu/semeval2010-coref/}}, 
-a task for Cross-Lingual WSD was introduced. SemEval-2013~\cite{Lefever2013} %~\footnote{\url{https://www.cs.york.ac.uk/semeval-2013/}} 
-featured the second iteration of this task. These tasks were tasks in which an English noun were the targeted words, and the word senses were the translations in Dutch, French, Italian, Spanish and German. 
+Cross-Lingual WSD was, in part, conceived as a further attempt to
+solve this issue. In Cross-Lingual WSD, the specificity of a sense is
+determined by its correct translation in another language. The sense
+inventory is the possible translations of each word in another
+language. Two instances are said to have the same sense if they map to
+the same translation in that language. In
+SemEval-2010~\cite{Lefever2010}\footnote{\url{http://stel.ub.edu/semeval2010-coref/}},
+a task for Cross-Lingual WSD was
+introduced. SemEval-2013~\cite{Lefever2013}\footnote{\url{https://www.cs.york.ac.uk/semeval-2013/}}
+featured the second iteration of this task. These tasks featured
+English nouns as the source words, and word senses as translations in
+Dutch, French, Italian, Spanish and German.
 
-
-Traditional WSD approaches are used in Cross-Lingual WSD, although some approaches make use of Statistical Machine Translation methods and features from translation. Cross-Lingual WSD involves training by making use of parallel or multilingual corpora. In the Cross-Lingual WSD task in SemEval-2013, the top approaches used a classification approach or a statistical machine translation approach. 
-
+Traditional WSD approaches are used in Cross-Lingual WSD, although
+some approaches leverage statistical machine translation (SMT) methods
+and features from translation. Cross-Lingual WSD involves training by
+making use of parallel or multilingual corpora. In the Cross-Lingual
+WSD task in SemEval-2013, the top performing approaches used either
+classification or statistical machine translation approaches.
 
 \subsection{WSD with Word Embeddings}
 

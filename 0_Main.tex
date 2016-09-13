@@ -68,20 +68,25 @@
 %\end{abstract}
 
 \begin{abstract}
-Word Embeddings have been used a lot, popular in NLP. 
-There have been applications of Word Embeddings for monolingual WSD in English, but only a few comparisons have been done.
-This paper attempts to bridge that gap by examining popular embeddings for the task of monolingual English WSD. 
-Our simplified method leads to comparable state-of-the-art performance without expensive retraining. 
+Word embeddings are now ubiquitous forms of word representation in
+natural language processing.  There have been applications of Word
+Embeddings for monolingual word sense disambiguation (WSD) in English,
+but few comparisons have been done.  This paper attempts to bridge
+that gap by examining popular embeddings for the task of monolingual
+English WSD.  Our simplified method leads to comparable
+state-of-the-art performance without expensive retraining.
 
-
-Cross-Lingual WSD can also assist in language learning, for example, when providing translations of target vocabulary for learners. 
-Thus we have also applied word embeddings to the novel task of Cross-Lingual Word sense disambiguation for Chinese and provide a public dataset for further benchmarking.
+Cross-Lingual WSD -- where the word senses of a word in a source
+language $e$ come from a separate target translation language $f$ --
+can also assist in language learning; for example, when providing
+translations of target vocabulary for learners.  Thus we have also
+applied word embeddings to the novel task of cross-lingual WSD for
+Chinese and provide a public dataset for further benchmarking.
 %We have also experimented Long Short-term memory neural networks with the same embeddings.
-We have also experimented with using word embeddings for LSTM networks and found surprisingly that a basic LSTM network does not work well.
-
-
+We have also experimented with using word embeddings for LSTM networks
+and found surprisingly that a basic LSTM network does not work well.
+We discuss the ramifications of this outcome.
 \end{abstract}
-
 
 \input{1_Introduction}
 \input{2_RelatedWork}
@@ -89,17 +94,6 @@ We have also experimented with using word embeddings for LSTM networks and found
 \input{4_CLWSD}
 \input{5_Conclusion}
 
-
-
-% include your own bib file like this:
-%\bibliographystyle{acl}
-%\bibliography{coling2016}
-
-% use socreport.bst
-%\bibliographystyle{socreport}
-
 \bibliographystyle{acl}
-% socreport.bib
 \bibliography{socreport}
-
 \end{document}

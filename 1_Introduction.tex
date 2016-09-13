@@ -44,35 +44,38 @@
 % Tao: The logic of this section does flow well: 1) some paragraphs have duplicate information, and 2) the motivation and contribution of this paper is not clear. I prefer to move the literature review to a separate section since it is quite long (almost 1.5 pages).
 % Tao: tried to edit (partial)
 
-
-
-
-A word can have different meanings depending on the context in which it is used. For example, the word ``bank" could mean ``slope beside a body of water", or a ``depository financial institution"~\footnote{\url{http://wordnetweb.princeton.edu/perl/webwn?s=bank}}. Word Sense Disambiguation (WSD) is the task of identifying the contextually appropriate meaning of the word. WSD can be considered a classification task, in which the classifier predicts the sense from a possible set of senses, known as a sense inventory, given the target word and the contextual information of the target word. Existing WSD systems can be categorised into either supervised or knowledge-rich approaches. Both approaches are considered to be complementary to each other. 
-
-
+A word takes on different meanings, largely dependent on the context
+in which it is used. For example, the word ``bank'' could mean ``slope
+beside a body of water'', or a ``depository financial
+institution''~\footnote{\url{http://wordnetweb.princeton.edu/perl/webwn?s=bank}}. Word
+Sense Disambiguation (WSD) is the task of identifying the contextually
+appropriate meaning of the word. WSD is oft considered a
+classification task, in which the classifier predicts the sense from a
+possible set of senses, known as a sense inventory, given the target
+word and the contextual information of the target word. Existing WSD
+systems can be categorised into either data-driven supervised or
+knowledge-rich approaches. Both approaches are considered to be
+complementary to each other.
 
 %The task of Word Sense Disambiguation (WSD) is the task of identifying the correct sense/meaning of a word out of possible senses defined in a sense inventory. 
-Word embeddings is a popular technique in NLP in recent years, and many tasks can be done using 
-word embeddings. The effectiveness of
-using word embeddings has been shown in 
+Word embeddings have become a popular word representation formalism,
+and many tasks can be done using word embeddings. The effectiveness of
+using word embeddings has been shown in
 % Tao: cite a few more papers
-several NLP tasks \cite{Turian10wordrepresentations}
-The goal of this work is to apply and compare different uses of word embeddings for WSD. We perform evaluation of the effectiveness of word embeddings on monolingual WSD tasks from Senseval-2 (held in 2001), Senseval-3 (held in 2004), and SemEval-2007. After which, we evaluate our approach on 
-English-Chinese Cross-Lingual WSD using a dataset that we constructed for the use of evaluating our approach on the translation task used in educational applications for language learning, such as MindTheWord {\footnote{\url{https://chrome.google.com/webstore/detail/mindtheword/fabjlaokbhaoehejcoblhahcekmogbom?hl=en}}} and WordNews.
+several NLP tasks \cite{Turian10wordrepresentations}. The goal of our
+work is to apply and comprehensively compare different uses of word
+embeddings, solely with respect to WSD. We perform evaluation of the
+effectiveness of word embeddings on monolingual WSD tasks from
+Senseval-2 (held in 2001), Senseval-3 (held in 2004), and
+SemEval-2007. After which, we evaluate our approach on English-Chinese
+Cross-Lingual WSD using a dataset that we constructed for the use of
+evaluating our approach on the translation task used in educational
+applications for language learning, such as MindTheWord
+{\footnote{\url{https://chrome.google.com/webstore/detail/mindtheword/fabjlaokbhaoehejcoblhahcekmogbom?hl=en}}}
+and WordNews.
 
-
-
-
-
-
-
-The structure of this paper will be as follows: we have first reviewed related work and methods regarding WSD, next we will discuss the applications of WSD to a category of educational applications, and outlining possible future work finally in the conclusion. 
-
-
-
-
-
-
+%% Min: Nav too ordinary, try without it.
+% The structure of this paper will be as follows: we have first reviewed related work and methods regarding WSD, next we will discuss the applications of WSD to a category of educational applications, and outlining possible future work finally in the conclusion. 
 
 %The task of Word Sense Disambiguation (WSD) is the task of identifying the correct sense/meaning of a word out of possible senses defined in a sense inventory. Word embeddings is a popular technique in NLP in recent years, and many tasks can be done using 
 %word embeddings. The effectiveness of
