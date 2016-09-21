@@ -38,7 +38,10 @@ translations. We finally deploy the trained system as a fork of the
 original WordNews.
 
 \subsection{Dataset}
-In order to construct an evaluation dataset, we hired human annotators and constructed a English--Chinese Cross-Lingual WSD dataset using sentences from recent news articles. As far as we know, there is no existing publicly available English--Chinese Cross-Lingual WSD dataset. As the dataset is constructed using recent news data, it is a good representation for the use case in WordNews. {\footnote{The dataset can be obtained at %{\url{  https://kanghj.github.io/eng_chinese_news_clwsd_dataset/}}}}
+In order to construct an evaluation dataset, we hired human annotators and constructed a English--
+Chinese Cross-Lingual WSD dataset using sentences from recent news articles. As far as we know, there 
+is no existing publicly available English--Chinese Cross-Lingual WSD dataset. As the dataset is 
+constructed using recent news data, it is a good representation for the use case in WordNews.{\footnote{The dataset can be obtained at %{\url{  https://kanghj.github.io/eng_chinese_news_clwsd_dataset/}}}}
 {\url{https://to.be.made.public/if/accepted}}}
 
 To obtain the gold standard for this data set, we hired 18 annotators to select the right translations for a given word and its context. There are 697 instances in total in our dataset, with a total of 251 target words to disambiguate, that were each multiply-annotated by 3 different annotators. Each annotator disambiguated 110+ instances (15 annotators with 116 instances, 3 with 117) in hard-copy. The annotators are all bilingual undergraduate students, who are native Chinese speakers. 
@@ -131,6 +134,9 @@ It can be seen that word embeddings improves the performance on Cross-Lingual WS
 \subsection{Bing Translator results}
 We wish to highlight and explain the poor performance of Bing Translator with our annotated dataset as seen in Table \ref{table:CLWSD-test-results}. This could be because Bing Translator performs translation at the phrase level. Therefore, many of the target words are not translated individually and are translated only as part of a larger unit, making it less suitable for the use case in WordNews where only the translation of single words matter. 
 % Min: need to put actual (bilingual) example to concretize the illustration?
-For example, when translating the word ``little'' in ``... little kids ...'', the word alignment information in Bing Translator does not give an alignment for the word `little' but instead translates the entire multi-word unit ``little kids''. 
+% Hong Jin: will do this over the weekend
+\begin{CJK*}{UTF8}{gbsn}
+For example, when translating the word ``little'' in ``These are serious issues and themes, and sometimes {\bf little} kids aren't ready to process and understand these ideas'', the word alignment information in Bing Translator provides a translation of ``这些都是严重的问题和主题，有时{\bf 小孩} 不准备处理和理解这些想法'' but does not give an alignment for the word `little' but instead translates the entire multi-word unit ``little kids''. 
+\end{CJK*}
 %Since the gold standard was produced by annotations before we ran the experiments, none of the %participants would indicate that the translation of ``little kids'' is the translation for %``little''. 
-As such, the translation would not match any of the annotations provided by our annotators. This is an appropriate treatment since a user of an educational app requesting a translation for the single word ``little'' should not see the translation of the entire phrase.
+As such, the translation would not match any of the annotations provided by our annotators. This is an appropriate treatment since a user of an educational app requesting specifically a translation for the single word ``little'' should not see the translation of the phrase.

@@ -8,6 +8,9 @@
 \usepackage{times}
 \usepackage{url}
 \usepackage{latexsym}
+\usepackage{CJK}
+\usepackage{multirow}
+\AtBeginDvi{\input{zhwinfonts}}
 
 % 8 pages + 2 pages of references
 %\setlength\titlebox{5cm}
@@ -69,8 +72,10 @@
 
 \begin{abstract}
 Word embeddings are now ubiquitous forms of word representation in
-natural language processing.  There have been applications of Word
-Embeddings for monolingual word sense disambiguation (WSD) in English,
+natural language processing.  There have been applications of 
+%Word Embeddings  
+%Muthu: removing title case from 'Word Embeddings' 
+word embeddings for monolingual word sense disambiguation (WSD) in English,
 but few comparisons have been done.  This paper attempts to bridge
 that gap by examining popular embeddings for the task of monolingual
 English WSD.  Our simplified method leads to comparable

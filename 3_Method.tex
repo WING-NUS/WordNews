@@ -1,4 +1,4 @@
-	\section{Methods}
+\section{Methods}
 \label{section:methods}
 % Tao: Which classifier did you use?
 % Hong Jin: SVM?
@@ -47,9 +47,10 @@ dimensions.
 	\caption{Effects of varying scaling factor on C\&W embeddings.}
 	\label{table:wordembeddings-accuracy}
 	\begin{center}
-		\begin{tabular}{| p{7cm} | p{4cm} | p{4cm} |}
+		\begin{tabular}{| p{7cm} | p{3.5cm} | p{3.5cm} |}
 			\hline
-			Method & Senseval-2 Accuracy & Senseval-3 Accuracy \\
+			Method & Senseval-2 & Senseval-3 \\
+     		 	   &  Accuracy &  Accuracy \\
 			\hline
 			C\&W, unscaled & 0.569 & 0.641 \\
 			\hline
@@ -84,9 +85,10 @@ systems that evaluated on the same task.
 	\caption{Effects of varying capacity on CBOW.}
 	\label{table:wordembeddings-word2vec-accuracy}
 	\begin{center}
-		\begin{tabular}{| p{7cm} | p{4cm} | p{4cm} |}
+		\begin{tabular}{| p{7cm} | p{3.5cm} | p{3.5cm} |}
 			\hline
-			Method & Senseval-2 Accuracy & Senseval-3 Accuracy \\
+			Method & Senseval-2 & Senseval-3 \\
+     		 	   &  Accuracy &  Accuracy \\
 			\hline
 			CBOW, $dimensions_{=50}$ & {\bf0.680} & {\bf0.741} \\
 			\hline
@@ -100,9 +102,10 @@ systems that evaluated on the same task.
 	\caption{Effects of varying capacity on GloVe.}
 	\label{table:wordembeddings-glove-accuracy}
 	\begin{center}
-		\begin{tabular}{| p{7cm} | p{4cm} | p{4cm} |}
+		\begin{tabular}{| p{7cm} | p{3.5cm} | p{3.5cm} |}
 			\hline
-			Method & Senseval-2 Accuracy & Senseval-3 Accuracy \\
+			Method & Senseval-2 & Senseval-3 \\
+        		   & Accuracy & Accuracy \\
 			\hline
 			GloVe, $dimensions_{=50}$ & {\bf0.678} & {\bf0.741} \\
 			\hline
@@ -119,22 +122,26 @@ more dimensions, then there are more features. This may result in
 overfitting on small datasets. This is a possible reason that the
 smaller number of dimensions work better.
 
+%Muthu: table seems to exceed the margin. attempting to fix
 \begin{table}[th]
 	\caption{Comparison of systems on Lexical Sample tasks. Rank 1 system refers to the top system for the specified task during the evaluation.}
 	\label{table:top-LS}
 	\begin{center}
-		\begin{tabular}{| p{7cm} | p{4cm} | p{4cm} |}
+		\begin{tabular}{| p{7cm} | p{3.5cm} | p{3.5cm} |}
 			\hline
-			Method & Senseval-2 LS Accuracy & Senseval-3 LS Accuracy \\
+			Method & Senseval-2 LS & Senseval-3 LS \\
+            & Accuracy & Accuracy \\
 			\hline
-			IMS + Context Sum, CBOW $\sigma _{=0.1}$ (proposed) & 0.680 & 0.741 \\
+			IMS + CBOW $\sigma _{=0.1}$ (proposed) & 0.680 & 0.741 \\
 			\hline
             IMS + CBOW $\sigma _{=0.15}$ (proposed) & 0.670 & 0.734 \\
 			\hline
 			
 			IMS & 0.653 & 0.726\\
 			\hline
-			Rank 1 System & 0.642 & 0.729 \\
+			Rank 1 System & 0.642 \cite{florian2002combining} & 0.729 \cite{grozea2004finding} \\
+            %Muthu: cite the paper of this rank 1 system.
+            % Hong Jin: added
 			\hline
 			\newcite{rothe2015autoextend} & 0.666 & 0.736 \\
 			\hline
@@ -152,16 +159,20 @@ Apart from the Lexical Sample tasks, we evaluated our systems on the All Words t
 % Tao: which test did you use? 
 % Hong Jin: mcnemar's test
 % Min: edited in
-tasks, the differences were not statistically significant (as measured
+All Words tasks, the differences were not statistically significant (as measured
 using McNemar's test for paired nominal data).
 
+%Muthu: table seems to exceed the margin. you could wrap the headers. Fixing.
 \begin{table}[th]
 	\caption{Accuracy of our system on Senseval-2, Senseval-3, SemEval-2007 All Words task.}
 	\label{table:All-AW}
 	\begin{center}
-		\begin{tabular}{| p{4cm} | p{2cm} | p{3cm} | p{3cm} | p{3cm} | }
+		\begin{tabular}{| p{4cm} | p{2cm} | p{2cm} | p{2.5cm} | p{2.5cm} | }
 			\hline
-			Method & Senseval-2 AW Accuracy & Senseval-3 AW Accuracy & SemEval-2007 Fine-Grained & SemEval-2007 Coarse-grained \\
+			Method & Senseval-2 & Senseval-3 & SemEval-2007 & 
+            SemEval-2007 \\
+			& AW Accuracy & AW Accuracy & Fine-Grained &
+			Coarse-grained \\
 			\hline
 			IMS + CBOW, 
 			
@@ -193,55 +204,67 @@ using McNemar's test for paired nominal data).
 
 It can be seen in Table \ref{table:top-LS} and \ref{table:All-AW} that the simple enhancement of integrating word embedding using the baseline composition method, followed by the scaling step, improves the existing IMS system, and we get performance comparable to or better than top approaches in both Lexical Sample tasks and All Words tasks. 
 
+%Muthu: if we have significance tests for these we should add them to the table
+% for e.g., add a ** to denote $p < 0.01$ and * to denote $p < 0.05$
+%Muthu: this table is also exceeding margin. fixing
+%Muthu: Use multirow to merge rows for the columns where the text repeats. This table looks 
+% cluttered
+% Muthu: Is it okay to reorg the table such that all the same Types are together? I can do it if okay.
+% Hong Jin: I started some work here to use multirow, but it will be great if you could continue to reorg the table. 
 \begin{table}[th]
-	\caption{Accuracy of adding word embeddings to IMS on Senseval-2, Senseval-3 Lexical Sample tasks and SemEval-2007 All Words task}
+	\caption{Accuracy of adding word embeddings to IMS on Senseval-2, Senseval-3 Lexical Sample and All Words tasks and SemEval-2007 All Words task}
+\vspace{0.15cm}
 	\label{table:full}
-	\begin{center}
-\begin{tabular}{|p{1cm}|p{0.5cm}|p{1cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
-Type & Size & Scaling & Compose & SE-2 LS & SE-3 LS & SE-2 AW & SE-3 AW & SE-2007 Fine grained & SE-2007 Coarse grained \\
+\centering
+\begin{tabular}
+%{|p{1cm}|p{0.5cm}|p{1cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+{|l|r|r|r|r|r|r|r|r|r|}
 \hline
-Senna&50&0.05&Sum&0.666&0.734&0.679&0.673&0.594&0.818 \\
+Type & Size & Compose & Scaling & SE-2 & SE-3 & SE-2 & SE-3 & SE-2007 & SE-2007 \\
+ 	&  &  &  &  LS &  LS & AW & AW &  Fine- & Coarse- \\
+   	&  &  &  &	   &     &    &    &  grained & grained \\
 \hline
-Senna&50&0.1&Sum&0.671&0.738&0.678&0.673&0.6&0.819 \\
+\multirow{3}{*}{C\&W}&\multirow{3}{*}{50}&\multirow{3}{*}{Sum}&0.05&0.666&0.734&0.679&0.673&0.594&0.818 \\
+
+ & & &0.1&0.671&0.738&0.678&0.673&0.6&0.819 \\
+
+ & & &0.15&0.666&0.732&0.675&0.672&0.598&0.817 \\
 \hline
-Senna&50&0.15&Sum&0.666&0.732&0.675&0.672&0.598&0.817 \\
+\multirow{3}{*}{CBOW}&\multirow{3}{*}{50}&\multirow{3}{*}{Sum}&0.05&0.672&{\bf 0.744}&{\bf 0.68}&0.677&0.604&0.824\\
+
+&&&0.1&{\bf 0.68}&0.741&0.677&0.679 &0.604 & 0.826\\
+
+&&&0.15&0.67&0.734&0.673&0.675&{\bf 0.615}&{\bf 0.828}\\
 \hline
-CBOW&50&0.05&Sum&0.672&{\bf 0.744}&{\bf 0.68}&0.677&0.604&0.824\\
+\multirow{3}{*}{Glove}&\multirow{3}{*}{50}&\multirow{3}{*}{Sum}&0.05&0.675&0.738&0.676&0.678&0.596&0.819 \\
+
+& & &0.1&0.679&0.741&0.678&0.68&0.594&0.819 \\
+
+& & &0.15&0.674&0.731&{\bf 0.68}&0.678&0.591&0.819 \\
 \hline
-CBOW&50&0.1&Sum&{\bf 0.68}&0.741&0.677&0.679 &0.604 & 0.826\\
+\multirow{3}{*}{CBOW}&\multirow{3}{*}{200}&\multirow{3}{*}{Sum}&0.05&0.679&0.742&0.679&0.68&0.602&0.823 \\
+
+& & &0.1&0.669&0.731&0.676&0.675&0.602&0.82 \\
+
+& & &0.15&0.651&0.715&0.667&0.673&0.594&0.822 \\
 \hline
-CBOW&50&0.15&Sum&0.67&0.734&0.673&0.675&{\bf 0.615}&{\bf 0.828}\\
+\multirow{3}{*}{Glove}&\multirow{3}{*}{200}&\multirow{3}{*}{Sum}&0.05&0.682&0.741&0.68&{\bf0.682}&0.6&0.823 \\
+
+& & &0.1&0.666&0.73&0.677&0.679&0.591&0.827 \\
+
+& & &0.15&0.654&0.706&0.674&0.675&0.591&0.826 \\
 \hline
-Glove&50&0.05&Sum&0.675&0.738&0.676&0.678&0.596&0.819 \\
+C\&W&50&Concat&0.1&0.659&0.724&0.679&0.674&0.585&0.818 \\
 \hline
-Glove&50&0.1&Sum&0.679&0.741&0.678&0.68&0.594&0.819 \\
+\multirow{2}{*}{CBOW}&50&\multirow{2}{*}{Concat}&0.1&0.66&0.725&0.678&0.672&0.581&0.816\\
+
+&200&&0.1&0.667&0.729&0.675&0.67&0.591&0.819\\
 \hline
-Glove&50&0.15&Sum&0.674&0.731&{\bf 0.68}&0.678&0.591&0.819 \\
-\hline
-CBOW&200&0.05&Sum&0.679&0.742&0.679&0.68&0.602&0.823 \\
-\hline
-CBOW&200&0.1&Sum&0.669&0.731&0.676&0.675&0.602&0.82 \\
-\hline
-CBOW&200&0.15&Sum&0.651&0.715&0.667&0.673&0.594&0.822 \\
-\hline
-Glove&200&0.05&Sum&0.682&0.741&0.68&{\bf0.682}&0.6&0.823 \\
-\hline
-Glove&200&0.1&Sum&0.666&0.73&0.677&0.679&0.591&0.827 \\
-\hline
-Glove&200&0.15&Sum&0.654&0.706&0.674&0.675&0.591&0.826 \\
-\hline
-Senna&50&0.1&Concat&0.659&0.724&0.679&0.674&0.585&0.818 \\
-\hline
-CBOW&50&0.1&Concat&0.66&0.725&0.678&0.672&0.581&0.816\\
-\hline
-CBOW&200&0.1&Concat&0.667&0.729&0.675&0.67&0.591&0.819\\
-\hline
-Glove&50&0.1&Concat&0.657&0.722&0.679&0.671&0.583&0.818\\
-\hline
-Glove&200&0.1&Concat&0.664&0.728&0.677&0.669&0.587&0.817\\
+\multirow{2}{*}{Glove}&50&\multirow{2}{*}{Concat}&0.1&0.657&0.722&0.679&0.671&0.583&0.818\\
+
+&200& &0.1&0.664&0.728&0.677&0.669&0.587&0.817\\
 \hline
 \end{tabular}
-	\end{center}
 \end{table}
 
 We note that a smaller size of the word embeddings generally improved
@@ -270,20 +293,14 @@ information about the sequence of words in classification. Examples of
 using a neural network for classification are
 \cite{socher2011parsing} and \cite{socher2013recursive}.  
 % Min: how well did they do?  Comparable to yours?
-Yuan \shortcite{yuan2016word} explored the use of LSTM networks, using
-label propagation, for WSD. In our approach, we explore a simpler
-na\"{\i}ve approach instead without the use of label propagation.
+% Hong Jin: Yuan did not use the same test dataset as us. kaageback only reported results on the lexical sample tasks. added to the table below. I also removed Yuan since the final classifier used was not a LSTM
+For WSD, K{\aa}geb{\"a}ck \cite{kaageback2016word} explored the direct use of bidirectional LSTMs, along with the use of dropwords. In our approach, we explore a simpler
+na\"{\i}ve approach instead.
 
 For the Lexical Sample tasks, we train the model on the training data
 provided for the task. For the All Words task, we trained the model on
 the One Million Sense-Tagged dataset. For each task, similar to IMS,
-we train a model for each word.
-
-One problem we encountered with this approach was that there were very
-few training examples per sense. Although as a whole, the dataset had
-many training examples, as we needed to train a model for each word,
-this resulted in a small number of relevant training instances for a
-single word.
+we train a model for each word, using GloVe word embeddings as the input layer.
 
 \begin{table}[th]
 	\caption{Accuracy of a basic LSTM approach on the Lexical
@@ -296,9 +313,11 @@ single word.
 			\hline
 			LSTM approach (Proposed) & 0.458  & 0.603 \\
 			\hline
-			IMS & 0.653 & {\bf0.726}\\
+			IMS & 0.653 & 0.726\\
+            \hline
+            \cite{kaageback2016word} & 0.669 & 0.734 \\
 			\hline
-			Rank 1 System during the task & {\bf0.642} & 0.729 \\
+			Rank 1 System during the task & 0.642 & 0.729 \\
 			\hline
 			Most Frequent Sense (Baseline) & 0.476 & 0.552 \\
 			\hline
@@ -327,13 +346,17 @@ single word.
 	\end{center}
 \end{table}
 
-The performance of the LSTM is poor in both tasks (Tables
-\ref{table:NN-LS} and \ref{table:NN_AW}). 
+The performance of the na\"{\i}ve LSTM is poor in both type of tasks (Tables
+\ref{table:NN-LS} and \ref{table:NN_AW}). The models converge to just
+using the most common sense for the All Words task. 
 % Min: Repetitive -- should have some examples to show this for an
 % individual word or two, or to show that words that have more
 % instances have markedly better performance.
-The models converge to just
-using the most common sense. The reason for this is that WSD suffers
+
+% Hong Jin: removed repeated paragraph
+% Hong JIn: Also removed the reason since it may not make sense. If it were true that that is the main reason for the poor performance, then the other paper using LSTM should have the same problem. I will continue to try to figure out why this problem happens. In the meantime, I have cited some papers to try to better support this argument
+
+A possible reason for this is overfitting. WSD suffers
 from the problem of data sparsity. Although there are many training
-instances in total, the average amount of training examples for each
-individual sense is low.
+instances in total, as we train a separate model for each word, there are training examples for each
+individual word. Taghipour \shortcite{Taghipour15} indicated the need to prevent overfitting while using a neural network to adapt C\&W embeddings by omitting a hidden layer and adding a Dropout layer, while K{\aa}geb{\"a}ck \shortcite{kaageback2016word} developed a novel regularization technique, dropword.
