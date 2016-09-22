@@ -44,10 +44,12 @@ WordNet is often used as the sense inventory for monolingual WSD tasks. However,
 trouble distinguishing between different senses of a word
 \cite{edmonds2002introduction}.  In contrast, under coarse-grained
 scoring, similar senses are grouped and treated as a single sense.  In
-some WSD tasks in Senseval, coarse-grained scoring was done in order
+some WSD tasks in SemEval, coarse-grained scoring was done in order
 to deal with the problem of reliably distinguishing fine-grained
-senses. We note that WSD is somewhat subjective, in that the grouping
-and granularity of senses are debatable and may not be well-defined.
+senses. 
+% Hong Jin: removed because repetitive
+%We note that WSD is somewhat subjective, in that the grouping
+%and granularity of senses are debatable and may not be well-defined.
 %% Min: not yet clear where this goes
 % An important measure for any classification task is the
 % inter-annotator agreement. The inter-annotator agreement is considered
@@ -59,11 +61,10 @@ solve this issue. In Cross-Lingual WSD, the specificity of a sense is
 determined by its correct translation in another language. The sense
 inventory is the possible translations of each word in another
 language. Two instances are said to have the same sense if they map to
-the same translation in that language. In
-SemEval-2010~\cite{Lefever2010}\footnote{\url{http://stel.ub.edu/semeval2010-coref/}},
-a task for Cross-Lingual WSD was
-introduced. SemEval-2013~\cite{Lefever2013}\footnote{\url{https://www.cs.york.ac.uk/semeval-2013/}}
-featured the second iteration of this task. These tasks featured
+the same translation in that language.
+SemEval-2010~\cite{Lefever2010}\footnote{\url{http://stel.ub.edu/semeval2010-coref/}}
+and SemEval-2013~\cite{Lefever2013}\footnote{\url{https://www.cs.york.ac.uk/semeval-2013/}}
+featured iterations of this task. These tasks featured
 English nouns as the source words, and word senses as translations in
 Dutch, French, Italian, Spanish and German.
 
@@ -76,35 +77,39 @@ classification or statistical machine translation approaches.
 
 \subsection{WSD with Word Embeddings}
 
-In NLP, words can be represented in a vector space
-model. Traditionally, this has been done with {\it one-hot} binary
-vectors, where there is only one non-zero value in a high-dimensional
-vector. In this encoding, each dimension represents the presence of a
-word, and the number of dimensions of the vector space is the size of
-the vocabulary. In one-hot encoding, all words are considered to be
-independent of each other; there is no notion of word similarity and
-all words are independent of each other.  A key weakness with the
-one-hot representation is that the large number of dimensions makes
-machine learning prone to overfitting.  A distributed representation
-of words, such as word embeddings, resolves these problems by encoding
+In NLP, words can be represented 
+%in a vector space
+%model. 
+%Traditionally, this has been done with {\it one-hot} binary
+%vectors, where there is only one non-zero value in a high-dimensional
+%vector. In this encoding, each dimension represents the presence of a
+%word, and the number of dimensions of the vector space is the size of
+%the vocabulary. In one-hot encoding, all words are considered to be
+%independent of each other; there is no notion of word similarity and
+%all words are independent of each other.  A key weakness with the
+%one-hot representation is that the large number of dimensions makes
+%machine learning prone to overfitting.  
+with a distributed representation, such as word embeddings, which encodes
 words into a low dimensional space. In word embeddings, information
 about a word is distributed across multiple dimensions, and similar
-words are expected to be close to each other. Examples of word
+words are expected to be close to each other in the vector space. Examples of word
 embeddings are Continuous Bag of Words \cite{mikolovword2vec},
 Collobert \& Weston's Embeddings \cite{collobert2008unified}, and
 GLoVe \cite{pennington2014glove}. We implemented and evaluated the use
 of word embedding features using these three embeddings in IMS.
 
-An unsupervised approach using word embeddings for WSD is described by
-Chen \shortcite{chen2014}. This uses a model for finding
-representation of senses, rather than just for words, initialized
-using WordNet's glosses of senses. These sense vectors can then be
-used during Word Sense Disambiguation. A context vector can be
-computed by taking the average of the words in a sentence. For
-disambiguating a single word, the sense with the sense vector that
-gives maximum Cosine Similarity with this context vector is chosen as
-the result for disambiguation. Chen {\it et al.} gives an algorithm to
-disambiguate words starting from the words with fewer senses first.
+% An unsupervised approach using word embeddings for WSD is described by
+% Chen \shortcite{chen2014}. This uses a model for finding
+% representation of senses, rather than just for words, initialized
+% using WordNet's glosses of senses. These sense vectors can then be
+% used during Word Sense Disambiguation. A context vector can be
+% computed by taking the average of the words in a sentence. For
+% disambiguating a single word, the sense with the sense vector that
+% gives maximum Cosine Similarity with this context vector is chosen as
+% the result for disambiguation. Chen {\it et al.} gives an algorithm to
+% disambiguate words starting from the words with fewer senses first.
+
+An unsupervised approach using word embeddings for WSD is described by Chen \shortcite{chen2014}. This approach finds representation of senses, instead of words, and computes a context vector which is used during disambiguation. 
 
 A different approach is to work on extending existing WSD
 systems. Turian \shortcite{Turian10wordrepresentations} suggests that
