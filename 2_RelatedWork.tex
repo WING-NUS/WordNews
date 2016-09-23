@@ -73,7 +73,7 @@ some approaches leverage statistical machine translation (SMT) methods
 and features from translation. Cross-Lingual WSD involves training by
 making use of parallel or multilingual corpora. In the Cross-Lingual
 WSD task in SemEval-2013, the top performing approaches used either
-classification or statistical machine translation approaches.
+classification or SMT approaches.
 
 \subsection{WSD with Word Embeddings}
 
@@ -121,7 +121,7 @@ feature type in IMS. For a specified window, vectors for the
 surrounding words in the windows, excluding the target word, are
 obtained from the embeddings and are concatenated, producing $d *
 (w-1)$ features, where $d$ is the number of dimensions of the vector,
-and w is the window size. Each feature is a floating point number,
+and $w$ is the window size. Each feature is a floating point number,
 which is the value of the vector in a dimension. We note that
 \cite{Taghipour15} only reported results for C\&W embeddings, and did
 not experiment on other types of word embeddings.
@@ -129,8 +129,8 @@ not experiment on other types of word embeddings.
 Other supervised approaches using word embeddings include AutoExtend
 \cite{rothe2015autoextend}, which extended word embeddings to create
 embeddings for synsets and lexemes. In their work, they also extended
-IMS, but used their own embeddings. Three feature types were
-introduced by this work, which bear similarities to how Taghipour used
+IMS, but used their own embeddings. The feature types
+introduced by this work bear similarities to how Taghipour used
 word embeddings, but without Taghipour's method of scaling each
 dimension of the word embeddings.
 
