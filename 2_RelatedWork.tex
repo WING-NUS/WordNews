@@ -5,10 +5,10 @@
 Word Sense Disambiguation is a well-studied problem, in which many
 methods have been applied. Existing methods can be broadly categorised
 into supervised approaches, where machine learning techniques are used
-to learn from labeled training data; and unsupervised knowledge-rich
+to learn from labeled training data; and unsupervised %knowledge-rich
 techniques, which do not rely on labeled data. Unsupervised techniques
 are knowledge-rich, and rely heavily on knowledge bases and thesaurus,
-such as WordNet. It is noted by Navigli \shortcite{Navigli09wordsense}
+such as WordNet~\cite{Miller1995}. It is noted by Navigli \shortcite{Navigli09wordsense}
 that supervised approaches using memory-based learning and SVM
 approaches have worked best.
 %For these approaches, it is common that the only knowledge used is the first sense in WordNet, which is used as a fallback if the system is unable to disambiguate the word in the test data. 
@@ -19,9 +19,9 @@ classification using machine learning. Zhong and Ng
   ItMakesSense} (hereafter, IMS), which was considered the
 state-of-the-art at the time it was developed.  It is a supervised WSD
 system, which had to be trained prior to use. IMS uses three feature
-types, 1. individual words in the context surrounding the target word,
-2. specific ordered sequences of words appearing at specified offsets
-from the target word, 3. Part-Of-Speech tags of the surrounding 3
+types: 1) individual words in the context surrounding the target word,
+2) specific ordered sequences of words appearing at specified offsets
+from the target word, and 3) Part-Of-Speech tags of the surrounding three
 words.
 
 Each of the features are binary features, and IMS trains a model for

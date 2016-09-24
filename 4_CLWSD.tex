@@ -38,11 +38,20 @@ translations. We finally deploy the trained system as a fork of the
 original WordNews.
 
 \subsection{Dataset}
-In order to construct an evaluation dataset, we hired human annotators and constructed a English--
-Chinese Cross-Lingual WSD dataset using sentences from recent news articles. As far as we know, there 
-is no existing publicly available English--Chinese Cross-Lingual WSD dataset. As the dataset is 
-constructed using recent news data, it is a good representation for the use case in WordNews.{\footnote{The dataset can be obtained at %{\url{  https://kanghj.github.io/eng_chinese_news_clwsd_dataset/}}}}
-{\url{https://to.be.made.public/if/accepted}}}
+ As far as we know, there 
+ is no existing publicly available English--Chinese Cross-Lingual WSD dataset.
+ To evaluate our proposal, therefore, we hired human annotators to construct
+ such an evaluation dataset using sentences from recent news articles. As the dataset is 
+ constructed using recent news data, it is a good representation for the use case in WordNews. To facilitate future research, we have released the dataset to the public{\footnote{%{\url{  https://kanghj.github.io/eng_chinese_news_clwsd_dataset/}}}}
+ 		{\url{https://to.be.made.public/if/accepted}}}.
+ 	 
+ 
+ 
+%In order to construct an evaluation dataset, we hired human annotators and constructed a English--
+%Chinese Cross-Lingual WSD dataset using sentences from recent news articles. As the dataset is 
+%constructed using recent news data, it is a good representation for the use case in WordNews.{\footnote{The dataset can be obtained at %{\url{  https://kanghj.github.io/eng_chinese_news_clwsd_dataset/}}}}
+%{\url{https://to.be.made.public/if/accepted}}}
+
 
 To obtain the gold standard for this data set, we hired 18 annotators to select the right translations for a given word and its context. There are 697 instances in total in our dataset, with a total of 251 target words to disambiguate, that were each multiply-annotated by 3 different annotators. Each annotator disambiguated 110+ instances (15 annotators with 116 instances, 3 with 117) in hard-copy. The annotators are all bilingual undergraduate students, who are native Chinese speakers. 
 
