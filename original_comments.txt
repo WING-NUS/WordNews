@@ -1,0 +1,98 @@
+% this is named original_comments.txt instead of comments.orig since overleaf does not allow the file extension .orig
+
+
+Dear Kang Hong Jin:
+
+On behalf of the NLP-TEA 2016 Program Committee, we are delighted to inform you that the following submission has been accepted as ORAL paper to appear at the NLP-TEA 2016:
+
+     A Comparison of Word Embeddings for English and
+           Cross-Lingual Chinese Word Sense Disambiguation
+
+The reviews and comments are attached below.  The Program Committee worked very hard to thoroughly review all the submitted papers.  Please repay their efforts, by following their suggestions when you revise your paper.
+
+Camera Ready Instructions is located: *http://coling2016.anlp.jp/#camera-ready*
+Please follow the instructions to prepare your paper. When you are finished, you can upload your final manuscript at the following site:
+
+     https://www.softconf.com/coling2016/NLPTEA2016/
+
+Papers must be uploaded by *October 30*.
+After the deadline, papers may not appear on the proceedings.
+
+The deadline for registration is changed: *October 25*
+Note that at least one of the authors of each paper needs to register. According to COLING 2016 policy, a paper will not be included in the proceedings, if none of its authors registered.
+
+Congratulations on your fine work.  If you have any additional questions, please feel free to contact Lung-Hao Lee (lhlee@ntnu.edu.tw).
+
+Best Regards,
+Hsin-Hsi Chen, Yuen-Hsien Tseng, Vincent Ng, and Xiaofei Lu
+NLP-TEA 2016 Workshop Organizers
+
+============================================================================
+NLP-TEA 2016 Reviews for Submission #4
+============================================================================
+
+Title: A Comparison of Word Embeddings for English and Cross-Lingual Chinese Word Sense Disambiguation
+
+Authors: Kang Hong Jin, Tao Chen, Muthu Kumar Chandrasekaran and Min-Yen Kan
+============================================================================
+                            REVIEWER #1
+============================================================================
+
+
+---------------------------------------------------------------------------
+Reviewer's Scores
+---------------------------------------------------------------------------
+
+                         Appropriateness: 5
+                                 Clarity: 4
+                             Originality: 4
+                               Soundness: 4
+                          Recommendation: 4
+                   Reviewer's Confidence: 4
+
+
+---------------------------------------------------------------------------
+Comments
+---------------------------------------------------------------------------
+
+This paper presents a solid comparison of word embeddings for English and
+Cross-Lingual Chinese Word Sense Disambiguation. Overall, this paper discusses
+an interesting issue and the organization is also well structured. In addition
+to wthe word2vec and GloVe, FastText is also a good choice for comparison.
+
+https://github.com/facebookresearch/fastText
+
+https://arxiv.org/pdf/1607.04606v1.pdf
+
+============================================================================
+                            REVIEWER #2
+============================================================================
+
+
+---------------------------------------------------------------------------
+Reviewer's Scores
+---------------------------------------------------------------------------
+
+                         Appropriateness: 5
+                                 Clarity: 5
+                             Originality: 4
+                               Soundness: 5
+                          Recommendation: 5
+                   Reviewer's Confidence: 5
+
+
+---------------------------------------------------------------------------
+Comments
+---------------------------------------------------------------------------
+
+Word sense disambiguity is one of the most essential issue in computational
+linguistics. This paper compared English and Chinese in cross-lingual WSD using
+word embededding. Word embeddings are now ubiquitous forms of word
+representation in natural language processing. It is new and good method in
+natural language processing recently. A deep learning, LSTM network, is used as
+the core in the proposed method. The data set is also described clearly in this
+manuscript. I strongly recommend this paper should be accepted.
+
+
+--
+NLP-TEA 2016 - https://www.softconf.com/coling2016/NLPTEA2016
