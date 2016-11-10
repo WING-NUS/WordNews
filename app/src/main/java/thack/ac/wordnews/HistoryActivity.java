@@ -24,7 +24,7 @@ public class HistoryActivity extends BaseActivity {
     WebView myWebView;
     public final String TAG = ((Object) this).getClass().getSimpleName();
 
-    private String HISTORY_API = "http://wordnews-mobile.herokuapp.com/displayHistory";
+    private String HISTORY_API = "http://wordnews.herokuapp.com/displayHistory";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

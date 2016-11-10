@@ -1,7 +1,7 @@
 'use strict';
 
-//var hostUrl = 'http://wordnews.herokuapp.com/';
-var hostUrl = "http://wordnews-mobile.herokuapp.com/";
+var hostUrl = 'http://wordnews.herokuapp.com/';
+//var hostUrl = "http://wordnews-mobile.herokuapp.com/";
 //var hostUrl = "http://localhost:3000/";
 
 // TODO: move into UserSettings
@@ -10,7 +10,13 @@ var isWorking = '';
 var categoryParameter = '';
 var wordDisplay;
 
-var translationUrl = 'http://wordnews-mobile.herokuapp.com/show';
+var translationUrl = 'http://wordnews.herokuapp.com/show';
+
+// Dictionary
+//var translationUrl = 'http://wordnews-mobile.herokuapp.com/show_by_dictionary';
+
+// Hong Jin's endpoint
+//var translationUrl = 'http://imsforwordnews.herokuapp.com/show';
 
 var TranslationDirection = {
   CHINESE: 0,
@@ -65,6 +71,7 @@ function requestTranslatedWords(url, params, index){
 
   xhr.onreadystatechange = function() { 
     if (xhr.readyState == 4 && xhr.status == 200) {
+
       var response = xhr.responseText.replace(/&quot;/g,'"');
       var obj = JSON.parse(response);
       console.log(obj);
@@ -130,7 +137,9 @@ function requestTranslatedWords(url, params, index){
       }
 
       replaceWords(sourceWords, targetWords, testType, pronunciation, wordID, choices1, choices2 , choices3, index);
-
+      if(Android) {
+        Android.setProgress(100);
+      }
     }
   }
   xhr.send(params);
@@ -193,7 +202,7 @@ function replaceWordsWithoutQuiz(sourceWords, targetWords) {
       var see_more_id = "myIDmore_" + sourceWord + "_" + "_" + i.toString();
 
       append += '</p>';
-      append += '<a id="' + see_more_id + '" target="_blank" class="myIdMore" href="http://dict.cn/en/search?q=' + sourceWord + '" style="color: #A2A2A2; float: right; padding-top: 16px;">MORE »</a>';
+      append += '<a id="' + see_more_id + '" target="_blank" class="myIdMore" href="http://dict.cn/en/search?q=' + sourceWord + '" style="color: #A2A2A2; float: right; padding-top: 16px;">MORE &raquo;</a>';
       append += '</div></div></div></div></div>';
       append += '<div class="jfk-bubble-arrow-id jfk-bubble-arrow jfk-bubble-arrowup" style="left: 117px;">';
       append += '<div class="jfk-bubble-arrowimplbefore"></div>';
@@ -346,7 +355,7 @@ function replaceWords(sourceWords, targetWords, testType, pronunciation, wordID,
       var see_more_id = "myIDmore_" + sourceWord + "_" + wordID[j] + "_" + i.toString() + "_" + testType[j];
 
       append += '</p>';
-      append += '<a id="' + see_more_id + '" target="_blank" class="myIdMore" href="http://dict.cn/en/search?q=' + sourceWord + '" style="color: #A2A2A2; float: right; padding-top: 16px;">MORE »</a>';
+      append += '<a id="' + see_more_id + '" target="_blank" class="myIdMore" href="http://dict.cn/en/search?q=' + sourceWord + '" style="color: #A2A2A2; float: right; padding-top: 16px;">MORE &raquo;</a>';
       append += '</div></div></div></div></div>';
       append += '<div class="jfk-bubble-arrow-id jfk-bubble-arrow jfk-bubble-arrowup" style="left: 117px;">';
       append += '<div class="jfk-bubble-arrowimplbefore"></div>';
@@ -695,7 +704,7 @@ function handleInitResult(result, isFromAndroid) {
   console.log('isWorking ' + isWorking + ' websiteCheck ' + isWebsiteForTranslation);
 
   if(isFromAndroid) {
-    Android.setProgress(100);
+    Android.setProgress(10);
   }
 
   if (isWorking && isWebsiteForTranslation) {

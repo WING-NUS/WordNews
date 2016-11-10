@@ -2,18 +2,15 @@ package thack.ac.wordnews;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -26,10 +23,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class NewsItemActivity extends BaseActivity {
-    String url = null;
-    String source = null;
+    String currentUrl = null;
+    String source     = null;
     WebView     myWebView;
     ProgressBar progressBar;
+    int currentProgress = 0;
     public final String TAG = ((Object) this).getClass().getSimpleName();
 
     @Override
@@ -37,7 +35,7 @@ public class NewsItemActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_item);
 
-        url = getIntent().getExtras().getString("url");
+        currentUrl = getIntent().getExtras().getString("url");
         source = getIntent().getExtras().getString("source");
 
         View toolbarInclude = findViewById(R.id.my_toolbar);
@@ -86,9 +84,9 @@ public class NewsItemActivity extends BaseActivity {
 
         myWebView.setWebViewClient(myWebClient);
         myWebView.addJavascriptInterface(new NewsItemActivity.WebAppInterface(this), "Android");
-        if(url != null) {
-            Log.d(TAG, "URL: " + url);
-            myWebView.loadUrl(url);
+        if(currentUrl != null) {
+            Log.d(TAG, "URL: " + currentUrl);
+            myWebView.loadUrl(currentUrl);
         } else {
             Toast.makeText(this, "No URL specified.", Toast.LENGTH_SHORT).show();
         }
@@ -150,13 +148,23 @@ public class NewsItemActivity extends BaseActivity {
 
         @JavascriptInterface
         public void setProgress(int progress) {
-            if(progress == 100) {
-                runOnUiThread(new Runnable() {
+            Log.e(TAG, "Progress: " + progress);
+            if(currentProgress != 100 && progress == 100) {
+                currentProgress = progress;
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        progressBar.setVisibility(View.GONE);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.e(TAG, "Remove loading bar");
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        });
                     }
-                });
+                }, 3000);
+
             }
         }
 
