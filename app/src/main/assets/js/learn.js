@@ -103,7 +103,8 @@ function generateHTMLForViewPopup(popupID, word, wordElem) {
     html += '<div class="gtx-language">CHINESE (SIMPLIFIED)</div>';
 
     html += '<div>';
-    html += '<button class="audio-button" id="btn_audio_' + popupID + '"></button>';
+    html += '<input type="image" class="audio-button" id="btn_audio_' + popupID + '" style="height:21px;width:21px;display:inline-block;opacity:0.55;vertical-align:middle;background-size:91%;-webkit-user-select: none;-webkit-font-smoothing: antialiased;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAACjSURBVDjLY2AYYmA1QwADI3FKy8HkfyA8zqBOjPL/YLqO4SWQ9YXBmbDy/1C2EMMGsBZNQsr/w/lMDCuAvKOElP+HeloQSPIxPAPynVAV/seAENHtYLoKyJpDnIb/DOZA2gBI3yRWQx6Q5gZ7nFYaQE4yJN5JW8B0PaanYaADRcMaBh5wsD7HDFZMLURGHEIL0UkDpoWExAfRQlLyJiMDDSAAALgghxq3YsGLAAAAAElFTkSuQmCC" >'
+
     html += '<audio id="pronunciation_audio_' + popupID + '">';
     html += '</audio>';
 

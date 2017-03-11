@@ -59,6 +59,7 @@ public class NewsItemActivity extends BaseActivity {
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
+        webSettings.setMediaPlaybackRequiresUserGesture(false);
 
         WebViewClient myWebClient = new WebViewClient() {
             @Override
