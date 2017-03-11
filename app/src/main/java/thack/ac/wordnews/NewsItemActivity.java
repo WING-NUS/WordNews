@@ -50,6 +50,9 @@ public class NewsItemActivity extends BaseActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         final int screenWidth = metrics.widthPixels;
+        final int screenHeight = metrics.heightPixels;
+        Log.d(TAG, "width: " + screenWidth);
+        Log.d(TAG, "height: " + screenHeight);
 
         progressBar = (ProgressBar) findViewById(R.id.progress);
         myWebView = (WebView) findViewById(R.id.webview);
@@ -67,16 +70,29 @@ public class NewsItemActivity extends BaseActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                injectScriptFile(view, "js/app.js");
-                injectScriptFile(view, "js/jquery-2.1.1.min.js");
+//                injectScriptFile(view, "js/old_app.js");
+//                injectScriptFile(view, "js/jquery-2.1.1.min.js");
+//
+//                injectCSS(view, "gt_popup_css_compiled.css");
+//                injectCSS(view, "gt_bubble_gss.css");
+//                injectCSS(view, "slider/css/slider.css");
 
-                injectCSS(view, "gt_popup_css_compiled.css");
-                injectCSS(view, "gt_bubble_gss.css");
-                injectCSS(view, "slider/css/slider.css");
+                injectScriptFile(view, "js/eventLogger.js");
+                injectScriptFile(view, "js/common.js");
+                injectScriptFile(view, "js/content-share.js");
+                injectScriptFile(view, "js/learn.js");
+                injectScriptFile(view, "js/annotate.js");
+                injectScriptFile(view, "js/content-services.js");
+
+                injectCSS( view, "css/gt_popup_css_compiled.css");
+                injectCSS( view, "css/gt_bubble_gss.css");
+                //injectCSSFile( view, "bootstrap/css/bootstrap.min.css");
+                //injectCSSFile( view, "bootstrap/css/bootstrap-formhelpers.min.css");
+                injectCSS( view, "css/content-share.css");
 
                 Log.d(TAG, "Android ID: " + android_id);
                 Log.d(TAG, "Display width in px is " + screenWidth);
-                String jsScript = "javascript:setTimeout(initFromAndroid('" + android_id + "', '" + screenWidth + "'), 0)";
+                String jsScript = "javascript:setTimeout(initFromAndroid(), 0)";
                 // init JavaScript
                 view.loadUrl(jsScript);
             }
