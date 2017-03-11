@@ -84,6 +84,7 @@ function httpPostServer( url, data, onSuccessCallback, onErrorCallback ) {
         },
         url: url,
         dataType: "json",
+        crossDomain: true,
         data: data,
         success: function (result) {
             if ( onSuccessCallback != null ) {
@@ -108,6 +109,7 @@ function httpGetServer( url, data, onSuccessCallback, onErrorCallback ) {
         },
         url: url,
         dataType: "json",
+        crossDomain: true,
         data: data,
         success: function (result) {
             if ( onSuccessCallback != null ) {

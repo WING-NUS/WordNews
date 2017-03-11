@@ -84,13 +84,13 @@ function initFromAndroid() {
         var elem = event.target;
         // check if any parent is popup
         while (elem) {
-            console.log(elem.className);
             if(elem.className && (elem.className.includes("gtx-bubble") || elem.className.includes("translate_class"))) {
                 return;
             }
             elem = elem.parentNode;
         }
         // not in popup, remove previous popup.
+        console.log("removing previous popup");
         $('.gtx-bubble').remove();
     });
 
@@ -400,9 +400,11 @@ function getArticleTitleAndPublicationDate() {
             } else {// If date date--v2 tag does not exist
                 //This case is for bbc.com/sport
                 dateElem = document.getElementsByClassName("timestamp")[0];
-                dateElem = dateElem.getElementsByTagName("time")[0];
-                //Convert the timestamp into int because Date() takes in int for timestamp
-                timestamp = (parseInt(dateElem.dataset.timestamp) - 28800) * 1000;
+                if(dateElem) {
+                    dateElem = dateElem.getElementsByTagName("time")[0];
+                    //Convert the timestamp into int because Date() takes in int for timestamp
+                    timestamp = (parseInt(dateElem.dataset.timestamp) - 28800) * 1000;
+                }
             }
         }
         else {

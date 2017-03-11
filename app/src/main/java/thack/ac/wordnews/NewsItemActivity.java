@@ -47,8 +47,7 @@ public class NewsItemActivity extends BaseActivity {
             actionBar.setTitle(title);
         }
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
         final int screenWidth = metrics.widthPixels;
         final int screenHeight = metrics.heightPixels;
         Log.d(TAG, "width: " + screenWidth);

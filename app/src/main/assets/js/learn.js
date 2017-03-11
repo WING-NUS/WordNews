@@ -122,7 +122,7 @@ function generateHTMLForViewPopup(popupID, word, wordElem) {
     html += '</div>';
     
     var see_more_id = "more_" + popupID;
-    html += '<a id="' + see_more_id + '" target="_blank" class="More" href="' + wordElem.more_url + '" style="color: #A2A2A2; float: right; padding-top: 16px;">MORE »</a>';
+    html += '<a id="' + see_more_id + '" target="_blank" class="More" href="' + wordElem.more_url + '" style="color: #A2A2A2; float: right; padding-top: 16px;">MORE ⇒</a>';
 
     html += '</div></div></div></div></div>';
     html += '<div class="jfk-bubble-arrow-id jfk-bubble-arrow jfk-bubble-arrowup" style="left: 117px;">';
@@ -503,7 +503,10 @@ function appendQuizPopup(event) {
     var userAccess = checkRankAndLogin(rankAccess.TAKE_QUIZ);
     // For quiz, the text should be machine_translated.
     popupData.html = generateHTMLForQuiz(popupData.machine_translate, popupData.translation, id, popupData.quiz);
-    $('body').append(popupData.html);
+
+    var body = $(document.body);
+    body.append(popupData.html);
+
     if (userAccess == USER_HAS_ACCESS) {
 
         //Create an event log for take quiz
@@ -530,14 +533,14 @@ function appendQuizPopup(event) {
     myElem = document.getElementById(displayID);
     myElem.style.left = (rect.left - 100) + 'px';
 
-    $('#' + displayID).fadeIn(300, function() {
-        popup = id;
-    });
+    //$(myElem).fadeIn(300, function() {
+    //    popup = id;
+    //});
 
-    $('#' + id + '_close').bind('click', function(e) {
+    $('#' + id + '_close', body).on('click', function(e) {
         // Prevents the default action to be triggered.
         e.preventDefault();
-        $('#' + displayID).fadeOut(300);
+        $('#' + displayID, body).fadeOut(300);
         newEvent(id, "close");
 
         sendLog(getEventLog(id));
@@ -702,7 +705,10 @@ function appendPopUp(event) {
 
     createEventLog(id, userSettings.userId, "view", "start_view");
     popupData.html = generateHTMLForViewPopup(id, popupData.word, popupData.translatedWords[0]);
-    $('body').append(popupData.html);
+
+    var body = $(document.body);
+
+    body.append(popupData.html);
 
     setupPopUpCharSelect( id, popupData );
 
@@ -711,11 +717,14 @@ function appendPopUp(event) {
     myElem = document.getElementById(displayID);
     myElem.style.left = (rect.left - 100) + 'px';
 
+    console.log(popupData.html);
+    //console.log('#' + id + '_close');
+    //console.log(JSON.stringify($('#' + id + '_close', $('body')), null, 4));
 
-    $('#' + id + '_close').bind('click', function(e) {
+    $('#' + id + '_close', body).on('click', function(e) {
         // Prevents the default action to be triggered.
         e.preventDefault();
-        $('#' + displayID).fadeOut(300, function(e){
+        $('#' + displayID, body).fadeOut(300, function(e){
             $('#' + displayID).remove();
         });
         newEvent(id, "close");
@@ -744,10 +753,10 @@ function appendPopUp(event) {
 
     myElem.style.top = (rect.top + 30) + 'px';
 
-    $('#' + displayID).fadeIn(300, function() {
-        //$('#' + displayID).focus();
-        popup = id;
-    });
+    //$(myElem).fadeIn(300, function() {
+    //    //$('#' + displayID).focus();
+    //    popup = id;
+    //});
 
 }
 
