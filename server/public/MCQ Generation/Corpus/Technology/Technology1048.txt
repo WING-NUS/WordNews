@@ -1,0 +1,28 @@
+ A report by The Intercept claims spy agencies from the U.S. and U.K. jointly hacked into the world's largest manufacturer of SIM cards in order to monitor mobile phones around the world. 
+ The Intercept was co-founded by Glenn Greenwald, the former Guardian journalist who worked with Edward Snowden to reveal the National Security Agency's huge spying program. 
+ Citing documents provided by Snowden, it claimed the NSA and its U.K. equivalent hacked into Gemalto to get hold of the encryption keys that allow access to SIM cards across the globe. 
+ Based in the Netherlands, Gemalto reportedly makes two billion SIM cards per year. Clients include AT&T (T, Tech30), T-Mobile (TMUS), Verizon (VZ, Tech30), Sprint (S) and about 450 other global telecom firms, according to the report. It also makes chips for credit cards and works with over 3,000 financial institutions. 
+ The company, which prides itself on its top-notch digital security, said it was not aware of the hacking, which ran from 2010 to 2011. It is investigating the report. 
+ "We cannot at this early stage verify the findings of the publication and had no prior knowledge that these agencies were conducting this operation," the firm said in a statement. 
+ Shares in the company dropped 7.5% in morning trading in Europe. 
+ 
+ Snowden, a former contractor at the NSA, leaked classified documents containing information about the agency's widespread spying operations in 2013. 
+ U.S. federal prosecutors subsequently charged Snowden with espionage and theft of government property. 
+ The whistleblower has been living in Russia under asylum since 2013. In August 2014, his attorney said he was granted an extension to stay in Russia for three more years. 
+  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+

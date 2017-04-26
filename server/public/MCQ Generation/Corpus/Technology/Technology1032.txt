@@ -1,0 +1,34 @@
+International Edition
+By Jacopo Prisco, for CNN
+
+Updated 1359 GMT (2159 HKT) February 18, 2015
+ (CNN)In 2013, an Illinois man convinced several investors to fund a revolutionary medical device, to the tune of over $25 million.
+He called it the "McCoy Home Health Tablet", and promised it would instantly deliver patient data to doctors.
+In other words, he was pitching the legendary Tricorder from Star Trek, even naming it after Dr. Leonard "Bones" McCoy, the blue-clad, very irritable medical officer from the 1960s show.
+It was a scam. The device didn't exist, and the man was caught and convicted for his crimes. But as a testimony to how quickly reality catches up with fantasy nowadays, less than two years later the Tricorder does exist. And it works.
+
+The Bluetooth doctor
+It's called "Scanadu Scout" -- after Xanadu, an ancient city of great splendor and scientific progress, made famous by English poet S. T. Coleridge -- and the greatest thing about it is that it's not a design concept, nor a million-dollar prototype, but an actual product. After a successful crowdfunding round via Indiegogo, the Scanadu has began shipping to backers at the end of January.
+It is a tiny, round and rigorously white device -- even though a black version is in the plans -- and it works by placing it on one's forehead.
+Through its sensor, and in a matter of seconds, the Scanadu measures heart rate, temperature, blood pressure, oxygen level and provides a complete ECG reading.
+Just like "Bones"
+The device is the brainchild of Walter De Brouwer, a Belgian entrepreneur who had to learn how hospitals work -- and don't work -- the hard way after his son suffered brain damage as the consequence of a fall.
+His inspiration came directly from science fiction: "Star Trek was more than just a movie, it was a business plan," he told CNN's Nick Glass.
+In Star Trek, the Tricorder was handled by a doctor, but De Brouwer thinks the most revolutionary aspect of the Scanadu is that it can be used by anyone: "We've medicalised your smartphone. You can now check your health as easily as your email. People will no longer ask if there's a doctor on the plane, but if there's a Tricorder."
+The Scanadu Scout is one of the ten finalists of the Qualcomm Tricorder X Prize, a contest to create an affordable, handheld device that consumers can use to diagnose their medical conditions at home. 
+Real word testing
+Scanadu operates out of the NASA Research Park in California: "Each of us has more computer power in his pocket now than the whole of NASA in the 1960s when they launched Apollo," notes De Brouwer.
+The device is not yet available to purchase, pending FDA approval, but those who contributed to the Indiegogo campaign are already receiving it and providing "in the wild" testing:
+It's finally here. @scanadu scout. Easy to use. Accurate readings of EKG HR SaO2 temp and BP. #mHealth #cdom pic.twitter.com/BlmHC1ABat
+The comparison with the Tricorder, even in the form of a toy replica, is an obvious one:
+From PAST to PRESENT. Today's TRICORDER has arrived! Well done @scanadu! #DigitalHealth pic.twitter.com/3BXNObXc6q
+The company is also working on another product, called the Scanaflo, which is a complete urine test kit that can be used at home.
+Health through lasers
+De Brouwer's vision for the future is even more forward thinking than his current achievements: "I think in ten years from now we'll be relying heavily on silicon lasers," he says.
+The reason for firing a laser beam at a patient? "We have to think of patients as non-cooperative, because we're lazy, we forget to go to the doctor. With lasers, our medical data can be taken when we pass in front of one of the lasers in our home, or in our car. We will be unaware. But healthier."
+Read more from Make, Create, Innovate:
+Will you soon be able to 'swallow the doctor'?
+Meet the world's first 1,000 mph car
+Out of juice? Try a cardboard battery
+
+International Edition

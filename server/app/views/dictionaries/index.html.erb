@@ -1,0 +1,29 @@
+<h1>Listing dictionaries</h1>
+
+<table>
+  <tr>
+    <th>Word english</th>
+    <th>Word chinese</th>
+    <th>Word category</th>
+    <th>Word difficulty</th>
+    <th>Word pronunciation</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dictionaries.each do |dictionary| %>
+  <tr>
+    <td><%= dictionary.word_english %></td>
+    <td><%= dictionary.word_chinese %></td>
+    <td><%= dictionary.word_category %></td>
+    <td><%= dictionary.word_difficulty_id %></td>
+    <td><%= dictionary.pronunciation %></td>
+    <td><%= link_to 'Show', dictionary %></td>
+    <td><%= link_to 'Edit', edit_dictionary_path(dictionary) %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+
+<%= link_to 'New Dictionary', new_dictionary_path %>

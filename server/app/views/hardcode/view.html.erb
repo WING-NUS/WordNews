@@ -1,0 +1,23 @@
+<h1>Hardcoded words view</h1>
+
+<a href="/hardcode/new">Add a new word</a>
+
+<table>
+      <thead>
+        <tr>
+          <th>url</th>
+          <th>  from  </th>
+          <th>  to  </th>
+        </tr>
+      </thead>
+
+      <% @hardcoded_words.each do |word| %>
+            <tr>
+          <td><%= word.url %></td>
+          <td><%= word.word %></td>
+          <td><%= word.translation %></td>
+          <td><a href="/hardcode/delete?id=<%= word.id%>">Delete</a></td>
+        </tr>
+    <% end %>
+</table>
+

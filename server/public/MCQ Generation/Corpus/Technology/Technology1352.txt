@@ -1,0 +1,24 @@
+ Google made the announcement in a blog post Tuesday. The city joins several others where Google is laying down cable to provide incredibly fast Internet access. Atlanta, Georgia; Nashville, Tennessee; and both Charlotte and Raleigh-Durham in North Carolina are getting Fiber soon. 
+ Google Fiber delivers Internet speeds of up to 1 gigabit per second. That's 100 times faster than most current high-speed Internet networks. You could download an entire music album in under six seconds and a feature-length movie in 38 seconds with Google Fiber. 
+ The service has already received stellar reviews from customers in Kansas City, Missouri and Provo, Utah, where the ultra-fast Internet service costs $70 a month. Add TV and it bumps up the price to $120. Google is also offering slower, free Internet for at least seven years for a construction fee, which ranges between $30 and $300. 
+ In recent years, the fast Internet service has created vibrant zones for high-tech startups, who benefit greatly from the faster access. 
+ "I can't wait to see what the city does with superfast Internet," said Devin Baer, the associate city manager of Google Fiber in Salt Lake City. 
+ 
+ Related: Google Fiber may be coming to city near you 
+ Related: Verizon and AT&T sue government over net neutrality  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+

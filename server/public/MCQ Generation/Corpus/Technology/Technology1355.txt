@@ -1,0 +1,16 @@
+International Edition
+By Euan McKirdy, CNN
+
+Updated 1248 GMT (2048 HKT) March 24, 2015
+ (CNN)Raise shields! 
+Boeing has been granted a patent for a force field-like defense system, leading excited sci-fi fans to herald the advent of something previously seen only in the realms of "Star Wars" or "Star Trek."
+Filed in 2012, the USPTO has granted the aerospace giant a patent for a "method and system for shockwave attenuation via electromagnetic arc." 
+On first look, it seems that they're onto something similar to "Star Wars'" deflector shields. The patent describes a system that would detect the shockwave from a nearby explosion and create an area of ionized air -- a plasma field -- between the oncoming blast and the vehicle it was protecting.
+The method works, says the patent, "by heating a selected region of the first fluid medium rapidly to create a second, transient medium that intercepts the shockwave and attenuates its energy density before it reaches a protected asset." 
+By creating a temporary, superheated parcel of air with a laser, microwave or electrical arc, researchers believe that the shockwave would, in theory -- it hasn't been determined how far along Boeing's research into this has got -- dissipate once it hit the plasma field, leaving whatever was on the other side unaffected, or for the blast to at least be mitigated. 
+"Explosive devices are being used increasingly in asymmetric warfare to cause damage and destruction to equipment and loss of life. The majority of the damage caused by explosive devices results from shrapnel and shock waves," the patent says.
+However, at this stage, Boeing's force field would be powerless to protect against shrapnel or other debris flung out by an explosion, so the troops of the future would still need to keep their body armor firmly strapped on. 
+The plasma field would also be temporary -- hence the need for sensors to activate it when a blast is detected -- so the sort of all-encompassing force field we're familiar with from the movies seems to be a while off. 
+Researchers keep going back to the rich seam of innovation that is science fiction, with truck-mounted lasers and working tractor beams among recent inventions that wouldn't look out of place in a galaxy far, far away. 
+
+International Edition

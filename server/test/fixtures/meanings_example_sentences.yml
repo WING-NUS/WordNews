@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  meanings_id: 1
+  example_sentences_id: 1
+
+two:
+  meanings_id: 1
+  example_sentences_id: 1

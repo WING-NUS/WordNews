@@ -1,0 +1,43 @@
+ Over the six years since Windows 7 was released, Microsoft has made its PC operating system far more intuitive and powerful by packing it with tablet- and smartphone-like features. 
+ A lot of those features debuted with Windows 8, but they still weren't working perfectly. 
+ Microsoft went back to the drawing board with Windows 10 to develop an operating system that will be familiar to Windows 7 users but doesn't compromise on modern features. (Note: You're not crazy -- Microsoft skipped Windows 9 altogether.) 
+ Windows 10 has a Start Menu, just like Windows 7 -- only better. 
+ On the left Start Menu column, you'll find a list of your most used apps, most visited folders and recently added software. There's also a button that will show you all your apps in a single list. 
+ On the right part of the Start Menu, there is a grid of app tiles that you can arrange however you like. The "live" tiles will show you updates, such as the latest stock prices, the last show you were watching on Netflix, social media updates, weather, news and sports scores. 
+ If you want, you can take the Start Menu full-screen by clicking the "expand" button -- it's kind of like having a tablet or smartphone screen for a desktop. But, crucially, it's only there if you want it. The default is the familiar Windows desktop experience. 
+ Windows 10 provides some design changes that Windows 7 users will welcome. For example, taskbar icons glow at the bottom when they are opened, but only the app icon that is currently being used is completely highlighted. In Windows 7, all open apps are highlighted, confusingly. 
+ Folder icons are far less glitzy and much more intuitive in Windows 10, making it much easier to view the contents of the folder at a glance before you open it. Gone is the confusing and redundant "libraries" directory. The task manager is also much simpler to use. 
+ Windows 7 users should be unafraid of upgrading when Windows 10 hits store shelves later this year. There is hardly any learning curve, and the new bells and whistles alone are definitely worth checking out. 
+ Related: Microsoft fixes a serious 15-year old bug 
+ Better than Windows 8: So what if you've upgraded to Windows 8? Here are the big differences you'll notice in Windows 10. 
+ Windows 8's odd tablet-style layout was confusing to Windows die-hards. You won't find Windows 10 difficult to use. Windows 10 boots straight to the desktop, and it stays there. 
+ If you have a convertible laptop or Windows tablet, Windows 10 has a "tablet mode" that recognizes when there is no keyboard or mouse present. But rather than make two separate tablet and desktop interfaces like Microsoft did for Windows 8, Microsoft chose to make the Windows 10 desktop and apps more finger-friendly for tablet users. They only morph a little to fit the device they're running on. 
+ So if you download a "modern" app from the Windows Store, it will run in a window, just like standard Windows software. The only difference is that it has a diagonal arrow button between the "close" button and the "expand" button at the top right of the window. That will take the app into "tablet mode," going full-screen. But you can easily get out of that by moving the mouse to the top of the screen and clicking the button again. 
+ Windows 8's unhelpful charms bar has been replaced with the Windows 10 action center. There, you get notifications and access to handy quick settings, such as brightness controls, airplane mode, Wi-Fi and tablet mode toggles. 
+ Also different is Windows 8's app-choosing feature, that let you go back to the last-used app by swiping in fro the left. It has been replaced with a far more useful display of all your open apps on a single screen. 
+ Touchscreen users can access the action center with a swipe in from the right, just as they can view all the open apps by swiping in the from the left. But, mercifully, Windows 10 put buttons for both on the taskbar so mouse and keyboard users won't accidentally launch those features by putting the cursor too far to the left or right. 
+ Window 10's New Features: Windows 10 isn't just about correcting Windows 8's mistakes, though. There are new features that Windows 8 users will love. 
+ The coolest new feature is Cortana, Windows 10's version of Siri, which appears net to the Start button on the taskbar. 
+ "She" has a sense of humor ("I know Siri, but I don't KNOW her, know her, if you get what I mean," Cortana says in response to an obvious question). But in addition to barking voice commands and queries, the search feature is genuinely helpful. 
+ It will search your apps, the Windows Store, the Web and your files to answer search queries. It's a super-quick way to launch an app (just start typing and hit Enter when the app appears). And like Windows 8's outstanding search function, Cortana can help you access deeply hidden settings with a few keyboard strokes, helping you avoid hunting and pecking through control panel settings. 
+ Windows 10 also comes with multiple desktops, which is helpful for cleaning up a messy workspace. 
+ I have been testing the preview version of Windows 10 for a few weeks. There are plenty of things not to like, including the fact that you still can't access all your settings from the "settings" app. We'll cover more of the hits and misses in a fuller review once Microsoft gets closer to releasing Windows 10. 
+ But the preview has shown me enough to confidently say that Windows 10 will be a breeze to use, a welcome change for both Windows 7 and Windows 8 users, and a big hit for Microsoft. 
+ Related: Microsoft unveils next version of Office 
+ Related: Microsoft unveils Windows 10  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+

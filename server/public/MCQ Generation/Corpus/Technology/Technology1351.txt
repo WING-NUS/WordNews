@@ -1,0 +1,38 @@
+ This week, CNNMoney received an early model from the French company Oberthur Technologies. Expect it in 2017 if it catches on with major banks. 
+ The mini ink screen is powered by a lithium-ion battery (like a phone) the size of a postage stamp that's designed to last three years. A computer chip randomizes the number every 40 or 60 minutes. 
+ Engineers have managed to squeeze it all into a regular, 0.76 millimeter-thick card. 
+ The changing code renders the card useless to anyone who has written down your credit card number, expiration date and the code on the back. 
+ And it would be a more complete solution than the one currently being implemented by the industry. 
+ The American credit card system is undergoing a huge, $33 billion upgrade to computer chip-based smart cards that you'll dip into new machines (instead of swipe). 
+ But the way U.S. banks are upgrading credit cards won't actually stop fraud. It'll just move online, where anyone can use stolen card data for purchases that only require static credit card numbers. 
+ Hence, the value in a dynamic CVV code (that number on the back of your card). This approach makes it a temporary password verified by your bank with every transaction, so stolen data is useless after the first few minutes. 
+ "The hope here is that the dynamic CVV will severely cut down on fraud," said Martin Ferenczi, Oberthur's top executive in North America. 
+ That is, if criminals don't figure out number-changing mathematical algorithm inside. 
+ One major barrier, though, is that each card is 50 times more expensive than the magnetic stripe cards still being issued by banks in the United States. And it's 10 times more expensive than the latest chip-based cards. 
+ Banks buy magnetic stripe cards for about 20 cents each. Modern chip cards go for $1.20 or so. Oberthur plans to sell these dynamic CVV cards for $10 to $20 a piece. 
+ The difference could be huge. The largest banks issue tens of millions of cards. Replacing 30 million cards might cost $300 million. 
+ "Now the question is, is there a business model for that price?" Ferenczi said. 
+ It will be a tough sell. Oberthur will be trying to convince banks to upgrade their cards -- just two years after the current upgrade. 
+ Ferenczi said the reduced fraud costs and minimized headache to customers is worth it. And the added features help. At checkout, the card can be swiped, dipped or even tapped (like Apple Pay or Samsung Pay). 
+ It's trying to do everything the latest smartphone can do. And that's why this feels like it could be the physical credit card's last stand. 
+ 
+ 
+ Related: You're about to get a new credit card ... and it's an epic failure 
+ Related: 'Smart credit card' terminals can be hacked too 
+ Related: Why was your credit card number stolen? Retailers are lazy.  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+

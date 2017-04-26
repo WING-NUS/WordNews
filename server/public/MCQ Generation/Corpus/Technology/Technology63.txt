@@ -1,0 +1,174 @@
+Intro
+Airware
+Boxbee
+BRCK
+FiscalNote
+Humin
+Planet Labs
+Shyp
+Smart Vision Labs
+Spring
+uBiome
+You wouldn’t know it from the hype around Silicon Valley these days, but the startup world churns out more duds than hits. 
+Many hastily built apps and social networks aren’t interested in long-term success but an exit strategy -- selling to a larger company for a quick windfall. Others launch with nobler intentions but flame out because their market is oversaturated or they offer a service nobody really needs.
+But for every hundred startups that fail, there’s a fledgling company that’s creating an original and useful product or tackling a difficult real-world problem. 
+For CNN’s annual roundup of promising new startups, we take a look at 10 emerging companies whose products have the potential to transform industries, help the planet’s less fortunate or become a handy part of our lives.
+These companies are bringing digital innovation to analog businesses such as shipping and self-storage, or gaining footholds in such new industries as commercial drones or the mapping of the human microbiome. 
+They're changing health care, shaking up big data, launching satellites into space and bringing better Internet access to developing countries. They’re even making our phones more useful. 
+They may not all succeed, but they’re worth keeping an eye on. May we present the 2014 edition of the CNN 10: Startups. 
+By Heather Kelly, CNN
+Like it or not, drones will take to the skies in the United States in the next couple of years in record numbers. 
+They'll come in an array of designs and sizes. Photographers, hobbyists, farmers, public utilities and government agencies will use them. Many of the drones will carry cameras, barometers, listening devices and other sensors through the air. A few will even deliver goods.
+San Francisco-based startup Airware hopes that all these unmanned aerial vehicles, or UAVs, will have something in common: They'll run on the Airware platform. 
+That’s because Airware is a drone company that doesn't make drones. It designs hardware, software and cloud services for commercial UAVs. 
+"All the commercial drone companies we're looking at are trying to find a better solution than what they're using now," Airware founder Jonathan Downey says.
+One of the biggest hurdles for the UAV industry in the United States has been the Federal Aviation Administration, which has grounded most commercial drones while it figures out how to oversee them. By the end of this year, the FAA is expected to release a road map for regulating drones in U.S. airspace. 
+Airware plans to be ready. The company sees itself in a similar position to where Intel and Microsoft were in the 1980s, just before the birth of the PC market. When federal regulators approve commercial drones for more uses, Airware wants to be the underlying framework for the devices’ software and operating systems. 
+Instead of building a platform from scratch or relying on old military or open-source systems, UAV manufacturers can build their drones on top of Airware's platform.
+Downey, 30, began working on UAVs while a student at MIT. A licensed pilot, he later worked at Boeing on an autonomous helicopter. Downey founded his company in 2011 and has raised more than $40 million in venture capital funding, but this year the Airware platform will finally shed its "beta" label. 
+His startup is working with several companies, including Delta Drone, one of the largest UAV makers in France, where commercial drones are more common. Airware's platform can be tailored to a variety of drone uses and has even helped protect endangered white rhinos from poachers at a wildlife reserve in Kenya.
+Airware also is working with NASA on creating an air traffic management system for UAVs. An advanced system will be needed to keep drones from colliding with manned aerial vehicles, and having a consistent drone OS could be a huge help.
+"It really benefits everybody in this space,” Downey says. “The FAA doesn't want 100 different drones (flying) with 100 different kinds of software on them.”
+By Brandon Griggs, CNN
+If you’ve moved between cities or downsized to a smaller home you may have rented a self-storage unit, where your extra stuff languished for months (or years) in hard-to-extricate boxes until you forgot exactly what was in there.
+Kristoph Matthews understands. As the son of a U.S. government employee, he moved and used storage 22 times while growing up in Saudi Arabia, Thailand, Germany and elsewhere. 
+And as an engineer he saw that the self-storage business, essentially unchanged for decades, was ripe for a makeover.
+So Matthews founded Boxbee, which aims to streamline the storage process by letting customers manage their extra stuff online without ever leaving home.
+“We make it super-convenient,” Matthews says. “We come to you and pick up your stuff.”
+The service works like this: Customers order plastic boxes which are delivered to their home. They fill the boxes, catalog their contents on Boxbee’s website and schedule a pickup. Boxbee stores the boxes in a nearby warehouse and delivers them back to the customer upon request.
+Boxbee says its standard yellow box, which measures 3.5 cubic feet in size, can hold 25 pairs of shoes, 90 T-shirts or 200 DVDs. Customers pay $7.50 a month per box. Pickup is free, although each time a customer retrieves boxes they are charged $15, plus $2 a box.
+The service can get pricey for people with a lot of stuff, but makes sense for those who don’t want to rent a storage unit for $100 a month or more just to hold a few boxes.
+“We charge people only for the space they use,” says Matthews, who has raised $2.5 million from investors since launching a year ago. “It’s pay as you go, basically.”
+Boxbee is currently only available in New York and San Francisco, although Matthews hopes to expand to three or four more cities over the next 12 months. Apps for iOS and Android are also on the way, he says.
+So far, most Boxbee customers are millennials who live in cramped urban apartments and are comfortable managing their lives through digital tools such as Uber, the car service. Boxbee also has been popular with business travelers who want to store extra clothes in cities they visit regularly, Matthews says.
+“As space becomes more of a premium (for urban dwellers), stuff becomes almost an afterthought. They don’t realize how much they have until it’s too late,” he says. “We’re a platform for physical stuff.”
+By Brandon Griggs, CNN
+At first glance, it doesn’t look like much: an unadorned brick about the size of four iPhone 5s stacked together.
+But this little box is deceptively powerful. It seamlessly switches between Ethernet, Wi-Fi and cellular networks to provide Web access for up to 20 devices. It works for more than 8 hours without electricity. And it may transform wireless communications in remote corners of the world.
+It’s the BRCK (yes, pronounced “brick”), and it was dreamed up not in Silicon Valley, but by a handful of software engineers in Kenya. 
+The rugged little router – its creators call it a “backup generator for the Internet” – has spawned a young company, also called BRCK, which is distributing them around the globe.
+“A lot of the need for this is in the developing world,” says Reg Orton, BRCK’s chief technology officer. 
+CEO Erik Hersman got the idea for BRCK several years ago when he was traveling in South Africa and couldn’t find reliable Internet everywhere. As a co-founder of Ushahidi, a Kenya-based nonprofit that uses technology to address global problems, Hersman was well positioned to take on this new challenge. 
+Hersman recruited some partners, developed a prototype, spun off BRCK into a separate company and launched a successful Kickstarter campaign that raised $172,000. The young company has since received an additional $1.2 million in seed money.
+Each BRCK sells for $200, weighs about a pound and is built to withstand drops, dampness and dust. Users get online by plugging in a SIM card or connecting to wired or wireless networks, helped by a cloud-based system that automatically syncs the device with current data from nearby cellular providers.
+With a large, custom-designed battery, the BRCK is also built to survive a blackout. In this way it can provide steady connectivity, even in places with spotty digital infrastructure.
+“You can update 20 tablets in a matter of minutes instead of waiting half a day,” says Orton.
+The company began shipping BRCKs in August and has since sent more than 850 of the devices to 45 countries, Orton says. BRCKs are being used to bring the Internet to classrooms in impoverished parts of Nairobi with limited connectivity. 
+Perhaps surprisingly, they’re also being ordered by customers in rural America, where Internet access can be uneven. No wonder BRCK’s slogan is, “If it works in Africa, it will work anywhere.”
+By Brandon Griggs, CNN
+From state capitals to the halls of Congress, interested parties have long tried to predict which of the many bills introduced during legislative sessions will actually become law.
+It’s not an exact science, but a fledgling company is making it a more precise one.
+FiscalNote, founded last year in the shadow of Capitol Hill, has developed an analytics platform that uses artificial intelligence to crunch state and federal government data. Their software then forecasts trends and outcomes that can help clients make strategic decisions around, say, whether an anti-fracking bill might pass the Colorado legislature. 
+“We’re able to forecast with a high level of accuracy whether a bill will pass,” says Tim Hwang, the company’s CEO. How high? More than 90%, he says.
+Hwang, 22, says he was inspired to launch FiscalNote after a precocious youth spent forming charitable organizations, filling a student seat on his Maryland county school board and founding the National Youth Association, which advocates on issues affecting young people.
+“I found it increasingly hard to get answers to basic questions about what was going on at governments around the country,” says the Princeton University graduate. “There’s 50 different governments and 50 different ways of publishing (and formatting) data.”
+Despite competition from such rivals as Bloomberg and Thomson Reuters, Hwang figured there must be a market for a service that used computer algorithms to glean useful insights from the vast amounts of government data posted online.
+So he recruited two high school buddies and moved to Silicon Valley, where they spent the summer of 2013 building FiscalNote’s platform while holed up in a Motel 6.
+Hwang’s impressive pedigree helped them land $1.3 million in seed funding from such heavy hitters as Dallas Mavericks owner Mark Cuban and former Yahoo CEO Jerry Yang. They’ve since moved back to Washington, raised another $5 million-plus and begun attracting big clients, including 12 Fortune 500 companies.
+FiscalNote’s main product, called Prophecy, is the legislative-analysis tool. Next year the company plans to introduce Sonar, which will apply the same principles to regulatory agencies such as the FDA and EPA. A pharmaceutical company, for example, would pay handsomely to know whether their new drug is likely to get FDA approval.
+Hwang also sees huge potential in analyzing data from foreign governments, which he says can be easier to access than in the U.S.
+His primary goal, he says, is to make arcane information about government processes more useful.
+“Building a modicum of predictability or transparency into the system changes the game for a lot of people,” he says. “It’s a challenge I feel very passionate about.”
+By Todd Leopold, CNN
+Our smartphones can play games, scan groceries, give us directions to far-off places and keep tabs on far-flung friends. But the way they display contacts hasn’t changed much from the days of the Rolodex.
+Ankur Jain, the 24-year-old founder and CEO of mobile app Humin, wants to change that.
+“As we’ve moved into an era with cell phones driving our communication, all of our relationships are now stored and based on contacts,” he says. 
+And yet, he says, the way we access those contacts is similar to the way a 1990s Internet search engine worked: pumping out results in alphabetical order. Some business people today have hundreds of contacts stored in their phone but no easy way to remember who all of them are.
+“If you can actually build a search engine that remembers people the way you do, you make context relevant again,” Jain says.
+Once you download Humin and grant it access to your social network, the app creates a little database of your contacts, searchable by where people work, where they live, who they know – or how you know them.
+Think of Humin as a way to combine your address book with maps, social networks and even your calendar. Traveling to a different city? Humin will tell you friends who live there, or who are visiting at the same time. Meet someone at a party? Humin allows you to put in details of the meeting and determine friends in common through social networks.
+The app pulls up your contacts as image tiles – just like the avatars you see on Facebook or Twitter. It’s a more intuitive way to find people you’re looking for, says Jain.
+Humin came about because Jain and his four co-founders were concerned that technology was cutting off personal contact rather than fostering it. 
+The startup appears to be well funded, although Jain won’t disclose figures. Judging by its powerhouse leadership team, Humin is certainly well connected. Arielle Zuckerberg, Mark’s younger sister, is Humin’s senior product manager. Lane Wood, the CMO, is a former Warby Parker executive. Percy Rajani, the CTO, has a background with Bell Labs.
+Jain himself is the son of Naveen Jain, a well-known tech figure who spent several years with Microsoft and later founded the security firm Intelius. Ankur Jain was instrumental in founding the Kairos Society, a worldwide group that creates a support structure for young entrepreneurs. 
+The Humin app debuted August 14 and is currently only available for iPhones. But it’s had a promising start, having risen into the top 100 apps in its first weekend, says Jain. And Re/Code’s Walt Mossberg praised the app for its “downright delightful” touches, though he cautioned it’s still a work in progress.  
+Other Humin offshoots are planned, including a premium version. And Jain sees bigger things on the horizon.
+“In the short term, the goal is to become the core social operating system for all these different devices,” he says. And further out, “If we can become the underlying platform for how apps drive social, it’s some pretty exciting stuff.” 
+By Doug Gross, CNN
+What if you could take a high-resolution picture of the entire planet, every single day?
+Would you monitor melting polar ice caps? Fight wildfires? Offer targeted aid in the aftermath of natural disasters?
+Planet Labs, a San Francisco-based startup that has already launched more than 70 satellites into space, wants to find out.
+Founded by a team of former NASA scientists, who launched the project in a Silicon Valley garage, Planet Labs is working toward that goal -- one tiny, low-cost satellite at a time.
+Or, one flock of doves, if you prefer.
+"We call our satellites 'Doves,' because they're on a humanitarian mission," says Will Marshall, Planet Labs’ co-founder and CEO. He and his co-founders met at a U.N. conference on using space exploration to improve life on Earth.
+"We can monitor deforestation and urban sprawl, or provide insights for disaster management or help with agriculture,” Marshall says. “In general, (data from the satellites) allow us to see how our planet changes on a daily basis. We also hope it will change the way humans view their planet."
+Planet Labs' commercial clients pay those Doves' way into space, deploying them for projects such as Internet mapping, agriculture monitoring and location-based services. Because the cube-shaped satellites -- or CubeSats -- are so small, Planet is able to launch them cheaply, sometimes hitching a ride on other companies' spacecraft.
+In February, a group of the satellites -- each one is just 1 foot long, 4 inches wide and 4 inches tall -- was released from the International Space Station.
+Major cities in the industrialized world are already well-documented via satellites. But many of the planet’s remote areas are not, because no one's had a reason or a financial incentive to do so.
+By going smaller, faster and cheaper, Planet Labs believes it could be the one to change that. Although it won’t reveal exact figures, its shoe-box-sized satellites are much less expensive than NASA’s, which can cost hundreds of millions of dollars.
+As it captures more and more imagery, Planet Labs plans to make the resulting data available to developers it hopes will find creative new uses for that information.
+It's a natural union of space researchers and the computer-data communities, which was bound to happen as more and more private enterprises are entering space, says Planet Labs spokeswoman Shannon Spanhake.
+"It's a really exciting time as these two worlds are being brought together," she says. "We're definitely not the only ones doing this. It's like this space renaissance is happening."
+By Heather Kelly, CNN
+Some of the biggest startups in recent years have succeeded by upending established industries: Think Uber and taxis, or Airbnb and hotels.  
+Now comes Shyp, a Silicon Valley venture that wants to transform the cumbersome shipping process by taking over the packaging, picking up and dropping off of parcels. 
+"Shipping is a $300 billion-plus, 220-year-old industry begging for disruption," says Shyp co-founder Kevin Gibbon. 
+Like Uber, Shyp works via a smartphone app. Snap a picture of what you want to ship -- say, a pair of skis you sold on eBay. You don't have to worry about finding a ski-shaped box or the right packaging materials to keep them from getting damaged, because Shyp will do that for you. 
+There's also no need to haul them to the nearest post office. Shyp estimates how much it will cost to ship the skis via FedEx, DHL, UPS or the U.S. Postal Service, picks the best deal and then sends an employee to your location to fetch the goods within 20 minutes. These couriers (Shyp calls them "heroes") take your skis to a local warehouse, box them and send them on their way. 
+Customers pay the estimated shipping cost, plus a $5 pickup fee. Shyp makes money by getting volume discounts from the shipping services and pocketing the difference. Gibbon says shipping companies like it because instead of 15 separate pickups, they can load their trucks at fewer stops. 
+The service is geared to regular people who don't have a stash of packing peanuts on hand. But Shyp says 70% of its customers are businesses, including eBay and Etsy sellers. 
+Gibbon saw firsthand the headaches of shipping parcels when he ran a business selling items on eBay in his native Canada. He paid his way through college by purchasing bulk goods internationally and reselling them on the retail site for a profit. 
+"The toughest part was packaging and shipping the goods. It was so painful I ended up being forced to close down my business," he says. "I realized that if it was this painful for me, it was a miserable experience for millions of other people." 
+He and software engineer Joshua Scott came up with the idea for Shyp while working together at another startup, and the pair's first hire was a global logistics and manufacturing expert as their head of operations.
+Shyp started pickups in March but has already handled 25,000 shipments, Gibbon says. The company has operations in San Francisco and New York and hopes to be running in Miami by the end of the year. 
+By Sara Ashley O'Brien, CNN
+Millions of people around the world might soon be seeing much more clearly.
+New York startup Smart Vision Labs has developed a pocket-sized gadget that lets doctors test people's vision and prescribe glasses directly through the app. The device, developed by Marc Albanese and Yaopeng Zhou, could be a game-changer for millions. 
+According to the World Health Organization, there are more than 200 million people who are visually impaired living in low-income communities -- and roughly 80% of the cases are curable.
+The device, called the SVOne, slides onto an iPhone and lets doctors measure refractive errors of the eye. (For those who've had vision tests, refractive errors are typically measured by those bulky machines that require patients to put their chin on a pad and read out numbers or letters). 
+The portable versions of these machines used to be cumbersome and expensive, which made it tough for doctors like David McPhillips to help people in developing countries. As a leader with the nonprofit Volunteer Optometric Services to Humanity, McPhillips has led dozens of trips around the world to offer vision care.
+One of the biggest hassles, and expenses, in these trips is in transporting equipment. According to McPhillips, most portable auto-refractors are the size of a toaster and cost up to $30,000.
+Because they have to be checked with luggage, they are easily damaged and can cost as much as $1,800 to fix. That's nearly half the expense of the SVOne, which will sell for around $4,000.
+This August, McPhillips tested the SVOne, which has a 56-hour battery life, on a mission to Haiti, which Albanese and colleague Greg Van Kirk attended. 
+"The most important thing I observed was its accuracy," McPhillips says. "It meets a need not only from an examination standpoint but from mobility and security [too]."
+McPhillips bought a device on presale. He hopes to receive it in the next couple of weeks and says the SVOne won't just be useful for mission trips. He also plans to take it with him on his weekly trips to a local nursing home, and says it could even be useful for in-office exams.
+"Most [private practitioners] only have one [auto-refractor machine]. That station is a bottleneck when doing eye exams," he says.
+The SVOne can also produce a more accurate reading for children, who can be difficult to test using traditional machines. The device connects to the cloud, meaning a pediatrician could perform the test and have data sent directly to an optometrist for review.
+"It's not just selling devices, it's selling the services," says Albanese, who launched Smart Vision Labs with Zhou in 2013. In January, the pair won the $1 million Verizon Powerful Answers Award for health care. 
+They plan to have about 100 devices available by the end of the year.
+"We're giving people the ability to do prescriptions anywhere -- quickly and affordably," Albanese says.
+David Tisch, Founder + Chairman
+Alan Tisch, Founder + CEO
+Ara Katz, Founder + CMO
+Octavia Costache, Founder + CTO
+By Sara Ashley O'Brien, CNN
+For shopaholics who love Instagram, it might be the perfect app.
+Spring, which launched in August, lets consumers follow their favorite fashion brands and shop for new looks on a free mobile app that’s heavy on pretty images. 
+Spring boasts over 300 brands, from big-time designers such as Derek Lam to startups like Bow & Drape and online retailers like Warby Parker and Everlane. 
+Co-founders David and Alan Tisch – yes, the two are brothers – say they launched the service to spare consumers from retail app overload. Instead of having to download individual apps to browse and shop for new clothes and accessories, Spring’s users can do it all in one place.
+"For brands, it's the ability to get in front of consumers," says David Tisch, the former managing director of startup accelerator TechStars and managing partner at early stage investment firm BoxGroup.  "We're not buying inventory, we're not taking product in-house. We're just a marketplace." 
+Maybe so, but a slick one. Spring’s appeal is its convenience, tailored to the growing number of people who make purchases through their phones. Users choose which brands to follow, then scroll through an Instagram-like feed of jackets, shoes, eyeglasses and other items.
+Once customers have registered with their payment information, making a purchase takes only a simple, Tinder-like swipe – which makes impulse buying dangerously easy.
+Spring users also can get access to exclusive deals and receive push notifications when favorited items go on sale. As for the brands, they can post as many or as few items as they like (some post upward of 30 times per day).
+Shoppers seem to be responding. Though Spring won’t disclose user numbers, Tisch says that about 30% of users are repeat customers.
+Tisch says Spring takes a "very small" fee from brands when purchases are made through the platform, but it's free for brands to sign up and post items for sale.
+"We're not really looking to be aggressive with our prices," he says. "It's really the cheapest transactional fee. We want to make it as easy as we can for brands."
+Spring curates these brands, launching between five to 20 new ones each week. The startup’s immediate future looks bright. More than 900 companies have reached out wanting to sell on the platform, Tisch says. And Spring has raised $7.5 million in seed funding from such prominent investors as Google Ventures.
+For now, Spring is only available in Apple’s App Store in the United States. But David Tisch says the app plans to launch internationally and add Android and Web-based versions in the next few months. 
+By Doug Gross, CNN
+Jessica Richman wasn't sure what to expect from her $100,000 crowdfunding effort for a company that studies microbes in people's guts.
+After all, her business is based on, in her words, "sending your poop in the mail."
+Her doubts were assuaged when supporters donated $350,000 to help launch her startup, uBiome.
+Now, two years later, uBiome is exploring an emerging field of human biology while giving users a glimpse into how their bodies work.
+For as little as $89, the San Francisco-based company sends customers a kit to collect a tiny stool sample. Two other options let them upgrade this "Gut Kit" all the way to a $399 version that also lets users gather samples from their mouth, nose, genitals and skin.
+The samples, coupled with a detailed questionnaire, let uBiome's lab compare results with a stockpile of other information from a user database that is 15,000 strong and counting. Scientists with uBiome remove bacterial DNA from the samples and identify it all. They then send the user a breakdown of how their microbes compare with other people who have submitted samples.
+Microbes actually outnumber cells in the human body and perform important tasks such as helping digest food and synthesize vitamins. Emerging studies have also linked the microbe system to things such as mental health, mood and human development.
+So, for example, you might learn that the bacteria in your gut put you in the same group as people who are vegetarians, or of a certain age, or drink too much, or who reported mental health issues ranging from depression to bipolar disorder to schizophrenia.
+"It's kind of amazing the connections people have found," says Richman, uBiome’s CEO. She’s quick to note the test doesn't diagnose illnesses but gives users insight into problems worth checking out.
+Her company currently is developing a more detailed set of test results that will offer additional comparisons and suggest possible lifestyle changes that users may want to make based on their results.
+Recently, uBiome started using a new method that will let it send results to customers in as little as a week, compared with the six-week turnaround it's had since its launch.
+On the back end, uBiome also is contributing to science's understanding of the microbiome -- the universe of microscopic organisms that exist within the human body. Researchers have been aware of microbes for a long time, but the National Institutes for Health completed the first detailed study to understand them in 2012.
+So, in effect, kit users become "citizen scientists," Richman says.
+"Part of what we're doing here is not just understanding the microbiome, but trying to involve the public in science," she says. "That's something that … is really exciting and could change the world."
+More
+Intro
+Airware
+Boxbee
+BRCK
+FiscalNote
+Humin
+Planet Labs
+Shyp
+Smart Vision Labs
+Spring
+uBiome

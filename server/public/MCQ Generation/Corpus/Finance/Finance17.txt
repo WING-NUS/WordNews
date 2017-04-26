@@ -1,0 +1,19 @@
+ Microsoft (MSFT, Tech30) just patented a way to make your phone less noticeable and disruptive when you're in certain environments (Microsoft calls it "inconspicuous mode"). You can use it at a movie theater, a dinner date or at home about to go to bed. 
+ The U.S. government awarded Microsoft the patent on Thursday. The award was first noticed by Patent Yogi, an Indian consulting firm. 
+ It's all based on the notion that your phone can annoy the person next to you -- especially if you're in a dark, quiet place. 
+ Incoming message? Need to check the time? Got an unstoppable itch to check Instagram? You're about to bathe your neighbors in a monstrously bright light and set off a chain of irksome bleeps. 
+ In "inconspicuous mode," sounds are gone, and the screen is a faint glow. Notifications don't show up on the home screen. The time is displayed in large numbers that are easier to glace at. 
+ In Microsoft's description, you could tailor the "inconspicuous" display any way you like. Maybe it only shows text messages. Or it dims more than normal. 
+ But the key feature is that it would be automatic. It would go into this mode if your phone's GPS detects you're at the location of a movie theater. Or if a restaurant's or stage theater's Wi-Fi or Bluetooth beacons tell it to. Or if your phone's light sensor detects darkness while the microphone also detects silence (like just before a movie starts playing). 
+ To figure this out, the phone could even tap your calendar or your recent mobile payments. If you bought event tickets at the counter using tap-to-pay technology, your phone would know when to go quiet. 
+ If this gets popular, venues will probably be quick to embrace it. Mobile phone use in theaters is so pervasive nowadays that brief "please silence your phones" requests are now full-blown, pre-movie short films. And every performance by the New York Philharmonic is preceded by a 30-second, pre-recorded plea by Alec Baldwin. It's downright embarrassing. 
+ And no, theaters aren't going to start hijacking your phones. Microsoft's careful wording in its patent application shows that users retain control. 
+ "The mobile communication device can exit the inconspicuous mode and return to the normal mode upon the user's request," it says. 
+ Related: Amazon is going to make movies 
+ Related: Committee says software can't replace mass NSA spying 
+ Related: Xiaomi's new phone wants to be an iPhone killer  
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer.
+Morningstar: © 2015 Morningstar, Inc. All Rights Reserved.
+Factset: FactSet Research Systems Inc. 2015. All rights reserved.
+Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved.
+Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.

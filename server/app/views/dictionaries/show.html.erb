@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Word english:</b>
+  <%= @dictionary.word_english %>
+</p>
+
+<p>
+  <b>Word chinese:</b>
+  <%= @dictionary.word_chinese %>
+</p>
+
+<p>
+  <b>Word category:</b>
+  <%= @dictionary.word_category %>
+</p>
+
+<p>
+  <b>Word difficulty:</b>
+  <%= @dictionary.word_difficulty_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_dictionary_path(@dictionary) %> |
+<%= link_to 'Back', dictionaries_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  chinese_id: 1
+  english_id: 1
+  word_property: MyString
+
+two:
+  chinese_id: 1
+  english_id: 1
+  word_property: MyString

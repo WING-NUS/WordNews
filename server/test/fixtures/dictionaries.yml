@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  word_english: MyString
+  word_chinese: MyString
+  word_category: MyString
+  word_difficulty_id: 1
+
+two:
+  word_english: MyString
+  word_chinese: MyString
+  word_category: MyString
+  word_difficulty_id: 1

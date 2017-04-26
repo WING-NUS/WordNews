@@ -1,0 +1,37 @@
+ It didn't last long. 
+ Microsoft's (MSFT, Tech30) CFO Amy Hood met Panay backstage on that summer day of 2013. She told Panay that Microsoft was about to announce a $900 million writedown because of a boatload of Surface tablets that didn't sell. 
+ After years of hard work, Panay and his team had cost the company nearly $1 billion. 
+ "When you look at that writedown and that moment, it was, of course, humbling," Panay quasi-chuckled, in an exclusive interview with CNNMoney. "But Microsoft has been so amazing and not once wavering on its commitment to making amazing products. Not once." 
+ Surface has been left for dead more times than rock & roll, and Microsoft just keeps pumping out new versions. The latest, the Surface 3, is actually the sixth Surface tablet Microsoft has produced since 2012. 
+ In today's unforgiving gadget landscape, it's a rarity for an epic failure like the Surface to get a second shot at success -- let alone a third, fourth or fifth. 
+ That's possible because Panay is one seriously dedicated dude -- and Microsoft really does support him. 
+ Last year, Microsoft CEO Satya Nadella ordered Microsoft's Building 87 transformed into a state-of-the-art hardware design laboratory, where Panay's team can create prototype after prototype for new gadgets and gizmos -- including the new Surface 3. It's an impressive, and wildly expensive, physical example of Microsoft's commitment. 
+ That dedication has paid off. The Surface story has begun to turn around. 
+ The Surface Pro 3, released last year, turned out to be a big hit, with Microsoft selling more than $1 billion worth last quarter. An enormous sponsorship with the NFL has put Surfaces on the sidelines of every pro football team and splattered giant "Microsoft Surface" branding in every stadium. Surface hasn't yet reached the brand recognition of the iPad or Windows, but it's well on its way towards becoming a household name. 
+ "What a journey for all of us," Panay said. "There were a lot of moments of, 'Do we believe?' And the answer has always been, 'Yes.'" 
+ Panay blames a lot of the Surface's early stumbles on the project's secrecy. Microsoft didn't want to tip off its competitors, so it holed the team away in a secret lab and even gave it a meaningless codename, "WDS." Customers were never asked for feedback -- and it showed. 
+ The original Surface ran a scaled-down version of Windows that didn't allow people to download Chrome or iTunes. Its keyboard cover was hard to use, and the tablet flopped around when you were using it on your lap or a couch. 
+ The Surface Pro ran a full version of Windows, but it had all the same keyboard and stability problems. And it was ginormous, essentially eliminating any advantage of being a tablet. 
+ The press wrote it off, and consumers stayed away. 
+ Panay said the negative reviews were difficult to swallow. But he and his team listened to feedback and learned a lot. 
+ "We go full speed, and sometimes we might be going in the wrong direction -- and that's OK," Panay said. "If you fail, this company is amazing. They will support you. You just have to learn about it. If you take some shots out there, you might come back with some beautiful things." 
+ The Surface Pro 3 -- and now the Surface 3 -- are, in fact, beautiful. They are culminations of lessons learned from the Surface's past mistakes. Both run full versions of Windows and all the software you want to put on them. They have a magnetic strip that stabilizes the keyboard on your lap. The keyboard works just as well as any laptop keyboard. And both both Surfaces are super-thin and ultra-light. 
+ "You know, that billion dollar writedown will never go away," Panay said. "Those lessons learned from it will always be unbelievably valuable. But the lessons learned when you get a little success with a product -- those don't go away either. That balance of learning has made us feel really good going into the next product." 
+ Related: 11 things you need to know about Microsoft's new Surface 3 
+ Related: Meet Microsoft's Jony Ive  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+

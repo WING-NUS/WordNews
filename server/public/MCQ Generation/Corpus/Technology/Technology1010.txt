@@ -1,0 +1,33 @@
+ Twitter is the latest company to get hit with a gender discrimination suit. Tina Huang, a former software engineer at the tech firm, filed a proposed class action lawsuit against the company for not promoting female engineers, like herself, to leadership positions. 
+ This comes on the heels of two other high-profile lawsuits: one filed by interim Reddit CEO Ellen Pao against former employer Kleiner Perkins (currently on trial) and one filed against Facebook last week. 
+ The complaint, filed Thursday in a California state court in San Francisco, claims Twitter (TWTR, Tech30) has a "subjective, secretive promotion process" that "encouraged arbitrary and stereotyped decision making." Huang says it ultimately kept her from moving up to a senior staff role. 
+ Huang, who is now chief technology officer at startup Wine Savage, alleges that Twitter had a "glass ceiling" that prevented her and other women from being promoted. 
+ The complaint details that when Huang sent an e-mail to CEO Dick Costolo concerning the firm's promotion policies after she was denied a promotion, she was put on leave and taken off assignments. She ultimately resigned in May 2014. 
+ According to a Twitter spokesperson, Twitter leadership tried to persuade her to stay. 
+ "Twitter is deeply committed to a diverse and supportive workplace, and we believe the facts will show Ms. Huang was treated fairly," said the spokesperson in an email to CNNMoney. 
+ Her complaint says there are at least 50 other women who were similarly affected by Twitter's policies. 
+ According to Joelle Emerson, founder of San Francisco-based diversity consulting firm Paradigm, this case could have an impact far beyond the walls of Twitter. 
+ "It alleges that company-wide, structural processes resulted in gender discrimination, rather than simply alleging one discriminatory boss or coworker," said Emerson. 
+ Informal promotion structures are common -- in tech and other industries. 
+ In the complaint, Huang makes suggestions for Twitter to improve its processes, including the creation of a "transparent and non-discriminatory job posting and application process" for senior staff engineers. She alleges there are no formal processes or "written procedures" in place to receive a promotion -- but rather consensus among three senior-level executives. 
+ These executives are predominately male, as evidenced in Twitter's diversity statistics. Twitter released its diversity data last summer. Only 1 in 10 of its employees in tech roles are women. 79 percent of its management team is male -- and 72% is white. 
+ Google (GOOGL, Tech30), Facebook (FB, Tech30), and Yahoo (YHOO, Tech30) also released similar reports this year with similar findings: between 60% and 70% of the workforce at those companies are male, and more than half are white. 
+ Related: Silicon Valley sex bias trial: Where things stand 
+ Related: Detecting bias in companies: This startup has a fix 
+ Related: Twitter's CEO is on the hot seat  
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+Most stock quote data provided by BATS. Market indices are shown in real time, except for the DJIA, which is delayed by two minutes. All times are ET. Disclaimer. Morningstar: © 2015 Morningstar, Inc. All Rights Reserved. Factset: FactSet Research Systems Inc. 2015. All rights reserved. Chicago Mercantile Association: Certain market data is the property of Chicago Mercantile Exchange Inc. and its licensors. All rights reserved. Dow Jones: The Dow Jones branded indices are proprietary to and are calculated, distributed and marketed by DJI Opco, a subsidiary of S&P Dow Jones Indices LLC and have been licensed for use to S&P Opco, LLC and CNN. Standard & Poor's and S&P are registered trademarks of Standard & Poor’s Financial Services LLC and Dow Jones is a registered trademark of Dow Jones Trademark Holdings LLC. All content of the Dow Jones branded indices © S&P Dow Jones Indices LLC 2015 and/or its affiliates.
+
+
+img#adchoice-logo {
+	display: initial;
+	margin-left: 5px;
+}
+
+© 2014 Cable News Network. A Time Warner Company. All Rights Reserved.  Terms under which this service is provided to you.  Privacy Policy. .
+
+
+
+

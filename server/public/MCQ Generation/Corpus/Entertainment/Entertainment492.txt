@@ -1,0 +1,32 @@
+In a faded blue building in San Francisco's Mission district, a team of women at the hardware accelerator Highway 1 are building bracelets that will teach girls to code.
+Sara Chipps and Brooke Moreland sit at a long, wooden table, surrounded by bright, silicone bands and acrylic charms, pounding away on their laptops. On the neighboring wall, rows of paper and scribbles describe their product, and printed designs of their mobile application are taped to the whiteboard.
+The team is hard at work on a project called Jewliebots, programmable friendship bracelets for girls.
+"The idea is to make something young girls love, and love it so much they want to customize it," Chipps, founder of Jewliebots, said in an interview with the Daily Dot. Chipps is already familiar with coding education—she founded Girl Develop It, a national organization that provides affordable programming classes for women.
+Other hardware startups fill the large industrial space, though aside from a room humming with tools, the office is quiet. At one point, a spool of metal wire unravels beneath our feet, and gets lost behind a couch. Chipps laughs, and continues her story.
+Chipps had the idea for Jewliebots after she began working with hardware and open source projects two years ago, including Arudino, which she says has made hardware hacking easier and more accessible. She met her co-founder, Maria Paula Saba, who then created a Jewliebots prototype as a thesis project while at New York University.
+Electronics are hidden inside each small Jewliebots charm including a Bluetooth receiver, a small motor, a silver button, and neopixels for the lights, which Chipps solders on the second floor of the maker space. The bands are made from colored, stretchy silicone, just like the friendship bracelets that covered our arms in the '90s, that are apparently making a comeback.
+The bracelets will come in multiple colors and a variety of charms, including flowers, spirals, and circles that can be controlled via a smartphone application. Girls can program their bracelet through the app and pair each bracelet with a friend's. For instance, one girl can program her flower charm to light up blue when her best friend with a paired Jewliebot walks by.
+The gems can be programmed to light up, change colors, stay on indefinitely, or flash. Moreland describes it as a fun way for students to communicate discreetly in class while they don't have access to mobile devices.
+Advanced programmers can change the code through the Arduino IDE, and create entirely new recipes that don't come standard in the application. Students will be able to upload their unique programs to the Jewliebots website and share their creations with others in the community to help each other customize bracelets.
+"There are a lot of programs out there where we tell young women [coding] is important, and we try to teach them, but we’re trying to approach it from a different angle—create something that they love in hopes that makes them curious,” Chipps said.
+The team is relying on youthful peer pressure to drive Jewliebots and programming popularity as well.
+“Girls are really influenced by their friends -- that’s their biggest influence,” Moreland said.
+The team has worked with girls in the Bay Area to develop the product. Since it’s been so long since they were teens themselves, the creators of Jewliebots are learning a lot about fashion and features from teenagers in the process.
+Jewliebots has been a resident at Highway 1 since September, and the accelerator has helped them navigate the uncharted world of hardware hacking. On Tuesday, Jewliebots will demonstrate their product with 11 other teams at Highway 1's Demo Day.
+The bracelets aren't available for purchase yet, but the team plans to launch a Kickstarter in January to crowdfund the product.
+Soon young women, and their friends, will be able to customize both their charms and their code, while stimulating curiosity about the world of programming, all thanks to hackable friendship bracelets.
+From our friends at the Daily Dot.
+More from the Daily Dot:
+2014: The year police brutality went viralSony Pictures hack included celebrities’ Social Security numbers
+A year in the life of a former Internet camgirl
+Our partners:
+Boy billed for missing pal's birthday party
+Cheap gas? It's selfie time!!! Your pics
+Is letting kids walk home from the park neglect?
+Com'on, Miss Lebanon! + 7 other bad selfie ideas
+Puppy power! Lil' dog saves family from fire
+Video: Motorist cited for 'eating while driving'
+Watch: 'Frozen' fans can visit a real ice castle!
+Fake 'Doogie Howser' busted at hospital?
+We bought a zoo: Shocking exotic pet busts
+Austin's gender-neutral potties: Ooh or ew?

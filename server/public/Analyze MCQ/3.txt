@@ -1,0 +1,1200 @@
+['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50']
+1 in row number 3
+1 in row number 4
+1 in row number 5
+1 in row number 6
+2 in row number 7
+2 in row number 8
+2 in row number 9
+2 in row number 10
+3 in row number 11
+3 in row number 12
+3 in row number 13
+3 in row number 14
+4 in row number 15
+4 in row number 16
+4 in row number 17
+4 in row number 18
+5 in row number 19
+5 in row number 20
+5 in row number 21
+5 in row number 22
+6 in row number 23
+6 in row number 24
+6 in row number 25
+6 in row number 26
+7 in row number 27
+7 in row number 28
+7 in row number 29
+7 in row number 30
+8 in row number 31
+8 in row number 32
+8 in row number 33
+8 in row number 34
+9 in row number 35
+9 in row number 36
+9 in row number 37
+9 in row number 38
+10 in row number 39
+10 in row number 40
+10 in row number 41
+10 in row number 42
+11 in row number 43
+11 in row number 44
+11 in row number 45
+11 in row number 46
+12 in row number 47
+12 in row number 48
+12 in row number 49
+12 in row number 50
+13 in row number 51
+13 in row number 52
+13 in row number 53
+13 in row number 54
+14 in row number 55
+14 in row number 56
+14 in row number 57
+14 in row number 58
+15 in row number 59
+15 in row number 60
+15 in row number 61
+15 in row number 62
+16 in row number 63
+16 in row number 64
+16 in row number 65
+16 in row number 66
+17 in row number 67
+17 in row number 68
+17 in row number 69
+17 in row number 70
+18 in row number 71
+18 in row number 72
+18 in row number 73
+18 in row number 74
+19 in row number 75
+19 in row number 76
+19 in row number 77
+19 in row number 78
+20 in row number 79
+20 in row number 80
+20 in row number 81
+20 in row number 82
+21 in row number 83
+21 in row number 84
+21 in row number 85
+21 in row number 86
+22 in row number 87
+22 in row number 88
+22 in row number 89
+22 in row number 90
+23 in row number 91
+23 in row number 92
+23 in row number 93
+23 in row number 94
+24 in row number 95
+24 in row number 96
+24 in row number 97
+24 in row number 98
+25 in row number 99
+25 in row number 100
+25 in row number 101
+25 in row number 102
+1 in row number 103
+1 in row number 104
+1 in row number 105
+2 in row number 106
+2 in row number 107
+2 in row number 108
+3 in row number 109
+3 in row number 110
+3 in row number 111
+4 in row number 112
+4 in row number 113
+4 in row number 114
+5 in row number 115
+5 in row number 116
+5 in row number 117
+6 in row number 118
+6 in row number 119
+6 in row number 120
+7 in row number 121
+7 in row number 122
+7 in row number 123
+8 in row number 124
+8 in row number 125
+8 in row number 126
+9 in row number 127
+9 in row number 128
+9 in row number 129
+10 in row number 130
+10 in row number 131
+10 in row number 132
+11 in row number 133
+11 in row number 134
+11 in row number 135
+12 in row number 136
+12 in row number 137
+12 in row number 138
+13 in row number 139
+13 in row number 140
+14 in row number 141
+14 in row number 142
+14 in row number 143
+15 in row number 144
+15 in row number 145
+15 in row number 146
+16 in row number 147
+16 in row number 148
+16 in row number 149
+17 in row number 150
+17 in row number 151
+17 in row number 152
+18 in row number 153
+18 in row number 154
+18 in row number 155
+19 in row number 156
+19 in row number 157
+19 in row number 158
+20 in row number 159
+20 in row number 160
+20 in row number 161
+21 in row number 162
+21 in row number 163
+22 in row number 164
+22 in row number 165
+22 in row number 166
+23 in row number 167
+23 in row number 168
+23 in row number 169
+24 in row number 170
+24 in row number 171
+24 in row number 172
+25 in row number 173
+25 in row number 174
+25 in row number 175
+5 in row number 180
+1 in row number 182
+1 in row number 183
+1 in row number 184
+1 in row number 185
+2 in row number 186
+2 in row number 187
+2 in row number 188
+2 in row number 189
+3 in row number 190
+3 in row number 191
+3 in row number 192
+3 in row number 193
+4 in row number 194
+4 in row number 195
+4 in row number 196
+4 in row number 197
+5 in row number 198
+5 in row number 199
+5 in row number 200
+5 in row number 201
+6 in row number 202
+6 in row number 203
+6 in row number 204
+6 in row number 205
+7 in row number 206
+7 in row number 207
+7 in row number 208
+7 in row number 209
+8 in row number 210
+8 in row number 211
+8 in row number 212
+8 in row number 213
+9 in row number 214
+9 in row number 215
+9 in row number 216
+9 in row number 217
+10 in row number 218
+10 in row number 219
+10 in row number 220
+10 in row number 221
+11 in row number 222
+11 in row number 223
+11 in row number 224
+11 in row number 225
+12 in row number 226
+12 in row number 227
+12 in row number 228
+12 in row number 229
+13 in row number 230
+13 in row number 231
+13 in row number 232
+13 in row number 233
+14 in row number 234
+14 in row number 235
+14 in row number 236
+14 in row number 237
+15 in row number 238
+15 in row number 239
+15 in row number 240
+15 in row number 241
+16 in row number 242
+16 in row number 243
+16 in row number 244
+16 in row number 245
+17 in row number 246
+17 in row number 247
+17 in row number 248
+17 in row number 249
+18 in row number 250
+18 in row number 251
+18 in row number 252
+18 in row number 253
+19 in row number 254
+19 in row number 255
+19 in row number 256
+19 in row number 257
+20 in row number 258
+20 in row number 259
+20 in row number 260
+20 in row number 261
+21 in row number 262
+21 in row number 263
+21 in row number 264
+21 in row number 265
+22 in row number 266
+22 in row number 267
+22 in row number 268
+22 in row number 269
+23 in row number 270
+23 in row number 271
+23 in row number 272
+23 in row number 273
+24 in row number 274
+24 in row number 275
+24 in row number 276
+24 in row number 277
+25 in row number 278
+25 in row number 279
+25 in row number 280
+25 in row number 281
+1 in row number 282
+1 in row number 283
+1 in row number 284
+2 in row number 285
+2 in row number 286
+2 in row number 287
+3 in row number 288
+3 in row number 289
+3 in row number 290
+4 in row number 291
+4 in row number 292
+4 in row number 293
+5 in row number 294
+5 in row number 295
+5 in row number 296
+6 in row number 297
+6 in row number 298
+6 in row number 299
+7 in row number 300
+7 in row number 301
+7 in row number 302
+8 in row number 303
+8 in row number 304
+8 in row number 305
+9 in row number 306
+9 in row number 307
+9 in row number 308
+10 in row number 309
+10 in row number 310
+10 in row number 311
+11 in row number 312
+11 in row number 313
+11 in row number 314
+12 in row number 315
+12 in row number 316
+12 in row number 317
+13 in row number 318
+13 in row number 319
+14 in row number 320
+14 in row number 321
+14 in row number 322
+15 in row number 323
+15 in row number 324
+15 in row number 325
+16 in row number 326
+16 in row number 327
+16 in row number 328
+17 in row number 329
+17 in row number 330
+17 in row number 331
+18 in row number 332
+18 in row number 333
+18 in row number 334
+19 in row number 335
+19 in row number 336
+19 in row number 337
+20 in row number 338
+20 in row number 339
+20 in row number 340
+21 in row number 341
+21 in row number 342
+22 in row number 343
+22 in row number 344
+22 in row number 345
+23 in row number 346
+23 in row number 347
+23 in row number 348
+24 in row number 349
+24 in row number 350
+24 in row number 351
+25 in row number 352
+25 in row number 353
+25 in row number 354
+5 in row number 359
+1 in row number 361
+1 in row number 362
+1 in row number 363
+1 in row number 364
+2 in row number 365
+2 in row number 366
+2 in row number 367
+2 in row number 368
+3 in row number 369
+3 in row number 370
+3 in row number 371
+3 in row number 372
+4 in row number 373
+4 in row number 374
+4 in row number 375
+4 in row number 376
+5 in row number 377
+5 in row number 378
+5 in row number 379
+5 in row number 380
+6 in row number 381
+6 in row number 382
+6 in row number 383
+6 in row number 384
+7 in row number 385
+7 in row number 386
+7 in row number 387
+7 in row number 388
+8 in row number 389
+8 in row number 390
+8 in row number 391
+8 in row number 392
+9 in row number 393
+9 in row number 394
+9 in row number 395
+9 in row number 396
+10 in row number 397
+10 in row number 398
+10 in row number 399
+10 in row number 400
+11 in row number 401
+11 in row number 402
+11 in row number 403
+11 in row number 404
+12 in row number 405
+12 in row number 406
+12 in row number 407
+12 in row number 408
+13 in row number 409
+13 in row number 410
+13 in row number 411
+13 in row number 412
+14 in row number 413
+14 in row number 414
+14 in row number 415
+14 in row number 416
+15 in row number 417
+15 in row number 418
+15 in row number 419
+15 in row number 420
+16 in row number 421
+16 in row number 422
+16 in row number 423
+16 in row number 424
+17 in row number 425
+17 in row number 426
+17 in row number 427
+17 in row number 428
+18 in row number 429
+18 in row number 430
+18 in row number 431
+18 in row number 432
+19 in row number 433
+19 in row number 434
+19 in row number 435
+19 in row number 436
+20 in row number 437
+20 in row number 438
+20 in row number 439
+20 in row number 440
+21 in row number 441
+21 in row number 442
+21 in row number 443
+21 in row number 444
+22 in row number 445
+22 in row number 446
+22 in row number 447
+22 in row number 448
+23 in row number 449
+23 in row number 450
+23 in row number 451
+23 in row number 452
+24 in row number 453
+24 in row number 454
+24 in row number 455
+24 in row number 456
+25 in row number 457
+25 in row number 458
+25 in row number 459
+25 in row number 460
+1 in row number 461
+1 in row number 462
+1 in row number 463
+2 in row number 464
+2 in row number 465
+2 in row number 466
+3 in row number 467
+3 in row number 468
+3 in row number 469
+4 in row number 470
+4 in row number 471
+4 in row number 472
+5 in row number 473
+5 in row number 474
+5 in row number 475
+6 in row number 476
+6 in row number 477
+6 in row number 478
+7 in row number 479
+7 in row number 480
+7 in row number 481
+8 in row number 482
+8 in row number 483
+8 in row number 484
+9 in row number 485
+9 in row number 486
+9 in row number 487
+10 in row number 488
+10 in row number 489
+10 in row number 490
+11 in row number 491
+11 in row number 492
+11 in row number 493
+12 in row number 494
+12 in row number 495
+12 in row number 496
+13 in row number 497
+13 in row number 498
+14 in row number 499
+14 in row number 500
+14 in row number 501
+15 in row number 502
+15 in row number 503
+15 in row number 504
+16 in row number 505
+16 in row number 506
+16 in row number 507
+17 in row number 508
+17 in row number 509
+17 in row number 510
+18 in row number 511
+18 in row number 512
+18 in row number 513
+19 in row number 514
+19 in row number 515
+19 in row number 516
+20 in row number 517
+20 in row number 518
+20 in row number 519
+21 in row number 520
+21 in row number 521
+22 in row number 522
+22 in row number 523
+22 in row number 524
+23 in row number 525
+23 in row number 526
+23 in row number 527
+24 in row number 528
+24 in row number 529
+24 in row number 530
+25 in row number 531
+25 in row number 532
+25 in row number 533
+5 in row number 538
+1 in row number 540
+1 in row number 541
+1 in row number 542
+1 in row number 543
+2 in row number 544
+2 in row number 545
+2 in row number 546
+2 in row number 547
+3 in row number 548
+3 in row number 549
+3 in row number 550
+3 in row number 551
+4 in row number 552
+4 in row number 553
+4 in row number 554
+4 in row number 555
+5 in row number 556
+5 in row number 557
+5 in row number 558
+5 in row number 559
+6 in row number 560
+6 in row number 561
+6 in row number 562
+6 in row number 563
+7 in row number 564
+7 in row number 565
+7 in row number 566
+7 in row number 567
+8 in row number 568
+8 in row number 569
+8 in row number 570
+8 in row number 571
+9 in row number 572
+9 in row number 573
+9 in row number 574
+9 in row number 575
+10 in row number 576
+10 in row number 577
+10 in row number 578
+10 in row number 579
+11 in row number 580
+11 in row number 581
+11 in row number 582
+11 in row number 583
+12 in row number 584
+12 in row number 585
+12 in row number 586
+12 in row number 587
+13 in row number 588
+13 in row number 589
+13 in row number 590
+13 in row number 591
+14 in row number 592
+14 in row number 593
+14 in row number 594
+14 in row number 595
+15 in row number 596
+15 in row number 597
+15 in row number 598
+15 in row number 599
+16 in row number 600
+16 in row number 601
+16 in row number 602
+16 in row number 603
+17 in row number 604
+17 in row number 605
+17 in row number 606
+17 in row number 607
+18 in row number 608
+18 in row number 609
+18 in row number 610
+18 in row number 611
+19 in row number 612
+19 in row number 613
+19 in row number 614
+19 in row number 615
+20 in row number 616
+20 in row number 617
+20 in row number 618
+20 in row number 619
+21 in row number 620
+21 in row number 621
+21 in row number 622
+21 in row number 623
+22 in row number 624
+22 in row number 625
+22 in row number 626
+22 in row number 627
+23 in row number 628
+23 in row number 629
+23 in row number 630
+23 in row number 631
+24 in row number 632
+24 in row number 633
+24 in row number 634
+24 in row number 635
+25 in row number 636
+25 in row number 637
+25 in row number 638
+25 in row number 639
+1 in row number 640
+1 in row number 641
+1 in row number 642
+2 in row number 643
+2 in row number 644
+2 in row number 645
+3 in row number 646
+3 in row number 647
+3 in row number 648
+4 in row number 649
+4 in row number 650
+4 in row number 651
+5 in row number 652
+5 in row number 653
+5 in row number 654
+6 in row number 655
+6 in row number 656
+6 in row number 657
+7 in row number 658
+7 in row number 659
+7 in row number 660
+8 in row number 661
+8 in row number 662
+8 in row number 663
+9 in row number 664
+9 in row number 665
+9 in row number 666
+10 in row number 667
+10 in row number 668
+10 in row number 669
+11 in row number 670
+11 in row number 671
+11 in row number 672
+12 in row number 673
+12 in row number 674
+12 in row number 675
+13 in row number 676
+13 in row number 677
+14 in row number 678
+14 in row number 679
+14 in row number 680
+15 in row number 681
+15 in row number 682
+15 in row number 683
+16 in row number 684
+16 in row number 685
+16 in row number 686
+17 in row number 687
+17 in row number 688
+17 in row number 689
+18 in row number 690
+18 in row number 691
+18 in row number 692
+19 in row number 693
+19 in row number 694
+19 in row number 695
+20 in row number 696
+20 in row number 697
+20 in row number 698
+21 in row number 699
+21 in row number 700
+22 in row number 701
+22 in row number 702
+22 in row number 703
+23 in row number 704
+23 in row number 705
+23 in row number 706
+24 in row number 707
+24 in row number 708
+24 in row number 709
+25 in row number 710
+25 in row number 711
+25 in row number 712
+5 in row number 717
+1 in row number 719
+1 in row number 720
+1 in row number 721
+1 in row number 722
+2 in row number 723
+2 in row number 724
+2 in row number 725
+2 in row number 726
+3 in row number 727
+3 in row number 728
+3 in row number 729
+3 in row number 730
+4 in row number 731
+4 in row number 732
+4 in row number 733
+4 in row number 734
+5 in row number 735
+5 in row number 736
+5 in row number 737
+5 in row number 738
+6 in row number 739
+6 in row number 740
+6 in row number 741
+6 in row number 742
+7 in row number 743
+7 in row number 744
+7 in row number 745
+7 in row number 746
+8 in row number 747
+8 in row number 748
+8 in row number 749
+8 in row number 750
+9 in row number 751
+9 in row number 752
+9 in row number 753
+9 in row number 754
+10 in row number 755
+10 in row number 756
+10 in row number 757
+10 in row number 758
+11 in row number 759
+11 in row number 760
+11 in row number 761
+11 in row number 762
+12 in row number 763
+12 in row number 764
+12 in row number 765
+12 in row number 766
+13 in row number 767
+13 in row number 768
+13 in row number 769
+13 in row number 770
+14 in row number 771
+14 in row number 772
+14 in row number 773
+14 in row number 774
+15 in row number 775
+15 in row number 776
+15 in row number 777
+15 in row number 778
+16 in row number 779
+16 in row number 780
+16 in row number 781
+16 in row number 782
+17 in row number 783
+17 in row number 784
+17 in row number 785
+17 in row number 786
+18 in row number 787
+18 in row number 788
+18 in row number 789
+18 in row number 790
+19 in row number 791
+19 in row number 792
+19 in row number 793
+19 in row number 794
+20 in row number 795
+20 in row number 796
+20 in row number 797
+20 in row number 798
+21 in row number 799
+21 in row number 800
+21 in row number 801
+21 in row number 802
+22 in row number 803
+22 in row number 804
+22 in row number 805
+22 in row number 806
+23 in row number 807
+23 in row number 808
+23 in row number 809
+23 in row number 810
+24 in row number 811
+24 in row number 812
+24 in row number 813
+24 in row number 814
+25 in row number 815
+25 in row number 816
+25 in row number 817
+25 in row number 818
+1 in row number 819
+1 in row number 820
+1 in row number 821
+2 in row number 822
+2 in row number 823
+2 in row number 824
+3 in row number 825
+3 in row number 826
+3 in row number 827
+4 in row number 828
+4 in row number 829
+4 in row number 830
+5 in row number 831
+5 in row number 832
+5 in row number 833
+6 in row number 834
+6 in row number 835
+6 in row number 836
+7 in row number 837
+7 in row number 838
+7 in row number 839
+8 in row number 840
+8 in row number 841
+8 in row number 842
+9 in row number 843
+9 in row number 844
+9 in row number 845
+10 in row number 846
+10 in row number 847
+10 in row number 848
+11 in row number 849
+11 in row number 850
+11 in row number 851
+12 in row number 852
+12 in row number 853
+12 in row number 854
+13 in row number 855
+13 in row number 856
+14 in row number 857
+14 in row number 858
+14 in row number 859
+15 in row number 860
+15 in row number 861
+15 in row number 862
+16 in row number 863
+16 in row number 864
+16 in row number 865
+17 in row number 866
+17 in row number 867
+17 in row number 868
+18 in row number 869
+18 in row number 870
+18 in row number 871
+19 in row number 872
+19 in row number 873
+19 in row number 874
+20 in row number 875
+20 in row number 876
+20 in row number 877
+21 in row number 878
+21 in row number 879
+22 in row number 880
+22 in row number 881
+22 in row number 882
+23 in row number 883
+23 in row number 884
+23 in row number 885
+24 in row number 886
+24 in row number 887
+24 in row number 888
+25 in row number 889
+25 in row number 890
+25 in row number 891
+5 in row number 896
+1 in row number 898
+1 in row number 899
+1 in row number 900
+1 in row number 901
+2 in row number 902
+2 in row number 903
+2 in row number 904
+2 in row number 905
+3 in row number 906
+3 in row number 907
+3 in row number 908
+3 in row number 909
+4 in row number 910
+4 in row number 911
+4 in row number 912
+4 in row number 913
+5 in row number 914
+5 in row number 915
+5 in row number 916
+5 in row number 917
+6 in row number 918
+6 in row number 919
+6 in row number 920
+6 in row number 921
+7 in row number 922
+7 in row number 923
+7 in row number 924
+7 in row number 925
+8 in row number 926
+8 in row number 927
+8 in row number 928
+8 in row number 929
+9 in row number 930
+9 in row number 931
+9 in row number 932
+9 in row number 933
+10 in row number 934
+10 in row number 935
+10 in row number 936
+10 in row number 937
+11 in row number 938
+11 in row number 939
+11 in row number 940
+11 in row number 941
+12 in row number 942
+12 in row number 943
+12 in row number 944
+12 in row number 945
+13 in row number 946
+13 in row number 947
+13 in row number 948
+13 in row number 949
+14 in row number 950
+14 in row number 951
+14 in row number 952
+14 in row number 953
+15 in row number 954
+15 in row number 955
+15 in row number 956
+15 in row number 957
+16 in row number 958
+16 in row number 959
+16 in row number 960
+16 in row number 961
+17 in row number 962
+17 in row number 963
+17 in row number 964
+17 in row number 965
+18 in row number 966
+18 in row number 967
+18 in row number 968
+18 in row number 969
+19 in row number 970
+19 in row number 971
+19 in row number 972
+19 in row number 973
+20 in row number 974
+20 in row number 975
+20 in row number 976
+20 in row number 977
+21 in row number 978
+21 in row number 979
+21 in row number 980
+21 in row number 981
+22 in row number 982
+22 in row number 983
+22 in row number 984
+22 in row number 985
+23 in row number 986
+23 in row number 987
+23 in row number 988
+23 in row number 989
+24 in row number 990
+24 in row number 991
+24 in row number 992
+24 in row number 993
+25 in row number 994
+25 in row number 995
+25 in row number 996
+25 in row number 997
+1 in row number 998
+1 in row number 999
+1 in row number 1000
+2 in row number 1001
+2 in row number 1002
+2 in row number 1003
+3 in row number 1004
+3 in row number 1005
+3 in row number 1006
+4 in row number 1007
+4 in row number 1008
+4 in row number 1009
+5 in row number 1010
+5 in row number 1011
+5 in row number 1012
+6 in row number 1013
+6 in row number 1014
+6 in row number 1015
+7 in row number 1016
+7 in row number 1017
+7 in row number 1018
+8 in row number 1019
+8 in row number 1020
+8 in row number 1021
+9 in row number 1022
+9 in row number 1023
+9 in row number 1024
+10 in row number 1025
+10 in row number 1026
+10 in row number 1027
+11 in row number 1028
+11 in row number 1029
+11 in row number 1030
+12 in row number 1031
+12 in row number 1032
+12 in row number 1033
+13 in row number 1034
+13 in row number 1035
+14 in row number 1036
+14 in row number 1037
+14 in row number 1038
+15 in row number 1039
+15 in row number 1040
+15 in row number 1041
+16 in row number 1042
+16 in row number 1043
+16 in row number 1044
+17 in row number 1045
+17 in row number 1046
+17 in row number 1047
+18 in row number 1048
+18 in row number 1049
+18 in row number 1050
+19 in row number 1051
+19 in row number 1052
+19 in row number 1053
+20 in row number 1054
+20 in row number 1055
+20 in row number 1056
+21 in row number 1057
+21 in row number 1058
+22 in row number 1059
+22 in row number 1060
+22 in row number 1061
+23 in row number 1062
+23 in row number 1063
+23 in row number 1064
+24 in row number 1065
+24 in row number 1066
+24 in row number 1067
+25 in row number 1068
+25 in row number 1069
+25 in row number 1070
+5 in row number 1075
+25
+42 in Question 24
+42 in Question 25
+42 in Question 20
+36 in Question 21
+42 in Question 22
+42 in Question 23
+42 in Question 1
+42 in Question 3
+42 in Question 2
+42 in Question 5
+42 in Question 4
+42 in Question 7
+42 in Question 6
+42 in Question 9
+42 in Question 8
+42 in Question 11
+42 in Question 10
+36 in Question 13
+42 in Question 12
+42 in Question 15
+42 in Question 14
+42 in Question 17
+42 in Question 16
+42 in Question 19
+42 in Question 18
+{1: ['region', 'sphere', 'field', 'area', 'region', 'transportation', 'place', 'country'], 2: ['streaming', 'rain cats and dogs', 'swarm', 'teem', 'streaming', 'stream', 'recording', 'playing'], 3: ['firms', 'parties', 'houses', 'steadiness', 'firms', 'devices', 'persons', 'organizations'], 4: ['trend', 'grade', 'of course', 'class', 'trend', 'goal', 'interface', 'platform'], 5: ['implementations', 'execution', 'effectuation', 'carrying out', 'implementations', 'results', 'analysis', 'programs'], 6: ['innovations', 'designs', 'inventions', 'conceptions', 'innovations', 'robots', 'sensors', 'users'], 7: ['center', 'heart', 'midway', 'halfway', 'center', 'interface', 'planet', 'place'], 8: ['customers', 'nodes', 'clients', 'guests', 'customers', 'robots', 'clients', 'users'], 9: ['language', 'poem', 'lyric', 'word', 'language', 'share', 'speaking', 'browse'], 10: ['green', 'area', 'parking lot', 'park', 'green', 'potential', 'possible', 'regarding'], 11: ['goal', 'stop', 'finish', 'cease', 'goal', 'training', 'record', 'result'], 12: ['eighth', 'one-eighth', 'octonary', 'octet', 'eighth', 'game', 'league', 'football'], 13: ['outcome', 'consequence', 'impression', 'result', 'outcome', 'consequence', 'support', 'victory'], 14: ['champion', 'leading', 'wizard', 'sensation', 'champion', 'rival', 'goalkeeper', 'victory'], 15: ['youth', 'early days', 'young person', 'youthfulness', 'youth', 'goalkeeper', 'rival', 'place'], 16: ['international', 'outside', 'external', 'extraneous', 'international', 'british', 'domestic', 'behaviour'], 17: ['online', 'behaviour', 'contrast', 'describe', 'online', 'newspaper', 'web', 'experience'], 18: ['freedom', 'exemption', 'granting', 'immunity', 'freedom', 'sense', 'role', 'audition'], 19: ['force', 'energy', 'button', 'fight', 'force', 'power', 'strenth', 'collection'], 20: ['questions', 'interviews', 'behaviours', 'doubts', 'questions', 'people', 'preferences', 'doubts'], 21: ['ending', 'stop', 'finish', 'cease', 'ending', 'taking', 'result', 'finish'], 22: ['lark', 'frolic', 'run around', 'cavort', 'lark', 'art', 'film', 'actress'], 23: ['marriage', 'married couple', 'man and wife', 'pair', 'marriage', 'sense', 'audition', 'role'], 24: ['misconceptions', 'misconception', 'realize', 'empathize', 'misconceptions', 'people', 'preferences', 'understanding'], 25: ['airport', 'aerodrome', 'drome', 'air', 'airport', 'office', 'passenger', 'park']}
+hahaha
+['1', '2', '6', '5', '7', '4', '3', '1', '2', '3', '4', '5', '7', '6', '2', '1', '7', '5', '4', '3', '6', '1', '4', '5', '7', '6', '3', '2', '3', '4', '2', '5', '7', '6', '1', '1', '2', '6', '7', '5', '3', '4']
+24
+divider is 7
+42
+['1', '2', '3', '6', '5', '7', '4', '1', '2', '3', '4', '6', '7', '5', '1', '2', '3', '7', '5', '6', '4', '3', '1', '2', '4', '6', '7', '5', '1', '2', '4', '3', '7', '5', '6', '2', '1', '3', '4', '5', '7', '6']
+25
+divider is 7
+42
+['1', '4', '5', '2', '7', '3', '6', '1', '6', '7', '2', '3', '4', '5', '2', '3', '4', '1', '5', '6', '7', '1', '6', '7', '2', '5', '3', '4', '1', '3', '2', '6', '7', '5', '4', '1', '6', '4', '2', '7', '3', '5']
+20
+divider is 7
+42
+['3', '1', '2', '5', '4', '6', '3', '1', '2', '4', '5', '6', '6', '1', '3', '2', '4', '5', '3', '1', '4', '5', '6', '2', '3', '1', '2', '4', '6', '5', '4', '1', '2', '3', '5', '6']
+21
+divider is 6
+36
+['3', '2', '4', '1', '5', '6', '7', '1', '2', '4', '3', '5', '6', '7', '7', '6', '5', '2', '1', '3', '4', '5', '1', '2', '7', '4', '3', '6', '7', '5', '6', '4', '2', '1', '3', '4', '1', '2', '3', '6', '5', '7']
+22
+divider is 7
+42
+['4', '3', '2', '7', '5', '1', '6', '2', '3', '4', '7', '5', '1', '6', '2', '1', '3', '7', '6', '4', '5', '2', '5', '3', '6', '7', '1', '4', '2', '6', '4', '5', '7', '1', '3', '4', '5', '2', '7', '6', '1', '3']
+23
+divider is 7
+42
+['1', '7', '3', '2', '6', '4', '5', '1', '7', '3', '2', '6', '4', '5', '1', '2', '4', '3', '5', '6', '7', '1', '5', '4', '2', '7', '6', '3', '1', '5', '4', '3', '6', '7', '2', '1', '4', '3', '2', '7', '5', '6']
+1
+divider is 7
+42
+['1', '4', '7', '5', '2', '6', '3', '1', '6', '7', '3', '4', '5', '2', '1', '6', '7', '4', '3', '5', '2', '1', '4', '5', '6', '3', '7', '2', '2', '5', '4', '1', '7', '3', '6', '1', '4', '7', '3', '6', '5', '2']
+3
+divider is 7
+42
+['3', '7', '5', '6', '4', '1', '2', '1', '7', '5', '4', '3', '2', '6', '1', '3', '4', '5', '7', '2', '6', '1', '7', '6', '5', '2', '3', '4', '1', '7', '6', '4', '2', '3', '5', '1', '7', '4', '5', '2', '3', '6']
+2
+divider is 7
+42
+['3', '1', '2', '4', '5', '7', '6', '6', '1', '2', '3', '5', '7', '4', '4', '1', '2', '5', '3', '6', '7', '4', '3', '1', '7', '6', '5', '2', '6', '5', '3', '4', '2', '7', '1', '5', '2', '3', '4', '7', '6', '1']
+5
+divider is 7
+42
+['1', '4', '7', '5', '2', '6', '3', '1', '5', '7', '6', '4', '3', '2', '1', '2', '4', '3', '5', '6', '7', '2', '5', '4', '6', '7', '3', '1', '2', '7', '5', '6', '4', '3', '1', '3', '5', '7', '4', '2', '6', '1']
+4
+divider is 7
+42
+['1', '2', '3', '7', '6', '5', '4', '1', '3', '4', '7', '6', '5', '2', '5', '1', '4', '2', '3', '6', '7', '3', '1', '7', '4', '5', '6', '2', '7', '1', '2', '4', '3', '5', '6', '2', '1', '3', '6', '7', '5', '4']
+7
+divider is 7
+42
+['1', '3', '2', '4', '7', '5', '6', '1', '2', '4', '3', '7', '5', '6', '1', '3', '2', '4', '5', '6', '7', '3', '2', '4', '1', '7', '5', '6', '3', '4', '1', '6', '5', '2', '7', '1', '4', '2', '3', '5', '6', '7']
+6
+divider is 7
+42
+['1', '4', '3', '2', '6', '5', '7', '1', '6', '5', '2', '7', '3', '4', '1', '7', '3', '2', '4', '5', '6', '1', '7', '6', '2', '5', '4', '3', '1', '3', '4', '2', '5', '7', '6', '1', '5', '4', '2', '6', '3', '7']
+9
+divider is 7
+42
+['2', '6', '3', '5', '7', '1', '4', '1', '6', '2', '5', '7', '3', '4', '5', '6', '2', '3', '7', '1', '4', '2', '7', '3', '5', '6', '1', '4', '1', '6', '2', '5', '7', '3', '4', '2', '5', '4', '6', '7', '1', '3']
+8
+divider is 7
+42
+['1', '3', '2', '6', '7', '5', '4', '3', '5', '4', '6', '7', '1', '2', '1', '7', '6', '4', '3', '2', '5', '7', '3', '1', '4', '6', '5', '2', '2', '3', '1', '7', '4', '6', '5', '1', '7', '2', '6', '5', '3', '4']
+11
+divider is 7
+42
+['2', '1', '5', '4', '3', '6', '7', '3', '1', '7', '2', '6', '4', '5', '7', '1', '6', '5', '2', '3', '4', '2', '1', '3', '4', '6', '5', '7', '7', '1', '4', '2', '6', '5', '3', '5', '1', '7', '2', '4', '3', '6']
+10
+divider is 7
+42
+['1', '3', '4', '2', '6', '5', '1', '3', '5', '2', '6', '4', '1', '6', '5', '2', '4', '3', '1', '3', '6', '2', '5', '4', '6', '2', '3', '1', '4', '5', '1', '4', '3', '2', '6', '5']
+13
+divider is 6
+36
+['1', '7', '2', '4', '6', '3', '5', '1', '6', '5', '3', '2', '4', '7', '1', '7', '6', '5', '2', '4', '3', '1', '7', '2', '3', '6', '4', '5', '7', '1', '3', '5', '2', '4', '6', '1', '7', '3', '2', '6', '4', '5']
+12
+divider is 7
+42
+['1', '4', '3', '5', '2', '6', '7', '1', '7', '2', '3', '6', '4', '5', '1', '7', '3', '2', '4', '5', '6', '1', '6', '2', '5', '7', '4', '3', '1', '4', '2', '3', '5', '7', '6', '1', '2', '4', '3', '6', '7', '5']
+15
+divider is 7
+42
+['7', '3', '2', '1', '5', '4', '6', '5', '7', '6', '1', '4', '3', '2', '6', '3', '2', '1', '5', '4', '7', '2', '6', '3', '1', '4', '7', '5', '2', '4', '7', '1', '5', '6', '3', '4', '3', '2', '1', '5', '7', '6']
+14
+divider is 7
+42
+['1', '5', '4', '6', '7', '2', '3', '1', '4', '6', '5', '7', '3', '2', '1', '6', '3', '4', '5', '2', '7', '1', '6', '4', '5', '7', '2', '3', '1', '5', '3', '6', '4', '2', '7', '1', '6', '7', '3', '5', '2', '4']
+17
+divider is 7
+42
+['1', '5', '2', '3', '7', '4', '6', '1', '4', '2', '6', '5', '3', '7', '1', '4', '2', '5', '3', '6', '7', '1', '5', '4', '6', '3', '2', '7', '1', '6', '4', '3', '2', '7', '5', '1', '3', '2', '4', '6', '5', '7']
+16
+divider is 7
+42
+['6', '7', '5', '3', '1', '4', '2', '3', '7', '4', '2', '1', '5', '6', '2', '3', '4', '7', '1', '6', '5', '6', '7', '3', '2', '1', '5', '4', '6', '7', '5', '3', '1', '2', '4', '6', '7', '4', '2', '1', '3', '5']
+19
+divider is 7
+42
+['1', '3', '2', '6', '5', '7', '4', '1', '2', '6', '3', '5', '4', '7', '4', '3', '1', '2', '5', '6', '7', '1', '2', '3', '7', '4', '6', '5', '1', '3', '2', '7', '5', '6', '4', '1', '3', '5', '2', '4', '7', '6']
+18
+divider is 7
+42
+120 , 91
+99 , 112
+113 , 111
+96 , 97
+110 , 108
+132 , 88
+108 , 103
+120 , 80
+125 , 71
+109 , 115
+126 , 76
+111 , 106
+100 , 114
+108 , 99
+158 , 103
+124 , 91
+110 , 111
+126 , 89
+114 , 90
+103 , 101
+108 , 114
+129 , 80
+102 , 98
+117 , 86
+99 , 106
+19
+{'baseline': {'24': 120, '25': 99, '20': 113, '21': 96, '22': 110, '23': 132, '1': 108, '3': 120, '2': 125, '5': 109, '4': 126, '7': 111, '6': 100, '9': 108, '8': 158, '11': 124, '10': 110, '13': 126, '12': 114, '15': 103, '14': 108, '17': 129, '16': 102, '19': 117, '18': 99}, 'mine': {'24': 91, '25': 112, '20': 111, '21': 97, '22': 108, '23': 88, '1': 103, '3': 80, '2': 71, '5': 115, '4': 76, '7': 106, '6': 114, '9': 99, '8': 103, '11': 91, '10': 111, '13': 89, '12': 90, '15': 101, '14': 114, '17': 80, '16': 98, '19': 86, '18': 106}}

@@ -1,0 +1,21 @@
+<ul class="nav pull-right">
+	<%=  @user.user_name %>
+</ul>
+
+
+<p class="bg-warning">Words to Learn</p>
+<% for w in @words_to_learn %>
+		<li >
+			<%=  EnglishWords.find(w.english_words_id).english_meaning %>
+			<%=  ChineseWords.find(w.chinese_words_id).chinese_meaning %>
+			<!-- %=  WordCategory.find(w.word_category_id).category_name % -->
+		</li>
+<% end %>
+<p class="bg-info">Words Learnt</p>
+<% for w in @words_learnt %>
+		<li >
+			<%=  EnglishWords.find(w.english_words_id).english_meaning %>
+			<%=  ChineseWords.find(w.chinese_words_id).chinese_meaning %>
+			<!-- %=  WordCategory.find(w.word_category_id).category_name % -->
+		</li>
+<% end %>
