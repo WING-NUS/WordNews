@@ -1,0 +1,179 @@
+\section{English-Chinese Cross-Lingual Word Sense Disambiguation}
+\label{section:CLWSD}
+
+% Tao: papers about CLWSD
+
+% sem-eval clwsd task: \cite{Lefever2010}, \cite{Lefever2013}
+% cross-lingual embeddings: \cite{Shi2015}, \cite{Coulmance2015}, \cite{Aldarmaki2016}
+% build word embeddings for WSD: \cite{Guo2014}
+% clwsd dataset: \cite{Rekabsaz2016} (English-Persian)
+
+% survey on wsd: \cite{Navigli2009}
+
+
+We now evaluate our proposal on the Cross-Lingual Word Sense
+Disambiguation task.  One key application of such task is to
+facilitate language learning systems.  For example, {\it
+ MindTheWord}\footnote{\url{https://chrome.google.com/webstore/detail/mindtheword/fabjlaokbhaoehejcoblhahcekmogbom}}
+and {\it WordNews}~\cite{tao2014} are two applications that allow
+users to learn vocabulary of a second language in context, in the form
+of providing translations of words in an online article.
+%which is required for effective acquisition of vocabulary \cite{Hirsch03readingcomprehension}. These applications often rely on translation systems to provide translations. 
+In this work, we model this problem of finding translations of words
+as a variant of WSD, Cross-Lingual Word Sense Disambiguation, as
+formalized in \cite{tao2014}.
+% Tao: stop here. 
+
+In the previous section, we have validated and compared enhancements to
+IMS using word embeddings. These have produced results comparable to,
+and in some cases, better than state-of-the-art performance on the
+monolingual WSD tasks. We further evaluate our approach for use in the
+Cross-Lingual Word Sense Disambiguation for performing contextually
+appropriate translations of single words. To accomplish this, we first
+construct a English--Chinese Cross-Lingual WSD dataset. For our sense
+inventory, we work with the existing dictionary in the open-source
+educational application, WordNews \cite{tao2014}, which contains a
+dictionary of English words and their possible Chinese
+translations. We finally deploy the trained system as a fork of the
+original WordNews.
+
+\subsection{Dataset}
+ As far as we know, there 
+ is no existing publicly available English--Chinese Cross-Lingual WSD dataset.
+ To evaluate our proposal, therefore, we hired human annotators to construct
+ such an evaluation dataset using sentences from recent news articles. As the dataset is 
+ constructed using recent news data, it is a good representation for the use case in WordNews. To facilitate future research, we have released the dataset to the public.{\footnote{{\url{  https://kanghj.github.io/english_chinese_news_clwsd_dataset/}}}}
+% 		{\url{https://to.be.made.public/if/accepted}}}.
+ 	% Hong Jin: Do I need to change this to be hosted on wing.nus instead? although it seems to be down
+ 
+ 
+%In order to construct an evaluation dataset, we hired human annotators and constructed a English--
+%Chinese Cross-Lingual WSD dataset using sentences from recent news articles. As the dataset is 
+%constructed using recent news data, it is a good representation for the use case in WordNews.{\footnote{The dataset can be obtained at %{\url{  https://kanghj.github.io/eng_chinese_news_clwsd_dataset/}}}}
+%{\url{https://to.be.made.public/if/accepted}}}
+
+
+To obtain the gold standard for this data set, we hired 18 annotators to select the right translations for a given word and its context. There are 697 instances in total in our dataset, with a total of 251 target words to disambiguate, that were each multiply-annotated by 3 different annotators. Each annotator disambiguated 110+ instances (15 annotators with 116 instances, 3 with 117) in hard-copy. The annotators are all bilingual undergraduate students, who are native Chinese speakers. 
+
+For each instance, which contains a single English target word to disambiguate, we include the sentence it appears in and its adjacent sentences as its context. Each instance contains possible translations of the word. 
+% Hong Jin: Omitted since it mentioned later 
+%The sense inventory is from a dictionary of English--Chinese pairs, crawled from Google Translate and Bing Translator.
+The annotators selected all Chinese words that had an identical meaning to the English target word. If the word cannot be appropriately translated, we instructed annotators to leave the annotation blank. The annotators provided their own translations if they believe that there is a suitable translation, but which was not provided by the crawled dictionary. 
+
+%In WSD, it is important to obtain the inter-annotator agreement of the dataset. 
+The concept of a sense is a human construct, and therefore, as earlier elaborated on when discussing sense granularity, it is %subjective and 
+may be difficult for human annotators to agree on the correct answer. 
+%We try to measure the inter-annotator agreement using pairwise Cohen's Kappa. 
+Our annotation task differs from the usual since we allow users to select multiple labels and can also add new labels to each case if they do not agree with any label provided. As such, applying the Cohen's Kappa as it is for measuring the inter-annotator agreement as it is does not work for our annotated dataset. %We note that some work has been done for multi-label Kappa, such as by Rosenberg \shortcite{rosenberg2004augmenting}, however the situation described  is different from our case, as we cannot assume a uniform distribution of labels%or that there is a primary label among the multiple labels selected by an annotator.
+We are also unable to compute the probably of chance agreement by word, since there are few test instances per word in our dataset.
+
+The Kappa equation is given as 
+$\kappa = \frac{p_A - p_E}{1 - p_E} $.
+To compute $p_A$ for $\kappa$, we use a simplified, optimistic approach where we select one annotated label out of possibly multiple selected labels for each annotator. We always choose the label that results in an agreement between the pair, if such a label exist. For $p_E$ (the probability of chance agreement), as the labels of each case are different, we consider the labels in terms of how frequent they occur in the training data. 
+We only consider the top 3 most frequent senses for each word %, and ignore the other labels 
+due to the skewness of the sense distribution. 
+We first compute the probability of an annotator selecting each of the top three frequent senses, $p_E$ is then equals to the sum of the probability that both annotators selected one of the three top senses by chance. 
+
+%We present the probabilities that an annotator will select each of the top three senses in Table \ref{table:IAA}.
+%The value of $p_E$ by this proposed method of computation is 0.186.
+The pairwise value by this proposed method of $\kappa$ is obtained is 0.42. We interpreted this as a moderate level of agreement. We note that there is a large number of possible labels for each case, which is known to affect the value of $\kappa$ negatively. This is exacerbated as we allow the annotators to add new labels. 
+
+% \begin{table}[ht]
+% 	\caption{Probability of an annotator annotating the top three senses.}
+% 	\label{table:IAA}
+% 	\begin{center}
+% 		\begin{tabular}{| p{4cm} | p{4cm}  | p{4cm} | }
+% 			\hline
+% 			Most Frequent Sense & 2nd Most Frequent Sense & 3rd Most Frequent Senses\\
+% 			\hline
+% 			0.343 & 0.206 & 0.161\\						
+% 			\hline
+% 		\end{tabular}
+% 	\end{center}
+% \end{table}
+
+%As we consider any overlap in annotated labels to be a match, this approach may overestimate the agreement between annotators. %However, in our dataset, a significant number of annotators (5 out of 18) only selected a single translation in the dataset instead of every suitable translation. 
+%However 
+In this annotation task, as we consider the possible translations as  fine-grained, the value of agreement is likely to be underestimated in this case. Hence, we believe that clustering of similar translations during annotation is required in order to deal with the issue of sense granularity in Cross-Lingual WSD. 
+To overcome this problem, we used different configurations of granularity during evaluation of our system. 
+% Hong Jin : omited this explanation since it may be clear enough from the table
+%In the most relaxed configuration, we assume that all annotations by the annotators are correct answers. Under our strictest configuration, all three annotators must agree on the translation before it is considered to be the correct sense. 
+For all configurations,
+we remove instances from the dataset if it does not have a correct sense. 
+
+% Hong Jin : moved this to table header instead
+%We excluded instances with out-of-vocabulary annotations (added by the annotators if they did not think any of the provided translations are suitable) were excluded from the test set.
+
+% Hong Jin: omitted since the table duplicates this information
+
+%For the first configuration, we included all instances annotated by the participants. For the second configuration, we omitted bad instances and only consider a translation to be correct if more than one participant agreed on that translation. For the third configuration, we included only answers where all three participants agreed on the answer. 
+We also noticed that some target words were part of a proper noun, such as the word 'white' in 'White House'. This led to some confusion among annotators, so we omitted instances where the target word is part of a proper noun. Statistics of the test dataset after filtering out different cases are given in Table \ref{table:CLWSD-test-stats-no-ne}.
+
+\begin{table}[ht]
+	\caption{Statistics of our new annotated Chinese-English crosslingual WSD dataset. Out-of-vocabulary (OOV) annotations refer to annotations added by the annotators}
+    %% Muthu: if this is the our new annotated dataset we need to make it clear in the caption because this is a contribution of the paper.
+	\label{table:CLWSD-test-stats-no-ne}
+	\begin{center}
+		\begin{tabular}{| p{8cm} | r| r|}
+			\hline
+			{\bf Configuration} & {\bf \# of instances} & {\bf \# of unique target words} \\
+			\hline
+			Include all & 653 & 251\\ 
+			\hline
+			Exclude instances with OOV annotations & 481 & 206 \\						
+			\hline
+			Exclude instances without at least partial agreement & 412 & 193 \\
+			\hline
+			Exclude instances without complete agreement & 229 & 136 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\subsection{Experiments}
+
+As previously described, IMS is a supervised system requiring training data before use. We constructed data by processing a parallel corpus, the news section of the UM-Corpus \cite{tian2014corpus}, and performing word alignment. We used the dictionary provided by \cite{tao2014} as the sense inventory, which we further expanded using translations from Bing Translator and Google Translate. For construction of the training dataset, word alignment is used to assign Chinese words as training labels for each English target word. GIZA++ \cite {och03} is used for word alignment. To evaluate our system, we compare the results of the method described in \cite{tao2014}, which uses Bing Translator and word alignment to obtain translations. We use the configuration where every annotation is considered to be correct for our main evaluation since this is closer to a coarse-grained evaluation. 
+
+\begin{table}[ht]
+	\caption{Results of our systems on the Cross-Lingual WSD dataset, excluding named entities. Instances with out-of-vocabulary annotations are removed. All annotations are considered correct answers.}
+	\label{table:CLWSD-test-results}
+	\begin{center}
+
+			\begin{tabular}{| p{9cm}| r| }
+				\hline
+				\textbf{Method} & \textbf{Accuracy} \\
+				\hline
+				Bing Translator + 
+                word alignment (baseline) & 0.559  \\
+				\hline
+				IMS & 0.752  \\
+				\hline
+                IMS + CBOW, 50 dimensions, $\sigma _{=0.05}$ (proposed) &  0.763  \\
+				\hline
+				IMS + CBOW, 50 dimensions, $\sigma _{=0.1}$ (proposed) & {\bf 0.772}  \\                                
+                \hline
+                IMS + CBOW, 50 dimensions, $\sigma _{=0.15}$ (proposed) & 0.767  \\
+                \hline
+                % Omitting the single GloVe experiment, did not have time to complete the other configurations
+        %        IMS + GLoVe, 50 dimensions, $\sigma _{=0.1}$ (proposed) & 0.761  \\
+
+
+		%		\hline
+			\end{tabular}
+
+	\end{center}
+\end{table}
+
+
+
+It can be seen that word embeddings improves the performance on Cross-Lingual WSD. Similar to our observations for monolingual WSD, the use of both CBOW and GLoVe improved performance. However, the improvements from the word embeddings feature type over IMS was not statistically significant at 95\% confidence level. This is attributed to the small size of the dataset. 
+
+\subsection{Bing Translator results}
+We wish to highlight and explain the poor performance of Bing Translator with our annotated dataset as seen in Table \ref{table:CLWSD-test-results}. This could be because Bing Translator performs translation at the phrase level. Therefore, many of the target words are not translated individually and are translated only as part of a larger unit, making it less suitable for the use case in WordNews where only the translation of single words matter. 
+% Min: need to put actual (bilingual) example to concretize the illustration?
+% Hong Jin: will do this over the weekend
+\begin{CJK*}{UTF8}{gbsn}
+For example, when translating the word ``little'' in ``These are serious issues and themes, and sometimes {\bf little} kids aren't ready to process and understand these ideas'', Bing Translator provides a translation of ``这些都是严重的问题和主题，有时{\bf 小孩} 不准备处理和理解这些想法'' but does not give an alignment for the word `little' but instead provides an alignment for the entire multi-word unit ``little kids''. 
+\end{CJK*}
+%Since the gold standard was produced by annotations before we ran the experiments, none of the %participants would indicate that the translation of ``little kids'' is the translation for %``little''. 
+As such, the translation would not match any of the annotations provided by our annotators. This is an appropriate treatment since a user of an educational app requesting specifically a translation for the single word ``little'' should not see the translation of the phrase.

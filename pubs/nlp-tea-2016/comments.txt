@@ -1,0 +1,21 @@
+
+
+Camera Ready Instructions is located: *http://coling2016.anlp.jp/#camera-ready*
+Please follow the instructions to prepare your paper. When you are finished, you can upload your final manuscript at the following site:
+
+     https://www.softconf.com/coling2016/NLPTEA2016/
+
+Papers must be uploaded by *October 30*.
+After the deadline, papers may not appear on the proceedings.
+
+The deadline for registration is changed: *October 25*
+Note that at least one of the authors of each paper needs to register. According to COLING 2016 policy, a paper will not be included in the proceedings, if none of its authors registered.
+
+
+
+In addition
+to wthe word2vec and GloVe, FastText is also a good choice for comparison.
+
+https://github.com/facebookresearch/fastText
+
+https://arxiv.org/pdf/1607.04606v1.pdf

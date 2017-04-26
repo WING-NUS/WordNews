@@ -1,0 +1,162 @@
+\section{Related Work}
+% Min: don't need this header -- obvious
+% \subsection{Word Sense Disambiguation}
+
+Word Sense Disambiguation is a well-studied problem, in which many
+methods have been applied. Existing methods can be broadly categorised
+into supervised approaches, where machine learning techniques are used
+to learn from labeled training data; and unsupervised %knowledge-rich
+techniques, which do not rely on labeled data. Unsupervised techniques
+are knowledge-rich, and rely heavily on knowledge bases and thesaurus,
+such as WordNet~\cite{Miller1995}. It is noted by Navigli \shortcite{Navigli09wordsense}
+that supervised approaches using memory-based learning and SVM
+approaches have worked best.
+%For these approaches, it is common that the only knowledge used is the first sense in WordNet, which is used as a fallback if the system is unable to disambiguate the word in the test data. 
+
+Supervised approaches involve the extraction of features and then
+classification using machine learning. Zhong and Ng
+\shortcite{Zhong2010} developed an open-source WSD system, {\it
+  ItMakesSense} (hereafter, IMS), which was considered the
+state-of-the-art at the time it was developed.  It is a supervised WSD
+system, which had to be trained prior to use. IMS uses three feature
+types: 1) individual words in the context surrounding the target word,
+2) specific ordered sequences of words appearing at specified offsets
+from the target word, and 3) Part-Of-Speech tags of the surrounding three
+words.
+
+Each of the features are binary features, and IMS trains a model for
+each word. IMS then uses an support vector machine (SVM) for
+classification. IMS is open-source, provides state-of-the-art
+performance, and is easy to extend. As such, our work features IMS and
+extends off of this backbone.
+
+Training data is required to train IMS.  We make use of the
+One-Million Sense-Tagged Instances \cite{taghipour2015one} dataset,
+which is the largest dataset we know of for training WSD systems, in
+training our systems for the All Words tasks.
+
+WSD systems can be evaluated using either fine-grained scoring or
+coarse-grained scoring. Under fine-grained scoring, every sense is
+equally distinct from each other, and answers must exactly match. 
+% Min: need to introduce wordnet somewhere.
+% Hong Jin: added context that wordnet is the sense inventory
+WordNet is often used as the sense inventory for monolingual WSD tasks. However, WordNet is a fine-grained resource, and even human annotators have
+trouble distinguishing between different senses of a word
+\cite{edmonds2002introduction}.  In contrast, under coarse-grained
+scoring, similar senses are grouped and treated as a single sense.  In
+some WSD tasks in SemEval, coarse-grained scoring was done in order
+to deal with the problem of reliably distinguishing fine-grained
+senses. 
+% Hong Jin: removed because repetitive
+%We note that WSD is somewhat subjective, in that the grouping
+%and granularity of senses are debatable and may not be well-defined.
+%% Min: not yet clear where this goes
+% An important measure for any classification task is the
+% inter-annotator agreement. The inter-annotator agreement is considered
+% the upper bound of a task.
+
+\subsection{Cross-Lingual Word Sense Disambiguation}
+Cross-Lingual WSD was, in part, conceived as a further attempt to
+solve this issue. In Cross-Lingual WSD, the specificity of a sense is
+determined by its correct translation in another language. The sense
+inventory is the possible translations of each word in another
+language. Two instances are said to have the same sense if they map to
+the same translation in that language.
+SemEval-2010~\cite{Lefever2010}\footnote{\url{http://stel.ub.edu/semeval2010-coref/}}
+and SemEval-2013~\cite{Lefever2013}\footnote{\url{https://www.cs.york.ac.uk/semeval-2013/}}
+featured iterations of this task. These tasks featured
+English nouns as the source words, and word senses as translations in
+Dutch, French, Italian, Spanish and German.
+
+Traditional WSD approaches are used in Cross-Lingual WSD, although
+some approaches leverage statistical machine translation (SMT) methods
+and features from translation. Cross-Lingual WSD involves training by
+making use of parallel or multilingual corpora. In the Cross-Lingual
+WSD task in SemEval-2013, the top performing approaches used either
+classification or SMT approaches.
+
+\subsection{WSD with Word Embeddings}
+
+In NLP, words can be represented 
+%in a vector space
+%model. 
+%Traditionally, this has been done with {\it one-hot} binary
+%vectors, where there is only one non-zero value in a high-dimensional
+%vector. In this encoding, each dimension represents the presence of a
+%word, and the number of dimensions of the vector space is the size of
+%the vocabulary. In one-hot encoding, all words are considered to be
+%independent of each other; there is no notion of word similarity and
+%all words are independent of each other.  A key weakness with the
+%one-hot representation is that the large number of dimensions makes
+%machine learning prone to overfitting.  
+with a distributed representation, such as word embeddings, which encodes
+words into a low dimensional space. In word embeddings, information
+about a word is distributed across multiple dimensions, and similar
+words are expected to be close to each other in the vector space. Examples of word
+embeddings are Continuous Bag of Words \cite{mikolovword2vec},
+Collobert \& Weston's Embeddings \cite{collobert2008unified}, and
+GLoVe \cite{pennington2014glove}. We implemented and evaluated the use
+of word embedding features using these three embeddings in IMS.
+
+% An unsupervised approach using word embeddings for WSD is described by
+% Chen \shortcite{chen2014}. This uses a model for finding
+% representation of senses, rather than just for words, initialized
+% using WordNet's glosses of senses. These sense vectors can then be
+% used during Word Sense Disambiguation. A context vector can be
+% computed by taking the average of the words in a sentence. For
+% disambiguating a single word, the sense with the sense vector that
+% gives maximum Cosine Similarity with this context vector is chosen as
+% the result for disambiguation. Chen {\it et al.} gives an algorithm to
+% disambiguate words starting from the words with fewer senses first.
+
+An unsupervised approach using word embeddings for WSD is described by Chen \shortcite{chen2014}. This approach finds representation of senses, instead of words, and computes a context vector which is used during disambiguation. 
+
+A different approach is to work on extending existing WSD
+systems. Turian \shortcite{Turian10wordrepresentations} suggests that
+for any existing supervised NLP system, a general way of improving
+accuracy would be to use unsupervised word representations as
+additional features. Taghipour \shortcite{Taghipour15} used C\&W
+embeddings as a starting point and implemented word embeddings as a
+feature type in IMS. For a specified window, vectors for the
+surrounding words in the windows, excluding the target word, are
+obtained from the embeddings and are concatenated, producing $d *
+(w-1)$ features, where $d$ is the number of dimensions of the vector,
+and $w$ is the window size. Each feature is a floating point number,
+which is the value of the vector in a dimension. We note that
+\cite{Taghipour15} only reported results for C\&W embeddings, and did
+not experiment on other types of word embeddings.
+
+Other supervised approaches using word embeddings include AutoExtend
+\cite{rothe2015autoextend}, which extended word embeddings to create
+embeddings for synsets and lexemes. In their work, they also extended
+IMS, but used their own embeddings. The feature types
+introduced by this work bear similarities to how Taghipour used
+word embeddings, but without Taghipour's method of scaling each
+dimension of the word embeddings.
+
+% Min: BUG fix this into prose if needed. 
+% Hong Jin: not needed
+% Summary:
+%  - Not many comparison works: \cite{Iacobacci2016}
+
+To conclude, word embeddings have been used in several methods to
+improve on state-of-the-art results in WSD. However, to date, there
+has been little work investigating how different word embeddings and
+parameters affect performance of baseline methods of WSD. As far as we
+know, there has only been one paper comparing the different word
+embeddings with the use of basic composition methods in WSD. Iacobacci
+\shortcite{Iacobacci2016} performed an evaluation study of different
+parameters when enhancing an existing supervised WSD system with word
+embeddings. Iacobacci noted that the integration of Word2Vec
+% Min: skip grams are different from the CBOW
+(skip-gram) with IMS was consistently helpful and provided the best
+performance. Iacobacci also noted that the composition methods of
+average and concatenation produced small gains relative to the other
+composition strategies introduced. However, Iacobacci did not
+investigate the use of \cite{Taghipour15}'s scaling strategy, which
+was crucial to improve the performance of IMS.
+
+We also did not find any recent work attempting to integrate modern
+WSD systems for real-world education usage, and to evaluate the WSD
+system based on the requirements and suitability for education use.
+We aim to fill this gap in applied WSD with this work.

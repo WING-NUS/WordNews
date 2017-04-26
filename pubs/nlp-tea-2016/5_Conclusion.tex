@@ -1,0 +1,52 @@
+\section{Conclusion}
+\label{section:conclusion}
+
+After we have evaluated the performance of the systems on the this
+Cross-Lingual WSD dataset, we integrate the top-performing system
+using word embeddings and the trained models into a fork of the
+WordNews system. We experimented and implemented with different
+methods of using word embeddings for supervised WSD. We tried two
+approaches, by enhancing an existing WSD system, IMS, and by trying a
+neural approach using a simple LSTM.  We evaluated our apporach as
+well as various methods in WSD, against initial evaluations on the
+existing test data sets from Senseval-2, Senseval-3, SemEval-2007. In
+a nutshell, adding any pretrained word embedding as a feature type to
+IMS resulted in the system performing competitively or better than the
+state-of-the-art systems on many of the tasks. This supports
+\cite{Iacobacci2016}'s conclusion that concluded that existing
+supervised approaches can be augmented with word embeddings to give
+better results.
+
+Our findings also validated Iacobacci et al. \shortcite{Iacobacci2016}'s
+findings that Word2Vec gave the best performance. However, we also
+note that, other than Word2Vec, other publicly available word
+embeddings, Collobert \& Weston's embeddings and GLoVe also
+consistently enhanced the performance of IMS using the summation
+feature with little effort. Other than on the Lexical Sample tasks,
+where smaller word embeddings performed better, we also found that the
+number of dimensions did not affect results as much as the scaling
+parameter. Unlike Iacobacci et al. \shortcite{Iacobacci2016}, we also
+found that a simple composition method using summation already gave
+good improvements over the standard WSD features, provided that the
+scaling method described in \cite{Taghipour15} was performed.
+
+An additional key contribution of our work was to build a
+gold-standard English-Chinese Cross-Lingual WSD dataset constructed
+with sentences from real news articles and to evaluate our proposed
+word embedding approach under this scenario.  Our compiled dataset was
+used as evaluation of the task of translating English words on online
+news articles. This dataset is made available publicly.  We observed
+that word embeddings also improves the performance of WSD in our
+Cross-Lingual WSD setting.
+
+As future work, we will examine how to expand the existing dictionary
+with more English words of varying difficulty and include more
+possible Chinese translations, as we note that there were several
+instances in the Cross-Lingual WSD dataset where the annotators did
+not choose an existing translation. 
+
+% Hong Jin: removed this since we did not mention this anywhere else
+%An extrinsic evaluation of the
+%Cross-Lingual WSD system should be done with users of different
+%language learning application in order to validate that the quality of
+%translations did indeed improve in real world usage.
