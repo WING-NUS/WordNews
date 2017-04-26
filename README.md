@@ -3,9 +3,10 @@
 I've created a single repo to house all of the WordNews code:
 
 ```
-WordNews/clients/14-android - `git subtree add --prefix=clients/14-angular https://github.com/endlessfrank/translate_heroku_extension.git master`
-                /15-android - `git subtree add --prefix=clients/15-angular https://github.com/laizhouxia/fyp-chrome-extension.git master`
+WordNews/clients/14-angular - `git subtree add --prefix=clients/14-angular https://github.com/endlessfrank/translate_heroku_extension.git master`
+                /15-angular - `git subtree add --prefix=clients/15-angular https://github.com/laizhouxia/fyp-chrome-extension.git master`
                 /16-android - this original WordNews repository (before renaming).
+                /17-android - `git subtree add --prefix=clients/17-android git@github.com:WING-NUS/Word-News-Android.git master`
         /server/ - server code - `git subtree add --prefix=server https://github.com/kanghj/wordnews_server.git master`
         /datasets/ - for experimental datasets
         /pubs/ - for our publications
