@@ -1,0 +1,9 @@
+*.dvi
+*.out
+*.synctex.gz
+*.blg
+*.aux
+*.swp
+*.log
+rosette.ps
+Edits/

@@ -1,0 +1,202 @@
+\section{Word Sense Disambiguation (WSD) Component}
+\label{sec:wsd}
+\begin{CJK}{UTF8}{gbsn}
+Our extension needs to show the most appropriate translation sense
+based on the context. Such a translation selection task --
+cross-lingual word sense disambiguation -- is a common problem in
+machine translation.  In this section, we describe how we improved
+WordNews' WSD capabilities through a series of six approaches.
+
+The context evidence that we leverage for WSD comes in two forms: the
+news category of the target word and its enclosing sentence.
+
+\begin{table*}[t]
+  \caption{Example translations from our approaches to WSD. Target words are italicized and correct translations are bolded.}
+  \label{table:wsd_1}
+  \begin{center}
+  \begin{tabular}{| p{3.5cm} | p{3.8cm} || p{1.2cm} | p{1cm} | p{1.3cm}| p{0.8cm} | p{0.9cm} | p{1.2cm} |}
+    \hline
+    {\bf English Sentence} & {\bf Dictionary} & {\bf Baseline} & {\bf POS} & \multicolumn{3}{|c|}{{\bf Machine Translation}} \\
+    \cline{5-7}
+    & & & & {\bf Substring} & {\bf Relax} & {\bf Align} \\
+    \hline
+    (1) ... a very \textit{close} friend of ... & \parbox[t]{3.8cm}{verb: 关闭, 合, 关 ...\\ adj: 密切, ... 亲密 ...} & 关闭 & 密切 & {\bf 亲密} & {\bf 亲密} & {\bf 亲密} \\
+    \hline
+    (2) ... kids can't \textit{stop} singing ... & \parbox[t]{3.8cm}{verb: 停止, 站, 阻止, 停 ...} & {\bf 停止} & 阻止 & {\bf 停止} & {\bf 停止} & {\bf 停止} \\
+    \hline
+    (3) ... about Elsa being happy and \textit{free} ... & \parbox[t]{3.8cm}{adj: 免费, 自由, 游离, 畅, 空闲的...} & 免费 & 免费 & {\bf 自由} & {\bf 自由} & {\bf 自由} \\
+    \hline
+    (4) ... why Obama's \textit{trip} to my homeland is meaningful ... & \parbox[t]{3.8cm}{noun: 旅, 旅程 ... 旅游 ...} & 旅 & 旅 & 旅 & {\bf 旅行} & {\bf 旅行} \\
+    \hline
+    (5) ... winning more points in the \textit{match} ... & \parbox[t]{3.8cm}{noun: 匹配, 比赛, 赛, 敌手, 对手, 火柴 ...} & 匹配 & 匹配 & {\bf 比赛} & {\bf 比赛} & {\bf 比赛} \\
+    \hline
+    (6) ... \textit{state} department spokeswoman Jen Psaki said that the allies  ... & \parbox[t]{3.8cm}{noun: 态, 国, 州, ... \\verb: 声明, 陈述, 述, 申明 ... 发言 ... \\adj: 国家的 ...} & 态 & 态 & 发言 & 发言人 & {\bf 国家} \\
+    \hline
+    \end{tabular}
+  \end{center}
+\end{table*}
+
+\subsection{Bilingual Dictionary and Baseline}
+% Tao2: revised
+WordNews's server component includes a bilingual lexicon of
+English words with possible Chinese senses. The English words in our
+dictionary is based on the publicly-available College English Test
+(CET 4) list, which has a breadth of about 4,000 words.  We augment
+the list to include the relative frequency among Chinese senses, with
+their part-of-speech, per English word.
+
+Our baseline translation uses the most frequent sense: for an English
+word to be translated, it chooses the most frequent relative Chinese
+translation sense $c$ from the possible set of senses $C$. This method
+has complete coverage over the CET 4 list (as the word frequency rule
+always yields a prospective translation), but as it lacks any context
+model, it is the least accurate.
+
+\subsection{Approach 1: News Category}
+Topic information has been shown to be useful in
+WSD~\cite{Boyd-Graber2007}.  For example, consider the English word
+\textit{interest}. In finance related articles, ``interest'' is more
+likely to carry the sense of ``a share, right, or title in the
+ownership of property'' (``利息'' in Chinese), over other senses.
+Therefore, analysing the topic of the original article and selecting
+the translation with the same topic label might help disambiguate the
+word sense. For a target English word $e$, for each prospective Chinese
+sense $c \in C$, choose the first (in terms of relative frequency)
+sense that has the same news category as the containing webpage.
+
+\subsection{Approach 2: Part-of-Speech}
+Part-of-Speech (POS) tags are also useful for word sense
+disambiguation~\cite{Wilks1998} and machine
+translation~\cite{Toutanova2002,Ueffing2003}.  For example, the
+English word ``book'' can function as a verb or a noun, which gives
+rise to two different dominant senses: ``reserve'' (``预定'' in
+Chinese) and ``printed work'' (``书''), respectively. As senses often
+correspond cross-lingually, knowledge of the English word's POS can
+assist disambiguation.  We employ the Standford log-linear
+Part-of-Speech tagger~\cite{Toutanova2003} to obtain the POS tag for
+the English word, whereas the POS tag for target Chinese senses are
+provided in our dictionary.  In cases where multiple candidate Chinese
+translations fit the same sense, we again break ties using relative
+frequency of the prospective candidates.
+
+\subsection{Approaches 3--5: Machine Translation}
+
+Neighbouring words provide the necessary context to perform WSD in
+many contexts. In our work, we consider the sentence in which the
+target word appears as our context. We then acquire its translation
+from Microsoft Bing Translator using its API.  As we access the
+translation as a third party, the Chinese translation comes as-is,
+without the needed explicit word to locate the target English word to
+translate in the original input sentence. We need to perform alignment
+of the Chinese and English sentences in order to recover the target
+word's translation from the sentence translation.
+
+{\bf Approach 3 -- Substring Match.} As potential Chinese translations are
+available in our dictionary, a straightforward use of substring
+matching recovers a Chinese translation; {\it i.e.}, check whether the
+candidate %Chinese translation is a substring of the Bing
+% Tao2: revised
+Bing translation is a substring of the Chinese translation. 
+If more than one candidate matches, we use the longest
+string match heuristic and pick the one with the longest match as the
+final output. If none matches, the system does not output a translation
+for the word.  
+
+{\bf Approach 4 -- Relaxed Match.} The final rule in the substring match method
+unfortunately fires often, as the coverage of WordNews's lexicon
+is limited.  As we wish to offer correct translations that are not
+limited by our lexicon, we relax our substring condition, allowing the
+Bing translation to be a superset of a candidate translation in our
+dictionary (see Example~4 in Table~\ref{table:wsd_1}, where the Bing
+translation ``旅行'' is allowed to be relaxed to match the dictionary
+``旅'').
+% Tao: If multiple Chinese words are matched, how do you select?
+To this end, we must know the extent of the words in the translation.
+We first segment the obtained Bing translation with the Stanford
+Chinese Word Segmenter, and then use string matching to find a Chinese
+translation $c$.  
+% Tao2: added this. 
+If more than one candidate matches, we heuristically 
+use the last matched candidate. 
+This technique significantly augments the
+translation range of our extension beyond the reach of our lexicon.
+% Tao: from the experimental result, this method has a slightly lower coverage than substring match. Why?
+
+
+%Bing approach is not perfect. The results that generated by Bing approach is limited by the covearge of our dictionary size. In Table~\ref{table:wsd_1}, the fourth example is the approach of using Bing Translator together with Stanford Word Segmenter, and I would like to use Bing+ to represent this algorithm. The Bing approach will generate ``顶" as the result. After that, our algorithm will send the Chinese sentence returned from Bing Translator to Stanford Word Segmenter. Then, this algorithm will use the segmented word that contains the Bing result as a substring or equals to the Bing result as the final result. In this example, the final result of Bing+ is ``顶级" which is the best result that can be generated from the result of Bing Translator and also a result that does not covered by our dictionary.
+
+%In the previous method, it is possible that one Chinese candidate %translation in our dictionary matches multiple Chinese words in Bing translation. 
+
+
+{\bf Approach 5 -- Word Alignment.}  The relaxed method runs into difficulties when
+the target English $e$'s Chinese prospective translations which come from our
+lexicon generate several possible matches.  
+Consider Example 6 in Table~\ref{table:wsd_1}.  The target English
+word ``state'' has corresponding Chinese entries ``发言'' and ``国家的''
+in our dictionary.  For this reason, both ``国家" (``country'',
+correct) and ``发言人" (``spokeswoman'', incorrect) are relaxed
+matches.  As relaxed approach always picks up the last candidate, ``发
+言人'' is the final output, which is incorrect.
+
+To address this, we use the Bing Word Alignment
+API\footnote{\url{https://msdn.microsoft.com/en-us/library/dn198370.aspx}}
+to provide a possibly different prospective Chinese sense $c$.  In
+this example, ``state'' matches ``国家'' (``country'', correct) from
+word alignment, and the final algorithm chooses ``国家'' as the
+output.
+
+%Bing+ approach is not perfect as well. The results from Bing+ approach is highly related to the accuracy of string matching algorithm. If two English words shares very similar translations or if two Chinese words contains the same Chinese charater, Bing+ approach will generate the wrong result and that's why we need a Word Alignment tool.Bitext word alignment or simply word alignment is the natural language processing task of identifying translation relationships among the words (or more rarely multiword units) in a bitext, resulting in a bipartite graph between the two sides of the bitext, with an arc between two words if and only if they are translations of one another. I use Bing Word Alignment API\footnote{\url{https://msdn.microsoft.com/en-us/library/dn198370.aspx}} as our Word Alignment tool.
+%The Bing++ algorithm is basically the approach of using Bing+ approach together with the Microsoft Bing Word Alignment. In Table~\ref{table:wsd_1}, the fifth example, ``state" is the word that need to be translated. The result from Bing+ approach is ``发言人", which is the translation of ``spokeswoman", because the Chinese translation ``发言" can be translated from both ``state" and ``spokeswoman". Then step five will send the original English sentence to Bing Word Alignment. Now, there will be two final results, one from Bing+ approach and the other one from Bing Word Alignment and the algorithm will choose the correct one from these two results. In this example, ``state" will match with ``国家" and the algorithm will choose ``国家" as the final result as well.
+
+\subsection{Evaluation}
+To evaluate the effectiveness of our proposed methods, we randomly
+sampled 707 words and their sentences from recent
+CNN\footnote{\url{http://edition.cnn.com}} news articles, manually
+annotating the ground truth translation for each target English
+word. We report both the {\bf coverage} ({\it i.e.}, the ability of
+the system to return a translation) and {\bf accuracy} ({\it i.e.},
+whether the translation is contextually accurate).
+
+\begin{table}[t]
+\centering
+  \caption{WSD performance over our test set.}
+  \label{table:evaluation_1}
+  \begin{tabular}{| p{2.7cm} | p{1.7cm} | p{1.7cm} |}
+    \hline
+     & {\bf Coverage} & {\bf Accuracy}\\
+    \hline
+    Baseline & {\bf 100\%} & 57.3\%\\
+    \hline
+    News Category & 2.0\% & 7.1\%\\
+    \hline
+    POS & 94.5\% & 55.2\%\\
+    \hline
+    Bing -- Substring & 78.5\% & 79.8\%\\
+    \hline
+    Bing -- Relaxed  & 75.7\% & 80.9\%\\
+    \hline
+    Bing -- Align & 76.9\% & {\bf 97.4}\%\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Table~\ref{table:evaluation_1} shows the experimental results for the
+six approaches.  As expected, frequency-based baseline achieves 100\%
+coverage, but a low accuracy (57.3\%); POS also performs similarly
+. The category-based approach performs the worst, due to low coverage.
+This is because news category only provides a high-level context and
+many of the Chinese word senses do not have a strong topic tendency.
+
+Of most promise is our use of web based translation related APIs.  The
+three Bing methods iteratively improve the accuracy and have
+reasonable coverage. Among all the methods, the additional step of
+word alignment is the best in terms of accuracy (97.4\%),
+significantly bettering the others. This validates previous work that
+% Min: BUG do you have a citation for this?
+sentence-level context is helpful in WSD.
+
+%Table~\ref{table:evaluation_1} column two contains the coverage for different approaches. As the algorithm will try to translate some word only if it is covered by our dictionary, the coverage for Baseline is always 100\%. The coverage for Bing, Bing+, Bing++ and POSTagger are roughly the same and all of them are acceptable. However, the coverage for News Category approach is only 2.0\%. One reason is that when I set the threshold for assigning categories for Chinese word, I purposely make it very high to maximize the accuracy. If the accuracy is quite high, which means this approach is quite useful, then I will lower the threshold and find the balance point.
+
+%Figure~\ref{table:evaluation_1} column three contains the accuracy of all the approaches. The last column is the accuracy for News Category approach and it is only 7.1\%. As mentioned in above Chapter, since the accuracy is very low, there is no need to lower the threshold and try to allocate more categories for Chinese words. The accuracy for Baseline is 57.3\%, which is already a fairly hight accuracy. The accuracy for  POSTagger is around 55.2\% also, which is a bit lower than our expectation. The accuracy for Bing++ is 97.4\% which I think is a very good result and it is already very hard to improve. Therefore, based on my test results, Bing++ is the best approach among these five approaches.
+
+\end{CJK}

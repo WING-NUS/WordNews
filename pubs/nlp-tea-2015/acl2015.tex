@@ -1,0 +1,99 @@
+%
+% File acl2015.tex
+%
+% Contact: car@ir.hit.edu.cn, gdzhou@suda.edu.cn
+%%
+%% Based on the style files for ACL-2014, which were, in turn,
+%% Based on the style files for ACL-2013, which were, in turn,
+%% Based on the style files for ACL-2012, which were, in turn,
+%% based on the style files for ACL-2011, which were, in turn, 
+%% based on the style files for ACL-2010, which were, in turn, 
+%% based on the style files for ACL-IJCNLP-2009, which were, in turn,
+%% based on the style files for EACL-2009 and IJCNLP-2008...
+
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt]{article}
+\usepackage{acl2015}
+\usepackage{times}
+%\usepackage{url}
+\usepackage{latexsym}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage{CJKutf8}
+\usepackage[hyphens]{url}
+\usepackage[labelfont=bf, textfont=bf]{caption}
+\usepackage{multirow}
+%\begin{CJK*}{UTF8}{gbsn}
+%\setlength\titlebox{5cm}
+
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+% Tao: All upper-case is hard to read.
+%\title{LEARNING SECOND LANGUAGE FROM NEWS WEBSITES}
+\title{Interactive Second Language Learning from News Websites}
+
+\author{
+  	Tao Chen$^{1}$\qquad 
+  	Naijia Zheng$^{1}$\qquad
+  	Yue Zhao$^{1}$ \\
+  	{\bf Muthu Kumar Chandrasekaran$^{1}$}\qquad 
+  	{\bf Min-Yen Kan$^{1,2}$\thanks{\hspace{.2cm}This research is supported by the Singapore National Research Foundation under its International Research Centre @ Singapore Funding Initiative and administered by the IDM Programme Office.}}\\ 
+  	$^{1}$School of Computing, National University of Singapore\\
+  	$^{2}$NUS Interactive and Digital Media Institute, Singapore\\
+  	{\tt \{taochen,muthu.chandra,kanmy\}@comp.nus.edu.sg}  \\ 
+  	{\tt \{znj472982642,immortalzhaoyue\}@gmail.com}}
+\date{}
+
+
+%Tao2: name the app WordNews?
+\begin{document}
+
+\maketitle
+\begin{abstract}
+
+
+We propose {\tt WordNews}, a web browser extension that allows readers to learn a
+second language vocabulary while reading news online.  Injected
+tooltips allow readers to look up selected vocabulary and take simple
+interactive tests.
+
+We discover that two key system components needed improvement, both
+which stem from the need to model context.  These two issues are
+real-world word sense disambiguation (WSD) to aid translation quality
+and constructing interactive tests. For the first, we start with
+Microsoft's Bing translation API but employ additional
+dictionary-based heuristics that significantly improve translation in
+both coverage and accuracy. For the second, we propose techniques for
+generating appropriate distractors for multiple-choice word mastery
+tests.  Our preliminary user survey confirms the need and viability of
+such a language learning platform.
+
+\end{abstract}
+
+\input{1_Introduction}
+\input{2_Literature_Review}
+\input{3_Methods}
+\input{4_WSD_Algorithm}
+\input{5_Distractors_Generation_Algorithm}
+\input{6_Evaluation}
+\input{7_Conclusion}
+
+% include your own bib file like this:
+%\bibliographystyle{acl}
+%\bibliography{acl2015}
+% use socreport.bst
+\bibliographystyle{acl}
+\bibliography{acl2015}
+
+%\clearpage\end{CJK*}
+\end{document}

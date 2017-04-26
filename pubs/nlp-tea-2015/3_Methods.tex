@@ -1,0 +1,182 @@
+
+% Title for original screenshot: 
+% Treacherous journey to epicenter of deadly Nepal earthquake
+% V1:  Hackers are draining bank accounts via the Starbucks app
+% http://money.cnn.com/2015/05/13/technology/hackers-starbucks-app
+% V2: Verizon wants to eat Google's and Facebook's lunch
+% http://money.cnn.com/2015/05/12/investing/verizon-aol-mobile-video-advertising/index.html
+% V3: Spotify wants to be the soundtrack of your life
+% http://money.cnn.com/2015/05/20/technology/spotify-announcement
+
+\begin{figure*}[ht]
+\centering
+\includegraphics[width=0.99\textwidth]{chrome_extension_new_3.png}
+\caption{Merged screenshots of our Chrome extension on the CNN English
+  article 
+  {\it  Spotify wants to be the soundtrack of your life}.
+    Underlined components are clickable to yield
+  tooltips of two different forms: (left) a definition for learning, (right)
+  a multiple-choice interactive test.}
+\label{fig:chrome_extension_1}
+\end{figure*}
+
+\section{The WordNews Chrome Extension}
+
+Our method to directly enhance the web browser is inspired by earlier
+work in the computer-aided language learning community that also uses
+the web browser as the delivery vehicle for language learning.  WERTi
+\cite{metcalf06:_gener_web_based_englis_prepos,meurers2010} was a
+monolingual, user-driven system that modified web pages in the target
+language to highlight or remove certain words from specific syntactic
+patterns to teach difficult-to-learn English grammar.
+
+\begin{CJK}{UTF8}{gbsn}
+Our focus is to help build Chinese vocabulary for second language
+learners fluent in English.  We give a running scenario to illustrate
+the use of WordNews.  When a learner browses to an English webpage on
+a news website, our extension either selectively replaces certain
+original English words with their Chinese translation
+% Tao2: added 
+or underlines the English words, based on user configuration
+(Figure~\ref{fig:chrome_extension_1}, middle).  While the meaning of
+the Chinese word is often apparent in context, the learner can choose
+to learn more about the replaced/underlined word, by mousing over the
+word to reveal a definition tooltip
+(Figure~\ref{fig:chrome_extension_1}, left) to aid mastery of the
+Chinese word.  Once the learner has encountered the target word a few
+times, WordNews assesses learner's mastery by generating a multiple
+choice translation test on the target word
+(Figure~\ref{fig:chrome_extension_1}, right). Our learning platform
+thus can be viewed as three logical use cases: {\it translating}, {\it
+  learning} and {\it testing}. \\
+
+{\bf Translating.}  We pass the main content of the webpage from the
+extension client to our server for candidate selection and
+translation.  As certain words are polysemous, the server must select
+the most appropriate translation among all possible meanings. Our
+initial selection method replaces any instance of words stored in our
+dictionary. For translation, we check the word's stored meanings
+against the machine translation of each sentence obtained from the
+Microsoft Bing Translation API\footnote{\url{https://www.bing.com/translator}} 
+(hereafter, ``Bing'').  Matches are
+deemed as correct translations and are pushed back to the Chrome
+client for rendering.
+
+{\bf Learning.} Hovering the mouse over the replacement Chinese word
+causes a tooltip to appear, which gives the translation,
+pronunciation, and simplified written form, and a {\tt
+  More} link that loads additional contextual example sentences (that
+were previously translated by the backend) for the learner to study.
+The  {\tt More}  link must be clicked for activation, as we find this
+two-click architecture helps to minimize latency and the loading of
+unnecessary data.  The server keeps record of the learning tooltip
+activations, logging the enclosing webpage URL, the target word and
+the user identity.
+
+{\bf Testing.}  After the learner encounters the same word a
+pre-defined number $t=3$ times, WordNews generates a multiple choice
+question (MCQ) test to assess mastery.  When the learner hovers over
+the replaced word, the test is shown for the learner to select the
+correct answer. When an option is clicked, the server logs the
+selection and updates the user's test history, and the client reveals
+the correct answer.
+
+\subsection{News Categories}
+\label{subsec:category}
+As our learning platform is active only on certain news websites, we
+can model the news category (for individual words and whole webpages)
+as additional evidence to help with tasks.  Of particular importance
+to WordNews is the association of words to a news category, which is
+used downstream in both word sense disambiguation
+(Section~\ref{sec:wsd}) and the generation of distractors in the
+interactive tests (Section~\ref{sec:distractor}).  Here, our goal is
+to automatically find highly relevant words to a particular news
+category -- {\it e.g.}, ``what are typical {\it finance} words?''
+
+We first obtain a large sample of categorized English news webpages,
+by creating custom crawlers for specific news websites~({\it e.g.}
+CNN).  We use a seed list of words that are matched against a target
+webpage's URL.  If any match, the webpage is deemed to be of that
+category.  For example, a webpage that has the seed word ``football''
+in its URL is deemed of category ``Sports''.  Since the news category
+is also required for Chinese words for word sense disambiguation, we
+must perform a similar procedure to crawl Chinese news ({\it e.g.},
+BaiduNews\footnote{\url{http://news.baidu.com}}) However, Chinese news
+sites follow a different categorization scheme, so we first manually
+align the categories based on observation (see Table~\ref{table:cat}),
+creating seven bilingual categories: namely, ``World'',
+``Technology'', ``Sports'', ``Entertainment'', ``Finance'',
+``Fashion'' and ``Travel''.
+
+% Tao: please check the example words.
+\begin{table}[t]
+\centering
+  \caption{News category alignment between English and Chinese.}
+  \label{table:cat}
+  \begin{tabular}{| p{2.4cm} | p{2.2cm} | p{1.9cm} |}
+    \hline
+    {\bf English \qquad Category} & {\bf Chinese \qquad Category} & {\bf Example Words}\\
+    \hline
+    1. Entertainment & Entertainment & ``superstar", ``明星"\\
+    \hline
+    2. World &  Military, \qquad International, Social & ``attacks'', ``军事"  \\
+    \hline
+    3. Finance & Finance & ``investment", ``财富"\\
+    \hline
+    4. Sports & Sports & ``score'', ``比赛" \\
+    \hline
+    5. Fashion &  Beauty \& Health & ``jewelry", ``时髦"\\
+    \hline
+    6. Technology & Technology  & ``cyber", ``互联网"\\ \hline
+    7. Travel  &  & ``natural'' \\
+    \hline
+  \end{tabular}
+\end{table}
+
+%\begin{table}[ht]
+%\centering
+%  \caption{News category alignment between English and Chinese.}
+%  \label{table:cat}
+%  \begin{tabular}{| p{2.2cm} | p{2.2cm} | p{1.8cm} |}
+%    \hline
+%    {\bf English \qquad Category} & {\bf Chinese \qquad Category} & {\bf Example Words}\\
+%    \hline
+%    Entertainment & Entertainment & ``superstar", ``明星"\\
+%    \hline
+%     World &  Military, \qquad International, Social & ``attacks'', ``军事"  \\
+%    \hline
+%    Finance & Finance & ``investment", ``财富"\\
+%    \hline
+%    Sports & Sports & ``score'', ``比赛" \\
+%    \hline
+%    Fashion &  Beauty \& Health & ``jewelry", ``时髦"\\
+%    \hline
+%    Travel  &  & ``natural'', \\
+%    \hline
+%   Health &  & ``stress'' \\
+%    \hline
+%  \end{tabular}
+%\end{table}
+
+We tokenize and part-of-speech tag the main body text of the
+categorized articles, discarding punctuation and stopwords.  For
+Chinese, we segment words using the Stanford Chinese word
+segmenter~\cite{Chang2008}. The remaining words are classified to a
+news category based on document frequency. A word $w$ is classified to
+a category $c$ if it appears more often (a tunable threshold
+$\delta$\footnote{We empricially set $\delta$ to $10$.}) than its
+average category document frequency.  Note that a word can be
+categorized to multiple categories under this scheme.
+
+%% A word w is classified into category C(i) if it satisfies Equation~\ref{equation:Distractor_3}::
+%% \begin{equation}
+%% f (w, C(i)) - sw(w)/n >= \delta
+%% \label{equation:Distractor_3} 
+%% \end{equation}  
+
+%% The confidence factor $\delta$ can be a positive integer between 0 and the average number of articles in each category. It means on average, the word w must appear in a specific category C(i) $\delta$ times more than it appear in other category before it can be classified into category C(i).
+
+%% It is obvious that a higher confidence factor value will result in less number words getting classified, but it will result in getting words that are more accurate. A suitable confident value is selected to generating category-related words in the later section.
+
+\end{CJK}
+
