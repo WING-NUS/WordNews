@@ -1,0 +1,58 @@
+.annotate-highlight {
+	background-color: #ffbd77;
+}
+
+.annotate-panel {
+	border: 2px solid #ff8040;
+    border-color:#ffffff;
+    background-color: #83eafc;
+    opacity: 1;
+    z-index: 10;
+    padding: 10px;
+    
+}
+
+.tooltip-wrapper {
+  display: inline-block; /* display: block works as well */
+  margin: 10px; /* make some space so the tooltip is visible */
+}
+
+.tooltip-wrapper .btn[disabled] {
+  /* don't let button block mouse events from reaching wrapper */
+  pointer-events: none;
+}
+
+.tooltip-wrapper.disabled {
+  /* OPTIONAL pointer-events setting above blocks cursor setting, so set it here */
+  cursor: not-allowed;
+}
+
+.audio-button {
+  height:21px;
+  width:21px;
+  display:inline-block;
+  opacity:0.5;
+  /*vertical-align:middle; */
+  background-image:url('chrome-extension://__MSG_@@extension_id__/icons/audio.png');
+  background-size: 21px 21px;
+  -webkit-user-select: none;
+  -webkit-font-smoothing: antialiased;
+  padding: 0;
+  background-repeat:no-repeat;
+  background-color:transparent; 
+  border-color:transparent;
+}
+
+.audio-image {
+  height:21px;
+  width:21px;
+  display:inline-block;
+  opacity:0.55;
+  -webkit-user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tooltip > .tooltip-inner {
+  margin: 5px;
+  font-size: 15px;
+}

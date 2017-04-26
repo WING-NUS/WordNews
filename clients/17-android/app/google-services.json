@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "79834017894",
+    "project_id": "wordnews-4051"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79834017894:android:03fe6634b71327ff",
+        "android_client_info": {
+          "package_name": "thack.ac.wordnews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79834017894-2tgkgkv58r3fc8gq7fsvujkbbdkvtte6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "thack.ac.wordnews",
+            "certificate_hash": "644B4B0846E0A6FAF14D6F9735A9354EB49BC59A"
+          }
+        },
+        {
+          "client_id": "79834017894-fnoddctnpj3vm5kafonbrn0ikv6ouics.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsGCA_clHumeeDkBO3yGR7YeknLAwdc_o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
