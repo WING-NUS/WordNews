@@ -1,6 +1,7 @@
 # WordNews
 
-I've created a single repo to house all of the WordNews code:
+
+Single repo For all WordNews Code :
 
 ```
 WordNews/clients/14-angular - `git subtree add --prefix=clients/14-angular https://github.com/endlessfrank/translate_heroku_extension.git master`
